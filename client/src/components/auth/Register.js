@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class Register extends Component {
   constructor() {
@@ -11,12 +12,16 @@ class Register extends Component {
     this.state = {
       name: '',
       email: '',
+      phonenumber:'',
       password: '',
       password2: '',
       errors: {}
     };
+
+  
   }
 
+  
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/dashboard');
@@ -33,22 +38,24 @@ class Register extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  
+  
   onSubmit = e => {
+
     e.preventDefault();
 
     const newUser = {
       name: this.state.name,
       email: this.state.email,
+      phonenumber:this.state.phonenumber,
       password: this.state.password,
       password2: this.state.password2
     };
-
     this.props.registerUser(newUser, this.props.history);
   }
 
   render() {
-    const { errors } = this.state;
-
+    const { errors, onSubmit } = this.state;
     return (
       <div className="register">
         <div className="container">
@@ -56,8 +63,9 @@ class Register extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
               <p className="lead text-center">
-                Create your DevConnector account
+                Create your account
               </p>
+              
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="Name"
@@ -75,6 +83,13 @@ class Register extends Component {
                   error={errors.email}
                   info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
                 />
+                 <TextFieldGroup
+                  placeholder="Phone Number"
+                  name="phonenumber"
+                  value={this.state.phonenumber}
+                  onChange={this.onChange}
+                  error={errors.phonenumber}
+                />
                 <TextFieldGroup
                   placeholder="Password"
                   name="password"
@@ -84,7 +99,7 @@ class Register extends Component {
                   error={errors.password}
                 />
                 <TextFieldGroup
-                  placeholder="Confirm Password"
+                  placeholder="Submit Password"
                   name="password2"
                   type="password"
                   value={this.state.password2}

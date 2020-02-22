@@ -26,7 +26,8 @@ import Posts from './components/posts/Posts';
 import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 import MultiStepForm from './components/application/MultiStepForm';
-import WizardForm from './components/wizard/WizardForm';
+import Submit from './components/application/Submit';
+// import Pview from './profile-forms/Piew';
 
 import './App.css';
 
@@ -64,12 +65,15 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
-              <Route exact path="/wizard" component={WizardForm} /> 
+              {/* <Route  exact path="test" component={Pview} /> */}
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/application" component={MultiStepForm} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/submit" component={Submit} />
               </Switch>
               <Switch>
                 <PrivateRoute

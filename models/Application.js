@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
-
-
 const ApplicationSchema = mongoose.Schema({
-     
-    
     _userid: {
         type: Schema.Types.ObjectId,
         ref: 'user'
@@ -100,7 +95,13 @@ const ApplicationSchema = mongoose.Schema({
     Xsemmarks: String,
     overalltot:Number,
     overallmarks:Number,
-    totalpermark:String
+    totalpermark:String,
+
+    date: {
+        type: Date,
+        default: Date.now
+      },
+    ipaddress: String
 });
 
 module.exports = post = mongoose.model('application', ApplicationSchema);

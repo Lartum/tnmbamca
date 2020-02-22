@@ -3,15 +3,19 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
+const cors = require('cors');
 
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 const application = require('./routes/api/application')
+const pdfgenerate = require('./routes/api/pdfgenerate');
+
 
 const app = express();
 
 // Body parser middleware
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -38,6 +42,7 @@ app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
 app.use('/api/application', application);
+app.use('/api/pdfgenerate', pdfgenerate);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {

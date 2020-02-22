@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 import { clearCurrentProfile } from '../../actions/profileActions';
+import logo from '../../img/tnlogo.png'
+
 
 class Navbar extends Component {
   onLogoutClick(e) {
@@ -49,12 +51,12 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/register">
+          <Link className="navbar-auth-text" to="/register">
             Sign Up
           </Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/login">
+        <li className="nav-item navbar-auth-text">
+          <Link className="navbar-auth-text" to="/login">
             Login
           </Link>
         </li>
@@ -62,9 +64,10 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
+      <nav className="navbar navbar-expand-sm frost-theme mb-4">
+       <img className='tnlogo' src={logo} />
+        <div className="container ">
+          <Link className="navbar-brand navbar-brand-text" to="/">
             TAMIL NADU MBA MCA ADMISSION
           </Link>
           <button

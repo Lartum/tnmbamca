@@ -3,21 +3,34 @@ body {
 }
 
 img {
-  width: 100%;
+  width: 5%;
+}
+.navbar-brand-text{
+  margin-left: -8rem;
+  color: white;
 }
 
+.navbar-auth-text{
+  color: #f7f7f7;
+  margin-left: 2.3rem;
+}
 .landing {
   position: relative;
-  background: url("./img/showcase.jpg") no-repeat;
+  background: url("./img/back.png") no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
   margin-top: -24px;
   margin-bottom: -50px;
 }
-
 .landing-inner {
   padding-top: 80px;
+}
+
+.frost-theme{
+  background-image: linear-gradient(to right, #000428,  #004e92);
+  color: aliceblue;
+  text-decoration: none;
 }
 
 .dark-overlay {
@@ -49,7 +62,26 @@ footer {
   width: 100%;
 }
 
-.reviewHeaders{
-  color: white;
-  background-color: "#c81912"
+.reviewHeaders {
+  color: black;
+  text-align: center;
+  background-color: #f7f7f7;
+  font-weight: 510;
+  font-size: larger;
 }
+
+.finalReviewHeader {
+  color: black;
+  background-color: #f7f7f7;
+  margin-top: 1rem;
+  font-weight: 300;
+  margin-bottom: 0.4rem;
+}
+
+.buttonAlignCentre {
+  margin-top: 2rem;
+  margin-bottom: 0.4rem;
+  margin: auto;
+  display: block;
+}
+

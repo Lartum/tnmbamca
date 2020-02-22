@@ -6,6 +6,7 @@ module.exports = function validateRegisterInput(data) {
 
   data.name = !isEmpty(data.name) ? data.name : '';
   data.email = !isEmpty(data.email) ? data.email : '';
+  data.phonenumber = !isEmpty(data.phonenumber) ? data.phonenumber : '';
   data.password = !isEmpty(data.password) ? data.password : '';
   data.password2 = !isEmpty(data.password2) ? data.password2 : '';
 
@@ -19,10 +20,13 @@ module.exports = function validateRegisterInput(data) {
 
   if (Validator.isEmpty(data.email)) {
     errors.email = 'Email field is required';
+  } 
+  if (Validator.isEmpty(data.phonenumber)) {
+    errors.phonenumber = 'Phone Number field is required';
   }
-
-  if (!Validator.isEmail(data.email)) {
-    errors.email = 'Email is invalid';
+  
+  if (!Validator.isLength(data.phonenumber, { min: 10, max: 10 })) {
+    errors.phonenumber = 'Please Enter a valid Phone Number';
   }
 
   if (Validator.isEmpty(data.password)) {
