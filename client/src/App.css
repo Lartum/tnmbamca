@@ -5,12 +5,15 @@ body {
 img {
   width: 5%;
 }
-.navbar-brand-text{
+.navbar-brand-text {
   margin-left: -8rem;
   color: white;
 }
+CardHeader {
+  text-align: center;
+}
 
-.navbar-auth-text{
+.navbar-auth-text {
   color: #f7f7f7;
   margin-left: 2.3rem;
 }
@@ -27,8 +30,8 @@ img {
   padding-top: 80px;
 }
 
-.frost-theme{
-  background-image: linear-gradient(to right, #000428,  #004e92);
+.frost-theme {
+  background-image: linear-gradient(to right, #000428, #004e92);
   color: aliceblue;
   text-decoration: none;
 }
@@ -85,3 +88,7 @@ footer {
   display: block;
 }
 
+.centerdiv {
+  width: 100%;
+  text-align: center;
+}

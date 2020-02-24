@@ -27,8 +27,6 @@ import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 import MultiStepForm from './components/application/MultiStepForm';
 import Submit from './components/application/Submit';
-// import Pview from './profile-forms/Piew';
-
 import './App.css';
 
 // Check for token
@@ -65,7 +63,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
-              {/* <Route  exact path="test" component={Pview} /> */}
+              {/* <Route exact path="/movie" component={MovieList}/> */}
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>

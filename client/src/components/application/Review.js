@@ -4,10 +4,7 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Form,
-  Row,
   Button,
-  CardFooter
 } from "reactstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -110,7 +107,7 @@ const Review = ({ setForm, formData, navigation }) => {
     };
     try {
       const res = axios.post("/api/application", formData, config);
-      return res.json();
+      
     } catch (err) {
       console.log(err);
     }

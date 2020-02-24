@@ -1,25 +1,31 @@
 const express = require('express')
 const router = express();
-const pdf = require('html-pdf');
-const path = require('path');
+const passport = require('passport');
 
-const admissionTemplate = require('../../documents/mbamca');
-const filePath = '../mbamca1.5/result.pdf';
-const resolvedPath = path.resolve(filePath);
-console.log(resolvedPath);
 
-router.post('/create-pdf', (req, res) => {
-    pdf.create(admissionTemplate(req.body),{}).toFile('result.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-        res.send(Promise.resolve());
-    });
-});
+const User = require('../../models/Application');
+const Application = require('../../models/Application');
 
-router.get('/fetch-pdf', (req, res) => {
-    res.sendFile(resolvedPath);
+
+
+
+router.get('/',  passport.authenticate('jwt', 
+{ session: false }), async (req,res) => {
+    try{
+         await Application
+        .findOne({_userid: req.user._id})
+          .populate('user')
+           .exec((err,data) =>{
+            //    console.log(data)
+               res.send({data});
+           })
+    }
+    catch(err){
+        console.log(err.message)
+    }    
 })
 
+
+    
 
 module.exports = router;

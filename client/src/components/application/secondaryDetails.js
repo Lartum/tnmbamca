@@ -37,16 +37,30 @@ const SecondaryDetails = ({ setForm, formData, navigation }) => {
       </Row>
       <Row form>
         <Col md={6}>
-          <FormGroup>
-            <Label for="religion">Religion</Label>
-            <Input type="text" name="religion" id="religion" key="religion" value={religion} onChange={setForm} placeholder="eg:Religion"/>
-          </FormGroup>
+        <FormGroup>
+        <Label for="religion">Religion</Label>
+          <Input type="select" name="religion" id="religion" value={religion} onChange={setForm}>
+          <option key="1">Hindu</option>
+          <option key="2">Christian</option>
+          <option key="3">Islam</option>
+          <option key="4">Sikhism</option>
+          <option key="5">Jainism</option>
+          <option key="6">Buddhism</option>
+          <option key="7">Jainism</option>
+        </Input>
+      </FormGroup>
         </Col>
         <Col md={6}>
-          <FormGroup>
-            <Label for="motherTongue">Mother Tongue</Label>
-            <Input type="text" name="motherTongue" id="motherTongue" key="motherTongue" value={motherTongue} onChange={setForm} placeholder="eg:Tamil"/>
-          </FormGroup>
+        <FormGroup>
+        <Label for="motherTongue">Mother Tongue</Label>
+          <Input type="select" name="motherTongue" id="motherTongue" value={motherTongue} onChange={setForm}>
+          <option key="1">Tamil</option>
+          <option key="2">Telugu</option>
+          <option key="3">Malayalam</option>
+          <option key="4">Kannada</option>
+          <option key="5">Others</option>
+        </Input>
+      </FormGroup>
         </Col>
         </Row>
         

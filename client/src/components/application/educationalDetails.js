@@ -43,16 +43,16 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
         <CardBody>
           <Row form>
             <Col md={6}>
-              <FormGroup>
-                <Label for="qualifyingdegree">Qualifying Degree</Label>
+            <FormGroup>
+                <Label for="qualifyingDegree">Qualifying Degree</Label>
                 <Input
-                  type="text"
-                  name="qualifyingdegree"
-                  id="qualifyingdegree"
+                  type="qualifyingDegree"
+                  name="qualifyingDegree"
+                  id="qualifyingDegree"
                   key="qualifyingDegree"
                   value={qualifyingDegree}
                   onChange={setForm}
-                  placeholder="Qualifying degree"
+                  placeholder="Qualifying Degree"
                 />
               </FormGroup>
             </Col>
@@ -120,7 +120,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                   <td>
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="XIyearOfPassing"
                       id="XIyearOfPassing"
                       key="XIyearOfPassing"
@@ -132,7 +132,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                     {" "}
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="XInameOfSchool"
                       id="XInameOfSchool"
                       key="XInameOfSchool"
@@ -144,7 +144,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                     {" "}
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="XIstate"
                       id="XIstate"
                       key="XIstate"
@@ -156,7 +156,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                     {" "}
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="XIdistrict"
                       id="XIdistrict"
                       key="XIdistrict"
@@ -170,7 +170,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                   <td>
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="XIIyearOfPassing"
                       id="XIIyearOfPassing"
                       key="XIIyearOfPassing"
@@ -182,7 +182,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                     {" "}
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="XIInameOfSchool"
                       id="XIInameOfSchool"
                       key="XIInameOfSchool"
@@ -194,7 +194,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                     {" "}
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="XIIstate"
                       id="XIIstate"
                       key="XIIstate"
@@ -206,7 +206,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                     {" "}
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="XIIdistrict"
                       id="XIIdistrict"
                       key="XIIdistrict"
@@ -220,7 +220,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                   <td>
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="degreeYearOfPassing"
                       id="degreeYearOfPassing"
                       key="degreeYearOfPassing"
@@ -232,7 +232,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                     {" "}
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="degreeNameOfSchool"
                       id="degreeNameOfSchool"
                       key="degreeNameOfSchool"
@@ -244,7 +244,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                     {" "}
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="degreeState"
                       id="degreeState"
                       key="degreeState"
@@ -256,7 +256,7 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
                     {" "}
                     <Input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       name="degreeDistrict"
                       id="degreeDistrict"
                       key="degreeDistrict"

@@ -6,16 +6,17 @@ const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
 const Nexmo = require('nexmo');
-const socketio = require('socket.io');
 // Load Input Validation
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
 //Init nexmo
 const nexmo = new Nexmo({
-    apiKey:'eae78f54',
-    apiSecret:'xlgSnaqn1sYhXY5W'
-}, {debug: true});
+  apiKey: 'eae78f54',
+  apiSecret: 'xlgSnaqn1sYhXY5W'
+}, {
+  debug: true
+});
 
 // Load User model
 const User = require('../../models/User');
@@ -27,21 +28,20 @@ router.get('/test', (req, res) => res.json({
   msg: 'Users Works'
 }));
 
-router.get('/phoneverifytest', (req,res) => {
-  res.json({ msg : 'phoneverify route is working'});
+router.get('/phoneverifytest', (req, res) => {
+  res.json({
+    msg: 'phoneverify route is working'
+  });
 })
 
-router.post('/phoneverifytest',(req,res) =>{
-    // res.send(req.body);
-    // console.log(req.body);
-    // const number = req.body.number;
-    nexmo.verify.request({
-      number: '919842772083',
-      brand: 'Nexmo',
-      code_length: '4'
-    }, (err, result) => {
-      console.log(err ? err : result)
-    });
+router.post('/phoneverifytest', (req, res) => {
+  nexmo.verify.request({
+    number: '919842772083',
+    brand: 'Nexmo',
+    code_length: '4'
+  }, (err, result) => {
+    console.log(err ? err : result)
+  });
 })
 
 // @route   POST api/users/register
@@ -52,48 +52,48 @@ router.post('/register', (req, res) => {
     errors,
     isValid
   } = validateRegisterInput(req.body);
-
+  const {
+    name,
+    email,
+    phonenumber,
+    password
+  } = req.body;
   // Check Validation
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
   User.findOne({
-      email: req.body.email
+      email
     })
     .then(user => {
       if (user) {
         console.log(user);
         errors.phonenumber = 'An Account already exists';
         return res.status(400).json(errors);
-      } 
-      // if (user.email) {
-      //   console.log(user.email);
-      //   errors.email = 'Email already exists';
-      //   return res.status(400).json(errors);
-      // } 
-
-      else {
-        const avatar = gravatar.url(req.body.email, {
+      } else {
+        const avatar = gravatar.url(email, {
           s: '200', // Size
           r: 'pg', // Rating
           d: 'mm' // Default
         });
         var currentYear = new Date().getFullYear()
-        var  defaultRegno = 10001
+        var defaultapplicationno = 10001
         User.find().estimatedDocumentCount((err, count) => {
-          count = count + defaultRegno;
-          var applicationnum =  [ currentYear, count]
-          regno = applicationnum.join('');
-          if (count = defaultRegno) {
+          count = count + defaultapplicationno;
+          var applicationnum = [currentYear, count]
+          applicationno = applicationnum.join('');
+          if (count = defaultapplicationno) {
+
             const newUser = new User({
-              name: req.body.name,
-              email: req.body.email,
-              phonenumber: req.body.phonenumber,
+              name,
+              email,
+              phonenumber,
               avatar,
-              password: req.body.password,
-              regno
+              password,
+              applicationno
             });
+    
             bcrypt.genSalt(10, (err, salt) => {
               bcrypt.hash(newUser.password, salt, (err, hash) => {
                 if (err) throw err;
@@ -105,14 +105,13 @@ router.post('/register', (req, res) => {
               });
             });
           } else {
-            
-            const newUser = new User({
 
-              name: req.body.name,
-              email: req.body.email,
+            const newUser = new User({
+              name,
+              email,
               avatar,
-              password: req.body.password,
-              regno
+              password,
+              applicationno
             });
             bcrypt.genSalt(10, (err, salt) => {
               bcrypt.hash(newUser.password, salt, (err, hash) => {

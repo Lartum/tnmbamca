@@ -6,10 +6,12 @@ const ApplicationSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     },
-    regno: {
-        type:Number,
-        ref: 'user'
+    applicationno: {
+        type : Number,
+        ref: 'user',
+        unique:true
     },
+    regno:Number,
     name: String,
     nameOfParent: String,
     gender: String,

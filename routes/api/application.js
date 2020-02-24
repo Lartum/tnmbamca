@@ -15,20 +15,28 @@ const User = require('../../models/User');
 // @access  Public
 router.get('/test', (req, res) => res.json({ msg: 'Profile Works' }));
 
+router.get('/all', passport.authenticate('jwt', 
+{ session: false }), (req,res) =>{
+  Application.findOne({_userid:req.user._id})
+      .populate('user')
+       .exec((data => {
+        res.send(data);
+       })) 
+          
+  })
+
 router.post('/', passport.authenticate('jwt', 
 { session: false }),
    (req, res) => {
     try {
       const newApplication = new Application({
-        
-        // id: req.user._id,
-
         _userid: req.user._id,
-        regno: req.user.regno,  
-        name: req.body.regno,
-        nameOfParent: req.body.regno,
-        gender: req.body.regno,
-        dateOfBirth: req.body.regno,
+        applicationno: req.user.applicationno,
+        regno: req.body.regno,  
+        name: req.body.name,
+        nameOfParent: req.body.nameOfParent,
+        gender: req.body.gender,
+        dateOfBirth: req.body.dateOfBirth,
 
         citizenship: req.body.citizenship,
         placeOfBirth: req.body.placeOfBirth,
@@ -114,9 +122,10 @@ router.post('/', passport.authenticate('jwt',
 
       });
 
-      const application =  newApplication.save();
+      newApplication.save()
+            .then(application => res.json(application))
+              .catch(err => console.log(err));
 
-      // res.json(application);
      
     } catch (err) {
       console.error(err.message);

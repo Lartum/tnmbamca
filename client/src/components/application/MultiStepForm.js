@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm, useStep } from "react-hooks-helper";
 
+
 import BasicDetails from "./basicDetails";
 import SecondaryDetails from "./secondaryDetails.js";
 import AddressDetails from "./addressDetails";
@@ -10,8 +11,6 @@ import EducationalDetails from "./educationalDetails";
 import UgDegreeDetails from "./ugDegreeDetails";
 import Review from "./Review";
 import Submit from "./Submit";
-
-// import "./styles.css";
 
 const steps = [
   { id: "basicDetails" },
@@ -111,13 +110,15 @@ const data = {
   totalpermark: "86"
 };
 
-const MultiStepForm = ({ images }) => {
+const MultiStepForm = ({ callback, validate }) => {
   const [formData, setForm] = useForm(data);
+
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
 
   const props = { formData, setForm, navigation };
 
+  
   switch (id) {
     case "basicDetails":
       return <BasicDetails {...props} />;

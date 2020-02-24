@@ -1,117 +1,35 @@
 import React from "react";
-import { Jumbotron, Container, Button} from 'reactstrap'
+import { PDFViewer, Document, Page } from "@react-pdf/renderer";
+import { Button, Jumbotron, Container } from "reactstrap";
+import MyDoc from "./document";
 import axios from "axios";
-import { saveAs } from 'file-saver';
 
-const Submit = (setForm, formData, navigation ) => {
-  const {
-    regno,
-    name,
-    nameOfParent,
-    gender,
-    dateOfBirth,
-    citizenship,
-    placeOfBirth,
-    religion,
-    motherTongue,
-    address,
-    State,
-    district,
-    pincode,
-    mobileno,
-    telephoneno,
-    useremail,
-    nameOfCommunity,
-    nameOfCaste,
-    casteCode,
-    sriLankanRefugee,
-    qualifyingDegree,
-    patternOfStudy,
-    appearanceInTheFinal,
-    tancentMarks,
-    mathsStudied,
-    XIyearOfPassing,
-    XInameOfSchool,
-    XIstate,
-    XIdistrict,
-    XIIyearOfPassing,
-    XIInameOfSchool,
-    XIIstate,
-    XIIdistrict,
-    degreeYearOfPassing,
-    degreeNameOfSchool,
-    degreeState,
-    ugDegree,
-    collegeName,
-    collegeAddress,
-    degreeDistrict,
-    nameOfUniversity,
-    universityAddress,
-    IsemMonth,
-    Isemyop,
-    Isemmaxmarks,
-    Isemmarks,
-    IIsemMonth,
-    IIsemyop,
-    IIsemmaxmarks,
-    IIsemmarks,
-    IIIsemMonth,
-    IIIsemyop,
-    IIIsemmaxmarks,
-    IIIsemmarks,
-    IVsemMonth,
-    IVsemyop,
-    IVsemmaxmarks,
-    IVsemmarks,
-    VsemMonth,
-    Vsemyop,
-    Vsemmaxmarks,
-    Vsemmarks,
-    VIsemMonth,
-    VIsemyop,
-    VIsemmaxmarks,
-    VIsemmarks,
-    VIIsemMonth,
-    VIIsemyop,
-    VIIsemmaxmarks,
-    VIIsemmarks,
-    VIIIsemMonth,
-    VIIIsemyop,
-    VIIIsemmaxmarks,
-    VIIIsemmarks,
-    IXsemMonth,
-    IXsemyop,
-    IXsemmaxmarks,
-    IXsemmarks,
-    XsemMonth,
-    Xsemyop,
-    Xsemmaxmarks,
-    Xsemmarks,
-    overalltot,
-    overallmarks,
-    totalpermark
-  } = formData;
-
-  const createAndDownloadPdf = () => {
-    axios.post('/api/pdfgenerate/create-pdf',formData)
-      .then(() => axios.get('/api/pdfgenerate/fetch-pdf', { responseType: 'blob' }))
-      .then((res) => {
-        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-
-        saveAs(pdfBlob, 'newPdf.pdf');
-      })
-    }
-  
+const Submit = () => {
   return (
-    <div>
-      <Jumbotron fluid>
-        <Container fluid>
-          <h1 className="display-3">Congrats!</h1>
-          <p className="lead">You have Successfully Registered your Application, click the button below to download your pdf</p>
-        </Container>
-        <Button onClick={createAndDownloadPdf}>Download PDF</Button>
-      </Jumbotron>
+    <div className="centerdiv">
+      <PDFViewer
+        style={{
+          width: "45rem",
+          height: "68rem"
+        }}
+      >
+        {/* document={<MyDoc />}
+          fileName="application.pdf"
+          style={{
+            textDecoration: "none",
+            padding: "10px",
+            color: "#4a4a4a",
+            backgroundColor: "#f2f2f2",
+            border: "1px solid #4a4a4a"
+          }}
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : "Download Pdf"
+          } */}
+        <MyDoc />
+      </PDFViewer>
     </div>
-  )};
+  );
+};
 
 export default Submit;

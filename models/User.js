@@ -9,11 +9,13 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique:true
   },
   phonenumber:{
     type: Number,
-    required:true
+    required:true,
+    unique:true
   },
   password: {
     type: String,
@@ -26,8 +28,9 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  regno:{
+  applicationno:{
     type:Number,
+    unique:true
   },
   phonverified:{
       type:Boolean,

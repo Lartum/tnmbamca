@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class Register extends Component {
   constructor() {
@@ -81,7 +80,7 @@ class Register extends Component {
                   value={this.state.email}
                   onChange={this.onChange}
                   error={errors.email}
-                  info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
+                  info="A Verification Link Will be Sent To This Mail"
                 />
                  <TextFieldGroup
                   placeholder="Phone Number"
@@ -89,6 +88,7 @@ class Register extends Component {
                   value={this.state.phonenumber}
                   onChange={this.onChange}
                   error={errors.phonenumber}
+                  info="An OTP Will Be Sent To This Number"
                 />
                 <TextFieldGroup
                   placeholder="Password"
