@@ -25,15 +25,15 @@ const steps = [
 ];
 
 const data = {
-  _userid: "",
-  regno: "",
-  name: "lartum Raksap",
-  nameOfParent: "Gelar raksap",
-  gender: "male",
-  dateOfBirth: "20-11-1998",
-  citizenship: "Indian",
-  religion: "Christian",
-  motherTongue: "Galo",
+  _userid: '',
+  regno: '',
+  name:'hello',
+  nameOfParent:'hello',
+  gender:'yello',
+  dateOfBirth:'yello',
+  citizenship:'hello',
+  religion:'hello',
+  motherTongue:'hello',
   address: "Qtr no. 7 type II",
   State: "Arunachal Pradesh",
   district: "Papum Pare",
@@ -139,7 +139,7 @@ const MultiStepForm = ({ callback, validate }) => {
     case "submit":
       return <Submit {...props} />;
     default:
-      return null;
+      return'hello';
   }
 };
 

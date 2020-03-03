@@ -7,8 +7,10 @@ module.exports = function validateRegisterInput(data) {
   data.name = !isEmpty(data.name) ? data.name : '';
   data.email = !isEmpty(data.email) ? data.email : '';
   data.phonenumber = !isEmpty(data.phonenumber) ? data.phonenumber : '';
+  data.regno = !isEmpty(data.regno) ? data.regno : '';
   data.password = !isEmpty(data.password) ? data.password : '';
   data.password2 = !isEmpty(data.password2) ? data.password2 : '';
+  data.choice = !isEmpty(data.choice) ? data.choice : '';
 
   if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
     errors.name = 'Name must be between 2 and 30 characters';
@@ -25,8 +27,12 @@ module.exports = function validateRegisterInput(data) {
     errors.phonenumber = 'Phone Number field is required';
   }
   
-  if (!Validator.isLength(data.phonenumber, { min: 10, max: 10 })) {
-    errors.phonenumber = 'Please Enter a valid Phone Number';
+  if (!Validator.isLength(data.phonenumber, { min: 12, max: 12 })) {
+    errors.phonenumber = 'Please Enter 91 in front of your Phone Number';
+  }
+
+  if (Validator.isEmpty(data.regno)) {
+    errors.regno = 'Tancent Register Number field is required';
   }
 
   if (Validator.isEmpty(data.password)) {
@@ -44,7 +50,9 @@ module.exports = function validateRegisterInput(data) {
       errors.password2 = 'Passwords must match';
     }
   }
-
+  if (!Validator.isLength(data.choice, { min: 3, max: 3 })) {
+    errors.choice = 'Please Select The Course';
+  }
   return {
     errors,
     isValid: isEmpty(errors)

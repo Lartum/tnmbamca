@@ -107,7 +107,7 @@ const Review = ({ setForm, formData, navigation }) => {
     };
     try {
       const res = axios.post("/api/application", formData, config);
-      
+      console.log(res);
     } catch (err) {
       console.log(err);
     }

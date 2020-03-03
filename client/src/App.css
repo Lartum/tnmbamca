@@ -1,22 +1,21 @@
 body {
   margin-bottom: 100px !important;
 }
-
+/* 
 img {
   width: 5%;
-}
+} */
+
 .navbar-brand-text {
-  margin-left: -8rem;
+
   color: white;
-}
-CardHeader {
-  text-align: center;
 }
 
 .navbar-auth-text {
   color: #f7f7f7;
-  margin-left: 2.3rem;
+
 }
+
 .landing {
   position: relative;
   background: url("./img/back.png") no-repeat;
@@ -31,8 +30,8 @@ CardHeader {
 }
 
 .frost-theme {
-  background-image: linear-gradient(to right, #000428, #004e92);
-  color: aliceblue;
+  background-image: linear-gradient(to right, #EE6C4D, #61210F
+  );
   text-decoration: none;
 }
 

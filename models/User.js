@@ -17,29 +17,41 @@ const UserSchema = new Schema({
     required:true,
     unique:true
   },
+  regno:{
+    type:Number,
+    required:true,
+    unique:true
+  },
   password: {
     type: String,
     required: true
   },
-  avatar: {
-    type: String
-  },
-  date: {
-    type: Date,
-    default: Date.now
+  
+  choice:{
+    type:String,
+    required:true
   },
   applicationno:{
     type:Number,
     unique:true
   },
-  phonverified:{
+  phoneverified:{
       type:Boolean,
       default:false
   },
   emailverified:{
     type:Boolean,
     default:false
+  },
+  paid:{
+    type:Boolean,
+    default:false
+  },
+  applicationcomplete:{
+    type:Boolean,
+    default:false
   }
+  
 });
 
 module.exports = User = mongoose.model('users', UserSchema);

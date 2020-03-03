@@ -7,103 +7,143 @@ const ApplicationSchema = mongoose.Schema({
         ref: 'user'
     },
     applicationno: {
-        type : Number,
+        type: Number,
         ref: 'user',
-        unique:true
+        unique: true
     },
-    regno:Number,
+    choice: {
+        type: String,
+        ref: 'user',
+    },
+    image: {
+        data: Buffer,
+        contentType: String
+    },
+
+    regno: Number,
     name: String,
     nameOfParent: String,
     gender: String,
-    dateOfBirth:String,
+    dateOfBirth: String,
+    nativity:String,
+
+    differntlyabled: String,
 
     citizenship: String,
     placeOfBirth: String,
     religion: String,
     motherTongue: String,
 
+    
     address: String,
     state: String,
     district: String,
     pincode: Number,
 
-    mobileNo: Number,
-    telephoneNo: Number,
-    email: String,
-    
+    mobileno: Number,
+    telephoneno: Number,
+    useremail: String,
+
     nameOfCommunity: String,
     nameOfCaste: String,
     casteCode: Number,
     sriLankanRefugee: String,
-    
+
     qualifyingDegree: String,
     patternOfStudy: String,
     appearanceInTheFinal: String,
     tancentMarks: Number,
     mathsStudied: String,
+
     XIyearOfPassing: String,
+    XInameOfSchool: String,
     XIstate: String,
     XIdistrict: String,
+
     XIIyearOfPassing: String,
+    XIInameOfSchool: String,
     XIIstate: String,
     XIIdistrict: String,
-    degreeyearOfPassing: String,
-    degreestate: String,
-    degreedistrict: String,
+
+    degreeYearOfPassing: String,
+    degreeState: String,
+    degreeDistrict: String,
+    degreeNameOfSchool: String,
 
     ugDegree: String,
     collegeName: String,
     collegeAddress: String,
     universityAddress: String,
+    universityName: String,
+
     IsemMonth: String,
     Isemyop: String,
+    Isemmarks: String,
     Isemmaxmarks: String,
-    Isemmarks: String, 
+
     IIsemMonth: String,
     IIsemyop: String,
-    IIsemmaxmarks: String,
     IIsemmarks: String,
+    IIsemmaxmarks: String,
+
+
     IIIsemMonth: String,
     IIIsemyop: String,
-    IIIsemmaxmarks: String,
     IIIsemmarks: String,
+    IIIsemmaxmarks: String,
+
+
     IVsemMonth: String,
     IVsemyop: String,
-    IVsemmaxmarks: String,
     IVsemmarks: String,
+    IVsemmaxmarks: String,
+
+
     VsemMonth: String,
     Vsemyop: String,
-    Vsemmaxmarks: String,
     Vsemmarks: String,
+    Vsemmaxmarks: String,
+
+
     VIsemMonth: String,
     VIsemyop: String,
-    VIsemmaxmarks: String,
     VIsemmarks: String,
+    VIsemmaxmarks: String,
+
+
     VIIsemMonth: String,
     VIIsemyop: String,
-    VIIsemmaxmarks: String,
     VIIsemmarks: String,
+    VIIsemmaxmarks: String,
+
+
     VIIIsemMonth: String,
     VIIIsemyop: String,
-    VIIIsemmaxmarks: String,
     VIIIsemmarks: String,
+    VIIIsemmaxmarks: String,
+
+
     IXsemMonth: String,
     IXsemyop: String,
+    IXsemmarks: String,
     IXsemmaxmarks: String,
+
     Xsemmarks: String,
     XsemMonth: String,
     Xsemyop: String,
     Xsemmaxmarks: String,
-    Xsemmarks: String,
-    overalltot:Number,
-    overallmarks:Number,
-    totalpermark:String,
+
+
+    overalltot: Number,
+    overallmarks: Number,
+    totalpermark: String,
 
     date: {
         type: Date,
         default: Date.now
-      },
-    ipaddress: String
+    },
+    ipv4: String,
+    ipv6: String
 });
 
-module.exports = post = mongoose.model('application', ApplicationSchema);
+module.exports = post = mongoose.model('applications', ApplicationSchema);

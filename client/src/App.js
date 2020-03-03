@@ -27,7 +27,16 @@ import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
 import MultiStepForm from './components/application/MultiStepForm';
 import Submit from './components/application/Submit';
+import Verifyphone from './components/auth/Verifyphone';
+import Verifyemail from './components/auth/Verifyemail';
+import Application from './Application';
+import Example from './components/stepzilla/examples/Example'
+import Forgotpassword from './components/auth/Forgotpassword';
+import Newpassword from './components/auth/Newpassword';
+import Imageupload from './Imageupload';
 import './App.css';
+
+
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -60,18 +69,28 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
               <div className="container">
               <Route exact path="/register" component={Register} />
+              <Route exact path='/verifyphone' component={Verifyphone}/>
+              <Route exact path='/verifyemail' component={Verifyemail}/>
               <Route exact path="/login" component={Login} />
+              <Route exact path='/forgotpassword' component={Forgotpassword}/>
+              <Route exact path="/newpassword" component={Newpassword} />
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
-              {/* <Route exact path="/movie" component={MovieList}/> */}
+              <Route exact path="/imageupload" component={Imageupload} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/stepzilla" component={Example} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/application" component={MultiStepForm} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/submit" component={Submit} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/pdf" component={Application} />
               </Switch>
               <Switch>
                 <PrivateRoute

@@ -12,6 +12,7 @@ const Submit = () => {
           width: "45rem",
           height: "68rem"
         }}
+        filename="Applicationform.pdf"
       >
         {/* document={<MyDoc />}
           fileName="application.pdf"

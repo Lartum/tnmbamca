@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor() {
@@ -16,13 +17,13 @@ class Login extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/application');
+      this.props.history.push('/stepzilla');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/application');
+      this.props.history.push('/stepzilla');
     }
 
     if (nextProps.errors) {
@@ -76,6 +77,12 @@ class Login extends Component {
                   error={errors.password}
                 />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
+                <Link to='/forgotpassword'> <a
+                  href=""
+                  className="nav-link"
+                >
+                Forgot Password?
+               </a></Link>
               </form>
             </div>
           </div>

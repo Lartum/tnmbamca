@@ -34,8 +34,6 @@ const EducationalDetails = ({ setForm, formData, navigation }) => {
   } = formData;
 
   const { next, previous } = navigation;
-
-  console.log(XIyearOfPassing);
   return (
     <Form>
       <Card>

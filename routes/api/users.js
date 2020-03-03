@@ -1,50 +1,164 @@
 const express = require('express');
 const router = express.Router();
-const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const keys = require('../../config/keys');
+const aws = require('aws-sdk');
 const passport = require('passport');
-const Nexmo = require('nexmo');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+
+//Importing Keys
+const keys = require('../../config/keys');
+
 // Load Input Validation
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
-
-//Init nexmo
-const nexmo = new Nexmo({
-  apiKey: 'eae78f54',
-  apiSecret: 'xlgSnaqn1sYhXY5W'
-}, {
-  debug: true
-});
+const validateOtpInput = require('../../validation/verifyphone')
 
 // Load User model
 const User = require('../../models/User');
 
-// @route   GET api/users/test
+//Load OTP model
+const Otp = require('../../models/Otp');
+
+//Load Token model
+const Token = require('../../models/Token')
+
+//Load AWS Keys
+const aws_region_key = require('../../config/keys').AWS_REGION;
+const aws_access_key_id = require('../../config/keys').AWS_ACCESS_KEY_ID;
+const aws_secret_access_key = require('../../config/keys').AWS_SECRET_ACCESS_KEY;
+
+//Load Sengrid API KEY
+const sendgrid_user = require('../../config/keys').SENDGRID_USER;
+const sendgrid_pass = require('../../config/keys').SENDGRID_PASS;
+
+aws.config.update({
+  region: aws_region_key,
+  accessKeyId: aws_access_key_id,
+  secretAccessKey: aws_secret_access_key
+});
+
+
+var sns = new aws.SNS();
+
+
+if (!aws.config.region) {
+  aws.config.update({
+    region: 'ap-southeast-1'
+  });
+}
+//The max and min limit of Otp Digits
+const max = 99999;
+const min = 10000;
+
+sns.setSMSAttributes({
+    attributes: {
+      DefaultSMSType: 'Transactional'
+
+    }
+  },
+  function (error) {
+    if (error) {
+      console.log(error);
+    }
+  });
+
+
+// @route   GET api /users/test
 // @desc    Tests users route
 // @access  Public
 router.get('/test', (req, res) => res.json({
   msg: 'Users Works'
 }));
 
-router.get('/phoneverifytest', (req, res) => {
-  res.json({
-    msg: 'phoneverify route is working'
-  });
+// @route   GET api /users/verifyphone
+// @desc    Verify Email
+// @access  Public
+
+// Email confirmation route, use get  to directly verify with the generated link
+router.post('/confirmation', (req,res) => {
+  
+    //Extract the token from the url with the query keyword
+    Token.findOne({token : req.body.token },(err, token) => {
+      if (!token) return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
+      
+      // If we found a token, find a matching user
+      User.findOne({ 
+        _id: token._userId})
+          .then(user => {
+              if(!user) return res.status(400).send({msg: 'we were unable to find a user for this token.'});
+              if(user.email_verified) return res.status(400).send({type : 'already-verified', msg:'This user has already been verified'});
+  
+              //verify and save the user method
+               user.email_Verified = true;
+  
+              //Delete the token once the user is verified 
+               Token.findOneAndDelete({token : token._userId})
+  
+               //save the user in the database
+               user.save( (err) => {
+                  if(err) {return res.status(500).send({msg: err.message}); }
+                  res.status(200).render('users/emailconfirm')
+               })
+            
+        })
+          });
+      });
+  
+
+// @route   POST api /users/verifyphone
+// @desc    Veryify User Phonenumber
+// @access  Public
+
+router.post('/verifyphone', (req, res) => {
+  const {
+    errors,
+    isValid
+  } = validateOtpInput(req.body);
+  var {
+    otp
+  } = req.body;
+  console.log("var{otp}=req.body " + otp);
+
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
+  Otp.findOne({
+      otp
+    })
+    .then(otp => {
+      console.log("opt.findone({otp}) " + otp);
+      if (!otp) {
+        errors.otp = 'Please Enter An OTP'
+        return res.status(400).json(errors);
+      } else {
+        User.findOne({
+            _id: otp._userId
+          })
+          .then(user => {
+            if (!user.phonenumber) {
+              errors.otp = "Phone Number Does Not Exist"
+              return res.status(400).json(errors);
+            }
+            if (user.phoneverified === true) {
+              errors.otp = "Phone Number Already Verified "
+              return res.status(400).json(errors);
+            }
+            //Set the User phone verifed to true and save the updated database
+            user.phoneverified = true;
+            user
+              .save()
+              .then(user => res.json(user))
+              .catch(err => console.log(err))
+          })
+      }
+    })
+  // .then(Otp.deleteOne({otp}))
+
 })
 
-router.post('/phoneverifytest', (req, res) => {
-  nexmo.verify.request({
-    number: '919842772083',
-    brand: 'Nexmo',
-    code_length: '4'
-  }, (err, result) => {
-    console.log(err ? err : result)
-  });
-})
-
-// @route   POST api/users/register
+// @route   POST api /users/register
 // @desc    Register user
 // @access  Public
 router.post('/register', (req, res) => {
@@ -52,85 +166,574 @@ router.post('/register', (req, res) => {
     errors,
     isValid
   } = validateRegisterInput(req.body);
-  const {
+  var {
     name,
     email,
     phonenumber,
-    password
+    regno,
+    password,
+    choice,
+    applicationno
   } = req.body;
-  // Check Validation
+
   if (!isValid) {
     return res.status(400).json(errors);
   }
 
   User.findOne({
-      email
+      email,
+      phonenumber
     })
     .then(user => {
       if (user) {
-        console.log(user);
-        errors.phonenumber = 'An Account already exists';
+        errors.email = 'Account already exists';
         return res.status(400).json(errors);
       } else {
-        const avatar = gravatar.url(email, {
-          s: '200', // Size
-          r: 'pg', // Rating
-          d: 'mm' // Default
-        });
-        var currentYear = new Date().getFullYear()
-        var defaultapplicationno = 10001
-        User.find().estimatedDocumentCount((err, count) => {
-          count = count + defaultapplicationno;
-          var applicationnum = [currentYear, count]
-          applicationno = applicationnum.join('');
-          if (count = defaultapplicationno) {
+        //Creating A user With the Choice As MBA  
+        if (choice === "MBA") {
 
-            const newUser = new User({
-              name,
-              email,
-              phonenumber,
-              avatar,
-              password,
-              applicationno
-            });
-    
-            bcrypt.genSalt(10, (err, salt) => {
-              bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if (err) throw err;
-                newUser.password = hash;
-                newUser
-                  .save()
-                  .then(user => res.json(user))
-                  .catch(err => console.log(err));
+          //Generating An Application Number 
+          var currentYear = new Date().getFullYear()
+          var defaultapplicationno = 10001
+          User.countDocuments({
+            choice: 'MBA'
+          }, (err, count) => {
+            count = count + defaultapplicationno;
+            var applicationnum = ["1", currentYear, count]
+            applicationno = applicationnum.join('');
+
+            //if the user is the first applicant
+            if (count = defaultapplicationno) {
+
+              //Creating a new user with the given credentials 
+              const newUser = new User({
+                name,
+                email,
+                phonenumber,
+                regno,
+                password,
+                choice,
+                applicationno
               });
-            });
-          } else {
 
-            const newUser = new User({
-              name,
-              email,
-              avatar,
-              password,
-              applicationno
-            });
-            bcrypt.genSalt(10, (err, salt) => {
-              bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if (err) throw err;
-                newUser.password = hash;
-                newUser
-                  .save()
-                  .then(user => res.json(user))
-                  .catch(err => console.log(err));
+              //Encrypting the Password
+              bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                  if (err) throw err;
+                  newUser.password = hash;
+                  newUser
+                    .save()
+                    .then(user => {
+                      res.json(user)
+                      //Generate the Otp For the Given Phone Number
+                      const otp = Math.floor(Math.random() * (max - min) + min);
+                      //Setting The Parameters for the OTP 
+                      var params = {
+                        Message: `The OTP For TN MBA MCA Admission is ${otp}`,
+                        MessageStructure: 'String',
+                        PhoneNumber: phonenumber
+                      };
+                      //Publish the SNS Message
+                      sns.publish(params, (err, data) => {
+                        if (err) console.log(err, err.stack);
+                        else console.log(data);
+                      })
+                      //Creating a New Otp in the otp schema with 
+                      access_otp = new Otp({
+                        _userId: user._id,
+                        phonenumber: user.phonenumber,
+                        otp: otp
+                      });
+                      console.log("Otp for Mba Choice " + access_otp);
+                      // Save the verification otp
+                      access_otp.save((err) => {
+                        if (err) {
+                          return res.status(500).send({
+                            msg: err.message
+                          })
+                        }
+                      })
+                      //Generating a token
+                      access_token = new Token({
+                        _userId: user._id,
+                        token: crypto.randomBytes(64).toString('hex')
+                      });
+
+                      // Save the verification token
+                      access_token.save((err) => {
+                        if (err) {
+                          return res.status(500).send({
+                            msg: err.message
+                          })
+                        }
+                      })
+
+                      //local variables host and link
+                      host = req.headers.host
+                      link = "http://" + host + "confirmation?token=" + access_token.token;
+
+                      // Send the email
+                      var transporter = nodemailer.createTransport({
+                        service: 'Sendgrid',
+                        auth: {
+                            user: sendgrid_user,
+                            pass: sendgrid_pass
+                        }
+                    });
+                    var mailOptions = {
+                        from: 'no-reply@tnmabamca.com',
+                        to: user.email,
+                        subject: 'Account Verification Token',
+                        html: "Hello, <br> Please Click on the link to verify your email.<br><a href="+link+">Verify Mail</a>"
+                    };
+                    transporter.sendMail(mailOptions, function (err) {
+                                if (err) {
+                                    return res.status(500).send({
+                                        msg: err.message
+                                    });
+                                }
+                                console.log(`email sent to ${user.email}`);
+                                res.status(200).send('A verification email has been sent to ' + user.email + '.')
+                              }) 
+                    })
+                    
+                    .catch(err => console.log(err));
+                });
               });
-            });
+              //End of if Condition
+            }
 
-          }
-        })
+            //If the user is not the first applicant
+            else {
+              const newUser = new User({
+                name,
+                email,
+                phonenumber,
+                regno,
+                password,
+                choice,
+                applicationno
+              });
+
+              bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                  if (err) throw err;
+                  newUser.password = hash;
+                  newUser
+                    .save()
+                    .then(user => {
+                      res.json(user)
+                      //Generate the Otp For the Given Phone Number
+                      const otp = Math.floor(Math.random() * (max - min) + min);
+                      console.log(user.phonenumber);
+                      var params = {
+                        Message: `The OTP For TN MBA MCA Admission is ${otp}`,
+                        MessageStructure: 'String',
+                        PhoneNumber: user.phonenumber
+                      };
+
+                      //Publish the SNS Message
+                      sns.publish(params, (err, data) => {
+                        if (err) console.log(err, err.stack);
+                        else console.log(data);
+                      })
+                      //Creating a New Otp in the otp schema with 
+                      access_otp = new Otp({
+                        _userId: user._id,
+                        phonenumber: user.phonenumber,
+                        otp: otp
+                      });
+
+                      // Save the verification otp
+                      access_otp.save((err) => {
+                        if (err) {
+                          return res.status(500).send({
+                            msg: err.message
+                          })
+                        }
+                      })
+
+                      //Generating a token
+                      access_token = new Token({
+                        _userId: user._id,
+                        token: crypto.randomBytes(64).toString('hex')
+                      });
+
+                      // Save the verification token
+                      access_token.save((err) => {
+                        if (err) {
+                          return res.status(500).send({
+                            msg: err.message
+                          })
+                        }
+                      })
+
+                      //local variables host and link
+                      host = req.headers.host
+                      link = "http://" + host + "confirmation?token=" + access_token.token;
+
+                      // Send the email
+                      var transporter = nodemailer.createTransport({
+                        service: 'Sendgrid',
+                        auth: {
+                            user: sendgrid_user,
+                            pass: sendgrid_pass
+                        }
+                    });
+                    var mailOptions = {
+                        from: 'no-reply@tnmabamca.com',
+                        to: user.email,
+                        subject: 'Account Verification Token',
+                        html: "Hello, <br> Please Click on the link to verify your email.<br><a href="+link+">Verify</a>"
+                    };
+                    transporter.sendMail(mailOptions, function (err) {
+                                if (err) {
+                                    return res.status(500).send({
+                                        msg: err.message
+                                    });
+                                }
+                                res.status(200).send('A verification email has been sent to ' + user.email + '.')
+                              })
+                    })
+                    .catch(err => console.log(err));
+                });
+              });
+            }
+
+          })
+        }
+
+        //Creating A User with MCA As the selection
+        else {
+          var currentYear = new Date().getFullYear()
+          var defaultapplicationno = 10001
+          User.countDocuments({
+            choice: 'MCA'
+          }, (err, count) => {
+            count = count + defaultapplicationno;
+            var applicationnum = ["3", currentYear, count]
+            applicationno = applicationnum.join('');
+
+            //If the user is the first applicant
+            if (count = defaultapplicationno) {
+
+              const newUser = new User({
+                name,
+                email,
+                phonenumber,
+                regno,
+                password,
+                choice,
+                applicationno
+              });
+
+              bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                  if (err) throw err;
+                  newUser.password = hash;
+                  newUser
+                    .save()
+                    .then(user => {
+                      res.json(user)
+                      console.log(user._id)
+                      //Generate the Otp For the Given Phone Number
+                      
+                      const otp = Math.floor(Math.random() * (max - min) + min);
+                      var params = {
+                        Message: `The OTP For TN MBA MCA Admission is ${otp}`,
+                        MessageStructure: 'String',
+                        PhoneNumber: phonenumber
+                      };
+                      //Publish the SNS Message
+                      sns.publish(params, (err, data) => {
+                        if (err) console.log(err, err.stack);
+                        else console.log(data);
+                      })
+                      //Creating a New Otp in the otp schema with 
+                      access_otp = new Otp({
+                        _userId: user._id,
+                        phonenumber: user.phonenumber,
+                        otp: otp
+                      });
+
+                      // Save the verification otp
+                      access_otp.save((err) => {
+                        if (err) {
+                          return res.status(500).send({
+                            msg: err.message
+                          })
+                        }
+                      })
+                            //Generating a token
+                      access_token = new Token({
+                        _userId: user._id,
+                        token: crypto.randomBytes(64).toString('hex')
+                      });
+
+                      // Save the verification token
+                      access_token.save((err) => {
+                        if (err) {
+                          return res.status(500).send({
+                            msg: err.message
+                          })
+                        }
+                      })
+
+                      //local variables host and link
+                      host = req.headers.host
+                      link = "http://" + host + "confirmation?token=" + access_token.token;
+
+                      // Send the email
+                      var transporter = nodemailer.createTransport({
+                        service: 'Sendgrid',
+                        auth: {
+                            user: sendgrid_user,
+                            pass: sendgrid_pass
+                        }
+                    });
+                    var mailOptions = {
+                        from: 'no-reply@tnmabamca.com',
+                        to: user.email,
+                        subject: 'Account Verification Token',
+                        html: "Hello, <br> Please Click on the link to verify your email.<br><a href="+link+">Verify Mail</a>"
+                    };
+                    transporter.sendMail(mailOptions, function (err) {
+                                if (err) {
+                                    return res.status(500).send({
+                                        msg: err.message
+                                    });
+                                }
+                                res.status(200).send('A verification email has been sent to ' + user.email + '.')
+                              })
+                      
+                    })
+                    .catch(err => console.log(err));
+                });
+              });
+
+
+            }
+            //If the user is not the first applicant
+            else {
+              const newUser = new User({
+                name,
+                email,
+                phonenumber,
+                regno,
+                password,
+                choice,
+                applicationno
+              });
+
+              bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                  if (err) throw err;
+                  newUser.password = hash;
+                  newUser
+                    .save()
+                    .then(user => {
+                      res.json(user)
+                      //Setting The Parameters for the OTP 
+                      var params = {
+                        Message: `The OTP For TN MBA MCA Admission is ${otp}`,
+                        MessageStructure: 'String',
+                        PhoneNumber: user.phonenumber
+                      };
+                      //Publish the SNS Message
+                      sns.publish(params, (err, data) => {
+                        if (err) console.log(err, err.stack);
+                        else console.log(data);
+                      })
+
+                      //Generate the Otp For the Given Phone Number
+                      const otp = Math.floor(Math.random() * (max - min) + min);
+                      //Creating a New Otp in the otp schema with 
+                      access_otp = new Otp({
+                        _userId: user._id,
+                        phonenumber: user.phonenumber,
+                        otp: otp
+                      });
+
+                      // Save the verification otp
+                      access_otp.save((err) => {
+                        if (err) {
+                          return res.status(500).send({
+                            msg: err.message
+                          })
+                        }
+                      })
+                             //Generating a token
+                      access_token = new Token({
+                        _userId: user._id,
+                        token: crypto.randomBytes(64).toString('hex')
+                      });
+
+                      // Save the verification token
+                      access_token.save((err) => {
+                        if (err) {
+                          return res.status(500).send({
+                            msg: err.message
+                          })
+                        }
+                      })
+
+                      //local variables host and link
+                      host = req.headers.host
+                      link = "http://" + host + "confirmation?token=" + access_token.token;
+
+                      // Send the email
+                      var transporter = nodemailer.createTransport({
+                        service: 'Sendgrid',
+                        auth: {
+                            user: sendgrid_user,
+                            pass: sendgrid_pass
+                        }
+                    });
+                    var mailOptions = {
+                        from: 'no-reply@tnmabamca.com',
+                        to: user.email,
+                        subject: 'Account Verification Token',
+                        html: "Hello, <br> Please Click on the link to verify your email.<br><a href="+link+">Verify Mail</a>"
+                    };
+                    transporter.sendMail(mailOptions, function (err) {
+                                if (err) {
+                                    return res.status(500).send({
+                                        msg: err.message
+                                    });
+                                }
+                                res.status(200).send('A verification email has been sent to ' + user.email + '.')
+                              })
+                    })
+                    .catch(err => console.log(err));
+                });
+              });
+
+
+            }
+
+          })
+        }
       }
     });
 });
 
-// @route   GET api/users/login
+// @route   POST api /users/resetpassword
+// @desc    Send Email link for Password Reset
+// @access  Public
+router.post('/resetpassword', (req, res) => {
+  var email = req.body.email;
+  User.findOne({ email }) 
+      .then(user => {
+        console.log(user);
+    if(!user) return res.status(400).send({msg: "We were unable to find a user with that name"});
+    Token.findOne({tokens : user._id}, (err,tokens) => {
+      reset_passwordtoken = new Token({
+        _userId : user._id,
+        token : crypto.randomBytes(128).toString('hex')
+     });
+ 
+     reset_passwordtoken.save((err)=>{
+       if(err){
+         return res.status(500).send({
+           msg: err.message
+         })
+       }    
+     })
+     
+     host = req.headers.host
+     link = "http://"+ host + "/newpassword?token="+ reset_passwordtoken.token;
+    // Send the email
+    const transporter = nodemailer.createTransport({ 
+     service: 'Sendgrid', 
+   auth: { 
+     user: sendgrid_user, 
+     pass: sendgrid_pass
+     } });
+   var mailOptions = { 
+    from: 'no-reply@tnmbamca.com', 
+    to: email, 
+    subject: 'Reset Password',
+    html: "Hello, <br> Please Click on the link to reset your Password.<br><a href="+link+">click here to reset</a>"
+  };
+   transporter.sendMail(mailOptions,(err, info) => {
+       if (err) {
+           return res.status(500).send({msg: err.message})
+          }
+          res.status(200).send('A verification email has been sent to ' + user.email);
+   });
+   })
+    })
+});
+
+
+// @route   POST api /users/newpassword
+// @desc    Set new password for the user 
+// @access  Public
+router.post('/newpassword', (req,res) => {
+  console.log()
+  const {
+    errors,
+    isValid
+  } = validateRegisterInput(req.body);
+
+  var{ password, password2} = req.body;
+
+  link = req.headers.host + "/login";
+
+  console.log(password2)
+  // if (!isValid) 
+  //   return res.status(400).json(errors);
+  // }
+  console.log(req.body.token);
+    Token.findOne({ token : req.body.token }, 
+      (err,token) => {
+      if(!token) {
+        errors.password = "Token Expired"
+        return res.status(400).json(errors)
+      }
+        User.findOne({_id: token._userId})
+           .then(user => {
+             console.log(user);
+             user.password = password
+             //Password Encryption if a user is registered
+             bcrypt.genSalt(10, (err, salt) => {
+             bcrypt.hash(user.password, salt, (err, hash) => {
+             if (err) throw err;
+             user.password = hash;
+             user
+               .save()
+                .then(user => {
+                  const transporter = nodemailer.createTransport({ 
+                    service: 'Sendgrid', 
+                  auth: { 
+                    user: sendgrid_user, 
+                    pass: sendgrid_pass
+                    } });
+                  var mailOptions = { 
+                   from: 'no-reply@tnmbamca.com', 
+                   to: user.email, 
+                   subject: 'Password Succesfully Changed',
+                   html: "<h1>Hello,</h1> <br> Your Password has been successfully changed.follow the link to continue to login<br><a href=http://"+link+">click here to Login</a>"
+                 };
+                  transporter.sendMail(mailOptions,(err, info) => {
+                      if (err) {
+                          return res.status(500).send({msg: err.message})
+                         }
+                        res.status(200).json("Password Successfully changed")
+                  });
+                  // Token.findOneAndDelete({token: token._userId})
+             })
+             .catch(err => console.log(err));
+         });
+       })
+      //  //Delete the token once the user has successfully changed the password
+      //  Token.findOneAndDelete({token: token._userId})
+    })
+  })
+  
+})
+
+// @route   GET api /users/login
 // @desc    Login User / Returning JWT Token
 // @access  Public
 router.post('/login', (req, res) => {
@@ -188,21 +791,17 @@ router.post('/login', (req, res) => {
   });
 });
 
-// @route   GET api/users/current
+// @route   GET api /users/current
 // @desc    Return current user
 // @access  Private
-router.get(
-  '/current',
-  passport.authenticate('jwt', {
-    session: false
-  }),
-  (req, res) => {
-    res.json({
-      id: req.user.id,
-      name: req.user.name,
-      email: req.user.email
-    });
-  }
-);
+router.get('/current', passport.authenticate('jwt', {
+  session: false
+}), (req, res) => {
+  res.json({
+    id: req.user.id,
+    name: req.user.name,
+    email: req.user.email
+  });
+});
 
 module.exports = router;

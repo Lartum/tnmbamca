@@ -13,11 +13,18 @@ import {
  } from 'reactstrap';
 import Axios from "axios";
 
-const BasicDetails = ({ setForm, formData, navigation }) => {
+const BasicDetails = ({ setForm, formData, navigation} ) => {
  const { regno, name, nameOfParent, gender, dateOfBirth} = formData
 
  const { next } = navigation;              
+  // const validate = () =>{
 
+  // } 
+
+  // const handleSubmit = (e) =>{
+
+  //   }
+ 
   return (
 
     <Form>
@@ -42,7 +49,8 @@ const BasicDetails = ({ setForm, formData, navigation }) => {
           <Label for="name">Name</Label>
           <Input type="name" name="name" 
            id="name" key="name"
-           value={name} onChange={setForm} 
+           value={name} 
+           onChange={setForm} 
            placeholder="Name" />
         </FormGroup>
         </Col>
@@ -63,7 +71,7 @@ const BasicDetails = ({ setForm, formData, navigation }) => {
         <Col md={6}>
         <FormGroup>
         <Label for="gender">Gender</Label>
-        <Input type="select" name="gender" key="gender" id="gender" onChange={setForm}>
+        <Input type="select" name="gender" key="gender" id="gender" value={gender} onChange={setForm}>
           <option key="1">Male</option>
           <option key="2">Female</option>
           <option key="3">Transgender</option>    

@@ -1,16 +1,32 @@
 import React from "react";
 import axios from "axios";
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Image
+} from "@react-pdf/renderer";
+import { Table } from "reactstrap";
 
-export default function Mydoc () {
+const node_data = {
+  name: "John",
+  age: 30,
+  car: "honda city",
+  reg_no: "1787187",
+  image:
+    "https://img.freepik.com/free-vector/abstract-colorful-flow-shapes-background_23-2148258092.jpg?size=626&ext=jpg"
+};
 
-axios.get('/api/pdfgenerate')
-     .then((res) =>{
-      const data = res.data.data;
-      console.log(data);
-      return data;
-    })
-  
+const myObj = node_data;
+
+export default function Mydoc() {
+  const res = axios.get("/api/pdfgenerate").then(response => {
+    console.log(response.data);
+  });
+  console.log(res);
+
   const styles = StyleSheet.create({
     page: { backgroundColor: "white" },
     header: { textAlign: "center", margin: 30 },
@@ -172,13 +188,19 @@ axios.get('/api/pdfgenerate')
           <Text>APPLICATION FORM FOR ADMISSION TO MBA COURSE</Text>
         </View>
         <View style={styles.right}>
-          <Text>Application Number : </Text>
+          <Text>Application Number : {myObj.name}</Text>
         </View>
-        <View style={styles.photo}></View>
+        <Image style={styles.photo} src={myObj.image}></Image>
         <View style={styles.left}>
-          <Text>1.{"     "} TANCENT 2020 Registeration Number :</Text>
-          <Text>2.{"     "} Name : </Text>
-          <Text>3.{"     "} Name of Parent/Guardian : </Text>
+          <Text>
+            1.{"     "} TANCENT 2020 Registeration Number : {myObj.age}
+          </Text>
+          <Text>
+            2.{"     "} Name : {myObj.car}
+          </Text>
+          <Text>
+            3.{"     "} Name of Parent/Guardian : {myObj.reg_no}
+          </Text>
           <Text>4.{"     "} Address for Communication : </Text>
           <Text>5.{"     "} Email Id : </Text>
           <Text>6.{"     "} Contact Telephone No : </Text>
