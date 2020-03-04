@@ -796,12 +796,21 @@ router.post('/login', (req, res) => {
 // @access  Private
 router.get('/current', passport.authenticate('jwt', {
   session: false
-}), (req, res) => {
-  res.json({
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email
-  });
+}), async (req, res) => {
+  try{
+    const user = await User
+                  .findOne({_id: req.user._id})
+                    .populate('user')
+    res.json(user);                
+  }
+  catch(err){
+      console.log(err.message);
+  }
+  // res.json({
+  //   id: req.user.id,
+  //   name: req.user.name,
+  //   email: req.user.email
+  // });
 });
 
 module.exports = router;

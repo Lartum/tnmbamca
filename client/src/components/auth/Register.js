@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -25,7 +25,7 @@ class Register extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/userdashboard');
     }
   }
 
@@ -59,7 +59,7 @@ class Register extends Component {
   
   
   render() {
-    const { errors, onSubmit } = this.state;
+    const { errors } = this.state;
      
     // Select options for Course
      const options = [

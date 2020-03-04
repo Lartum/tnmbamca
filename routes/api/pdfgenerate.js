@@ -6,7 +6,7 @@ const Application = require('../../models/Application');
 router.get('/',  passport.authenticate('jwt', 
 { session: false }), async (req,res) => {
     try{
-      const application =   await Application
+      const application = await Application
         .findOne({_userid: req.user._id})
           .populate('user')
     res.json(application)

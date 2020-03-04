@@ -17,13 +17,13 @@ class Login extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/stepzilla');
+      this.props.history.push('/userdashboard');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/stepzilla');
+      this.props.history.push('/userdashboard');
     }
 
     if (nextProps.errors) {
@@ -79,7 +79,7 @@ class Login extends Component {
                 <input type="submit" className="btn btn-info btn-block mt-4" />
                 <Link to='/forgotpassword'> <a
                   href=""
-                  className="nav-link"
+                  className="nav-link links"  
                 >
                 Forgot Password?
                </a></Link>

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const publicIp = require('public-ip');
 const passport = require('passport');
-const Img = require('../../models/Img')
+const Razorpay = require('razorpay');
 
 // Load Validation
 const Application = require('../../models/Application');
@@ -10,6 +10,22 @@ const Application = require('../../models/Application');
 const Profile = require('../../models/Profile');
 // Load User Model
 const User = require('../../models/User');
+//Load Image Model
+const Img = require('../../models/Img')
+
+const razor_key_id = require('../../config/keys').RAZORPAY_KEY_ID;
+const razor_secret = require('../../config/keys').RAZORPAY_SECRET;
+
+//Razor Pay initialization
+var instance = new Razorpay({
+  key_id: razor_key_id,
+  key_secret: razor_secret,
+  headers: {
+    "X-Razorpay-Account": "EGViQKDXXYjn3n"
+  }
+})
+
+
 
 // @route   GET api/profile/test
 // @desc    Tests profile route
@@ -26,15 +42,15 @@ router.get('/pdf', passport.authenticate('jwt',
           
   })
 
-// router.post('/image', (req,res)=>{
-//     const image = req.files
+router.post('/image', (req,res)=>{
+    const image = req.files
   
-//     const NewImage = new Img({
-//       image
-//     })
+    const NewImage = new Img({
+      image
+    })
 
-//     NewImage.save().then(img=>{console.log(img)});
-// } )
+    NewImage.save().then(img=>{console.log(img)});
+} )
 
 
 // router.get('/ipaddress', async (req,res) =>{
@@ -50,7 +66,18 @@ router.get('/pdf', passport.authenticate('jwt',
 // console.log(ipv4,ipv6)
 // })
 
-
+router.post('/payment', (req,res)=>{
+  var options = {
+    amount: '1',  // amount in the smallest currency unit
+    currency: "INR",
+    receipt: "order_rcptid_11",
+    payment_capture: '0'
+  };
+  instance.orders.create(options, function(err, order) {
+    console.log(order);
+  }); 
+  // instance.orders.all().then(console.log).catch(console.error);
+})
 
 
 router.post('/', passport.authenticate('jwt', 

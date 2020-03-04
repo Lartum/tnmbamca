@@ -1,11 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 import { clearCurrentProfile } from '../../actions/profileActions';
-import logo from '../../img/tnlogo.png'
-
+import tamillogo from '../../img/tamillogo.png'
 
 class Navbar extends Component {
   onLogoutClick(e) {
@@ -19,17 +18,16 @@ class Navbar extends Component {
 
     const authLinks = (
       <ul className="navbar-nav ml-auto">
-
-        <li className="nav-item navbar-auth-text">
-          <Link className="nav-link navbar-auth-text" to="/dashboard">
+        <li className="nav-item">
+          <Link className="nav-link" to="/userdashboard">
             Dashboard
           </Link>
         </li>
-        <li className="nav-item navbar-auth-text  ">
+        <li className="nav-item">
           <a
             href=""
             onClick={this.onLogoutClick.bind(this)}
-            className="nav-link navbar-auth-text"
+            className="nav-link"
           >
             Logout
           </a>
@@ -40,12 +38,12 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="navbar-auth-text" to="/register">
+          <Link className="nav-link" to="/register">
             Sign Up
           </Link>
         </li>
-        <li className="nav-item navbar-auth-text">
-          <Link className="navbar-auth-text" to="/login">
+        <li className="nav-item">
+          <Link className="nav-link" to="/login">
             Login
           </Link>
         </li>
@@ -53,11 +51,16 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-sm frost-theme mb-4">
-       <img className='tnlogo' src={logo} />
-        <div className="container ">
-          <Link className="navbar-brand navbar-brand-text" to="/">
-            TAMIL NADU MBA MCA ADMISSION
+      <nav className="navbar navbar-expand-sm  frost-theme mb-4">
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+          <img
+              className="rounded-circle"
+              src= {tamillogo}
+              alt='Tamil Logo'
+              style={{ width: '40px', marginRight: '5px' }}
+              
+            />{' '}TAMIL NADU MBA MCA ADMISSION
           </Link>
           <button
             className="navbar-toggler"
@@ -71,7 +74,8 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-               
+                <Link className="nav-link" to="/">
+                </Link>
               </li>
             </ul>
             {isAuthenticated ? authLinks : guestLinks}

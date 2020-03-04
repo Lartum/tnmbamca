@@ -11,7 +11,6 @@ const posts = require('./routes/api/posts');
 const application = require('./routes/api/application')
 const pdfgenerate = require('./routes/api/pdfgenerate');
 
-
 const app = express();
 
 // Body parser middleware
@@ -38,6 +37,7 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 // Use Routes
+
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);

@@ -1,20 +1,6 @@
 body {
   margin-bottom: 100px !important;
 }
-/* 
-img {
-  width: 5%;
-} */
-
-.navbar-brand-text {
-
-  color: white;
-}
-
-.navbar-auth-text {
-  color: #f7f7f7;
-
-}
 
 .landing {
   position: relative;
@@ -29,8 +15,17 @@ img {
   padding-top: 80px;
 }
 
+a{
+  text-decoration: none;
+  color: white;
+} 
+
+.sweet-loading{
+  text-align: center;
+}
+
 .frost-theme {
-  background-image: linear-gradient(to right, #EE6C4D, #61210F
+  background-image: linear-gradient(to right, #56ab2f, #a8e063
   );
   text-decoration: none;
 }
@@ -90,4 +85,12 @@ footer {
 .centerdiv {
   width: 100%;
   text-align: center;
+}
+
+.userdashboard{
+  text-align: center;
+}
+.links{
+  color: blue;
+  text-decoration: none;
 }

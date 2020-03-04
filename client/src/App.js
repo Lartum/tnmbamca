@@ -15,25 +15,19 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import Dashboard from './components/dashboard/Dashboard';
-import CreateProfile from './components/create-profile/CreateProfile';
-import EditProfile from './components/edit-profile/EditProfile';
-import AddExperience from './components/add-credentials/AddExperience';
-import AddEducation from './components/add-credentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
-import Posts from './components/posts/Posts';
-import Post from './components/post/Post';
 import NotFound from './components/not-found/NotFound';
-import MultiStepForm from './components/application/MultiStepForm';
-import Submit from './components/application/Submit';
 import Verifyphone from './components/auth/Verifyphone';
 import Verifyemail from './components/auth/Verifyemail';
-import Application from './Application';
-import Example from './components/stepzilla/examples/Example'
-import Forgotpassword from './components/auth/Forgotpassword';
 import Newpassword from './components/auth/Newpassword';
+import Forgotpassword from './components/auth/Forgotpassword';
+import Application from './components/application/Application';
+import Pdf from './components/application/Pdf'
 import Imageupload from './Imageupload';
+import Userdashboard from './components/userdashboard/Userdashboard';
+import Logincard from './components/auth/Logincard'
+
 import './App.css';
 
 
@@ -67,6 +61,7 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Landing} />
+            
               <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path='/verifyphone' component={Verifyphone}/>
@@ -77,54 +72,15 @@ class App extends Component {
               <Route exact path="/profiles" component={Profiles} />
               <Route exact path="/profile/:handle" component={Profile} />
               <Route exact path="/imageupload" component={Imageupload} />
+              <Route exact path ='/logincard' component={Logincard}/>
               <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/application" component={Application} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/stepzilla" component={Example} />
+                <PrivateRoute exact path="/pdf" component={Pdf} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/application" component={MultiStepForm} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/submit" component={Submit} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/pdf" component={Application} />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/create-profile"
-                  component={CreateProfile}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/edit-profile"
-                  component={EditProfile}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/add-experience"
-                  component={AddExperience}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/add-education"
-                  component={AddEducation}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/feed" component={Posts} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/post/:id" component={Post} />
+                <PrivateRoute exact path="/userdashboard" component={Userdashboard} />
               </Switch>
               <Route exact path="/not-found" component={NotFound} />
             </div>

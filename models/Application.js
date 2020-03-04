@@ -6,6 +6,10 @@ const ApplicationSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     },
+    applicationcomplete:{
+        type:Boolean,
+        ref: 'user'
+    },
     applicationno: {
         type: Number,
         ref: 'user',
@@ -19,9 +23,23 @@ const ApplicationSchema = mongoose.Schema({
         data: Buffer,
         contentType: String
     },
-
-    regno: Number,
-    name: String,
+    regno:{
+        type:Number,
+        ref:'user'
+    },
+    name:{
+        type: String,
+        ref:'user'
+    },
+    email:{
+        type: String,
+        ref: 'user'
+    },
+    mobileno: {
+        type: String,
+        ref: 'user'
+    },
+    
     nameOfParent: String,
     gender: String,
     dateOfBirth: String,
@@ -34,16 +52,12 @@ const ApplicationSchema = mongoose.Schema({
     religion: String,
     motherTongue: String,
 
-    
     address: String,
     state: String,
     district: String,
     pincode: Number,
-
-    mobileno: Number,
     telephoneno: Number,
-    useremail: String,
-
+   
     nameOfCommunity: String,
     nameOfCaste: String,
     casteCode: Number,

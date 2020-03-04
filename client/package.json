@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^10.0.28",
     "@react-pdf/renderer": "^1.6.8",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
@@ -24,6 +25,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.4",
+    "react-spinners": "^0.8.0",
     "react-stepzilla": "^6.0.2",
     "react-validation-mixin": "^5.4.0",
     "reactstrap": "^8.4.1",
