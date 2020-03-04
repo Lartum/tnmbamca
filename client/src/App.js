@@ -24,7 +24,7 @@ import Newpassword from './components/auth/Newpassword';
 import Forgotpassword from './components/auth/Forgotpassword';
 import Application from './components/application/Application';
 import Pdf from './components/application/Pdf'
-import Imageupload from './Imageupload';
+// import Imageupload from './Imageupload';
 import Userdashboard from './components/userdashboard/Userdashboard';
 import Logincard from './components/auth/Logincard'
 
