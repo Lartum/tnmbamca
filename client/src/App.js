@@ -15,8 +15,6 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import Profiles from './components/profiles/Profiles';
-import Profile from './components/profile/Profile';
 import NotFound from './components/not-found/NotFound';
 import Verifyphone from './components/auth/Verifyphone';
 import Verifyemail from './components/auth/Verifyemail';
@@ -24,10 +22,14 @@ import Newpassword from './components/auth/Newpassword';
 import Forgotpassword from './components/auth/Forgotpassword';
 import Application from './components/application/Application';
 import Pdf from './components/application/Pdf'
-// import Imageupload from './Imageupload';
+import Imageupload from './Imageupload';
 import Userdashboard from './components/userdashboard/Userdashboard';
 import Logincard from './components/auth/Logincard'
-
+import Payment from './components/payment/Payment';
+import Successpayment from './components/payment/Successpayment';
+import FailurePayment from './components/payment/Failurepayment';
+import Edit from './components/application/edit/Edit';
+import Basicedit from './components/application/edit/Basicedit';
 import './App.css';
 
 
@@ -65,14 +67,17 @@ class App extends Component {
               <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path='/verifyphone' component={Verifyphone}/>
-              <Route exact path='/verifyemail' component={Verifyemail}/>
+              <Route exact path='/verifymail' component={Verifyemail}/>
               <Route exact path="/login" component={Login} />
               <Route exact path='/forgotpassword' component={Forgotpassword}/>
               <Route exact path="/newpassword" component={Newpassword} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profile/:handle" component={Profile} />
               <Route exact path="/imageupload" component={Imageupload} />
               <Route exact path ='/logincard' component={Logincard}/>
+              <Route exact path="/not-found" component={NotFound} />
+              <Route exact path ='/payment-callback' component={Successpayment}/>         
+              <Switch>
+                <PrivateRoute exact path="/userdashboard" component={Userdashboard} />
+              </Switch>
               <Switch>
                 <PrivateRoute exact path="/application" component={Application} />
               </Switch>
@@ -80,9 +85,20 @@ class App extends Component {
                 <PrivateRoute exact path="/pdf" component={Pdf} />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/userdashboard" component={Userdashboard} />
+                <PrivateRoute exact path="/edit" component={Edit} />
               </Switch>
-              <Route exact path="/not-found" component={NotFound} />
+              <Switch>
+                <PrivateRoute exact path="/editbasicdetails" component={Basicedit} />
+              </Switch>
+              <Switch>
+              <PrivateRoute exact path ='/payment' component={Payment}/>         
+              </Switch>   
+              <Switch>
+              <PrivateRoute exact path ='/payment-callback' component={Successpayment}/>         
+              </Switch>
+              <Switch>
+              <PrivateRoute exact path ='/payment-cancel' component={FailurePayment}/>         
+              </Switch>  
             </div>
             <Footer />
           </div>

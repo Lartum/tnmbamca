@@ -81,7 +81,6 @@ class CreateProfile extends Component {
             onChange={this.onChange}
             error={errors.twitter}
           />
-
           <InputGroup
             placeholder="Facebook Page URL"
             name="facebook"

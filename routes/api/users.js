@@ -76,8 +76,8 @@ router.get('/test', (req, res) => res.json({
 // @desc    Verify Email
 // @access  Public
 
-// Email confirmation route, use get  to directly verify with the generated link
-router.post('/confirmation', (req,res) => {
+// Email verifymail route, use get  to directly verify with the generated link
+router.post('/verifymail', (req,res) => {
   
     //Extract the token from the url with the query keyword
     Token.findOne({token : req.body.token },(err, token) => {
@@ -88,10 +88,10 @@ router.post('/confirmation', (req,res) => {
         _id: token._userId})
           .then(user => {
               if(!user) return res.status(400).send({msg: 'we were unable to find a user for this token.'});
-              if(user.email_verified) return res.status(400).send({type : 'already-verified', msg:'This user has already been verified'});
+              if(user.emailverified) return res.status(400).send({type : 'already-verified', msg:'This user has already been verified'});
   
               //verify and save the user method
-               user.email_Verified = true;
+               user.emailverified = true;
   
               //Delete the token once the user is verified 
                Token.findOneAndDelete({token : token._userId})
@@ -99,7 +99,7 @@ router.post('/confirmation', (req,res) => {
                //save the user in the database
                user.save( (err) => {
                   if(err) {return res.status(500).send({msg: err.message}); }
-                  res.status(200).render('users/emailconfirm')
+                  res.status(200)
                })
             
         })
@@ -270,7 +270,7 @@ router.post('/register', (req, res) => {
 
                       //local variables host and link
                       host = req.headers.host
-                      link = "http://" + host + "confirmation?token=" + access_token.token;
+                      link = "http://" + host + "/verifymail?token=" + access_token.token;
 
                       // Send the email
                       var transporter = nodemailer.createTransport({
@@ -370,7 +370,7 @@ router.post('/register', (req, res) => {
 
                       //local variables host and link
                       host = req.headers.host
-                      link = "http://" + host + "confirmation?token=" + access_token.token;
+                      link = "http://" + host + "/verifymail?token=" + access_token.token;
 
                       // Send the email
                       var transporter = nodemailer.createTransport({
@@ -481,7 +481,7 @@ router.post('/register', (req, res) => {
 
                       //local variables host and link
                       host = req.headers.host
-                      link = "http://" + host + "confirmation?token=" + access_token.token;
+                      link = "http://" + host + "/verifymail?token=" + access_token.token;
 
                       // Send the email
                       var transporter = nodemailer.createTransport({
@@ -579,7 +579,7 @@ router.post('/register', (req, res) => {
 
                       //local variables host and link
                       host = req.headers.host
-                      link = "http://" + host + "confirmation?token=" + access_token.token;
+                      link = "http://" + host + "/verifymail?token=" + access_token.token;
 
                       // Send the email
                       var transporter = nodemailer.createTransport({
@@ -797,6 +797,7 @@ router.post('/login', (req, res) => {
 router.get('/current', passport.authenticate('jwt', {
   session: false
 }), async (req, res) => {
+  
   try{
     const user = await User
                   .findOne({_id: req.user._id})

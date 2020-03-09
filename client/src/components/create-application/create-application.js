@@ -7,7 +7,6 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProfile } from '../../actions/profileActions';
-import { createApplication } from '../../actions/applicationActions' 
 
 
 class CreateProfile extends Component {

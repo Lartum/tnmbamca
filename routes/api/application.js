@@ -2,30 +2,18 @@ const express = require('express');
 const router = express.Router();
 const publicIp = require('public-ip');
 const passport = require('passport');
-const Razorpay = require('razorpay');
 
 // Load Validation
 const Application = require('../../models/Application');
+
 // Load Profile Model
 const Profile = require('../../models/Profile');
+
 // Load User Model
 const User = require('../../models/User');
+
 //Load Image Model
-const Img = require('../../models/Img')
-
-const razor_key_id = require('../../config/keys').RAZORPAY_KEY_ID;
-const razor_secret = require('../../config/keys').RAZORPAY_SECRET;
-
-//Razor Pay initialization
-var instance = new Razorpay({
-  key_id: razor_key_id,
-  key_secret: razor_secret,
-  headers: {
-    "X-Razorpay-Account": "EGViQKDXXYjn3n"
-  }
-})
-
-
+const Img = require('../../models/Img');
 
 // @route   GET api/profile/test
 // @desc    Tests profile route
@@ -50,11 +38,10 @@ router.post('/image', (req,res)=>{
     })
 
     NewImage.save().then(img=>{console.log(img)});
-} )
+})
 
 
 // router.get('/ipaddress', async (req,res) =>{
-
 // try
 //   {
    
@@ -66,23 +53,8 @@ router.post('/image', (req,res)=>{
 // console.log(ipv4,ipv6)
 // })
 
-router.post('/payment', (req,res)=>{
-  var options = {
-    amount: '1',  // amount in the smallest currency unit
-    currency: "INR",
-    receipt: "order_rcptid_11",
-    payment_capture: '0'
-  };
-  instance.orders.create(options, function(err, order) {
-    console.log(order);
-  }); 
-  // instance.orders.all().then(console.log).catch(console.error);
-})
-
-
 router.post('/', passport.authenticate('jwt', 
-{ session: false }),
-  (req, res) => {
+{ session: false }), async (req, res) => {
     try {
     
       const newApplication = new Application({
@@ -203,9 +175,17 @@ router.post('/', passport.authenticate('jwt',
       });
 
       newApplication.save()
-            .then(application => res.json(application))
-              .catch(err => console.log(err));
-
+            .then(application =>{
+              User.findOne({_id: application._userid})
+                 .then(user=>{
+                    console.log(user)
+                     user.applicationcomplete = true;
+                     user.save();
+                 })   
+              res.json(application)
+              }
+             )
+            .catch(err => console.log(err));
      
     } catch (err) {
       console.error(err.message);
@@ -215,19 +195,65 @@ router.post('/', passport.authenticate('jwt',
 );
 
 
+// @route   Edit api/application
+// @desc    Edit Application Basic Details
+// @access  Private
+router.post('/basicedit', passport.authenticate('jwt', 
+{ session: false }), async (req,res)=>{
+
+  const {
+    nameOfParent,
+    gender,
+    dateOfBirth,
+    citizenship,
+    nativity,
+    placeOfBirth,
+    religion,
+    motherTongue
+  }= req.body;
+
+  try{   
+  Application.findOne({_userid: req.user._id})
+     .then(application =>{
+       application.nameOfParent = nameOfParent;
+       application.gender = gender;
+       application.dateOfBirth = dateOfBirth;
+       application.citizenship = citizenship;
+       application.nativity = nativity;
+       application.placeOfBirth = placeOfBirth;
+       application.religion = religion;
+       application.motherTongue = motherTongue;
+
+    
+
+      application.save();
+
+      const successredirect = {
+        redirect: '/edit'
+      }
+      res.json(successredirect);
+     })
+    }
+  catch (err){
+    console.log(err);
+  }  
+});
+
+
+
 // @route   DELETE api/profile
 // @desc    Delete user and profile
 // @access  Private
-router.delete(
-  '/',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-      User.findOneAndRemove({ _id: req.user.id }).then(() =>
-        res.json({ success: true })
-      );
-    });
-  }
-);
+// router.delete(
+//   '/',
+//   passport.authenticate('jwt', { session: false }),
+//   (req, res) => {
+//     Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+//       User.findOneAndRemove({ _id: req.user.id }).then(() =>
+//         res.json({ success: true })
+//       );
+//     });
+//   }
+// );
 
 module.exports = router;

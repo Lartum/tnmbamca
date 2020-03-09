@@ -67,7 +67,6 @@ class Register extends Component {
       { label: 'MBA', value: 'MBA' },
       { label: 'MCA', value: 'MCA' }
     ];
-    console.log(this.state);
     return (
       <div className="register">
         <div className="container">

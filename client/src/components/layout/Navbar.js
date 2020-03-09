@@ -53,14 +53,15 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm  frost-theme mb-4">
         <div className="container">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/userdashboard">
           <img
               className="rounded-circle"
               src= {tamillogo}
               alt='Tamil Logo'
               style={{ width: '40px', marginRight: '5px' }}
               
-            />{' '}TAMIL NADU MBA MCA ADMISSION
+            />
+             {' '}TAMIL NADU MBA MCA ADMISSION
           </Link>
           <button
             className="navbar-toggler"
@@ -74,7 +75,8 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/userdashboard">
+               
                 </Link>
               </li>
             </ul>

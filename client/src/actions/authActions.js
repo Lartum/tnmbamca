@@ -17,7 +17,7 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 
-// Verify User
+// Verify User Phone
 export const verifyPhone = (otpData, history) => dispatch => {
   axios
     .post('/api/users/verifyphone', otpData)
@@ -29,6 +29,20 @@ export const verifyPhone = (otpData, history) => dispatch => {
       })
     );
 };
+
+// Verify User Email
+export const verifyMail = (userData, history) => dispatch => {
+  axios
+    .post('/api/users/verifymail', userData)
+    .then(res => history.push('/login'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 
 //Forgot password
 export const forgotPassword = (userData, history) => dispatch => {

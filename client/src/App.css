@@ -2,6 +2,17 @@ body {
   margin-bottom: 100px !important;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .landing {
   position: relative;
   background: url("./img/back.png") no-repeat;

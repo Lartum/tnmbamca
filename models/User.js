@@ -26,7 +26,6 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  
   choice:{
     type:String,
     required:true
