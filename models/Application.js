@@ -35,7 +35,7 @@ const ApplicationSchema = mongoose.Schema({
         type: String,
         ref: 'user'
     },
-    mobileno: {
+    phonenumber: {
         type: String,
         ref: 'user'
     },
@@ -60,7 +60,7 @@ const ApplicationSchema = mongoose.Schema({
    
     nameOfCommunity: String,
     nameOfCaste: String,
-    casteCode: Number,
+    casteCode: String,
     sriLankanRefugee: String,
 
     qualifyingDegree: String,

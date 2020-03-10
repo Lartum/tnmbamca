@@ -20,7 +20,7 @@ class Landing extends Component {
                 <h5 className="display-3 mb-4">TAMIL NADU MBA MCA ADMISSION</h5>
                 <p className="lead">
                   {' '}
-                  This is the Officical Website For Tamil Nadu MBA MCA Admission
+                  This is the Official Website For Tamil Nadu MBA MCA Admission
                 </p>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info mr-2">

@@ -78,7 +78,7 @@ router.post('/', passport.authenticate('jwt',
         motherTongue: req.body.motherTongue,
 
         address:  req.body.address,
-        state: req.body.state,
+        state: req.body.State,
         district: req.body.district,
         pincode: req.body.pincode,
 
