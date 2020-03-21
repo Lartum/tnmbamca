@@ -21,7 +21,7 @@
     "react-pdf": "^4.1.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.1.4",
+    "react-scripts": "^3.4.1",
     "react-spinners": "^0.8.0",
     "react-stepzilla": "^6.0.2",
     "react-validation-mixin": "^5.4.0",
