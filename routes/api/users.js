@@ -190,26 +190,19 @@ router.post('/register', (req, res) => {
       email
     })
     .then(user => {
-      if (user.email) {
-        errors.email = 'Email already exists';
+      if (user) {
+        errors.email = 'User already exists';
         return res.status(400).json(errors);
-      }
-      else if(user.phonenumber){
-        errors.phonenumber = 'Phonenumber already exists'
-        return res.status(400).json(errors)
-      }
-      else if(user.phonenumber && user.email){
-        errors.email = 'Email already exists';
-        errors.phonenumber = 'Phonenumber already exists'
-      }      
+      }     
       else {
         Tancent.findOne({regno})
           .then(tancent=>{
-            if(!tancent.regno){
+            if(!tancent){
                 errors.regno = 'TANCENT register number does not exist'
                 return res.status(400).json(errors);
             }
-            else{
+          else{
+            
           //Creating A user With the Choice As MBA  
           if (choice === "MBA") {
 
