@@ -45,8 +45,7 @@ const ApplicationSchema = mongoose.Schema({
     dateOfBirth: String,
     nativity:String,
 
-    differntlyabled: String,
-
+    differentlyAbled: String,
     citizenship: String,
     placeOfBirth: String,
     religion: String,
@@ -92,72 +91,71 @@ const ApplicationSchema = mongoose.Schema({
 
     IsemMonth: String,
     Isemyop: String,
-    Isemmarks: String,
-    Isemmaxmarks: String,
+    Isemmarks: Number,
+    Isemmaxmarks: Number,
 
     IIsemMonth: String,
     IIsemyop: String,
-    IIsemmarks: String,
-    IIsemmaxmarks: String,
+    IIsemmarks: Number,
+    IIsemmaxmarks: Number,
 
 
     IIIsemMonth: String,
     IIIsemyop: String,
-    IIIsemmarks: String,
-    IIIsemmaxmarks: String,
+    IIIsemmarks: Number,
+    IIIsemmaxmarks: Number,
 
 
     IVsemMonth: String,
     IVsemyop: String,
-    IVsemmarks: String,
-    IVsemmaxmarks: String,
+    IVsemmarks: Number,
+    IVsemmaxmarks: Number,
 
 
     VsemMonth: String,
     Vsemyop: String,
-    Vsemmarks: String,
-    Vsemmaxmarks: String,
+    Vsemmarks: Number,
+    Vsemmaxmarks: Number,
 
 
     VIsemMonth: String,
     VIsemyop: String,
-    VIsemmarks: String,
-    VIsemmaxmarks: String,
+    VIsemmarks: Number,
+    VIsemmaxmarks: Number,
 
 
     VIIsemMonth: String,
     VIIsemyop: String,
-    VIIsemmarks: String,
-    VIIsemmaxmarks: String,
+    VIIsemmarks: Number,
+    VIIsemmaxmarks: Number,
 
 
     VIIIsemMonth: String,
     VIIIsemyop: String,
-    VIIIsemmarks: String,
-    VIIIsemmaxmarks: String,
+    VIIIsemmarks: Number,
+    VIIIsemmaxmarks: Number,
 
 
     IXsemMonth: String,
     IXsemyop: String,
-    IXsemmarks: String,
-    IXsemmaxmarks: String,
+    IXsemmarks: Number,
+    IXsemmaxmarks: Number,
 
     Xsemmarks: String,
     XsemMonth: String,
-    Xsemyop: String,
-    Xsemmaxmarks: String,
+    Xsemyop: Number,
+    Xsemmaxmarks: Number,
 
 
     overalltot: Number,
     overallmarks: Number,
-    totalpermark: String,
+    totalpermark: Number,
 
     date: {
         type: Date,
         default: Date.now
     },
-    ipv4: String,
-    ipv6: String
+
 });
 
 module.exports = post = mongoose.model('applications', ApplicationSchema);

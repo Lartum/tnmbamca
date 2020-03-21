@@ -24,6 +24,9 @@ const Otp = require('../../models/Otp');
 //Load Token model
 const Token = require('../../models/Token')
 
+//Load TANCENT Model
+const Tancent = require('../../models/Tancent');
+
 //Load AWS Keys
 const aws_region_key = require('../../config/keys').AWS_REGION;
 const aws_access_key_id = require('../../config/keys').AWS_ACCESS_KEY_ID;
@@ -65,13 +68,17 @@ sns.setSMSAttributes({
   });
 
 
-// @route   GET api /users/test
-// @desc    Tests users route
-// @access  Public
-router.get('/test', (req, res) => res.json({
-  msg: 'Users Works'
-}));
+router.get('/tancent', (req,res)=>{
+  Tancent.find({}, (err,users) =>{
+    var userMap = {};
 
+    users.forEach((user) =>{
+      userMap[user._id] = user
+    })
+    res.json(userMap);
+  })
+     
+})
 // @route   GET api /users/verifyphone
 // @desc    Verify Email
 // @access  Public
@@ -173,7 +180,6 @@ router.post('/register', (req, res) => {
     regno,
     password,
     choice,
-    applicationno
   } = req.body;
 
   if (!isValid) {
@@ -181,16 +187,31 @@ router.post('/register', (req, res) => {
   }
 
   User.findOne({
-      email,
-      phonenumber
+      email
     })
     .then(user => {
-      if (user) {
-        errors.email = 'Account already exists';
+      if (user.email) {
+        errors.email = 'Email already exists';
         return res.status(400).json(errors);
-      } else {
-        //Creating A user With the Choice As MBA  
-        if (choice === "MBA") {
+      }
+      else if(user.phonenumber){
+        errors.phonenumber = 'Phonenumber already exists'
+        return res.status(400).json(errors)
+      }
+      else if(user.phonenumber && user.email){
+        errors.email = 'Email already exists';
+        errors.phonenumber = 'Phonenumber already exists'
+      }      
+      else {
+        Tancent.findOne({regno})
+          .then(tancent=>{
+            if(!tancent.regno){
+                errors.regno = 'TANCENT register number does not exist'
+                return res.status(400).json(errors);
+            }
+            else{
+          //Creating A user With the Choice As MBA  
+          if (choice === "MBA") {
 
           //Generating An Application Number 
           var currentYear = new Date().getFullYear()
@@ -613,6 +634,9 @@ router.post('/register', (req, res) => {
 
           })
         }
+            }
+          })
+        
       }
     });
 });

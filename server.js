@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
-const cors = require('cors');
 
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
@@ -15,10 +14,12 @@ const payment = require('./routes/api/payment');
 const app = express();
 
 // Body parser middleware
-app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//Public folder
+app.use('/uploads', express.static('uploads'));
+app.use(express.static(path.join(__dirname, 'public')));
 // DB Config
 const db = require('./config/keys').mongoURI;
 
@@ -37,8 +38,8 @@ app.use(passport.initialize());
 // Passport Config
 require('./config/passport')(passport);
 
-// Use Routes
 
+// Use Routes
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);

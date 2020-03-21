@@ -22,6 +22,10 @@ const UserSchema = new Schema({
     required:true,
     unique:true
   },
+  tancentmarks:{
+    type:String,
+    required:true
+  },
   password: {
     type: String,
     required: true

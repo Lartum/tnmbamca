@@ -1,46 +1,98 @@
 const express = require('express');
 const router = express.Router();
-const publicIp = require('public-ip');
 const passport = require('passport');
+const multer = require('multer');
 
 // Load Validation
 const Application = require('../../models/Application');
 
-// Load Profile Model
-const Profile = require('../../models/Profile');
-
 // Load User Model
 const User = require('../../models/User');
 
-//Load Image Model
-const Img = require('../../models/Img');
+//Load Img Model
+const Image = require('../../models/Image');
 
-// @route   GET api/profile/test
-// @desc    Tests profile route
-// @access  Public
-router.get('/test', (req, res) => res.json({ msg: 'Profile Works' }));
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, './public/uploads/');
+  },
+  filename: function (req, file, cb) {
+      cb(null, Date.now() + file.originalname);
+  }
+});
 
-router.get('/pdf', passport.authenticate('jwt', 
-{ session: false }), (req,res) =>{
-  Application.findOne({_userid:req.user._id})
-      .populate('user')
-       .exec((data => {
-        res.send(data);
-       })) 
-          
-  })
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      cb(null, true);
+  } else {
+      // rejects storing a file
+      cb(null, false);
+  }
+}
 
-router.post('/image', (req,res)=>{
-    const image = req.files
-  
-    const NewImage = new Img({
-      image
+const upload = multer({
+  storage: storage,
+  limits: {
+      fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
+/* 
+  stores image in uploads folder
+  using multer and creates a reference to the 
+  file
+*/
+
+// @route   Upload Image api/uploadmulter
+// @desc    Upload Image to the database
+// @access  Private
+router
+  .route("/uploadmulter")
+   .post(upload.single('imageData'), passport.authenticate('jwt', 
+    { session: false }), async (req, res, next) => {
+      try{
+        User.findOne({_id:req.user._id})
+        .then(user =>{
+             const newImage = new Image({
+               userid: req.user._id,
+               applicationo: req.user.applicationno,
+               imageName: req.body.imageName,
+               imageData: req.file.path
+           });
+     
+           newImage.save()
+               .then(( result ) => {
+                   console.log(result);
+                   res.status(200).json({
+                       success: true,
+                       document: result
+                   });
+               })
+               .catch((err) => next(err));
+        })
+      }
+     catch(err){
+       console.log(err);
+     }
+     
+  });
+
+
+router.get('/images', passport.authenticate('jwt', 
+{ session: false }), async (req,res)=>{
+  User.findOne({})
+    Image.find({_id:'5e6cc88313c36f211c15b501'},)
+        .then(data =>{
+          const picture = data[0];
+          console.log(picture);
+          userImage = {
+            imageName : picture.imageName,
+            imageData : picture.imageData
+          }
+          res.json(userImage);
+        })
     })
-
-    NewImage.save().then(img=>{console.log(img)});
-})
-
-
 // router.get('/ipaddress', async (req,res) =>{
 // try
 //   {
@@ -60,18 +112,21 @@ router.post('/', passport.authenticate('jwt',
       const newApplication = new Application({
        
         _userid: req.user._id,
+        
         applicationno: req.user.applicationno,
         regno: req.user.regno,  
         choice:req.user.choice,
+        email: req.user.email,
+        name: req.user.name,
+        phonenumber: req.user.phonenumber,
 
-        name: req.body.name,
         nameOfParent: req.body.nameOfParent,
        
         gender: req.body.gender,
         dateOfBirth: req.body.dateOfBirth,
         nativity:req.body.nativity,
 
-        differntlyabled: req.body.differntlyabled,
+        differentlyAbled: req.body.differentlyAbled,
         citizenship: req.body.citizenship,
         placeOfBirth: req.body.placeOfBirth,
         religion: req.body.religion,
@@ -84,7 +139,6 @@ router.post('/', passport.authenticate('jwt',
 
         mobileno: req.body.mobileno,
         telephoneno: req.body.telephoneno,
-        useremail: req.body.useremail,
 
         nameOfCommunity: req.body.nameOfCommunity,
         nameOfCaste: req.body.nameOfCaste,

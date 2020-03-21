@@ -30,6 +30,7 @@ import Successpayment from './components/payment/Successpayment';
 import FailurePayment from './components/payment/Failurepayment';
 import Edit from './components/application/edit/Edit';
 import Basicedit from './components/application/edit/Basicedit';
+import Viewapplication from './components/application/Viewapplication';
 import './App.css';
 
 
@@ -71,7 +72,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path='/forgotpassword' component={Forgotpassword}/>
               <Route exact path="/newpassword" component={Newpassword} />
-              <Route exact path="/imageupload" component={Imageupload} />
+              {/* <Route exact path="/imageupload" component={Imageupload} /> */}
               <Route exact path ='/logincard' component={Logincard}/>
               <Route exact path="/not-found" component={NotFound} />
               <Route exact path ='/payment-callback' component={Successpayment}/>         
@@ -83,6 +84,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/pdf" component={Pdf} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/viewapplication" component={Viewapplication} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/edit" component={Edit} />
