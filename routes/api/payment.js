@@ -52,26 +52,24 @@ router.post('/payment-callback', async  (req,res) =>{
    const email = data.email
    User.findOne({email})
       .then(user =>{
-        console.log(user);
         user.paid = true;
         user.save()
         const paymentDetails = new Payment({
-              userid : req.user._id,
-              applicationno : req.user.applicationno,
-              name: req.user.name,
-              email: req.user.email,
+              _userid: user._id,
+              applicationno : user.applicationno,
+              name: user.name,
+              email: user.email,
               razorpay_order_id,
               razorpay_payment_id,
               razorpay_signature,
               })
-
-      paymentDetails.save()    
+      console.log(paymentDetails);
+      paymentDetails.save();    
       }).catch(err =>{
         console.log(err);
       })
     });
      res.json({msg:'Payment Successfull'});
-
  
   }
   catch(err){

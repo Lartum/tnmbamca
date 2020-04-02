@@ -23,8 +23,7 @@ const UserSchema = new Schema({
     unique:true
   },
   tancentmarks:{
-    type:String,
-    ref: 'application'
+    type:Number,
   },
   password: {
     type: String,

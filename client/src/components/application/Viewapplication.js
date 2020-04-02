@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import {
     Table,
-    Button,
-    Card,
-    CardHeader,
-    CardBody
+    Button
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
@@ -35,12 +32,12 @@ export default class Viewapplication extends Component {
        if(this.state.users !== null){
               
         return (
-          <div>
-          <Card>
-            <CardHeader className="reviewHeaders">
+          <div className='userdashboard'>
+          <div >
+            <div className="reviewHeaders">
                   Application Details
-            </CardHeader>
-            <CardBody>
+            </div>
+            <div className='shadow-lg p-3 mb-5 bg-white rounded'>
               <h4 className="finalReviewHeader">BASIC DETAILS</h4>
               <Table bordered>
                 <tbody>
@@ -390,8 +387,8 @@ export default class Viewapplication extends Component {
                   </tr>
                 </tbody>
               </Table>
-            </CardBody> 
-         </Card>
+            </div> 
+         </div>
         </div>
       )
        }

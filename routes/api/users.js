@@ -202,7 +202,7 @@ router.post('/register', (req, res) => {
                 return res.status(400).json(errors);
             }
           else{
-            
+          
           //Creating A user With the Choice As MBA  
           if (choice === "MBA") {
 
@@ -215,8 +215,14 @@ router.post('/register', (req, res) => {
             count = count + defaultapplicationno;
             var applicationnum = ["1", currentYear, count]
             applicationno = applicationnum.join('');
+            var tancentmarks = tancent.mbamarks;
 
-            //if the user is the first applicant
+            if(tancentmarks === 'ABS'){
+              errors.regno = "The provided TANCENT register number was marked as absent"
+            }
+            else {
+              tancentmarks = parseFloat(tancentmarks);
+               //if the user is the first applicant
             if (count = defaultapplicationno) {
 
               //Creating a new user with the given credentials 
@@ -225,6 +231,7 @@ router.post('/register', (req, res) => {
                 email,
                 phonenumber,
                 regno,
+                tancentmarks,
                 password,
                 choice,
                 applicationno
@@ -319,11 +326,14 @@ router.post('/register', (req, res) => {
 
             //If the user is not the first applicant
             else {
+              var tancentmarks = tancent.mbamarks;
+              tancentmarks = parseFloat(tancentmarks);
               const newUser = new User({
                 name,
                 email,
                 phonenumber,
                 regno,
+                tancentmarks,
                 password,
                 choice,
                 applicationno
@@ -413,7 +423,7 @@ router.post('/register', (req, res) => {
                 });
               });
             }
-
+            }
           })
         }
 
@@ -427,7 +437,8 @@ router.post('/register', (req, res) => {
             count = count + defaultapplicationno;
             var applicationnum = ["3", currentYear, count]
             applicationno = applicationnum.join('');
-
+            var tancentmarks = tancent.mcamarks;
+            tancentmarks = parseFloat(tancentmarks);
             //If the user is the first applicant
             if (count = defaultapplicationno) {
 
@@ -436,6 +447,7 @@ router.post('/register', (req, res) => {
                 email,
                 phonenumber,
                 regno,
+                tancentmarks,
                 password,
                 choice,
                 applicationno
@@ -529,11 +541,14 @@ router.post('/register', (req, res) => {
             }
             //If the user is not the first applicant
             else {
+              var tancentmarks = tancent.mcamarks;
+              tancentmarks = parseFloat(tancentmarks);
               const newUser = new User({
                 name,
                 email,
                 phonenumber,
                 regno,
+                tancentmarks,
                 password,
                 choice,
                 applicationno
@@ -621,10 +636,7 @@ router.post('/register', (req, res) => {
                     .catch(err => console.log(err));
                 });
               });
-
-
             }
-
           })
         }
             }

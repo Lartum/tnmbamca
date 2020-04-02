@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Loading from '../common/Loading'
-import { PDFViewer} from "@react-pdf/renderer";
+import { PDFViewer, PDFDownloadLink} from "@react-pdf/renderer";
 import {
   Page,
   Text,
@@ -24,7 +24,6 @@ export default class Pdf extends React.Component {
     });
   }
   render() {
-    console.log(this.state.users);
     const styles = StyleSheet.create({
       page: { backgroundColor: "white" },
       header: { textAlign: "center", margin: 30 },
@@ -210,16 +209,16 @@ export default class Pdf extends React.Component {
     }
 
     if (this.state.user !== null) {
-      return (
+      return(
         <div>
-      <h1>{this.state.users.choice} Application No: {this.state.users.applicationno}</h1>
+        <h1>{this.state.users.choice} Application No: {this.state.users.applicationno}</h1>
         <PDFViewer
-          style={{
-            width: "100%",
-            height: "100rem"
-          }}
+        style={{
+          width: "100%",
+          height: "100rem"
+        }}
         >
-          <Document>
+            <Document>
             <Page size="A4" style={styles.page}>
               <View style={styles.header}>
                 <Text>APPLICATION FORM FOR ADMISSION TO {this.state.users.choice} COURSE</Text>
@@ -716,9 +715,9 @@ export default class Pdf extends React.Component {
               </View>
             </Page>
           </Document>
-        </PDFViewer>
-        </div>
-      );
+      </PDFViewer>
+      </div>
+      )
     }
   }
 }

@@ -468,6 +468,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.Isemyop}
                     >
+                      <option value="">"*"</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -521,6 +522,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.IIsemyop}
                     >
+                      <option value="">"*"</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -574,6 +576,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.IIIsemyop}
                     >
+                      <option value="">"*"</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
