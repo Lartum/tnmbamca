@@ -218,7 +218,12 @@ router.post('/register', (req, res) => {
             var tancentmarks = tancent.mbamarks;
 
             if(tancentmarks === 'ABS'){
-              errors.regno = "The provided TANCENT register number was marked as absent"
+              errors.regno = "The provided TANCENT register number was marked as absent";
+              return res.status(400).json(errors);
+            }
+            else if(tancentmarks = ''){
+              errors.regno = 'You havent appeared for MBA exam';
+              return res.status(400).json(errors);
             }
             else {
               tancentmarks = parseFloat(tancentmarks);

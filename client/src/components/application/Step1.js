@@ -236,7 +236,7 @@ export default class Step1 extends Component {
     return (
       <div className="step step1">
         <Card>
-          <CardHeader>Basic Details</CardHeader>
+          <CardHeader><h3 style={{ color:'blue'}} className='userdashboard'>BASIC DETAILS</h3></CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>
@@ -354,7 +354,7 @@ export default class Step1 extends Component {
           </CardBody>
         </Card>
         <Card>
-          <CardHeader>Secondary Details</CardHeader>
+          <CardHeader style={{color:'green'}} className='userdashboard'><h3>SECONDARY DETAILS</h3></CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>
