@@ -72,7 +72,6 @@ class App extends Component {
               <Route exact path='/forgotpassword' component={Forgotpassword}/>
               <Route exact path="/newpassword" component={Newpassword} />
               {/* <Route exact path="/imageupload" component={Imageupload} /> */}
-              <Route exact path ='/logincard' component={Logincard}/>
               <Route exact path="/not-found" component={NotFound} />
               <Route exact path ='/payment-callback' component={Successpayment}/>         
               <Switch>
