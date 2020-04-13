@@ -34,6 +34,7 @@ export default class Userdashboard extends Component {
 
        if(this.state.user !== null){
        var userinfo = this.state.user;
+       
         if(userinfo.applicationcomplete === true){
            applicationstatus =  'Complete'
            colorstatus1 = 'green'

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const multer = require('multer');
+const publicIp = require('public-ip');
 
 // Load Validation
 const Application = require('../../models/Application');
@@ -12,6 +13,8 @@ const User = require('../../models/User');
 //Load Img Model
 const Image = require('../../models/Image');
 
+const Tancent = require('../../models/Tancent');
+ 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
       cb(null, './public/uploads/');
@@ -78,6 +81,14 @@ router
      
   });
 
+  router.get('/tancentuser',(req,res)=>{
+
+    const userid = "11121001"
+    Tancent.findOne({"regno":userid})
+      .then(user=>{
+       res.json({user});
+      })
+  })
 
 router.get('/images', passport.authenticate('jwt', 
 { session: false }), async (req,res)=>{
@@ -93,12 +104,15 @@ router.get('/images', passport.authenticate('jwt',
           res.json(userImage);
         })
     })
+    
 // router.get('/ipaddress', async (req,res) =>{
 // try
 //   {
-   
+//    const ipv4 = publicIp.v4();
+//    console.log(ipv4)
 //   //=> 'fe80::200:f8ff:fe21:67cf'
 // }
+
 // catch(err){
 //   console.log(err);
 // }

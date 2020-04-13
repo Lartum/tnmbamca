@@ -186,23 +186,22 @@ router.post('/register', (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({
-      email
-    })
+  User.findOne({email})
     .then(user => {
-      if (user) {
+      if (user.email) {
         errors.email = 'User already exists';
         return res.status(400).json(errors);
       }     
       else {
         Tancent.findOne({regno})
           .then(tancent=>{
+            console.log(tancent);
+            console.log('tancent mba marks: ' + tancent.mbamarks);
             if(!tancent){
                 errors.regno = 'TANCENT register number does not exist'
                 return res.status(400).json(errors);
             }
           else{
-          
           //Creating A user With the Choice As MBA  
           if (choice === "MBA") {
 
@@ -216,8 +215,7 @@ router.post('/register', (req, res) => {
             var applicationnum = ["1", currentYear, count]
             applicationno = applicationnum.join('');
             var tancentmarks = tancent.mbamarks;
-
-            if(tancentmarks === 'ABS'){
+            if(tancentmarks === 'ABS')  {
               errors.regno = "The provided TANCENT register number was marked as absent";
               return res.status(400).json(errors);
             }
@@ -226,7 +224,6 @@ router.post('/register', (req, res) => {
               return res.status(400).json(errors);
             }
             else {
-              tancentmarks = parseFloat(tancentmarks);
                //if the user is the first applicant
             if (count = defaultapplicationno) {
 
