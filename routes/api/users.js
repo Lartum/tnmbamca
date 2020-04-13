@@ -188,7 +188,8 @@ router.post('/register', (req, res) => {
 
   User.findOne({email})
     .then(user => {
-      if (user.email) {
+      console.log(user);
+      if (user) {
         errors.email = 'User already exists';
         return res.status(400).json(errors);
       }     

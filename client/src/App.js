@@ -23,7 +23,6 @@ import Forgotpassword from './components/auth/Forgotpassword';
 import Application from './components/application/Application';
 import Pdf from './components/application/Pdf';
 import Userdashboard from './components/userdashboard/Userdashboard';
-import Logincard from './components/auth/Logincard';
 import Payment from './components/payment/Payment';
 import Successpayment from './components/payment/Successpayment';
 import FailurePayment from './components/payment/Failurepayment';
