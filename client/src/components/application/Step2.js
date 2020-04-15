@@ -99,7 +99,7 @@ export default class Step3 extends Component {
         this.props.getStore().district != userinput.district ||
         this.props.getStore().pincode != userinput.pincode ||
         this.props.getStore().mobileno != userinput.mobileno ||
-        this.props.getStore().telephoneno != userinput.telephoneno ||
+        
         this.props.getStore().email != userinput.email
       ) {
         // only update store of something changed
@@ -146,7 +146,7 @@ export default class Step3 extends Component {
       districtVal: data.district != 0,
       pincodeVal: /^[1-9][0-9]{5}$/.test(data.pincode),
       mobilenoVal: /^\d{5}([- ]*)\d{6}/.test(data.mobileno),
-      telephonenoVal: data.telephoneno != 0,
+  
       // emailVal: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(
       //   data.email
       // )
@@ -236,17 +236,6 @@ export default class Step3 extends Component {
     } else {
       notValidClasses.mobilenoCls = "has-error col-md-10";
       notValidClasses.mobilenoValGrpCls = "val-err-tooltip";
-    }
-
-    //telephoneno
-    if (
-      typeof this.state.telephonenoVal == "undefined" ||
-      this.state.telephonenoVal
-    ) {
-      notValidClasses.telephonenoCls = "no-error col-md-8";
-    } else {
-      notValidClasses.telephonenoCls = "has-error col-md-8";
-      notValidClasses.telephonenoValGrpCls = "val-err-tooltip";
     }
 
     //email
@@ -471,7 +460,7 @@ export default class Step3 extends Component {
               <Col md={6}>
                 <FormGroup>
                   <label for="telephoneno">
-                    <span className="asterix_color">*</span>Telephone No
+                    Telephone No
                   </label>
                   <div
                     className={notValidClasses.telephonenoCls}
@@ -482,7 +471,6 @@ export default class Step3 extends Component {
                       autoComplete="off"
                       type="number"
                       className="form-control"
-                      required
                       defaultValue={this.state.telephoneno}
                     />
                     <div className={notValidClasses.telephonenoValGrpCls}>

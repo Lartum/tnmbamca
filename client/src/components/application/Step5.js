@@ -52,7 +52,7 @@ export default class Step5 extends Component {
       VIIIsemmaxmarks: this.refs.VIIIsemmaxmarks,
       VIIIsemmarks: this.refs.VIIIsemmarks,
       IXsemMonth: this.refs.IXsemMonth,
-      Xsemyop: this.refs.IXsemyop,
+      IXsemyop: this.refs.IXsemyop,
       IXsemmaxmarks: this.refs.IXsemmaxmarks,
       IXsemmarks: this.refs.IXsemmarks,
       XsemMonth: this.refs.XsemMonth,
@@ -63,7 +63,8 @@ export default class Step5 extends Component {
       overallmarks: this.refs.overallmarks,
       totalpermark: this.refs.totalpermark,
 
-      month_names: []
+      month_names: [],
+      temp_tot_marks: 0
     };
 
     this._validateOnDemand = true; // this flag enables onBlur validation as user fills forms
@@ -106,11 +107,11 @@ export default class Step5 extends Component {
       })
     ) {
       if (
-        this.props.getStore().ugDegree != userInput.ugDegree ||
-        this.props.getStore().collegeName != userInput.collegeName ||
-        this.props.getStore().collegeAddress != userInput.collegeAddress ||
-        this.props.getStore().nameOfUniversity != userInput.nameOfUniversity ||
-        this.props.getStore().universityAddress != userInput.universityAddress
+        this.props.getStore().ugDegree !== userInput.ugDegree ||
+        this.props.getStore().collegeName !== userInput.collegeName ||
+        this.props.getStore().collegeAddress !== userInput.collegeAddress ||
+        this.props.getStore().nameOfUniversity !== userInput.nameOfUniversity ||
+        this.props.getStore().universityAddress !== userInput.universityAddress
       ) {
         this.props.updateStore({
           ...userInput,
@@ -228,12 +229,60 @@ export default class Step5 extends Component {
     };
   }
 
+  listen_to_max_marks_change = ({ event }) => {
+    const total_Max_Marks =
+      parseInt(this.refs.Isemmaxmarks.value, 10) +
+      parseInt(this.refs.IIsemmaxmarks.value, 10) +
+      parseInt(this.refs.IIIsemmaxmarks.value, 10) +
+      parseInt(this.refs.IVsemmaxmarks.value, 10) +
+      parseInt(this.refs.Vsemmaxmarks.value, 10) +
+      parseInt(this.refs.VIsemmaxmarks.value, 10) +
+      parseInt(this.refs.VIIsemmaxmarks.value, 10) +
+      parseInt(this.refs.VIIIsemmaxmarks.value, 10) +
+      parseInt(this.refs.IXsemmaxmarks.value, 10) +
+      parseInt(this.refs.Xsemmaxmarks.value, 10);
+    this.setState({ overalltot: total_Max_Marks });
+    if (this.refs.overallmarks.value !== null) {
+      const percent_marks = parseInt(
+        (parseInt(this.refs.overallmarks.value, 10) * 100) /
+          parseInt(total_Max_Marks, 10),
+        10
+      );
+      this.setState({ totalpermark: percent_marks });
+    }
+  };
+
+  listen_to_marks_obtained_change = ({ event }) => {
+    const total_obtained_Marks =
+      parseInt(this.refs.Isemmarks.value, 10) +
+      parseInt(this.refs.IIsemmarks.value, 10) +
+      parseInt(this.refs.IIIsemmarks.value, 10) +
+      parseInt(this.refs.IVsemmarks.value, 10) +
+      parseInt(this.refs.Vsemmarks.value, 10) +
+      parseInt(this.refs.VIsemmarks.value, 10) +
+      parseInt(this.refs.VIIsemmarks.value, 10) +
+      parseInt(this.refs.VIIIsemmarks.value, 10) +
+      parseInt(this.refs.IXsemmarks.value, 10) +
+      parseInt(this.refs.Xsemmarks.value, 10);
+    this.setState({ overallmarks: total_obtained_Marks });
+
+    const percent_marks = parseInt(
+      (parseInt(total_obtained_Marks, 10) * 100) /
+        parseInt(this.refs.overalltot.value, 10),
+      10
+    );
+    this.setState({ totalpermark: percent_marks });
+  };
+
   render() {
     // explicit class assigning based on validation
     let notValidClasses = {};
 
     //UG Degree
-    if (typeof this.state.ugDegreeVal == "text" || this.state.ugDegreeVal) {
+    if (
+      typeof this.state.ugDegreeVal === "undefined" ||
+      this.state.ugDegreeVal
+    ) {
       notValidClasses.ugDegreeCls = "no-error col-md-10";
     } else {
       notValidClasses.ugDegreeCls = "has-error col-md-10";
@@ -242,7 +291,7 @@ export default class Step5 extends Component {
 
     //College Name
     if (
-      typeof this.state.collegeNameVal == "text" ||
+      typeof this.state.collegeNameVal === "undefined" ||
       this.state.collegeNameVal
     ) {
       notValidClasses.collegeNameCls = "no-error col-md-8";
@@ -253,7 +302,7 @@ export default class Step5 extends Component {
 
     //College Address
     if (
-      typeof this.state.collegeAddressVal == "text" ||
+      typeof this.state.collegeAddressVal === "undefined" ||
       this.state.collegeAddressVal
     ) {
       notValidClasses.collegeAddressCls = "no-error col-md-10";
@@ -264,7 +313,7 @@ export default class Step5 extends Component {
 
     //Name of University
     if (
-      typeof this.state.nameOfUniversityVal == "text" ||
+      typeof this.state.nameOfUniversityVal === "undefined" ||
       this.state.nameOfUniversityVal
     ) {
       notValidClasses.nameOfUniversityCls = "no-error col-md-10";
@@ -275,7 +324,7 @@ export default class Step5 extends Component {
 
     //Address of The University
     if (
-      typeof this.state.universityAddressVal == "text" ||
+      typeof this.state.universityAddressVal === "undefined" ||
       this.state.universityAddressVal
     ) {
       notValidClasses.universityAddressCls = "no-error col-md-10";
@@ -468,7 +517,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.Isemyop}
                     >
-                      <option value="">"*"</option>
+                      <option value="">Please Select</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -483,6 +532,7 @@ export default class Step5 extends Component {
                       ref="Isemmaxmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_max_marks_change}
                       className="form-control"
                       required
                       defaultValue={this.state.Isemmaxmarks}
@@ -493,6 +543,7 @@ export default class Step5 extends Component {
                       ref="Isemmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.Isemmarks}
@@ -522,7 +573,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.IIsemyop}
                     >
-                      <option value="">"*"</option>
+                      <option value="">Please Select</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -537,6 +588,7 @@ export default class Step5 extends Component {
                       ref="IIsemmaxmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_max_marks_change}
                       className="form-control"
                       required
                       defaultValue={this.state.IIsemmaxmarks}
@@ -547,6 +599,7 @@ export default class Step5 extends Component {
                       ref="IIsemmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.IIsemmarks}
@@ -576,7 +629,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.IIIsemyop}
                     >
-                      <option value="">"*"</option>
+                      <option value="">Please Select</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -591,6 +644,7 @@ export default class Step5 extends Component {
                       ref="IIIsemmaxmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_max_marks_change}
                       className="form-control"
                       required
                       defaultValue={this.state.IIIsemmaxmarks}
@@ -601,6 +655,7 @@ export default class Step5 extends Component {
                       ref="IIIsemmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.IIIsemmarks}
@@ -630,6 +685,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.IVsemyop}
                     >
+                      <option value="">Please Select</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -644,6 +700,7 @@ export default class Step5 extends Component {
                       ref="IVsemmaxmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_max_marks_change}
                       className="form-control"
                       required
                       defaultValue={this.state.IVsemmaxmarks}
@@ -654,6 +711,7 @@ export default class Step5 extends Component {
                       ref="IVsemmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.IVsemmarks}
@@ -683,6 +741,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.Vsemyop}
                     >
+                      <option value="">Please Select</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -697,6 +756,7 @@ export default class Step5 extends Component {
                       ref="Vsemmaxmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_max_marks_change}
                       className="form-control"
                       required
                       defaultValue={this.state.Vsemmaxmarks}
@@ -707,6 +767,7 @@ export default class Step5 extends Component {
                       ref="Vsemmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.Vsemmarks}
@@ -736,6 +797,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.VIsemyop}
                     >
+                      <option value="">Please Select</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -750,6 +812,7 @@ export default class Step5 extends Component {
                       ref="VIsemmaxmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_max_marks_change}
                       className="form-control"
                       required
                       defaultValue={this.state.VIsemmaxmarks}
@@ -760,6 +823,7 @@ export default class Step5 extends Component {
                       ref="VIsemmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.VIsemmarks}
@@ -789,6 +853,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.VIIsemyop}
                     >
+                      <option value="">Please Select</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -803,6 +868,7 @@ export default class Step5 extends Component {
                       ref="VIIsemmaxmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_max_marks_change}
                       className="form-control"
                       required
                       defaultValue={this.state.VIIsemmaxmarks}
@@ -813,6 +879,7 @@ export default class Step5 extends Component {
                       ref="VIIsemmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.VIIsemmarks}
@@ -842,6 +909,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.VIIIsemyop}
                     >
+                      <option value="">Please Select</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -856,6 +924,7 @@ export default class Step5 extends Component {
                       ref="VIIIsemmaxmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_max_marks_change}
                       className="form-control"
                       required
                       defaultValue={this.state.VIIIsemmaxmarks}
@@ -866,6 +935,7 @@ export default class Step5 extends Component {
                       ref="VIIIsemmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.VIIIsemmarks}
@@ -895,6 +965,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.IXsemyop}
                     >
+                      <option value="">Please Select</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -909,6 +980,7 @@ export default class Step5 extends Component {
                       ref="IXsemmaxmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_max_marks_change}
                       className="form-control"
                       required
                       defaultValue={this.state.IXsemmaxmarks}
@@ -919,6 +991,7 @@ export default class Step5 extends Component {
                       ref="IXsemmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.IXsemmarks}
@@ -948,6 +1021,7 @@ export default class Step5 extends Component {
                       required
                       defaultValue={this.state.Xsemyop}
                     >
+                      <option value="">Please Select</option>
                       <option value={maxyear}> {maxyear}</option>
                       <option value={maxyear_1}> {maxyear_1}</option>
                       <option value={maxyear_2}> {maxyear_2}</option>
@@ -962,6 +1036,7 @@ export default class Step5 extends Component {
                       ref="Xsemmaxmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_max_marks_change}
                       className="form-control"
                       required
                       defaultValue={this.state.Xsemmaxmarks}
@@ -972,6 +1047,7 @@ export default class Step5 extends Component {
                       ref="Xsemmarks"
                       autoComplete="off"
                       type="number"
+                      onChange={this.listen_to_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.Xsemmarks}
@@ -987,6 +1063,8 @@ export default class Step5 extends Component {
                       ref="overalltot"
                       autoComplete="off"
                       type="number"
+                      readOnly
+                      onChange={this.listen_to_total_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.overalltot}
@@ -997,6 +1075,8 @@ export default class Step5 extends Component {
                       ref="overallmarks"
                       autoComplete="off"
                       type="number"
+                      readOnly
+                      onChange={this.listen_to_total_marks_obtained_change}
                       className="form-control"
                       required
                       defaultValue={this.state.overallmarks}
@@ -1012,6 +1092,7 @@ export default class Step5 extends Component {
                       ref="totalpermark"
                       autoComplete="off"
                       type="number"
+                      readOnly
                       className="form-control"
                       required
                       defaultValue={this.state.totalpermark}
