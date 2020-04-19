@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const crypto = require('crypto');
 const multer = require('multer');
+const mongoose = require('mongoose');
 const publicIp = require('public-ip');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
 
 // Load Validation
 const Application = require('../../models/Application');
@@ -13,33 +17,102 @@ const User = require('../../models/User');
 //Load Img Model
 const Image = require('../../models/Image');
 
-const Tancent = require('../../models/Tancent');
- 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-      cb(null, './public/uploads/');
-  },
-  filename: function (req, file, cb) {
-      cb(null, Date.now() + file.originalname);
-  }
+const mongoURI = require('../../config/keys').mongoURI
+
+let gfs;
+
+const conn = mongoose.createConnection(mongoURI);
+
+conn.once('open', ()=>{
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('photos')
+})
+
+const storage = new GridFsStorage({
+ url : mongoURI,
+ file: (req,file) => {
+  return new Promise((resolve, reject) => {
+    crypto.randomBytes(16, (err, buf) => {
+      if (err) {
+        return reject(err);
+      }
+      const filename = buf.toString('hex') + path.extname(file.originalname);
+      const fileInfo = {
+        filename: filename,
+        bucketName: 'photos'
+      };
+      resolve(fileInfo);
+    });
+  });
+ }
+
 });
 
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-      cb(null, true);
-  } else {
-      // rejects storing a file
-      cb(null, false);
-  }
-}
+const upload = multer({ storage });
 
-const upload = multer({
-  storage: storage,
-  limits: {
-      fileSize: 1024 * 1024 * 5
-  },
-  fileFilter: fileFilter
-});
+router.get('/loadform',(req,res) => {
+  gfs.files.find().toArray((err, files) => {
+    // Check if files
+    if (!files || files.length === 0) {
+      res.json({msg: 'no files found'})
+    } else {
+      files.map(file => {
+        if (
+          file.contentType === 'image/jpeg' ||
+          file.contentType === 'image/png' ||
+          file.contentType === 'image/jpg'
+        ) {
+          file.isImage = true;
+        } else {
+          file.isImage = false;
+        }
+      });
+      res.render('index', { files: files });
+    }
+  });
+})
+
+router.post('/uploadimage',upload.single('file'), (req,res) =>{
+  res.json({ file: req.file})
+})
+
+router.get('/getimage',(req,res) => {
+  gfs.files.find().toArray((err, files) =>{
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        err: 'No files exist'
+      });
+    }
+
+    // Files exist
+    return res.json(files);
+  });
+  });
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//       cb(null, './public/uploads/');
+//   },
+//   filename: function (req, file, cb) {
+//       cb(null, Date.now() + file.originalname);
+//   }
+// });
+
+// const fileFilter = (req, file, cb) => {
+//   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+//       cb(null, true);
+//   } else {
+//       // rejects storing a file
+//       cb(null, false);
+//   }
+// }
+
+// const upload = multer({
+//   storage: storage,
+//   limits: {
+//       fileSize: 1024 * 1024 * 5
+//   },
+//   fileFilter: fileFilter
+// });
 
 /* 
   stores image in uploads folder
@@ -50,61 +123,53 @@ const upload = multer({
 // @route   Upload Image api/uploadmulter
 // @desc    Upload Image to the database
 // @access  Private
-router
-  .route("/uploadmulter")
-   .post(upload.single('imageData'), passport.authenticate('jwt', 
-    { session: false }), async (req, res, next) => {
-      try{
-        User.findOne({_id:req.user._id})
-        .then(user =>{
-             const newImage = new Image({
-               userid: req.user._id,
-               applicationo: req.user.applicationno,
-               imageName: req.body.imageName,
-               imageData: req.file.path
-           });
+// router
+//   .route("/uploadmulter")
+//    .post(upload.single('imageData'), passport.authenticate('jwt', 
+//     { session: false }), async (req, res, next) => {
+//       try{
+//         User.findOne({_id:req.user._id})
+//         .then(user =>{
+//              const newImage = new Image({
+//                userid: req.user._id,
+//                applicationo: req.user.applicationno,
+//                imageName: req.body.imageName,
+//                imageData: req.file.path
+//            });
      
-           newImage.save()
-               .then(( result ) => {
-                   console.log(result);
-                   res.status(200).json({
-                       success: true,
-                       document: result
-                   });
-               })
-               .catch((err) => next(err));
-        })
-      }
-     catch(err){
-       console.log(err);
-     }
+//            newImage.save()
+//                .then(( result ) => {
+//                    console.log(result);
+//                    res.status(200).json({
+//                        success: true,
+//                        document: result
+//                    });
+//                })
+//                .catch((err) => next(err));
+//         })
+//       }
+//      catch(err){
+//        console.log(err);
+//      }
      
-  });
-
-  router.get('/tancentuser',(req,res)=>{
-
-    const userid = "11121001"
-    Tancent.findOne({"regno":userid})
-      .then(user=>{
-       res.json({user});
-      })
-  })
-
-router.get('/images', passport.authenticate('jwt', 
-{ session: false }), async (req,res)=>{
-  User.findOne({})
-    Image.find({_id:'5e6cc88313c36f211c15b501'},)
-        .then(data =>{
-          const picture = data[0];
-          console.log(picture);
-          userImage = {
-            imageName : picture.imageName,
-            imageData : picture.imageData
-          }
-          res.json(userImage);
-        })
-    })
+//   });
+// router.get('/images', passport.authenticate('jwt', 
+// { session: false }), async (req,res)=>{
+//   User.findOne({})
+//     Image.find({_id:'5e6cc88313c36f211c15b501'},)
+//         .then(data =>{
+//           const picture = data[0];
+//           console.log(picture);
+//           userImage = {
+//             imageName : picture.imageName,
+//             imageData : picture.imageData
+//           }
+//           res.json(userImage);
+//         })
+//     })
     
+
+
 // router.get('/ipaddress', async (req,res) =>{
 // try
 //   {

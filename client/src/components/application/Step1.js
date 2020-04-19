@@ -6,7 +6,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Table
 } from "reactstrap";
 
 export default class Step1 extends Component {
@@ -48,15 +47,15 @@ export default class Step1 extends Component {
       })
     ) {
       if (
-        this.props.getStore().name != userInput.name ||
-        this.props.getStore().nameOfParent != userInput.nameOfParent ||
-        this.props.getStore().gender != userInput.gender ||
-        this.props.getStore().dateOfBirth != userInput.dateOfBirth ||
-        this.props.getStore().citizenship != userInput.citizenship ||
-        this.props.getStore().nativity != userInput.nativity ||
-        this.props.getStore().placeOfBirth != userInput.placeOfBirth ||
-        this.props.getStore().religion != userInput.religion ||
-        this.props.getStore().motherTongue != userInput.motherTongue
+        this.props.getStore().name !== userInput.name ||
+        this.props.getStore().nameOfParent !== userInput.nameOfParent ||
+        this.props.getStore().gender !== userInput.gender ||
+        this.props.getStore().dateOfBirth !== userInput.dateOfBirth ||
+        this.props.getStore().citizenship !== userInput.citizenship ||
+        this.props.getStore().nativity !== userInput.nativity ||
+        this.props.getStore().placeOfBirth !== userInput.placeOfBirth ||
+        this.props.getStore().religion !== userInput.religion ||
+        this.props.getStore().motherTongue !== userInput.motherTongue
       ) {
         this.props.updateStore({
           ...userInput,
@@ -95,15 +94,15 @@ export default class Step1 extends Component {
   }
   _validateData(data) {
     return {
-      nameVal: data.name != 0,
-      nameOfParentVal: data.nameOfParent != 0,
-      genderVal: data.gender != 0,
-      dateOfBirthVal: data.dateOfBirth != 0,
-      citizenshipVal: data.citizenship != 0,
-      nativityVal: data.nativity != 0,
-      placeOfBirthVal: data.placeOfBirth != 0,
-      religionVal: data.religion != 0,
-      motherTongueVal: data.motherTongue != 0
+      nameVal: data.name !== 0,
+      nameOfParentVal: data.nameOfParent !== 0,
+      genderVal: data.gender !== 0,
+      dateOfBirthVal: data.dateOfBirth !== 0,
+      citizenshipVal: data.citizenship !== 0,
+      nativityVal: data.nativity !== 0,
+      placeOfBirthVal: data.placeOfBirth !== 0,
+      religionVal: data.religion !== 0,
+      motherTongueVal: data.motherTongue !== 0
 
       // ugDegreeVal: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
       //   data.ugDegree
@@ -342,6 +341,8 @@ export default class Step1 extends Component {
                   ref="dateOfBirth"
                   autoComplete="off"
                   type="date"
+                  max='1999-12-31'
+                  min='1990-01-01'
                   className="form-control"
                   required
                   defaultValue={this.state.dateOfBirth}

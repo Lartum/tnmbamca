@@ -94,13 +94,13 @@ export default class Step3 extends Component {
       })
     ) {
       if (
-        this.props.getStore().address != userinput.address ||
-        this.props.getStore().State != userinput.State ||
-        this.props.getStore().district != userinput.district ||
-        this.props.getStore().pincode != userinput.pincode ||
-        this.props.getStore().mobileno != userinput.mobileno ||
+        this.props.getStore().address !== userinput.address ||
+        this.props.getStore().State !== userinput.State ||
+        this.props.getStore().district !== userinput.district ||
+        this.props.getStore().pincode !== userinput.pincode ||
+        this.props.getStore().mobileno !== userinput.mobileno ||
         
-        this.props.getStore().email != userinput.email
+        this.props.getStore().email !== userinput.email
       ) {
         // only update store of something changed
         this.props.updateStore({
@@ -141,9 +141,9 @@ export default class Step3 extends Component {
 
   _validateData(data) {
     return {
-      addressVal: data.address != 0,
-      StateVal: data.State != 0,
-      districtVal: data.district != 0,
+      addressVal: data.address !== 0,
+      StateVal: data.State !== 0,
+      districtVal: data.district !== 0,
       pincodeVal: /^[1-9][0-9]{5}$/.test(data.pincode),
       mobilenoVal: /^\d{5}([- ]*)\d{6}/.test(data.mobileno),
   
@@ -316,7 +316,7 @@ export default class Step3 extends Component {
     return (
       <div className="step step2">
         <Card>
-          <CardHeader>Address Details</CardHeader>
+          <CardHeader><h3 style={{ color:'blue'}} className='userdashboard'>ADDRESS DETAILS</h3></CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>

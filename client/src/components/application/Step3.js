@@ -1537,7 +1537,7 @@ export default class Step3 extends Component {
     return (
       <div className="step step3">
         <Card>
-          <CardHeader>Community Details</CardHeader>
+          <CardHeader><h3 style={{ color:'blue'}} className='userdashboard'>COMMUNITY DETAILS</h3></CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>

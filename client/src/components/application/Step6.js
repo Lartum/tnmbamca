@@ -93,7 +93,7 @@ export default class Step5 extends Component {
             Review Entered Details
           </CardHeader>
           <CardBody>
-            <h4 className="finalReviewHeader">BASIC DETAILS</h4>
+            <h3 className="finalReviewHeader">BASIC DETAILS</h3>
             <Table bordered>
               <tbody>
                 <tr>

@@ -112,11 +112,11 @@ export default class Step4 extends Component {
       })
     ) {
       if (
-        this.props.getStore().qualifyingDegree != userInput.qualifyingDegree ||
-        this.props.getStore().patternOfStudy != userInput.patternOfStudy ||
-        this.props.getStore().appearanceInTheFinal !=
+        this.props.getStore().qualifyingDegree !== userInput.qualifyingDegree ||
+        this.props.getStore().patternOfStudy !== userInput.patternOfStudy ||
+        this.props.getStore().appearanceInTheFinal !==
           userInput.appearanceInTheFinal ||
-        this.props.getStore().tancentMarks != userInput.tancentMarks
+        this.props.getStore().tancentMarks !== userInput.tancentMarks
       ) {
         this.props.updateStore({
           ...userInput,
@@ -155,10 +155,10 @@ export default class Step4 extends Component {
   }
   _validateData(data) {
     return {
-      qualifyingDegreeVal: data.qualifyingDegree != 0,
-      patternOfStudyVal: data.patternOfStudy != 0,
-      appearanceInTheFinalVal: data.appearanceInTheFinal != 0,
-      tancentMarksVal: data.tancentMarks != 0
+      qualifyingDegreeVal: data.qualifyingDegree !== 0,
+      patternOfStudyVal: data.patternOfStudy !== 0,
+      appearanceInTheFinalVal: data.appearanceInTheFinal !== 0,
+      tancentMarksVal: data.tancentMarks !== 0
       // ugDegreeVal: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
       //   data.ugDegree
       // ) // required: regex w3c uses in html5
@@ -367,7 +367,7 @@ export default class Step4 extends Component {
     return (
       <div className="step step4">
         <Card>
-          <CardHeader>Educational Details</CardHeader>
+          <CardHeader><h3 style={{ color:'blue'}} className='userdashboard'>EDUCATIONAL DETAILS</h3></CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>

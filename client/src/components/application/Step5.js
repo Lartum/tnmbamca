@@ -150,11 +150,11 @@ export default class Step5 extends Component {
   }
   _validateData(data) {
     return {
-      ugDegreeVal: data.ugDegree != 0,
-      collegeNameVal: data.collegeName != 0,
-      collegeAddressVal: data.collegeAddress != 0,
-      nameOfUniversityVal: data.nameOfUniversity != 0,
-      universityAddressVal: data.universityAddress != 0
+      ugDegreeVal: data.ugDegree !== 0,
+      collegeNameVal: data.collegeName !== 0,
+      collegeAddressVal: data.collegeAddress !== 0,
+      nameOfUniversityVal: data.nameOfUniversity !== 0,
+      universityAddressVal: data.universityAddress !== 0
       // ugDegreeVal: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
       //   data.ugDegree
       // ) // required: regex w3c uses in html5
@@ -359,7 +359,7 @@ export default class Step5 extends Component {
       <div className="step step5">
         <Card>
           <CardHeader>
-            Details of Marks in UG Degree Qualifying Examinations
+            <h3 style={{ color:'blue'}} className='userdashboard'> DETAILS OF MARKS IN UG DEGREE QUALIFYING EXAMINATIONS</h3>
           </CardHeader>
           <CardBody>
             <Row form>

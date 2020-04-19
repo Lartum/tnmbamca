@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Loading from '../common/Loading'
-import { PDFViewer, PDFDownloadLink} from "@react-pdf/renderer";
+import { PDFViewer } from "@react-pdf/renderer";
 import {
   Page,
   Text,
