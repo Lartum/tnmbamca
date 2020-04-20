@@ -1,9 +1,9 @@
 module.exports = {
-   //Mongo DB key
-   mongoURI: 'mongodb+srv://lartum:Lartum@cluster0-qij9g.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true',
+    //Mongo DB key
+    mongoURI: 'mongodb+srv://lartum:Lartum@cluster0-qij9g.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true',
   
-   //JWT key
-   secretOrKey: 'secret',
+    //JWT key
+    secretOrKey: 'secret',
   
     //AWS key
     AWS_ACCESS_KEY_ID:'AKIA2WV5YVMRAOBGNAPI',

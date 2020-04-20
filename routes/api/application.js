@@ -3,10 +3,11 @@ const router = express.Router();
 const passport = require('passport');
 const crypto = require('crypto');
 const multer = require('multer');
-const mongoose = require('mongoose');
-const publicIp = require('public-ip');
-const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
+// const mongoose = require('mongoose');
+// const publicIp = require('public-ip');
+// const GridFsStorage = require('multer-gridfs-storage');
+// const Grid = require('gridfs-stream');
+const upload = require('../../services/imageupload');
 
 // Load Validation
 const Application = require('../../models/Application');
@@ -17,77 +18,91 @@ const User = require('../../models/User');
 //Load Img Model
 const Image = require('../../models/Image');
 
-const mongoURI = require('../../config/keys').mongoURI
+const singleUpload = upload.single('image');
 
-let gfs;
 
-const conn = mongoose.createConnection(mongoURI);
-
-conn.once('open', ()=>{
-  gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection('photos')
-})
-
-const storage = new GridFsStorage({
- url : mongoURI,
- file: (req,file) => {
-  return new Promise((resolve, reject) => {
-    crypto.randomBytes(16, (err, buf) => {
-      if (err) {
-        return reject(err);
-      }
-      const filename = buf.toString('hex') + path.extname(file.originalname);
-      const fileInfo = {
-        filename: filename,
-        bucketName: 'photos'
-      };
-      resolve(fileInfo);
-    });
-  });
- }
-
-});
-
-const upload = multer({ storage });
-
-router.get('/loadform',(req,res) => {
-  gfs.files.find().toArray((err, files) => {
-    // Check if files
-    if (!files || files.length === 0) {
-      res.json({msg: 'no files found'})
-    } else {
-      files.map(file => {
-        if (
-          file.contentType === 'image/jpeg' ||
-          file.contentType === 'image/png' ||
-          file.contentType === 'image/jpg'
-        ) {
-          file.isImage = true;
-        } else {
-          file.isImage = false;
-        }
-      });
-      res.render('index', { files: files });
+router.post('/imageupload', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+  singleUpload(req,res, (err) => {
+    if(err){
+      return res.status(422).send({errors: [{title: 'Image Upload Error', detail:err.message}]})
     }
-  });
+    
+    return res.json({'imageUrl': req.file.location})
+  })
 })
 
-router.post('/uploadimage',upload.single('file'), (req,res) =>{
-  res.json({ file: req.file})
-})
+// const mongoURI = require('../../config/keys').mongoURI
 
-router.get('/getimage',(req,res) => {
-  gfs.files.find().toArray((err, files) =>{
-    if (!files || files.length === 0) {
-      return res.status(404).json({
-        err: 'No files exist'
-      });
-    }
+// let gfs;
 
-    // Files exist
-    return res.json(files);
-  });
-  });
+// const conn = mongoose.createConnection(mongoURI);
+
+// conn.once('open', ()=>{
+//   gfs = Grid(conn.db, mongoose.mongo);
+//   gfs.collection('photos')
+// })
+
+// const storage = new GridFsStorage({
+//  url : mongoURI,
+//  file: (req,file) => {
+//   return new Promise((resolve, reject) => {
+//     crypto.randomBytes(16, (err, buf) => {
+//       if (err) {
+//         return reject(err);
+//       }
+//       const filename = buf.toString('hex') + path.extname(file.originalname);
+//       const fileInfo = {
+//         filename: filename,
+//         bucketName: 'photos'
+//       };
+//       resolve(fileInfo);
+//     });
+//   });
+//  }
+
+// });
+
+// const upload = multer({ storage });
+
+// router.get('/loadform',(req,res) => {
+//   gfs.files.find().toArray((err, files) => {
+//     // Check if files
+//     if (!files || files.length === 0) {
+//       res.json({msg: 'no files found'})
+//     } else {
+//       files.map(file => {
+//         if (
+//           file.contentType === 'image/jpeg' ||
+//           file.contentType === 'image/png' ||
+//           file.contentType === 'image/jpg'
+//         ) {
+//           file.isImage = true;
+//         } else {
+//           file.isImage = false;
+//         }
+//       });
+//       res.render('index', { files: files });
+//     }
+//   });
+// })
+
+// router.post('/uploadimage',upload.single('file'), (req,res) =>{
+//   res.json({ file: req.file})
+// })
+
+// router.get('/getimage',(req,res) => {
+//   gfs.files.find().toArray((err, files) =>{
+//     if (!files || files.length === 0) {
+//       return res.status(404).json({
+//         err: 'No files exist'
+//       });
+//     }
+
+//     // Files exist
+//     return res.json(files);
+//   });
+//   });
 // const storage = multer.diskStorage({
 //   destination: function (req, file, cb) {
 //       cb(null, './public/uploads/');
@@ -168,8 +183,6 @@ router.get('/getimage',(req,res) => {
 //         })
 //     })
     
-
-
 // router.get('/ipaddress', async (req,res) =>{
 // try
 //   {
