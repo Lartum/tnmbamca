@@ -37,9 +37,9 @@ const sendgrid_user = require('../../config/keys').SENDGRID_USER;
 const sendgrid_pass = require('../../config/keys').SENDGRID_PASS;
 
 aws.config.update({
-  region: aws_region_key,
   accessKeyId: aws_access_key_id,
-  secretAccessKey: aws_secret_access_key
+  secretAccessKey: aws_secret_access_key,
+  region: aws_region_key,
 });
 
 
