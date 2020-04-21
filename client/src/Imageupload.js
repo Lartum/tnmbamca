@@ -20,7 +20,6 @@ export default class Imageupload extends Component {
       e.preventDefault();
       const formData = new FormData();
       formData.append('myImage', this.state.picture);
-
       axios.post('/api/application/imageupload', formData)
          .then(response=>{
           alert('file successfully uploaded')
