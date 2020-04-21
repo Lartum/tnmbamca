@@ -66,19 +66,6 @@ sns.setSMSAttributes({
       console.log(error);
     }
   });
-
-
-router.get('/tancent', (req,res)=>{
-  Tancent.find({}, (err,users) =>{
-    var userMap = {};
-
-    users.forEach((user) =>{
-      userMap[user._id] = user
-    })
-    res.json(userMap);
-  })
-     
-})
 // @route   GET api /users/verifyphone
 // @desc    Verify Email
 // @access  Public
@@ -126,7 +113,6 @@ router.post('/verifyphone', (req, res) => {
   var {
     otp
   } = req.body;
-  console.log("var{otp}=req.body " + otp);
 
   // if (!isValid) {
   //   return res.status(400).json(errors);
@@ -135,7 +121,6 @@ router.post('/verifyphone', (req, res) => {
       otp
     })
     .then(otp => {
-      console.log("opt.findone({otp}) " + otp);
       if (!otp) {
         errors.otp = 'Please Enter An OTP'
         return res.status(400).json(errors);
@@ -188,7 +173,6 @@ router.post('/register', (req, res) => {
 
   User.findOne({email})
     .then(user => {
-      console.log(user);
       if (user) {
         errors.email = 'User already exists';
         return res.status(400).json(errors);
@@ -196,8 +180,6 @@ router.post('/register', (req, res) => {
       else {
         Tancent.findOne({regno})
           .then(tancent=>{
-            console.log(tancent);
-            console.log('tancent mba marks: ' + tancent.mbamarks);
             if(!tancent){
                 errors.regno = 'TANCENT register number does not exist'
                 return res.status(400).json(errors);
@@ -215,7 +197,6 @@ router.post('/register', (req, res) => {
             count = count + defaultapplicationno;
             var applicationnum = ["1", currentYear, count]
             applicationno = applicationnum.join('');
-            var tancentmarks = tancent.mbamarks;
             if(tancentmarks === 'ABS')  {
               errors.regno = "The provided TANCENT register number was marked as absent";
               return res.status(400).json(errors);
@@ -227,7 +208,9 @@ router.post('/register', (req, res) => {
             else {
                //if the user is the first applicant
             if (count = defaultapplicationno) {
-
+              var tancentmarks = parseFloat(tancent.mbamarks);
+              console.log(`initial tancent marks: ${tancentmarks}`)
+              console.log(`typeof tancentmarks is: ${typeof tancentmarks}`)
               //Creating a new user with the given credentials 
               const newUser = new User({
                 name,
@@ -239,7 +222,6 @@ router.post('/register', (req, res) => {
                 choice,
                 applicationno
               });
-
               //Encrypting the Password
               bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -352,7 +334,7 @@ router.post('/register', (req, res) => {
                       res.json(user)
                       //Generate the Otp For the Given Phone Number
                       const otp = Math.floor(Math.random() * (max - min) + min);
-                      console.log(user.phonenumber);
+                
                       var params = {
                         Message: `The OTP For TN MBA MCA Admission is ${otp}`,
                         MessageStructure: 'String',
@@ -712,11 +694,9 @@ router.post('/newpassword', (req,res) => {
 
   link = req.headers.host + "/login";
 
-  console.log(password2)
   // if (!isValid) 
   //   return res.status(400).json(errors);
   // }
-  console.log(req.body.token);
     Token.findOne({ token : req.body.token }, 
       (err,token) => {
       if(!token) {
@@ -725,7 +705,6 @@ router.post('/newpassword', (req,res) => {
       }
         User.findOne({_id: token._userId})
            .then(user => {
-             console.log(user);
              user.password = password
              //Password Encryption if a user is registered
              bcrypt.genSalt(10, (err, salt) => {

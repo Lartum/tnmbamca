@@ -68,10 +68,10 @@ const ApplicationSchema = mongoose.Schema({
     tancentMarks: Number,
     mathsStudied: String,
 
-    XIyearOfPassing: String,
-    XInameOfSchool: String,
-    XIstate: String,
-    XIdistrict: String,
+    XyearOfPassing: String,
+    XnameOfSchool: String,
+    Xstate: String,
+    Xdistrict: String,
 
     XIIyearOfPassing: String,
     XIInameOfSchool: String,

@@ -45,6 +45,7 @@ router.post('/', passport.authenticate('jwt',
         email: req.user.email,
         name: req.user.name,
         phonenumber: req.user.phonenumber,
+        tancentMarks: req.user.tancentMarks,
 
         nameOfParent: req.body.nameOfParent,
        
@@ -74,13 +75,13 @@ router.post('/', passport.authenticate('jwt',
         qualifyingDegree: req.body.qualifyingDegree,
         patternOfStudy: req.body.patternOfStudy,
         appearanceInTheFinal: req.body.appearanceInTheFinal,
-        tancentMarks: req.body.tancentMarks,
+       
         mathsStudied: req.body.mathsStudied,
         
-        XIyearOfPassing: req.body.XIIyearOfPassing,
-        XInameOfSchool: req.body.XInameOfSchool,
-        XIstate: req.body.XIstate,
-        XIdistrict: req.body.XIdistrict,
+        XyearOfPassing: req.body.XyearOfPassing,
+        XnameOfSchool: req.body.XnameOfSchool,
+        Xstate: req.body.Xstate,
+        Xdistrict: req.body.Xdistrict,
 
         XIIyearOfPassing: req.body.XIIyearOfPassing,
         XIInameOfSchool: req.body.XIInameOfSchool,

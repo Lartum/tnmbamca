@@ -16,18 +16,18 @@ export default class Imageupload extends Component {
 
 
 
-    onSubmit(e){
-      e.preventDefault();
-      const formData = new FormData();
-      formData.append('myImage', this.state.picture);
-      axios.post('/api/application/imageupload', formData)
-         .then(response=>{
-          alert('file successfully uploaded')
-         })
-         .catch((err =>{
-           console.log(err);
-         })
-    }
+    // onSubmit(e){
+    //   e.preventDefault();
+    //   const formData = new FormData();
+    //   formData.append('myImage', this.state.picture);
+    //   axios.post('/api/application/imageupload', formData)
+    //      .then(response=>{
+    //       alert('file successfully uploaded')
+    //      })
+    //      .catch((err =>{
+    //        console.log(err)
+    //      })
+    // }
 
     onChange(e) {
       this.setState({file:e.target.files[0]});

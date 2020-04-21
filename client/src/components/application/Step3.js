@@ -1639,7 +1639,7 @@ export default class Step3 extends Component {
                       required
                       defaultValue={this.state.sriLankanRefugee}
                     >
-                      <option value="">* Please select</option>
+                      <option value="">Please select</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
@@ -1666,7 +1666,7 @@ export default class Step3 extends Component {
                       required
                       defaultValue={this.state.differentlyAbled}
                     >
-                      <option value="">* Please select</option>
+                      <option value="">Please select</option>
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>

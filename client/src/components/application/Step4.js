@@ -19,10 +19,10 @@ export default class Step4 extends Component {
       patternOfStudy: props.getStore().patternOfStudy,
       appearanceInTheFinal: props.getStore().appearanceInTheFinal,
       tancentMarks: props.getStore().tancentMarks,
-      XIyearOfPassing: props.getStore().XIyearOfPassing,
-      XInameOfSchool: props.getStore().XInameOfSchool,
-      XIstate: props.getStore().XIstate,
-      XIdistrict: props.getStore().XIdistrict,
+      XyearOfPassing: props.getStore().XyearOfPassing,
+      XnameOfSchool: props.getStore().XnameOfSchool,
+      Xstate: props.getStore().Xstate,
+      Xdistrict: props.getStore().Xdistrict,
       XIIyearOfPassing: props.getStore().XIIyearOfPassing,
       XIInameOfSchool: props.getStore().XIInameOfSchool,
       XIIstate: props.getStore().XIIstate,
@@ -182,15 +182,14 @@ export default class Step4 extends Component {
 
   _grabUserinput() {
     return {
-      XIyearOfPassing: this.refs.XIyearOfPassing.value,
       qualifyingDegree: this.refs.qualifyingDegree.value,
       patternOfStudy: this.refs.patternOfStudy.value,
       appearanceInTheFinal: this.refs.appearanceInTheFinal.value,
       tancentMarks: this.refs.tancentMarks.value,
-      XIyearOfPassing: this.refs.XIyearOfPassing.value,
-      XInameOfSchool: this.refs.XInameOfSchool.value,
-      XIstate: this.refs.XIstate.value,
-      XIdistrict: this.refs.XIdistrict.value,
+      XyearOfPassing: this.refs.XyearOfPassing.value,
+      XnameOfSchool: this.refs.XnameOfSchool.value,
+      Xstate: this.refs.Xstate.value,
+      Xdistrict: this.refs.Xdistrict.value,
       XIIyearOfPassing: this.refs.XIIyearOfPassing.value,
       XIInameOfSchool: this.refs.XIInameOfSchool.value,
       XIIstate: this.refs.XIIstate.value,
@@ -202,11 +201,11 @@ export default class Step4 extends Component {
     };
   }
 
-  listen_to_state_name_change_XI = ({ target: { value } }) => {
+  listen_to_state_name_change_X = ({ target: { value } }) => {
     if (value === "Tamil Nadu") {
-      this.setState({ selected_state_name_XI: value });
+      this.setState({ selected_state_name_X: value });
     } else {
-      this.setState({ selected_state_name_XI: "Other" });
+      this.setState({ selected_state_name_X: "Other" });
     }
   };
 
@@ -355,8 +354,8 @@ export default class Step4 extends Component {
      
       
     //Get District Names
-    const { selected_state_name_XI } = this.state;
-    const district_names_XI = ditrict_list[selected_state_name_XI];
+    const { selected_state_name_X } = this.state;
+    const district_names_X = ditrict_list[selected_state_name_X];
 
     const { selected_state_name_XII } = this.state;
     const district_names_XII = ditrict_list[selected_state_name_XII];
@@ -439,14 +438,18 @@ export default class Step4 extends Component {
                     className={notValidClasses.appearanceInTheFinalCls}
                     className="error_color"
                   >
-                    <input
+                    <select
                       ref="appearanceInTheFinal"
                       autoComplete="off"
                       type="text"
                       className="form-control"
                       required
                       defaultValue={this.state.appearanceInTheFinal}
-                    />
+                    >
+                      <option value="">Please select</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>  
                     <div
                       className={
                         notValidClasses.appearanceInTheFinalValGrpCls
@@ -460,8 +463,7 @@ export default class Step4 extends Component {
               <Col md={6}>
                 <FormGroup>
                   <label for="tancentMarks">
-                    <span className="asterix_color">*</span>Tancent Marks In
-                    2020
+                  Tancent Marks In {(new Date().getFullYear())}
                   </label>
                   <div
                     className={notValidClasses.tancentMarksCls}
@@ -470,6 +472,7 @@ export default class Step4 extends Component {
                     <input
                       ref="tancentMarks"
                       autoComplete="off"
+                      readOnly
                       type="number"
                       className="form-control"
                       required
@@ -495,16 +498,17 @@ export default class Step4 extends Component {
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">XI</th>
+                    <th scope="row">X</th>
                     <td>
                       <select
-                        ref="XIyearOfPassing"
+                        ref="XyearOfPassing"
                         autoComplete="off"
                         type="select"
                         className="form-control"
                         required
-                        defaultValue={this.state.XIyearOfPassing}
+                        defaultValue={this.state.XyearOfPassing}
                       >
+                        <option value="">Please Select</option>
                         <option value={maxyear}> {maxyear}</option>
                         <option value={maxyear_1}> {maxyear_1}</option>
                         <option value={maxyear_2}> {maxyear_2}</option>
@@ -516,38 +520,38 @@ export default class Step4 extends Component {
                     </td>
                     <td>
                       <input
-                        ref="XInameOfSchool"
+                        ref="XnameOfSchool"
                         autoComplete="off"
                         type="text"
                         className="form-control"
                         required
-                        defaultValue={this.state.XInameOfSchool}
+                        defaultValue={this.state.XnameOfSchool}
                       />
                     </td>
                     <td>
                       <select
-                        ref="XIstate"
+                        ref="Xstate"
                         autoComplete="off"
                         type="text"
-                        onChange={this.listen_to_state_name_change_XI}
+                        onChange={this.listen_to_state_name_change_X}
                         className="form-control"
                         required
-                        defaultValue={this.state.XIstate}
+                        defaultValue={this.state.Xstate}
                       >
                         {state_names_List}
                       </select>
                     </td>
                     <td>
                       <select
-                        ref="XIdistrict"
+                        ref="Xdistrict"
                         autoComplete="off"
                         type="text"
                         className="form-control"
                         required
-                        defaultValue={this.state.XIdistrict}
+                        defaultValue={this.state.Xdistrict}
                       >
-                        {district_names_XI &&
-                          district_names_XI.map(district_name => (
+                        {district_names_X &&
+                          district_names_X.map(district_name => (
                             <option
                               key={district_name.id}
                               value={district_name.id}
@@ -569,6 +573,7 @@ export default class Step4 extends Component {
                         required
                         defaultValue={this.state.XIIyearOfPassing}
                       >
+                        <option value="">Please Select</option>
                         <option value={maxyear}> {maxyear}</option>
                         <option value={maxyear_1}> {maxyear_1}</option>
                         <option value={maxyear_2}> {maxyear_2}</option>
@@ -633,6 +638,7 @@ export default class Step4 extends Component {
                         required
                         defaultValue={this.state.degreeYearOfPassing}
                       >
+                        <option value="">Please Select</option>
                         <option value={maxyear}> {maxyear}</option>
                         <option value={maxyear_1}> {maxyear_1}</option>
                         <option value={maxyear_2}> {maxyear_2}</option>

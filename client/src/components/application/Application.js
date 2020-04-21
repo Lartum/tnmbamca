@@ -49,10 +49,10 @@ export default class Application extends Component {
       patternOfStudy: "",
       appearanceInTheFinal: "",
       tancentMarks: "",
-      XIyearOfPassing: "",
-      XInameOfSchool: "",
-      XIstate: "",
-      XIdistrict: "",
+      XyearOfPassing: "",
+      XnameOfSchool: "",
+      Xstate: "",
+      Xdistrict: "",
       XIIyearOfPassing: "",
       XIInameOfSchool: "",
       XIIstate: "",
@@ -68,47 +68,47 @@ export default class Application extends Component {
       nameOfUniversity: "",
       IsemMonth: "",
       Isemyop: "",
-      Isemmaxmarks: "",
-      Isemmarks: "",
+      Isemmaxmarks: 0,
+      Isemmarks: 0,
       IIsemMonth: "",
       IIsemyop: "",
-      IIsemmaxmarks: "",
-      IIsemmarks: "",
+      IIsemmaxmarks: 0,
+      IIsemmarks: 0,
       IIIsemMonth: "",
       IIIsemyop: "",
-      IIIsemmaxmarks: "",
-      IIIsemmarks: "",
+      IIIsemmaxmarks: 0,
+      IIIsemmarks: 0,
       IVsemMonth: "",
       IVsemyop: "",
-      IVsemmaxmarks: "",
-      IVsemmarks: "",
+      IVsemmaxmarks: 0,
+      IVsemmarks: 0,
       VsemMonth: "",
       Vsemyop: "",
-      Vsemmaxmarks: "",
-      Vsemmarks: "",
+      Vsemmaxmarks: 0,
+      Vsemmarks: 0,
       VIsemMonth: "",
       VIsemyop: "",
-      VIsemmaxmarks: "",
-      VIsemmarks: "",
+      VIsemmaxmarks: 0,
+      VIsemmarks: 0,
       VIIsemMonth: "",
       VIIsemyop: "",
-      VIIsemmaxmarks: "",
-      VIIsemmarks: "",
+      VIIsemmaxmarks: 0,
+      VIIsemmarks: 0,
       VIIIsemMonth: "",
       VIIIsemyop: "",
-      VIIIsemmaxmarks: "",
-      VIIIsemmarks: "",
+      VIIIsemmaxmarks: 0,
+      VIIIsemmarks: 0,
       IXsemMonth: "",
       IXsemyop: "",
-      IXsemmaxmarks: "",
-      IXsemmarks: "",
-      XsemMonth: "",
+      IXsemmaxmarks: 0,
+      IXsemmarks: 0,
+      XsemMonth: 0,
       Xsemyop: "",
-      Xsemmaxmarks: "",
-      Xsemmarks: "",
-      overalltot: "",
-      overallmarks: "",
-      totalpermark: "",
+      Xsemmaxmarks: 0,
+      Xsemmarks: 0,
+      overalltot: 0,
+      overallmarks: 0,
+      totalpermark: 0,
       savedToCloud: false
     };
   }
@@ -136,8 +136,6 @@ export default class Application extends Component {
   }
 
   render() {
-    console.log(this.state.users);
-    
     const steps = [
       {
         name: "Step1",
@@ -260,6 +258,7 @@ export default class Application extends Component {
     this.sampleStore.name = this.state.users.name;
     this.sampleStore.email = this.state.users.email;
     this.sampleStore.mobileno = this.state.users.phonenumber;
+    this.sampleStore.tancentMarks = this.state.users.tancentmarks;
     return (
       <div className="example">
         <div className="step-progress">

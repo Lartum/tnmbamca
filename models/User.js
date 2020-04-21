@@ -23,7 +23,7 @@ const UserSchema = new Schema({
     unique:true
   },
   tancentmarks:{
-    type:Number,
+    type:Number
   },
   password: {
     type: String,
