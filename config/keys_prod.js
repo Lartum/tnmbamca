@@ -6,11 +6,17 @@ module.exports = {
     secretOrKey: 'secret',
   
     //AWS key
-    AWS_ACCESS_KEY_ID:'AKIA2WV5YVMRAOBGNAPI',
-    AWS_SECRET_ACCESS_KEY:'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',
+    AWS_ACCESS_KEY_ID:'AKIA2WV5YVMREI4JYBJS',
+    AWS_SECRET_ACCESS_KEY:'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',
     AWS_REGION:'ap-southeast-1',
     
-    //Sendgrid Key
+    
+    //AWS S3 Image Bucket Key 
+     ACCESS_KEY_ID: 'AKIAJE4C7O74WGLDRU5A',
+     SECRET_ACCESS_KEY: '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',
+     REGION: 'ap-southeast-1', 
+    
+     //Sendgrid Key
     SENDGRID_USER: 'Lartum',
     SENDGRID_PASS: 'nokialumia520',
   
