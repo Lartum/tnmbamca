@@ -17,7 +17,7 @@ export default class Step5 extends Component {
       ugDegree: this.refs.ugDegree,
       collegeName: this.refs.collegeName,
       collegeAddress: this.refs.collegeAddress,
-      universityName: this.refs.universityName,
+      nameOfUniversity: this.refs.nameOfUniversity,
       universityAddress: this.refs.universityAddress,
       IsemMonth: this.refs.IsemMonth,
       Isemyop: this.refs.Isemyop,
@@ -110,7 +110,7 @@ export default class Step5 extends Component {
         this.props.getStore().ugDegree !== userInput.ugDegree ||
         this.props.getStore().collegeName !== userInput.collegeName ||
         this.props.getStore().collegeAddress !== userInput.collegeAddress ||
-        this.props.getStore().universityName !== userInput.universityName ||
+        this.props.getStore().nameOfUniversity !== userInput.nameOfUniversity ||
         this.props.getStore().universityAddress !== userInput.universityAddress
       ) {
         this.props.updateStore({
@@ -153,7 +153,7 @@ export default class Step5 extends Component {
       ugDegreeVal: data.ugDegree != 0,
       collegeNameVal: data.collegeName != 0,
       collegeAddressVal: data.collegeAddress != 0,
-      universityNameVal: data.universityName != 0,
+      nameOfUniversityVal: data.nameOfUniversity != 0,
       universityAddressVal: data.universityAddress != 0
       // ugDegreeVal: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
       //   data.ugDegree
@@ -166,7 +166,7 @@ export default class Step5 extends Component {
       ugDegreeValMsg: val.ugDegreeVal ? "" : "* Field Required",
       collegeNameValMsg: val.collegeNameVal ? "" : "* Field Required",
       collegeAddressValMsg: val.collegeAddressVal ? "" : "* Field Required",
-      universityNameValMsg: val.universityNameVal ? "" : "* Field Required",
+      nameOfUniversityValMsg: val.nameOfUniversityVal ? "" : "* Field Required",
       universityAddressValMsg: val.universityAddressVal
         ? ""
         : "* Field Required"
@@ -180,7 +180,7 @@ export default class Step5 extends Component {
       ugDegree: this.refs.ugDegree.value,
       collegeName: this.refs.collegeName.value,
       collegeAddress: this.refs.collegeAddress.value,
-      universityName: this.refs.universityName.value,
+      nameOfUniversity: this.refs.nameOfUniversity.value,
       universityAddress: this.refs.universityAddress.value,
       IsemMonth: this.refs.IsemMonth.value,
       Isemyop: this.refs.Isemyop.value,
@@ -314,13 +314,13 @@ export default class Step5 extends Component {
 
     //Name of University
     if (
-      typeof this.state.universityNameVal === "undefined" ||
-      this.state.universityNameVal
+      typeof this.state.nameOfUniversityVal === "undefined" ||
+      this.state.nameOfUniversityVal
     ) {
-      notValidClasses.universityNameCls = "no-error col-md-10";
+      notValidClasses.nameOfUniversityCls = "no-error col-md-10";
     } else {
-      notValidClasses.universityNameCls = "has-error col-md-10";
-      notValidClasses.universityNameValGrpCls = "val-err-tooltip";
+      notValidClasses.nameOfUniversityCls = "has-error col-md-10";
+      notValidClasses.nameOfUniversityValGrpCls = "val-err-tooltip";
     }
 
     //Address of The University
@@ -437,24 +437,24 @@ export default class Step5 extends Component {
               </Col>
               <Col md={6}>
                 <FormGroup>
-                  <label for="universityName">
+                  <label for="nameOfUniversity">
                     <span className="asterix_color">*</span>Name Of The
                     University
                   </label>
                   <div
-                    className={notValidClasses.universityNameCls}
+                    className={notValidClasses.nameOfUniversityCls}
                     className="error_color"
                   >
                     <input
-                      ref="universityName"
+                      ref="nameOfUniversity"
                       autoComplete="off"
                       type="text"
                       className="form-control"
                       required
-                      defaultValue={this.state.universityName}
+                      defaultValue={this.state.nameOfUniversity}
                     />
-                    <div className={notValidClasses.universityNameValGrpCls}>
-                      {this.state.universityNameValMsg}
+                    <div className={notValidClasses.nameOfUniversityValGrpCls}>
+                      {this.state.nameOfUniversityValMsg}
                     </div>
                   </div>
                 </FormGroup>
