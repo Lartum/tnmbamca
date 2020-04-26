@@ -1,34 +1,65 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const crypto = require('crypto');
-const upload = require('../../services/imageupload');
+
 
 // Load Validation
 const Application = require('../../models/Application');
-
+const profileImgUpload = require('../../services/imageupload');
 // Load User Model
 const User = require('../../models/User');
 
 //Load Img Model
 const Image = require('../../models/Image');
 
-const singleUpload = upload.single('image');
+
+router.post( '/imageupload', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+	profileImgUpload( req, res, ( error ) => {
+		console.log( 'requestOkokok', req.file );
+		console.log( 'error', error );
+		if( error ){
+			console.log( 'errors', error );
+			res.json( { error: error } );
+		} else {
+			// If File not found
+			if( req.file === undefined ){
+				console.log( 'Error: No File Selected!' );
+				res.json( 'Error: No File Selected' );
+			} else {
+        
+        // If Success
+				const imageName = req.file.key;
+				const imageLocation = req.file.location;
+        
+        // Save the file name into database into profile model
+        const image = new Image({
+          userid: req.user._id,
+          applicationno: req.user.applicationno,
+          imageName: imageName,
+          imageData: imageLocation
+        })
+
+        image.save();
+        
+				res.json( {
+					image: imageName,
+					location: imageLocation
+				} );
+			}
+		}
+	});
+});
 
 
-router.post('/imageupload', async (req, res) => {
-  singleUpload(req,res, (err) => {
-    if(err){
-      return res.status(422).send({errors: [{title: 'Image Upload Error', detail:err.message}]})
-    }
-    const image = new Image({
-      userid: req.user._id,
-      applicationno: req.user.applicationno,
-      imageName: req.user.name + req.user.applicationo,
-      imageData: req.file.location
-    })
-    return res.json({'imageUrl': req.file.location})
-  })
+router.get('/userimage', 
+ passport.authenticate('jwt', 
+  { session: false }), async (req, res) => {
+    Image.findOne({ userid: req.user._id})
+      .then(image=>{
+        console.log(image);
+        res.json({image});
+      })
 })
 
 router.post('/', passport.authenticate('jwt', 

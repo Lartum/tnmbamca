@@ -1,44 +1,48 @@
-const aws = require('aws-sdk');
+const aws = require( 'aws-sdk' );
+const multerS3 = require( 'multer-s3' );
 const multer = require('multer');
-const multerS3 = require('multer-s3');
+const path = require( 'path' );
 
-aws.config.update({
-  accessKeyId: 'AKIAJE4C7O74WGLDRU5A',
-  secretAccessKey: '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',
-  region: 'ap-southeast-1', 
+const AWS_KEY = require('../config/keys')
+/**
+ * PROFILE IMAGE STORING STARTS
+ */
+const s3 = new aws.S3({
+	accessKeyId: AWS_KEY.ACCESS_KEY_ID,
+  	secretAccessKey: AWS_KEY.SECRET_ACCESS_KEY,
+  	region: AWS_KEY.REGION 
 });
 
-const s3 = new aws.S3();
+/**
+ * Single Upload
+ */
+const profileImgUpload = multer({	
+	storage: multerS3({
+		s3: s3,
+		bucket: 'uploadedfiles21',
+		acl: 'public-read',
+		key: function (req, file, cb) {
+			cb(null, path.basename( file.originalname, path.extname( file.originalname ) ) + '-' + Date.now() + path.extname( file.originalname ) )
+		}
+	}),
+	limits:{ fileSize: 2000000 }, // In bytes: 2000000 bytes = 2 MB
+	fileFilter: function( req, file, cb ){
+		checkFileType( file, cb );
+	}
+}).single('profileImage');
 
-if (!aws.config.region) {
-  aws.config.update({
-    region: 'ap-southeast-1'
-  });
+function checkFileType( file, cb ){
+	// Allowed ext
+	const filetypes = /jpeg|jpg|png|gif/;
+	// Check ext
+	const extname = filetypes.test( path.extname( file.originalname ).toLowerCase());
+	// Check mime
+	const mimetype = filetypes.test( file.mimetype );
+	if( mimetype && extname ){
+		return cb( null, true );
+	} else {
+		cb( 'Error: Images Only!' );
+	}
 }
 
-
-
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg') {
-    cb(null, true);
-  } else {
-    cb(new Error('Invalid file type, only JPEG,JPG and PNG is allowed!'), false);
-  }
-}
-
-const upload = multer({
-  fileFilter,
-  storage: multerS3({
-    acl: 'public-read',
-    s3,
-    bucket: 'uploadedfiles21',
-    metadata: function (req, file, cb) {
-      cb(null, {fieldName: 'TESTING_METADATA'});
-    },
-    key: function (req, file, cb) {
-      cb(null, crypto.randomBytes(64).toString('hex')+Date.now().toString()+'.jpeg')
-    }
-  })
-});
-
-module.exports = upload;
+module.exports = profileImgUpload;

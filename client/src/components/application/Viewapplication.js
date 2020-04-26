@@ -3,7 +3,6 @@ import {
     Table,
     Button
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import Loading from '../common/Loading';
 
@@ -205,11 +204,11 @@ export default class Viewapplication extends Component {
                 <tbody>
                   {" "}
                   <tr>
-                    <th scope="row">XI</th>
-                    <td name="XIyearOfPassing">{this.state.users.XIyearOfPassing}</td>
-                    <td name="XInameOfSchool">{this.state.users.XInameOfSchool}</td>
-                    <td name="XIstate">{this.state.users.XIstate}</td>
-                    <td name="XIdistrict">{this.state.users.XIdistrict}</td>
+                    <th scope="row">X</th>
+                    <td name="XyearOfPassing">{this.state.users.XyearOfPassing}</td>
+                    <td name="XnameOfSchool">{this.state.users.XnameOfSchool}</td>
+                    <td name="Xstate">{this.state.users.Xstate}</td>
+                    <td name="Xdistrict">{this.state.users.Xdistrict}</td>
                   </tr>
                   <tr>
                     <th scope="row">XII</th>
@@ -220,7 +219,7 @@ export default class Viewapplication extends Component {
                   </tr>
                   <tr>
                     <th scope="row">Degree</th>
-                    <td name="year">{this.state.users.degreeYearOfPassing}</td>
+                    <td name="degreeYearOfPassing">{this.state.users.degreeYearOfPassing}</td>
                     <td name="degreeNameOfSchool">{this.state.degreeNameOfSchool}</td>
                     <td name="degreeState">{this.state.users.degreeState}</td>
                     <td name="degreeDistrict">{this.state.users.degreeDistrict}</td>
@@ -298,7 +297,7 @@ export default class Viewapplication extends Component {
                     <th scope="row">V</th>
                     <td name="VsemMonth">{this.state.users.VsemMonth}</td>
                     <td name="Vsemyop">{this.state.users.Vsemyop}</td>
-                    <td name="Vsemmaxmarks">{this.state.users.Vsemmaxmmarks}</td>
+                    <td name="Vsemmaxmarks">{this.state.users.Vsemmaxmarks}</td>
                     <td name="Vsemmarks">{this.state.users.Vsemmarks}</td>
                   </tr>
                   <tr>

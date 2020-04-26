@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import {
-  Col,
-  Row,
-  FormGroup,
-  Card,
-  CardHeader,
-  CardBody
-} from "reactstrap";
+import { Col, Row, FormGroup, Card, CardHeader, CardBody } from "reactstrap";
+import { states, districts } from './dataset';
 
 export default class Step3 extends Component {
   constructor(props) {
@@ -19,7 +13,7 @@ export default class Step3 extends Component {
       pincode: props.getStore().pincode,
       mobileno: props.getStore().mobileno,
       telephoneno: props.getStore().telephoneno,
-      email: props.getStore().email,
+      useremail: props.getStore().useremail,
       selected_state_name: "",
       state_names: []
     };
@@ -32,51 +26,7 @@ export default class Step3 extends Component {
 
   componentDidMount() {
     this.setState({
-      state_names: [
-        { id: "", name: "Please Select" },
-        {
-          id: "Andaman and Nicobar Islands",
-          name: "Andaman and Nicobar Islands"
-        },
-        { id: "Andhra Pradesh", name: "Andhra Pradesh" },
-        { id: "Arunachal Pradesh", name: "Arunachal Pradesh" },
-        { id: "Assam", name: "Assam" },
-        { id: "Bihar", name: "Bihar" },
-        { id: "Chandigarh", name: "Chandigarh" },
-        { id: "Chattisgarh", name: "Chattisgarh" },
-        { id: "Dadra and Nagar Haveli", name: "Dadra and Nagar Haveli" },
-        { id: "Daman & Diu", name: "Daman & Diu" },
-        { id: "Delhi", name: "Delhi" },
-        { id: "Goa", name: "Goa" },
-        { id: "Gujara", name: "Gujara" },
-        { id: "Haryana", name: "Haryana" },
-        { id: "Himachal Pradesh", name: "Himachal Pradesh" },
-        { id: "Jammu and Kashmir", name: "Jammu and Kashmir" },
-        { id: "Jharkhand", name: "Jharkhand" },
-        { id: "Karnataka", name: "Karnataka" },
-        { id: "Kerala", name: "Kerala" },
-        { id: "Ladakh", name: "Ladakh" },
-        { id: "Lakshadweep", name: "Lakshadweep" },
-        { id: "Madhya Pradesh", name: "Madhya Pradesh" },
-        { id: "Maharashtra", name: "Maharashtra" },
-        { id: "Manipur", name: "Manipur" },
-        { id: "Meghalaya", name: "Meghalaya" },
-        { id: "Mizoram", name: "Mizoram" },
-        { id: "Nagaland", name: "Nagaland" },
-        { id: "Odisha", name: "Odisha" },
-        { id: "Puducherry", name: "Puducherry" },
-        { id: "Punjab", name: "Punjab" },
-        { id: "Manipur", name: "Manipur" },
-        { id: "Rajasthan", name: "Rajasthan" },
-        { id: "Sikkim", name: "Sikkim" },
-        { id: "Rajasthan", name: "Rajasthan" },
-        { id: "Tamil Nadu", name: "Tamil Nadu" },
-        { id: "Telangana", name: "Telangana" },
-        { id: "Tripura", name: "Tripura" },
-        { id: "Uttar Pradesh", name: "Uttar Pradesh" },
-        { id: "Uttarakhand", name: "Uttarakhand" },
-        { id: "West Bengal", name: "West Bengal" }
-      ]
+      state_names: states 
     });
   }
 
@@ -99,8 +49,8 @@ export default class Step3 extends Component {
         this.props.getStore().district !== userinput.district ||
         this.props.getStore().pincode !== userinput.pincode ||
         this.props.getStore().mobileno !== userinput.mobileno ||
-        
-        this.props.getStore().email !== userinput.email
+        this.props.getStore().telephoneno !== userinput.telephoneno ||
+        this.props.getStore().useremail !== userinput.useremail
       ) {
         // only update store of something changed
         this.props.updateStore({
@@ -141,15 +91,15 @@ export default class Step3 extends Component {
 
   _validateData(data) {
     return {
-      addressVal: data.address !== 0,
-      StateVal: data.State !== 0,
-      districtVal: data.district !== 0,
+      addressVal: data.address != 0,
+      StateVal: data.State != 0,
+      districtVal: data.district != 0,
       pincodeVal: /^[1-9][0-9]{5}$/.test(data.pincode),
-      mobilenoVal: /^\d{5}([- ]*)\d{6}/.test(data.mobileno),
-  
-      // emailVal: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(
-      //   data.email
-      // )
+      // mobilenoVal: /^\d{5}([- ]*)\d{6}/.test(data.mobileno),
+      // telephonenoVal: data.telephoneno != 0,
+      useremailVal: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(
+        data.useremail
+      )
     };
   }
 
@@ -159,11 +109,11 @@ export default class Step3 extends Component {
       StateValMsg: val.StateVal ? "" : "* Field Required",
       districtValMsg: val.districtVal ? "" : "* Field Required",
       pincodeValMsg: val.pincodeVal ? "" : "* Enter Valid Pin Code",
-      mobilenoValMsg: val.mobilenoVal
-        ? ""
-        : "* Enter Valid Mobile Number | Country Code Required ex-91",
-      telephonenoValMsg: val.telephonenoVal ? "" : "* Field Required",
-      emailValMsg: val.emailVal ? "" : "* Enter Valid Email"
+      // mobilenoValMsg: val.mobilenoVal
+      //   ? ""
+      //   : "* Enter Valid Mobile Number | Country Code Required ex-91",
+      // telephonenoValMsg: val.telephonenoVal ? "" : "* Field Required",
+      useremailValMsg: val.useremailVal ? "" : "* Enter Valid Email"
     };
     return errMsgs;
   }
@@ -176,7 +126,7 @@ export default class Step3 extends Component {
       pincode: this.refs.pincode.value,
       mobileno: this.refs.mobileno.value,
       telephoneno: this.refs.telephoneno.value,
-      email: this.refs.email.value
+      useremail: this.refs.useremail.value
     };
   }
 
@@ -193,7 +143,7 @@ export default class Step3 extends Component {
     let notValidClasses = {};
 
     //address
-    if (typeof this.state.addressVal == "undefined" || this.state.addressVal) {
+    if (typeof this.state.addressVal === "undefined" || this.state.addressVal) {
       notValidClasses.addressCls = "no-error col-md-10";
     } else {
       notValidClasses.addressCls = "has-error col-md-10";
@@ -201,7 +151,7 @@ export default class Step3 extends Component {
     }
 
     //state
-    if (typeof this.state.StateVal == "undefined" || this.state.StateVal) {
+    if (typeof this.state.StateVal === "undefined" || this.state.StateVal) {
       notValidClasses.StateCls = "no-error col-md-8";
     } else {
       notValidClasses.StateCls = "has-error col-md-8";
@@ -210,7 +160,7 @@ export default class Step3 extends Component {
 
     //district
     if (
-      typeof this.state.districtVal == "undefined" ||
+      typeof this.state.districtVal === "undefined" ||
       this.state.districtVal
     ) {
       notValidClasses.districtCls = "no-error col-md-10";
@@ -220,7 +170,7 @@ export default class Step3 extends Component {
     }
 
     //pincode
-    if (typeof this.state.pincodeVal == "undefined" || this.state.pincodeVal) {
+    if (typeof this.state.pincodeVal === "undefined" || this.state.pincodeVal) {
       notValidClasses.pincodeCls = "no-error col-md-8";
     } else {
       notValidClasses.pincodeCls = "has-error col-md-8";
@@ -228,73 +178,39 @@ export default class Step3 extends Component {
     }
 
     //mobileno
+    // if (
+    //   typeof this.state.mobilenoVal === "undefined" ||
+    //   this.state.mobilenoVal
+    // ) {
+    //   notValidClasses.mobilenoCls = "no-error col-md-10";
+    // } else {
+    //   notValidClasses.mobilenoCls = "has-error col-md-10";
+    //   notValidClasses.mobilenoValGrpCls = "val-err-tooltip";
+    // }
+
+    // //telephoneno
+    // if (
+    //   typeof this.state.telephonenoVal === "undefined" ||
+    //   this.state.telephonenoVal
+    // ) {
+    //   notValidClasses.telephonenoCls = "no-error col-md-8";
+    // } else {
+    //   notValidClasses.telephonenoCls = "has-error col-md-8";
+    //   notValidClasses.telephonenoValGrpCls = "val-err-tooltip";
+    // }
+
+    //useremail
     if (
-      typeof this.state.mobilenoVal == "undefined" ||
-      this.state.mobilenoVal
+      typeof this.state.useremailVal === "undefined" ||
+      this.state.useremailVal
     ) {
-      notValidClasses.mobilenoCls = "no-error col-md-10";
+      notValidClasses.useremailCls = "no-error col-md-10";
     } else {
-      notValidClasses.mobilenoCls = "has-error col-md-10";
-      notValidClasses.mobilenoValGrpCls = "val-err-tooltip";
+      notValidClasses.useremailCls = "has-error col-md-10";
+      notValidClasses.useremailValGrpCls = "val-err-tooltip";
     }
 
-    //email
-    if (
-      typeof this.state.emailVal == "undefined" ||
-      this.state.emailVal
-    ) {
-      notValidClasses.emailCls = "no-error col-md-10";
-    } else {
-      notValidClasses.emailCls = "has-error col-md-10";
-      notValidClasses.emailValGrpCls = "val-err-tooltip";
-    }
-
-    const ditrict_list = {
-      "Tamil Nadu": [
-        { id: "", text: "Please Select" },
-        { id: "Ariyalur", text: "Ariyalur" },
-        { id: "Chengalpattu", text: "Chengalpattu" },
-        { id: "Chennai", text: "Chennai" },
-        { id: "Coimbatore", text: "Coimbatore" },
-        { id: "Cuddalore", text: "Cuddalore" },
-        { id: "Dharmapuri", text: "Dharmapuri" },
-        { id: "Dindigul", text: "Dindigul" },
-        { id: "Erode", text: "Erode" },
-        { id: "Kallakurichi", text: "Kallakurichi" },
-        { id: "Kanchipuram", text: "Kanchipuram" },
-        { id: "Kanyakumari", text: "Kanyakumari" },
-        { id: "Karur", text: "Karur" },
-        { id: "Krishnagiri", text: "Krishnagiri" },
-        { id: "Madurai", text: "Madurai" },
-        { id: "Nagapattinam", text: "Nagapattinam" },
-        { id: "Namakkal", text: "Namakkal" },
-        { id: "Perambalur", text: "Perambalur" },
-        { id: "Pudukkottai", text: "Pudukkottai" },
-        { id: "Ramanathapuram", text: "Ramanathapuram" },
-        { id: "Ranipet", text: "Ranipet" },
-        { id: "Salem", text: "Salem" },
-        { id: "Sivagangai", text: "Sivagangai" },
-        { id: "Tenkasi", text: "Tenkasi" },
-        { id: "Thanjavur", text: "Thanjavur" },
-        { id: "The Nilgiris", text: "The Nilgiris" },
-        { id: "Theni", text: "Theni" },
-        { id: "Thirupattur", text: "Thirupattur" },
-        { id: "Thoothukudi", text: "Thoothukudi" },
-        { id: "Tiruchirappalli", text: "Tiruchirappalli" },
-        { id: "Tirunelveli", text: "Tirunelveli" },
-        { id: "Tiruppur", text: "Tiruppur" },
-        { id: "Tiruvallur", text: "Tiruvallur" },
-        { id: "Tiruvannamalai", text: "Tiruvannamalai" },
-        { id: "Tiruvarur", text: "Tiruvarur" },
-        { id: "Vellore", text: "Vellore" },
-        { id: "Viluppuram", text: "Viluppuram" },
-        { id: "Virudhunagar", text: "Virudhunagar" }
-      ],
-      Other: [
-        { id: "", text: "Please Select" },
-        { id: "Other", text: "Other" }
-      ]
-    };
+    const ditrict_list = districts;
 
     //Get State Names
     const { state_names } = this.state;
@@ -316,7 +232,7 @@ export default class Step3 extends Component {
     return (
       <div className="step step2">
         <Card>
-          <CardHeader><h3 style={{ color:'blue'}} className='userdashboard'>ADDRESS DETAILS</h3></CardHeader>
+          <CardHeader>Address Details</CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>
@@ -436,7 +352,7 @@ export default class Step3 extends Component {
               <Col md={6}>
                 <FormGroup>
                   <label for="mobileno">
-                    <span className="asterix_color">*</span>Mobile No
+                    Mobile No
                   </label>
                   <div
                     className={notValidClasses.mobilenoCls}
@@ -444,10 +360,10 @@ export default class Step3 extends Component {
                   >
                     <input
                       ref="mobileno"
-                      readOnly
                       autoComplete="off"
                       type="number"
                       className="form-control"
+                      readOnly
                       required
                       defaultValue={this.state.mobileno}
                     />
@@ -483,24 +399,23 @@ export default class Step3 extends Component {
             <Row form>
               <Col md={6}>
                 <FormGroup>
-                  <label for="email">
+                  <label for="useremail">
                     <span className="asterix_color">*</span>Email
                   </label>
                   <div
-                    className={notValidClasses.emailCls}
+                    className={notValidClasses.useremailCls}
                     className="error_color"
                   >
                     <input
-                      ref="email"
-                      readOnly
+                      ref="useremail"
                       autoComplete="off"
-                      type="text"
+                      type="email"
                       className="form-control"
                       required
-                      defaultValue={this.state.email}
+                      defaultValue={this.state.useremail}
                     />
-                    <div className={notValidClasses.emailValGrpCls}>
-                      {this.state.emailValMsg}
+                    <div className={notValidClasses.useremailValGrpCls}>
+                      {this.state.useremailValMsg}
                     </div>
                   </div>
                 </FormGroup>

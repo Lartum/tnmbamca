@@ -9,32 +9,62 @@ import {
   Table
 } from "reactstrap";
 
-export default class Step4 extends Component {
+export default class Step5 extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      XIyearOfPassing: props.getStore().XIyearOfPassing,
-      qualifyingDegree: props.getStore().qualifyingDegree,
-      patternOfStudy: props.getStore().patternOfStudy,
-      appearanceInTheFinal: props.getStore().appearanceInTheFinal,
-      tancentMarks: props.getStore().tancentMarks,
-      XyearOfPassing: props.getStore().XyearOfPassing,
-      XnameOfSchool: props.getStore().XnameOfSchool,
-      Xstate: props.getStore().Xstate,
-      Xdistrict: props.getStore().Xdistrict,
-      XIIyearOfPassing: props.getStore().XIIyearOfPassing,
-      XIInameOfSchool: props.getStore().XIInameOfSchool,
-      XIIstate: props.getStore().XIIstate,
-      XIIdistrict: props.getStore().XIIdistrict,
-      degreeYearOfPassing: props.getStore().degreeYearOfPassing,
-      degreeNameOfSchool: props.getStore().degreeNameOfSchool,
-      degreeState: props.getStore().degreeState,
-      degreeDistrict: props.getStore().degreeDistrict,
-      selected_state_name: "",
-      state_names: [],
-      selected_study_pattern:'',
-      study_pattern:[]
+      ugDegree: this.refs.ugDegree,
+      collegeName: this.refs.collegeName,
+      collegeAddress: this.refs.collegeAddress,
+      universityName: this.refs.universityName,
+      universityAddress: this.refs.universityAddress,
+      IsemMonth: this.refs.IsemMonth,
+      Isemyop: this.refs.Isemyop,
+      Isemmaxmarks: this.refs.Isemmaxmarks,
+      Isemmarks: this.refs.Isemmarks,
+      IIsemMonth: this.refs.IIsemMonth,
+      IIsemyop: this.refs.IIsemyop,
+      IIsemmaxmarks: this.refs.IIsemmaxmarks,
+      IIsemmarks: this.refs.IIsemmarks,
+      IIIsemMonth: this.refs.IIIsemMonth,
+      IIIsemyop: this.refs.IIIsemyop,
+      IIIsemmaxmarks: this.refs.IIIsemmaxmarks,
+      IIIsemmarks: this.refs.IIIsemmarks,
+      IVsemMonth: this.refs.IVsemMonth,
+      IVsemyop: this.refs.IVsemyop,
+      IVsemmaxmarks: this.refs.IVsemmaxmarks,
+      IVsemmarks: this.refs.IVsemmarks,
+      VsemMonth: this.refs.VsemMonth,
+      Vsemyop: this.refs.Vsemyop,
+      Vsemmaxmarks: this.refs.Vsemmaxmarks,
+      Vsemmarks: this.refs.Vsemmarks,
+      VIsemMonth: this.refs.VIsemMonth,
+      VIsemyop: this.refs.VIsemyop,
+      VIsemmaxmarks: this.refs.VIsemmaxmarks,
+      VIsemmarks: this.refs.VIsemmarks,
+      VIIsemMonth: this.refs.VIIsemMonth,
+      VIIsemyop: this.refs.VIIsemyop,
+      VIIsemmaxmarks: this.refs.VIIsemmaxmarks,
+      VIIsemmarks: this.refs.VIIsemmarks,
+      VIIIsemMonth: this.refs.VIIIsemMonth,
+      VIIIsemyop: this.refs.VIIIsemyop,
+      VIIIsemmaxmarks: this.refs.VIIIsemmaxmarks,
+      VIIIsemmarks: this.refs.VIIIsemmarks,
+      IXsemMonth: this.refs.IXsemMonth,
+      IXsemyop: this.refs.IXsemyop,
+      IXsemmaxmarks: this.refs.IXsemmaxmarks,
+      IXsemmarks: this.refs.IXsemmarks,
+      XsemMonth: this.refs.XsemMonth,
+      Xsemyop: this.refs.Xsemyop,
+      Xsemmaxmarks: this.refs.Xsemmaxmarks,
+      Xsemmarks: this.refs.Xsemmarks,
+      overalltot: this.refs.overalltot,
+      overallmarks: this.refs.overallmarks,
+      totalpermark: this.refs.totalpermark,
+
+      month_names: [],
+      temp_tot_marks: 0
     };
 
     this._validateOnDemand = true; // this flag enables onBlur validation as user fills forms
@@ -45,55 +75,20 @@ export default class Step4 extends Component {
 
   componentDidMount() {
     this.setState({
-      state_names: [
+      month_names: [
         { id: "", name: "Please Select" },
-        {
-          id: "Andaman and Nicobar Islands",
-          name: "Andaman and Nicobar Islands"
-        },
-        { id: "Andhra Pradesh", name: "Andhra Pradesh" },
-        { id: "Arunachal Pradesh", name: "Arunachal Pradesh" },
-        { id: "Assam", name: "Assam" },
-        { id: "Bihar", name: "Bihar" },
-        { id: "Chandigarh", name: "Chandigarh" },
-        { id: "Chattisgarh", name: "Chattisgarh" },
-        { id: "Dadra and Nagar Haveli", name: "Dadra and Nagar Haveli" },
-        { id: "Daman & Diu", name: "Daman & Diu" },
-        { id: "Delhi", name: "Delhi" },
-        { id: "Goa", name: "Goa" },
-        { id: "Gujara", name: "Gujara" },
-        { id: "Haryana", name: "Haryana" },
-        { id: "Himachal Pradesh", name: "Himachal Pradesh" },
-        { id: "Jammu and Kashmir", name: "Jammu and Kashmir" },
-        { id: "Jharkhand", name: "Jharkhand" },
-        { id: "Karnataka", name: "Karnataka" },
-        { id: "Kerala", name: "Kerala" },
-        { id: "Ladakh", name: "Ladakh" },
-        { id: "Lakshadweep", name: "Lakshadweep" },
-        { id: "Madhya Pradesh", name: "Madhya Pradesh" },
-        { id: "Maharashtra", name: "Maharashtra" },
-        { id: "Manipur", name: "Manipur" },
-        { id: "Meghalaya", name: "Meghalaya" },
-        { id: "Mizoram", name: "Mizoram" },
-        { id: "Nagaland", name: "Nagaland" },
-        { id: "Odisha", name: "Odisha" },
-        { id: "Puducherry", name: "Puducherry" },
-        { id: "Punjab", name: "Punjab" },
-        { id: "Manipur", name: "Manipur" },
-        { id: "Rajasthan", name: "Rajasthan" },
-        { id: "Sikkim", name: "Sikkim" },
-        { id: "Rajasthan", name: "Rajasthan" },
-        { id: "Tamil Nadu", name: "Tamil Nadu" },
-        { id: "Telangana", name: "Telangana" },
-        { id: "Tripura", name: "Tripura" },
-        { id: "Uttar Pradesh", name: "Uttar Pradesh" },
-        { id: "Uttarakhand", name: "Uttarakhand" },
-        { id: "West Bengal", name: "West Bengal" }
-      ],
-      study_pattern:[
-        {id:'10 + Plus Two + 3 Years Degree', name:'10 + Plus Two + 3 Years Degree'},
-        {id:'10 + 3 Years Diploma + 3 Years Degree', name:'10 + 3 Years Diploma + 3 Years Degree'},
-        {id:'B.E / B.Tech / B.Pharm', name:'B.E / B.Tech / B.Pharm'},
+        { id: "January", name: "January" },
+        { id: "February", name: "February" },
+        { id: "March", name: "March" },
+        { id: "April", name: "April" },
+        { id: "May", name: "May" },
+        { id: "June", name: "June" },
+        { id: "July", name: "July" },
+        { id: "August", name: "August" },
+        { id: "September", name: "September" },
+        { id: "October", name: "October" },
+        { id: "November", name: "November" },
+        { id: "December", name: "December" }
       ]
     });
   }
@@ -112,11 +107,11 @@ export default class Step4 extends Component {
       })
     ) {
       if (
-        this.props.getStore().qualifyingDegree !== userInput.qualifyingDegree ||
-        this.props.getStore().patternOfStudy !== userInput.patternOfStudy ||
-        this.props.getStore().appearanceInTheFinal !==
-          userInput.appearanceInTheFinal ||
-        this.props.getStore().tancentMarks !== userInput.tancentMarks
+        this.props.getStore().ugDegree !== userInput.ugDegree ||
+        this.props.getStore().collegeName !== userInput.collegeName ||
+        this.props.getStore().collegeAddress !== userInput.collegeAddress ||
+        this.props.getStore().universityName !== userInput.universityName ||
+        this.props.getStore().universityAddress !== userInput.universityAddress
       ) {
         this.props.updateStore({
           ...userInput,
@@ -155,10 +150,11 @@ export default class Step4 extends Component {
   }
   _validateData(data) {
     return {
-      qualifyingDegreeVal: data.qualifyingDegree !== 0,
-      patternOfStudyVal: data.patternOfStudy !== 0,
-      appearanceInTheFinalVal: data.appearanceInTheFinal !== 0,
-      tancentMarksVal: data.tancentMarks !== 0
+      ugDegreeVal: data.ugDegree != 0,
+      collegeNameVal: data.collegeName != 0,
+      collegeAddressVal: data.collegeAddress != 0,
+      universityNameVal: data.universityName != 0,
+      universityAddressVal: data.universityAddress != 0
       // ugDegreeVal: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
       //   data.ugDegree
       // ) // required: regex w3c uses in html5
@@ -167,14 +163,13 @@ export default class Step4 extends Component {
 
   _validationErrors(val) {
     const errMsgs = {
-      qualifyingDegreeValMsg: val.qualifyingDegreeVal ? "" : "* Field Required",
-      patternOfStudyValMsg: val.patternOfStudyVal
+      ugDegreeValMsg: val.ugDegreeVal ? "" : "* Field Required",
+      collegeNameValMsg: val.collegeNameVal ? "" : "* Field Required",
+      collegeAddressValMsg: val.collegeAddressVal ? "" : "* Field Required",
+      universityNameValMsg: val.universityNameVal ? "" : "* Field Required",
+      universityAddressValMsg: val.universityAddressVal
         ? ""
-        : "* Select Study Pattern",
-      appearanceInTheFinalValMsg: val.appearanceInTheFinalVal
-        ? ""
-        : "* Field Required",
-      tancentMarksValMsg: val.tancentMarksVal ? "" : "* Field Required"
+        : "* Field Required"
       // ugDegreeValMsg: val.ugDegreeVal ? "" : "A valid ugDegree is required"
     };
     return errMsgs;
@@ -182,107 +177,164 @@ export default class Step4 extends Component {
 
   _grabUserinput() {
     return {
-      qualifyingDegree: this.refs.qualifyingDegree.value,
-      patternOfStudy: this.refs.patternOfStudy.value,
-      appearanceInTheFinal: this.refs.appearanceInTheFinal.value,
-      tancentMarks: this.refs.tancentMarks.value,
-      XyearOfPassing: this.refs.XyearOfPassing.value,
-      XnameOfSchool: this.refs.XnameOfSchool.value,
-      Xstate: this.refs.Xstate.value,
-      Xdistrict: this.refs.Xdistrict.value,
-      XIIyearOfPassing: this.refs.XIIyearOfPassing.value,
-      XIInameOfSchool: this.refs.XIInameOfSchool.value,
-      XIIstate: this.refs.XIIstate.value,
-      XIIdistrict: this.refs.XIIdistrict.value,
-      degreeYearOfPassing: this.refs.degreeYearOfPassing.value,
-      degreeNameOfSchool: this.refs.degreeNameOfSchool.value,
-      degreeState: this.refs.degreeState.value,
-      degreeDistrict: this.refs.degreeDistrict.value
+      ugDegree: this.refs.ugDegree.value,
+      collegeName: this.refs.collegeName.value,
+      collegeAddress: this.refs.collegeAddress.value,
+      universityName: this.refs.universityName.value,
+      universityAddress: this.refs.universityAddress.value,
+      IsemMonth: this.refs.IsemMonth.value,
+      Isemyop: this.refs.Isemyop.value,
+      Isemmaxmarks: this.refs.Isemmaxmarks.value,
+      Isemmarks: this.refs.Isemmarks.value,
+      IIsemMonth: this.refs.IIsemMonth.value,
+      IIsemyop: this.refs.IIsemyop.value,
+      IIsemmaxmarks: this.refs.IIsemmaxmarks.value,
+      IIsemmarks: this.refs.IIsemmarks.value,
+      IIIsemMonth: this.refs.IIIsemMonth.value,
+      IIIsemyop: this.refs.IIIsemyop.value,
+      IIIsemmaxmarks: this.refs.IIIsemmaxmarks.value,
+      IIIsemmarks: this.refs.IIIsemmarks.value,
+      IVsemMonth: this.refs.IVsemMonth.value,
+      IVsemyop: this.refs.IVsemyop.value,
+      IVsemmaxmarks: this.refs.IVsemmaxmarks.value,
+      IVsemmarks: this.refs.IVsemmarks.value,
+      VsemMonth: this.refs.VsemMonth.value,
+      Vsemyop: this.refs.Vsemyop.value,
+      Vsemmaxmarks: this.refs.Vsemmaxmarks.value,
+      Vsemmarks: this.refs.Vsemmarks.value,
+      VIsemMonth: this.refs.VIsemMonth.value,
+      VIsemyop: this.refs.VIsemyop.value,
+      VIsemmaxmarks: this.refs.VIsemmaxmarks.value,
+      VIsemmarks: this.refs.VIsemmarks.value,
+      VIIsemMonth: this.refs.VIIsemMonth.value,
+      VIIsemyop: this.refs.VIIsemyop.value,
+      VIIsemmaxmarks: this.refs.VIIsemmaxmarks.value,
+      VIIsemmarks: this.refs.VIIsemmarks.value,
+      VIIIsemMonth: this.refs.VIIIsemMonth.value,
+      VIIIsemyop: this.refs.VIIIsemyop.value,
+      VIIIsemmaxmarks: this.refs.VIIIsemmaxmarks.value,
+      VIIIsemmarks: this.refs.VIIIsemmarks.value,
+      IXsemMonth: this.refs.IXsemMonth.value,
+      IXsemyop: this.refs.IXsemyop.value,
+      IXsemmaxmarks: this.refs.IXsemmaxmarks.value,
+      IXsemmarks: this.refs.IXsemmarks.value,
+      XsemMonth: this.refs.XsemMonth.value,
+      Xsemyop: this.refs.Xsemyop.value,
+      Xsemmaxmarks: this.refs.Xsemmaxmarks.value,
+      Xsemmarks: this.refs.Xsemmarks.value,
+
+      overalltot: this.refs.overalltot.value,
+      overallmarks: this.refs.overallmarks.value,
+      totalpermark: this.refs.totalpermark.value
     };
   }
 
-  listen_to_state_name_change_X = ({ target: { value } }) => {
-    if (value === "Tamil Nadu") {
-      this.setState({ selected_state_name_X: value });
-    } else {
-      this.setState({ selected_state_name_X: "Other" });
+  listen_to_max_marks_change = ({ event }) => {
+    const total_Max_Marks =
+      parseInt(this.refs.Isemmaxmarks.value, 10) +
+      parseInt(this.refs.IIsemmaxmarks.value, 10) +
+      parseInt(this.refs.IIIsemmaxmarks.value, 10) +
+      parseInt(this.refs.IVsemmaxmarks.value, 10) +
+      parseInt(this.refs.Vsemmaxmarks.value, 10) +
+      parseInt(this.refs.VIsemmaxmarks.value, 10) +
+      parseInt(this.refs.VIIsemmaxmarks.value, 10) +
+      parseInt(this.refs.VIIIsemmaxmarks.value, 10) +
+      parseInt(this.refs.IXsemmaxmarks.value, 10) +
+      parseInt(this.refs.Xsemmaxmarks.value, 10);
+    this.setState({ overalltot: total_Max_Marks });
+    if (this.refs.overallmarks.value !== null) {
+      const percent_marks = parseInt(
+        (parseInt(this.refs.overallmarks.value, 10) * 100) /
+          parseInt(total_Max_Marks, 10),
+        10
+      );
+      this.setState({ totalpermark: percent_marks });
     }
   };
 
-  listen_to_state_name_change_XII = ({ target: { value } }) => {
-    if (value === "Tamil Nadu") {
-      this.setState({ selected_state_name_XII: value });
-    } else {
-      this.setState({ selected_state_name_XII: "Other" });
-    }
+  listen_to_marks_obtained_change = ({ event }) => {
+    console.log('Parsing Into int '+parseInt(this.refs.Isemmarks.value, 10))
+    const total_obtained_Marks =
+      parseInt(this.refs.Isemmarks.value, 10) +
+      parseInt(this.refs.IIsemmarks.value, 10) +
+      parseInt(this.refs.IIIsemmarks.value, 10) +
+      parseInt(this.refs.IVsemmarks.value, 10) +
+      parseInt(this.refs.Vsemmarks.value, 10) +
+      parseInt(this.refs.VIsemmarks.value, 10) +
+      parseInt(this.refs.VIIsemmarks.value, 10) +
+      parseInt(this.refs.VIIIsemmarks.value, 10) +
+      parseInt(this.refs.IXsemmarks.value, 10) +
+      parseInt(this.refs.Xsemmarks.value, 10);
+    this.setState({ overallmarks: total_obtained_Marks });
+
+    const percent_marks = parseInt(
+      (parseInt(total_obtained_Marks, 10) * 100) /
+        parseInt(this.refs.overalltot.value, 10),
+      10
+    );
+    this.setState({ totalpermark: percent_marks });
   };
 
-  listen_to_state_name_change_Degree = ({ target: { value } }) => {
-    if (value === "Tamil Nadu") {
-      this.setState({ selected_state_name_Degree: value });
-    } else {
-      this.setState({ selected_state_name_Degree: "Other" });
-    }
-  };
-
-  listen_to_study_pattern = ({ target: {value}}) =>{
-    if(value === "10 + Plus Two + 3 Years Degree"){
-      return(
-        <div>
-
-        </div>
-      )
-    }
-  }
   render() {
     // explicit class assigning based on validation
     let notValidClasses = {};
 
-    //Qualifying Degree
+    //UG Degree
     if (
-      typeof this.state.qualifyingDegreeVal == "text" ||
-      this.state.qualifyingDegreeVal
+      typeof this.state.ugDegreeVal === "undefined" ||
+      this.state.ugDegreeVal
     ) {
-      notValidClasses.qualifyingDegreeCls = "no-error col-md-10";
+      notValidClasses.ugDegreeCls = "no-error col-md-10";
     } else {
-      notValidClasses.qualifyingDegreeCls = "has-error col-md-10";
-      notValidClasses.qualifyingDegreeValGrpCls = "val-err-tooltip";
+      notValidClasses.ugDegreeCls = "has-error col-md-10";
+      notValidClasses.ugDegreeValGrpCls = "val-err-tooltip";
     }
 
-    //Pattern of Study
+    //College Name
     if (
-      typeof this.state.patternOfStudyVal == "select" ||
-      this.state.patternOfStudyVal
+      typeof this.state.collegeNameVal === "undefined" ||
+      this.state.collegeNameVal
     ) {
-      notValidClasses.patternOfStudyCls = "no-error col-md-8";
+      notValidClasses.collegeNameCls = "no-error col-md-8";
     } else {
-      notValidClasses.patternOfStudyCls = "has-error col-md-8";
-      notValidClasses.patternOfStudyValGrpCls = "val-err-tooltip";
+      notValidClasses.collegeNameCls = "has-error col-md-8";
+      notValidClasses.collegeNameValGrpCls = "val-err-tooltip";
     }
 
-    //Appearance in the Final Exam
+    //College Address
     if (
-      typeof this.state.appearanceInTheFinalVal == "text" ||
-      this.state.appearanceInTheFinalVal
+      typeof this.state.collegeAddressVal === "undefined" ||
+      this.state.collegeAddressVal
     ) {
-      notValidClasses.appearanceInTheFinalCls = "no-error col-md-10";
+      notValidClasses.collegeAddressCls = "no-error col-md-10";
     } else {
-      notValidClasses.appearanceInTheFinalCls = "has-error col-md-10";
-      notValidClasses.appearanceInTheFinalValGrpCls = "val-err-tooltip";
+      notValidClasses.collegeAddressCls = "has-error col-md-10";
+      notValidClasses.collegeAddressValGrpCls = "val-err-tooltip";
     }
 
-    //Tancent Marks
+    //Name of University
     if (
-      typeof this.state.tancentMarksVal == "number" ||
-      this.state.tancentMarksVal
+      typeof this.state.universityNameVal === "undefined" ||
+      this.state.universityNameVal
     ) {
-      notValidClasses.tancentMarksCls = "no-error col-md-10";
+      notValidClasses.universityNameCls = "no-error col-md-10";
     } else {
-      notValidClasses.tancentMarksCls = "has-error col-md-10";
-      notValidClasses.tancentMarksValGrpCls = "val-err-tooltip";
+      notValidClasses.universityNameCls = "has-error col-md-10";
+      notValidClasses.universityNameValGrpCls = "val-err-tooltip";
     }
 
-    //Year List
+    //Address of The University
+    if (
+      typeof this.state.universityAddressVal === "undefined" ||
+      this.state.universityAddressVal
+    ) {
+      notValidClasses.universityAddressCls = "no-error col-md-10";
+    } else {
+      notValidClasses.universityAddressCls = "has-error col-md-10";
+      notValidClasses.universityAddressValGrpCls = "val-err-tooltip";
+    }
+
+    //Get Year
     const maxyear = new Date().getFullYear();
     const maxyear_1 = maxyear - 1;
     const maxyear_2 = maxyear - 2;
@@ -291,137 +343,69 @@ export default class Step4 extends Component {
     const maxyear_5 = maxyear - 5;
     const maxyear_6 = maxyear - 6;
 
-    //District List
-    const ditrict_list = {
-      "Tamil Nadu": [
-        { id: "", text: "Please Select" },
-        { id: "Ariyalur", text: "Ariyalur" },
-        { id: "Chengalpattu", text: "Chengalpattu" },
-        { id: "Chennai", text: "Chennai" },
-        { id: "Coimbatore", text: "Coimbatore" },
-        { id: "Cuddalore", text: "Cuddalore" },
-        { id: "Dharmapuri", text: "Dharmapuri" },
-        { id: "Dindigul", text: "Dindigul" },
-        { id: "Erode", text: "Erode" },
-        { id: "Kallakurichi", text: "Kallakurichi" },
-        { id: "Kanchipuram", text: "Kanchipuram" },
-        { id: "Kanyakumari", text: "Kanyakumari" },
-        { id: "Karur", text: "Karur" },
-        { id: "Krishnagiri", text: "Krishnagiri" },
-        { id: "Madurai", text: "Madurai" },
-        { id: "Nagapattinam", text: "Nagapattinam" },
-        { id: "Namakkal", text: "Namakkal" },
-        { id: "Perambalur", text: "Perambalur" },
-        { id: "Pudukkottai", text: "Pudukkottai" },
-        { id: "Ramanathapuram", text: "Ramanathapuram" },
-        { id: "Ranipet", text: "Ranipet" },
-        { id: "Salem", text: "Salem" },
-        { id: "Sivagangai", text: "Sivagangai" },
-        { id: "Tenkasi", text: "Tenkasi" },
-        { id: "Thanjavur", text: "Thanjavur" },
-        { id: "The Nilgiris", text: "The Nilgiris" },
-        { id: "Theni", text: "Theni" },
-        { id: "Thirupattur", text: "Thirupattur" },
-        { id: "Thoothukudi", text: "Thoothukudi" },
-        { id: "Tiruchirappalli", text: "Tiruchirappalli" },
-        { id: "Tirunelveli", text: "Tirunelveli" },
-        { id: "Tiruppur", text: "Tiruppur" },
-        { id: "Tiruvallur", text: "Tiruvallur" },
-        { id: "Tiruvannamalai", text: "Tiruvannamalai" },
-        { id: "Tiruvarur", text: "Tiruvarur" },
-        { id: "Vellore", text: "Vellore" },
-        { id: "Viluppuram", text: "Viluppuram" },
-        { id: "Virudhunagar", text: "Virudhunagar" }
-      ],
-      Other: [
-        { id: "", text: "Please Select" },
-        { id: "Other", text: "Other" }
-      ]
-    };
+    //Get Month Names
+    const { month_names } = this.state;
 
-    //Get State Names
-    const { state_names } = this.state;
-
-    let state_names_List =
-      state_names.length > 0 &&
-      state_names.map((state_name, state_index) => {
+    let month_names_List =
+      month_names.length > 0 &&
+      month_names.map((month, month_index) => {
         return (
-          <option key={state_index} value={state_name.id}>
-            {state_name.name}
+          <option key={month_index} value={month.id}>
+            {month.name}
           </option>
         );
       }, this);
-     
-      
-    //Get District Names
-    const { selected_state_name_X } = this.state;
-    const district_names_X = ditrict_list[selected_state_name_X];
-
-    const { selected_state_name_XII } = this.state;
-    const district_names_XII = ditrict_list[selected_state_name_XII];
-
-    const { selected_state_name_Degree } = this.state;
-    const district_names_Degree = ditrict_list[selected_state_name_Degree];
 
     return (
-      <div className="step step4">
+      <div className="step step5">
         <Card>
-          <CardHeader><h3 style={{ color:'blue'}} className='userdashboard'>EDUCATIONAL DETAILS</h3></CardHeader>
+          <CardHeader>
+            Details of Marks in UG Degree Qualifying Examinations
+          </CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>
                 <FormGroup>
-                  <label for="qualifyingDegree">
-                    <span className="asterix_color">*</span>Qualifying Degree
+                  <label for="ugDegree">
+                    <span className="asterix_color">*</span>UG Degree
                   </label>
                   <div
-                    className={notValidClasses.qualifyingDegreeCls}
+                    className={notValidClasses.ugDegreeCls}
                     className="error_color"
                   >
                     <input
-                      ref="qualifyingDegree"
+                      ref="ugDegree"
                       autoComplete="off"
                       type="text"
                       className="form-control"
                       required
-                      defaultValue={this.state.qualifyingDegree}
+                      defaultValue={this.state.ugDegree}
                     />
-                    <div className={notValidClasses.qualifyingDegreeValGrpCls}>
-                      {this.state.qualifyingDegreeValMsg}
+                    <div className={notValidClasses.ugDegreeValGrpCls}>
+                      {this.state.ugDegreeValMsg}
                     </div>
                   </div>
                 </FormGroup>
               </Col>
               <Col md={6}>
                 <FormGroup>
-                  <label for="patternOfStudy">
-                    <span className="asterix_color">*</span>Pattern Of Study
+                  <label for="collegeName">
+                    <span className="asterix_color">*</span>Name Of The College
                   </label>
                   <div
-                    className={notValidClasses.patternOfStudyCls}
+                    className={notValidClasses.collegeNameCls}
                     className="error_color"
                   >
-                    <select
-                      ref="patternOfStudy"
+                    <input
+                      ref="collegeName"
                       autoComplete="off"
-                      type="select"
+                      type="text"
                       className="form-control"
                       required
-                      defaultValue={this.state.patternOfStudy}
-                    >
-                      <option value="">Please select</option>
-                      <option value="10 + Plus Two + 3 Years Degree">
-                        10 + Plus Two + 3 Years Degree
-                      </option>
-                      <option value="10 + 3 Years Diploma + 3 Years Degree">
-                        10 + 3 Years Diploma + 3 Years Degree
-                      </option>
-                      <option value="B.E / B.Tech / B.Pharm">
-                        B.E / B.Tech / B.Pharm
-                      </option>
-                    </select>
-                    <div className={notValidClasses.patternOfStudyValGrpCls}>
-                      {this.state.patternOfStudyValMsg}
+                      defaultValue={this.state.collegeName}
+                    />
+                    <div className={notValidClasses.collegeNameValGrpCls}>
+                      {this.state.collegeNameValMsg}
                     </div>
                   </div>
                 </FormGroup>
@@ -430,271 +414,694 @@ export default class Step4 extends Component {
             <Row form>
               <Col md={6}>
                 <FormGroup>
-                  <label for="appearanceInTheFinal">
-                    <span className="asterix_color">*</span>Appearance In The
-                    Final
+                  <label for="collegeAddress">
+                    <span className="asterix_color">*</span>College Address
                   </label>
                   <div
-                    className={notValidClasses.appearanceInTheFinalCls}
+                    className={notValidClasses.collegeAddressCls}
                     className="error_color"
                   >
-                    <select
-                      ref="appearanceInTheFinal"
+                    <input
+                      ref="collegeAddress"
                       autoComplete="off"
                       type="text"
                       className="form-control"
                       required
-                      defaultValue={this.state.appearanceInTheFinal}
-                    >
-                      <option value="">Please select</option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                    </select>  
-                    <div
-                      className={
-                        notValidClasses.appearanceInTheFinalValGrpCls
-                      }
-                    >
-                      {this.state.appearanceInTheFinalValMsg}
+                      defaultValue={this.state.collegeAddress}
+                    />
+                    <div className={notValidClasses.collegeAddressValGrpCls}>
+                      {this.state.collegeAddressValMsg}
                     </div>
                   </div>
                 </FormGroup>
               </Col>
               <Col md={6}>
                 <FormGroup>
-                  <label for="tancentMarks">
-                  Tancent Marks In {(new Date().getFullYear())}
+                  <label for="universityName">
+                    <span className="asterix_color">*</span>Name Of The
+                    University
                   </label>
                   <div
-                    className={notValidClasses.tancentMarksCls}
+                    className={notValidClasses.universityNameCls}
                     className="error_color"
                   >
                     <input
-                      ref="tancentMarks"
+                      ref="universityName"
                       autoComplete="off"
-                      readOnly
-                      type="number"
+                      type="text"
                       className="form-control"
                       required
-                      defaultValue={this.state.tancentMarks}
+                      defaultValue={this.state.universityName}
                     />
-                    <div className={notValidClasses.tancentMarksValGrpCls}>
-                      {this.state.tancentMarksValMsg}
+                    <div className={notValidClasses.universityNameValGrpCls}>
+                      {this.state.universityNameValMsg}
+                    </div>
+                  </div>
+                </FormGroup>
+              </Col>
+              <Col md={7}>
+                <FormGroup>
+                  <label for="universityAddress">
+                    <span className="asterix_color">*</span>Address of The
+                    University
+                  </label>
+                  <div
+                    className={notValidClasses.universityAddressCls}
+                    className="error_color"
+                  >
+                    <input
+                      ref="universityAddress"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.universityAddress}
+                    />
+                    <div className={notValidClasses.universityAddressValGrpCls}>
+                      {this.state.universityAddressValMsg}
                     </div>
                   </div>
                 </FormGroup>
               </Col>
             </Row>
-            <Row>
-              <Table bordered>
-                <thead>
-                  <tr>
-                    <th>Class/Degree</th>
-                    <th>Year Of Passing</th>
-                    <th>Name Of School/College</th>
-                    <th>State</th>
-                    <th>District</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">X</th>
-                    <td>
-                      <select
-                        ref="XyearOfPassing"
-                        autoComplete="off"
-                        type="select"
-                        className="form-control"
-                        required
-                        defaultValue={this.state.XyearOfPassing}
-                      >
-                        <option value="">Please Select</option>
-                        <option value={maxyear}> {maxyear}</option>
-                        <option value={maxyear_1}> {maxyear_1}</option>
-                        <option value={maxyear_2}> {maxyear_2}</option>
-                        <option value={maxyear_3}> {maxyear_3}</option>
-                        <option value={maxyear_4}> {maxyear_4}</option>
-                        <option value={maxyear_5}> {maxyear_5}</option>
-                        <option value={maxyear_6}> {maxyear_6}</option>
-                      </select>
-                    </td>
-                    <td>
-                      <input
-                        ref="XnameOfSchool"
-                        autoComplete="off"
-                        type="text"
-                        className="form-control"
-                        required
-                        defaultValue={this.state.XnameOfSchool}
-                      />
-                    </td>
-                    <td>
-                      <select
-                        ref="Xstate"
-                        autoComplete="off"
-                        type="text"
-                        onChange={this.listen_to_state_name_change_X}
-                        className="form-control"
-                        required
-                        defaultValue={this.state.Xstate}
-                      >
-                        {state_names_List}
-                      </select>
-                    </td>
-                    <td>
-                      <select
-                        ref="Xdistrict"
-                        autoComplete="off"
-                        type="text"
-                        className="form-control"
-                        required
-                        defaultValue={this.state.Xdistrict}
-                      >
-                        {district_names_X &&
-                          district_names_X.map(district_name => (
-                            <option
-                              key={district_name.id}
-                              value={district_name.id}
-                            >
-                              {district_name.text}
-                            </option>
-                          ))}
-                      </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">XII</th>
-                    <td>
-                      <select
-                        ref="XIIyearOfPassing"
-                        autoComplete="off"
-                        type="select"
-                        className="form-control"
-                        required
-                        defaultValue={this.state.XIIyearOfPassing}
-                      >
-                        <option value="">Please Select</option>
-                        <option value={maxyear}> {maxyear}</option>
-                        <option value={maxyear_1}> {maxyear_1}</option>
-                        <option value={maxyear_2}> {maxyear_2}</option>
-                        <option value={maxyear_3}> {maxyear_3}</option>
-                        <option value={maxyear_4}> {maxyear_4}</option>
-                        <option value={maxyear_5}> {maxyear_5}</option>
-                        <option value={maxyear_6}> {maxyear_6}</option>
-                      </select>
-                    </td>
-                    <td>
-                      <input
-                        ref="XIInameOfSchool"
-                        autoComplete="off"
-                        type="text"
-                        className="form-control"
-                        required
-                        defaultValue={this.state.XIInameOfSchool}
-                      />
-                    </td>
-                    <td>
-                      <select
-                        ref="XIIstate"
-                        autoComplete="off"
-                        type="text"
-                        onChange={this.listen_to_state_name_change_XII}
-                        className="form-control"
-                        required
-                        defaultValue={this.state.XIIstate}
-                      >
-                        {state_names_List}
-                      </select>
-                    </td>
-                    <td>
-                      <select
-                        ref="XIIdistrict"
-                        autoComplete="off"
-                        type="text"
-                        className="form-control"
-                        required
-                        defaultValue={this.state.XIIdistrict}
-                      >
-                        {district_names_XII &&
-                          district_names_XII.map(district_name => (
-                            <option
-                              key={district_name.id}
-                              value={district_name.id}
-                            >
-                              {district_name.text}
-                            </option>
-                          ))}
-                      </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Degree</th>
-                    <td>
-                      <select
-                        ref="degreeYearOfPassing"
-                        autoComplete="off"
-                        type="select"
-                        className="form-control"
-                        required
-                        defaultValue={this.state.degreeYearOfPassing}
-                      >
-                        <option value="">Please Select</option>
-                        <option value={maxyear}> {maxyear}</option>
-                        <option value={maxyear_1}> {maxyear_1}</option>
-                        <option value={maxyear_2}> {maxyear_2}</option>
-                        <option value={maxyear_3}> {maxyear_3}</option>
-                        <option value={maxyear_4}> {maxyear_4}</option>
-                        <option value={maxyear_5}> {maxyear_5}</option>
-                        <option value={maxyear_6}> {maxyear_6}</option>
-                      </select>
-                    </td>
-                    <td>
-                      <input
-                        ref="degreeNameOfSchool"
-                        autoComplete="off"
-                        type="text"
-                        className="form-control"
-                        required
-                        defaultValue={this.state.degreeNameOfSchool}
-                      />
-                    </td>
-                    <td>
-                      <select
-                        ref="degreeState"
-                        autoComplete="off"
-                        type="text"
-                        onChange={this.listen_to_state_name_change_Degree}
-                        className="form-control"
-                        required
-                        defaultValue={this.state.degreeState}
-                      >
-                        {state_names_List}
-                      </select>
-                    </td>
-                    <td>
-                      <select
-                        ref="degreeDistrict"
-                        autoComplete="off"
-                        type="text"
-                        className="form-control"
-                        required
-                        defaultValue={this.state.degreeDistrict}
-                      >
-                        {district_names_Degree &&
-                          district_names_Degree.map(district_name => (
-                            <option
-                              key={district_name.id}
-                              value={district_name.id}
-                            >
-                              {district_name.text}
-                            </option>
-                          ))}
-                      </select>
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
-            </Row>
+            <Table bordered>
+              <thead>
+                <tr>
+                  <th>Semester/Year</th>
+                  <th>Month</th>
+                  <th>Year Of Passing</th>
+                  <th>Maximum Marks</th>
+                  <th>Marks Obtained</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">I</th>
+                  <td>
+                    <select
+                      ref="IsemMonth"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IsemMonth}
+                    >
+                      {month_names_List}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      ref="Isemyop"
+                      autoComplete="off"
+                      type="select"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.Isemyop}
+                    >
+                      <option value="">Please Select</option>
+                      <option value={maxyear}> {maxyear}</option>
+                      <option value={maxyear_1}> {maxyear_1}</option>
+                      <option value={maxyear_2}> {maxyear_2}</option>
+                      <option value={maxyear_3}> {maxyear_3}</option>
+                      <option value={maxyear_4}> {maxyear_4}</option>
+                      <option value={maxyear_5}> {maxyear_5}</option>
+                      <option value={maxyear_6}> {maxyear_6}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      ref="Isemmaxmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_max_marks_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.Isemmaxmarks}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="Isemmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.Isemmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">II</th>
+                  <td>
+                    <select
+                      ref="IIsemMonth"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IIsemMonth}
+                    >
+                      {month_names_List}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      ref="IIsemyop"
+                      autoComplete="off"
+                      type="select"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IIsemyop}
+                    >
+                      <option value="">Please Select</option>
+                      <option value={maxyear}> {maxyear}</option>
+                      <option value={maxyear_1}> {maxyear_1}</option>
+                      <option value={maxyear_2}> {maxyear_2}</option>
+                      <option value={maxyear_3}> {maxyear_3}</option>
+                      <option value={maxyear_4}> {maxyear_4}</option>
+                      <option value={maxyear_5}> {maxyear_5}</option>
+                      <option value={maxyear_6}> {maxyear_6}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      ref="IIsemmaxmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_max_marks_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IIsemmaxmarks}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="IIsemmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IIsemmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">III</th>
+                  <td>
+                    <select
+                      ref="IIIsemMonth"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IIIsemMonth}
+                    >
+                      {month_names_List}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      ref="IIIsemyop"
+                      autoComplete="off"
+                      type="select"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IIIsemyop}
+                    >
+                      <option value="">Please Select</option>
+                      <option value={maxyear}> {maxyear}</option>
+                      <option value={maxyear_1}> {maxyear_1}</option>
+                      <option value={maxyear_2}> {maxyear_2}</option>
+                      <option value={maxyear_3}> {maxyear_3}</option>
+                      <option value={maxyear_4}> {maxyear_4}</option>
+                      <option value={maxyear_5}> {maxyear_5}</option>
+                      <option value={maxyear_6}> {maxyear_6}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      ref="IIIsemmaxmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_max_marks_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IIIsemmaxmarks}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="IIIsemmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IIIsemmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">IV</th>
+                  <td>
+                    <select
+                      ref="IVsemMonth"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IVsemMonth}
+                    >
+                      {month_names_List}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      ref="IVsemyop"
+                      autoComplete="off"
+                      type="select"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IVsemyop}
+                    >
+                      <option value="">Please Select</option>
+                      <option value={maxyear}> {maxyear}</option>
+                      <option value={maxyear_1}> {maxyear_1}</option>
+                      <option value={maxyear_2}> {maxyear_2}</option>
+                      <option value={maxyear_3}> {maxyear_3}</option>
+                      <option value={maxyear_4}> {maxyear_4}</option>
+                      <option value={maxyear_5}> {maxyear_5}</option>
+                      <option value={maxyear_6}> {maxyear_6}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      ref="IVsemmaxmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_max_marks_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IVsemmaxmarks}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="IVsemmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IVsemmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">V</th>
+                  <td>
+                    <select
+                      ref="VsemMonth"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VsemMonth}
+                    >
+                      {month_names_List}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      ref="Vsemyop"
+                      autoComplete="off"
+                      type="select"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.Vsemyop}
+                    >
+                      <option value="">Please Select</option>
+                      <option value={maxyear}> {maxyear}</option>
+                      <option value={maxyear_1}> {maxyear_1}</option>
+                      <option value={maxyear_2}> {maxyear_2}</option>
+                      <option value={maxyear_3}> {maxyear_3}</option>
+                      <option value={maxyear_4}> {maxyear_4}</option>
+                      <option value={maxyear_5}> {maxyear_5}</option>
+                      <option value={maxyear_6}> {maxyear_6}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      ref="Vsemmaxmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_max_marks_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.Vsemmaxmarks}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="Vsemmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.Vsemmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">VI</th>
+                  <td>
+                    <select
+                      ref="VIsemMonth"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIsemMonth}
+                    >
+                      {month_names_List}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      ref="VIsemyop"
+                      autoComplete="off"
+                      type="select"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIsemyop}
+                    >
+                      <option value="">Please Select</option>
+                      <option value={maxyear}> {maxyear}</option>
+                      <option value={maxyear_1}> {maxyear_1}</option>
+                      <option value={maxyear_2}> {maxyear_2}</option>
+                      <option value={maxyear_3}> {maxyear_3}</option>
+                      <option value={maxyear_4}> {maxyear_4}</option>
+                      <option value={maxyear_5}> {maxyear_5}</option>
+                      <option value={maxyear_6}> {maxyear_6}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      ref="VIsemmaxmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_max_marks_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIsemmaxmarks}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="VIsemmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIsemmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">VII</th>
+                  <td>
+                    <select
+                      ref="VIIsemMonth"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIIsemMonth}
+                    >
+                      {month_names_List}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      ref="VIIsemyop"
+                      autoComplete="off"
+                      type="select"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIIsemyop}
+                    >
+                      <option value="">Please Select</option>
+                      <option value={maxyear}> {maxyear}</option>
+                      <option value={maxyear_1}> {maxyear_1}</option>
+                      <option value={maxyear_2}> {maxyear_2}</option>
+                      <option value={maxyear_3}> {maxyear_3}</option>
+                      <option value={maxyear_4}> {maxyear_4}</option>
+                      <option value={maxyear_5}> {maxyear_5}</option>
+                      <option value={maxyear_6}> {maxyear_6}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      ref="VIIsemmaxmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_max_marks_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIIsemmaxmarks}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="VIIsemmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIIsemmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">VIII</th>
+                  <td>
+                    <select
+                      ref="VIIIsemMonth"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIIIsemMonth}
+                    >
+                      {month_names_List}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      ref="VIIIsemyop"
+                      autoComplete="off"
+                      type="select"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIIIsemyop}
+                    >
+                      <option value="">Please Select</option>
+                      <option value={maxyear}> {maxyear}</option>
+                      <option value={maxyear_1}> {maxyear_1}</option>
+                      <option value={maxyear_2}> {maxyear_2}</option>
+                      <option value={maxyear_3}> {maxyear_3}</option>
+                      <option value={maxyear_4}> {maxyear_4}</option>
+                      <option value={maxyear_5}> {maxyear_5}</option>
+                      <option value={maxyear_6}> {maxyear_6}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      ref="VIIIsemmaxmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_max_marks_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIIIsemmaxmarks}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="VIIIsemmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.VIIIsemmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">IX</th>
+                  <td>
+                    <select
+                      ref="IXsemMonth"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IXsemMonth}
+                    >
+                      {month_names_List}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      ref="IXsemyop"
+                      autoComplete="off"
+                      type="select"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IXsemyop}
+                    >
+                      <option value="">Please Select</option>
+                      <option value={maxyear}> {maxyear}</option>
+                      <option value={maxyear_1}> {maxyear_1}</option>
+                      <option value={maxyear_2}> {maxyear_2}</option>
+                      <option value={maxyear_3}> {maxyear_3}</option>
+                      <option value={maxyear_4}> {maxyear_4}</option>
+                      <option value={maxyear_5}> {maxyear_5}</option>
+                      <option value={maxyear_6}> {maxyear_6}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      ref="IXsemmaxmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_max_marks_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IXsemmaxmarks}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="IXsemmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.IXsemmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">X</th>
+                  <td>
+                    <select
+                      ref="XsemMonth"
+                      autoComplete="off"
+                      type="text"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.XsemMonth}
+                    >
+                      {month_names_List}
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      ref="Xsemyop"
+                      autoComplete="off"
+                      type="select"
+                      className="form-control"
+                      required
+                      defaultValue={this.state.Xsemyop}
+                    >
+                      <option value="">Please Select</option>
+                      <option value={maxyear}> {maxyear}</option>
+                      <option value={maxyear_1}> {maxyear_1}</option>
+                      <option value={maxyear_2}> {maxyear_2}</option>
+                      <option value={maxyear_3}> {maxyear_3}</option>
+                      <option value={maxyear_4}> {maxyear_4}</option>
+                      <option value={maxyear_5}> {maxyear_5}</option>
+                      <option value={maxyear_6}> {maxyear_6}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input
+                      ref="Xsemmaxmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_max_marks_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.Xsemmaxmarks}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="Xsemmarks"
+                      autoComplete="off"
+                      type="number"
+                      onChange={this.listen_to_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.Xsemmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" colSpan="3">
+                    Overall Total
+                  </th>
+                  <td>
+                    <input
+                      ref="overalltot"
+                      autoComplete="off"
+                      type="number"
+                      readOnly
+                      onChange={this.listen_to_total_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.overalltot}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      ref="overallmarks"
+                      autoComplete="off"
+                      type="number"
+                      readOnly
+                      onChange={this.listen_to_total_marks_obtained_change}
+                      className="form-control"
+                      required
+                      defaultValue={this.state.overallmarks}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" colSpan="4">
+                    Total % Of Marks
+                  </th>
+                  <td>
+                    <input
+                      ref="totalpermark"
+                      autoComplete="off"
+                      type="number"
+                      readOnly
+                      className="form-control"
+                      required
+                      defaultValue={this.state.totalpermark}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
           </CardBody>
         </Card>
       </div>

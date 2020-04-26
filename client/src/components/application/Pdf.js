@@ -14,13 +14,19 @@ import logo from "../../img/tnlogo.png";
 
 export default class Pdf extends React.Component {
   state = {
-    users: null
+    users: null,
+    image: null
   };
   componentDidMount() {
     axios.get("/api/pdfgenerate")
       .then(res => {
       const users = res.data;
       this.setState({ users });
+    });
+    axios.get("/api/application/userimage")
+      .then(res => {
+      const image = res.data;
+      this.setState({ image });
     });
   }
   render() {
@@ -204,11 +210,12 @@ export default class Pdf extends React.Component {
         textAlign: "justify"
       }
     });
-    if (this.state.users === null) {
+    if (this.state.users === null || this.state.image === null) {
       return <Loading />
     }
+    const imageURL = this.state.image.image.imageData;
 
-    if (this.state.user !== null) {
+    if (this.state.user !== null && this.state.image !== null) {
       return(
         <div>
         <h1>{this.state.users.choice} Application No: {this.state.users.applicationno}</h1>
@@ -231,7 +238,7 @@ export default class Pdf extends React.Component {
               <Image style={styles.logo} src={logo}></Image>
               <Image
                 style={styles.photo}
-                src="https://scontent.fblr4-2.fna.fbcdn.net/v/t1.0-9/54364780_2415270372040747_434833466983448576_n.jpg?_nc_cat=100&_nc_sid=85a577&_nc_ohc=joSUY1JfhR0AX8M7B_c&_nc_ht=scontent.fblr4-2.fna&oh=575268bdfb12caf3dd12f85c84eb7614&oe=5F00F862"
+                src={imageURL}
               ></Image>
               <View style={styles.left}>
                 <Text style={styles.text}>
@@ -284,26 +291,26 @@ export default class Pdf extends React.Component {
                   </View>
                   <View style={styles.tableRow}>
                     <View style={styles.tableCol}>
-                      <Text style={styles.tableCell}>XI</Text>
+                      <Text style={styles.tableCell}>X</Text>
                     </View>
                     <View style={styles.tableCol}>
                       <Text style={styles.tableCell}>
-                        {this.state.users.XIyearOfPassing}
+                        {this.state.users.XyearOfPassing}
                       </Text>
                     </View>
                     <View style={styles.tableCol}>
                       <Text style={styles.tableCell}>
-                        {this.state.users.XInameOfSchool}
+                        {this.state.users.XnameOfSchool}
                       </Text>
                     </View>
                     <View style={styles.tableCol}>
                       <Text style={styles.tableCell}>
-                        {this.state.users.XIstate}
+                        {this.state.users.Xstate}
                       </Text>
                     </View>
                     <View style={styles.tableCol}>
                       <Text style={styles.tableCell}>
-                        {this.state.users.XIdistrict}
+                        {this.state.users.Xdistrict}
                       </Text>
                     </View>
                   </View>

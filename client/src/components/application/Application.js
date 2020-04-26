@@ -65,11 +65,11 @@ export default class Application extends Component {
       collegeName: "",
       collegeAddress: "",
       universityAddress: "",
-      nameOfUniversity: "",
+      universityName: "",
       IsemMonth: "",
       Isemyop: "",
-      Isemmaxmarks:0,
-      Isemmarks:0,
+      Isemmaxmarks: 0,
+      Isemmarks: 0,
       IIsemMonth: "",
       IIsemyop: "",
       IIsemmaxmarks: 0,
@@ -102,13 +102,15 @@ export default class Application extends Component {
       IXsemyop: "",
       IXsemmaxmarks: 0,
       IXsemmarks: 0,
-      XsemMonth: 0,
-      Xsemyop: "",
+      XsemMonth: "",
+      XsemyopL: "",
       Xsemmaxmarks: 0,
       Xsemmarks: 0,
       overalltot: 0,
       overallmarks: 0,
       totalpermark: 0,
+
+      previewImage:'',
       savedToCloud: false
     };
   }
@@ -119,7 +121,6 @@ export default class Application extends Component {
        const users = res.data;
        this.setState({users});
       })
-
   }
   
   componentWillUnmount() {}

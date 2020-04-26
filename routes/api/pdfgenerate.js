@@ -9,7 +9,8 @@ router.get('/',  passport.authenticate('jwt',
       const application = await Application
         .findOne({_userid: req.user._id})
           .populate('user')
-    res.json(application)
+      
+       res.json(application)
     }
     catch(err){
         console.log(err.message)

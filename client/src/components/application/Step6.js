@@ -41,21 +41,6 @@ export default class Step5 extends Component {
   }
   // This review screen had the 'Save' button, on clicking this is called
   isValidated() {
-    /*
-    typically this method needs to return true or false (to indicate if the local forms are validated, so StepZilla can move to the next step),
-    but in this example we simulate an ajax request which is async. In the case of async validation or server saving etc. return a Promise and StepZilla will wait
-    ... for the resolve() to work out if we can move to the next step
-    So here are the rules:
-    ~~~~~~~~~~~~~~~~~~~~~~~~
-    SYNC action (e.g. local JS form validation).. if you return:
-    true/undefined: validation has passed. Move to next step.
-    false: validation failed. Stay on current step
-    ~~~~~~~~~~~~~~~~~~~~~~~~
-    ASYNC return (server side validation or saving data to server etc).. you need to return a Promise which can resolve like so:
-    resolve(): validation/save has passed. Move to next step.
-    reject(): validation/save failed. Stay on current step
-    */
-
     this.setState({
       saving: true
     });
@@ -85,7 +70,8 @@ export default class Step5 extends Component {
     const savingCls = this.state.saving
       ? "saving col-md-12 show"
       : "saving col-md-12 hide";
-    console.table(this.props.getStore());
+    console.log(this.props.getStore());
+    console.log('Preview Image Object:'+this.props.getStore().previewImage);
     return (
       <div className="step step6 review">
         <Card>
@@ -307,16 +293,16 @@ export default class Step5 extends Component {
               <tbody>
                 {" "}
                 <tr>
-                  <th scope="row">XI</th>
+                  <th scope="row">X</th>
                   <td name="XIyearOfPassing">{`${
-                    this.props.getStore().XIyearOfPassing
+                    this.props.getStore().XyearOfPassing
                   }`}</td>
                   <td name="XInameOfSchool">{`${
-                    this.props.getStore().XInameOfSchool
+                    this.props.getStore().XnameOfSchool
                   }`}</td>
-                  <td name="XIstate">{`${this.props.getStore().XIstate}`}</td>
+                  <td name="XIstate">{`${this.props.getStore().Xstate}`}</td>
                   <td name="XIdistrict">{`${
-                    this.props.getStore().XIdistrict
+                    this.props.getStore().Xdistrict
                   }`}</td>
                 </tr>
                 <tr>

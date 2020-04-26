@@ -39,6 +39,10 @@ const ApplicationSchema = mongoose.Schema({
         type: String,
         ref: 'user'
     },
+    tancentMarks: {
+        type: Number,
+        ref: 'user'
+    },
     
     nameOfParent: String,
     gender: String,
@@ -65,7 +69,6 @@ const ApplicationSchema = mongoose.Schema({
     qualifyingDegree: String,
     patternOfStudy: String,
     appearanceInTheFinal: String,
-    tancentMarks: Number,
     mathsStudied: String,
 
     XyearOfPassing: String,
