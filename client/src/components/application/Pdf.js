@@ -239,7 +239,7 @@ export default class Pdf extends React.Component {
               <Image
                 style={styles.photo}
                 src={imageURL}
-              ></Image>
+              />
               <View style={styles.left}>
                 <Text style={styles.text}>
                   1.{"     "} TANCENT 2020 Registration Number
