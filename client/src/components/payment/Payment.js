@@ -49,7 +49,7 @@ export default class Payment extends Component {
                     <input type="hidden" name="prefill[contact]" value={this.state.user.phonenumber} />
                     <input type="hidden" name="prefill[email]" value={this.state.user.email} />
                     {/* <input type="hidden" name="notes[shipping address]" value="L-16, The Business Centre, 61 Wellfield Road, New Delhi - 110001" /> */}
-                    <input type="hidden" name="callback_url" value="https:tnmbamca.herokuuapp.com/payment-callback"/>
+                    <input type="hidden" name="callback_url" value="https://tnmbamca.herokuuapp.com/payment-callback"/>
                     <input type="hidden" name="cancel_url" value={this.state.options.failureLink} />
                     <p className="lead">
                     <Button type="submit" color="success" className="btn btn-block">Pay Now</Button>
