@@ -44,6 +44,7 @@ router.post('/', passport.authenticate('jwt',
 })
 
 router.post('/payment-callback', async  (req,res) =>{
+  res.json({msg:'the route works'})
   try{ 
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature} = req.body;
   request(`https://${razor_key_id}:${razor_secret}@api.razorpay.com/v1/payments/${razorpay_payment_id}`, 

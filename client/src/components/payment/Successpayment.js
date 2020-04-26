@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { Button, Jumbotron } from 'reactstrap'
 import Loading from '../common/Loading'
+import { Link } from 'react-router-dom';
 export default class Successpayment extends Component {
     constructor(){
         super();
@@ -9,7 +10,7 @@ export default class Successpayment extends Component {
             order_detail : null
         }
     }
-  componentWillUpdate(){
+  componentDidMount(){
    const config = {
         headers: {
             'Content-Type':'application/json'
@@ -40,7 +41,7 @@ export default class Successpayment extends Component {
                    <hr className="my-2" />
                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                    <p className="lead">
-                   <Button color="primary">Continu  e</Button>
+                 <Link to='/userdashboard' color='success'><Button color="success">Continue</Button></Link>  
                    </p>
                 </Jumbotron>
                  </div> 
