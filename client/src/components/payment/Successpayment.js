@@ -40,7 +40,7 @@ export default class Successpayment extends Component {
                    <hr className="my-2" />
                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                    <p className="lead">
-                   <Button color="primary">Continue</Button>
+                   <Button color="primary">Continu  e</Button>
                    </p>
                 </Jumbotron>
                  </div> 
