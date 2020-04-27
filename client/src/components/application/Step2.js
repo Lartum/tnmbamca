@@ -13,7 +13,7 @@ export default class Step3 extends Component {
       pincode: props.getStore().pincode,
       mobileno: props.getStore().mobileno,
       telephoneno: props.getStore().telephoneno,
-      useremail: props.getStore().useremail,
+      email: props.getStore().email,
       selected_state_name: "",
       state_names: []
     };
@@ -49,8 +49,8 @@ export default class Step3 extends Component {
         this.props.getStore().district !== userinput.district ||
         this.props.getStore().pincode !== userinput.pincode ||
         this.props.getStore().mobileno !== userinput.mobileno ||
-        this.props.getStore().telephoneno !== userinput.telephoneno ||
-        this.props.getStore().useremail !== userinput.useremail
+        this.props.getStore().telephoneno !== userinput.telephoneno
+        // this.props.getStore().email !== userinput.email
       ) {
         // only update store of something changed
         this.props.updateStore({
@@ -97,9 +97,9 @@ export default class Step3 extends Component {
       pincodeVal: /^[1-9][0-9]{5}$/.test(data.pincode),
       // mobilenoVal: /^\d{5}([- ]*)\d{6}/.test(data.mobileno),
       // telephonenoVal: data.telephoneno != 0,
-      useremailVal: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(
-        data.useremail
-      )
+      // emailVal: /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(
+      //   data.email
+      // )
     };
   }
 
@@ -113,7 +113,7 @@ export default class Step3 extends Component {
       //   ? ""
       //   : "* Enter Valid Mobile Number | Country Code Required ex-91",
       // telephonenoValMsg: val.telephonenoVal ? "" : "* Field Required",
-      useremailValMsg: val.useremailVal ? "" : "* Enter Valid Email"
+      // emailValMsg: val.emailVal ? "" : "* Enter Valid Email"
     };
     return errMsgs;
   }
@@ -126,7 +126,7 @@ export default class Step3 extends Component {
       pincode: this.refs.pincode.value,
       mobileno: this.refs.mobileno.value,
       telephoneno: this.refs.telephoneno.value,
-      useremail: this.refs.useremail.value
+      email: this.refs.email.value
     };
   }
 
@@ -199,16 +199,16 @@ export default class Step3 extends Component {
     //   notValidClasses.telephonenoValGrpCls = "val-err-tooltip";
     // }
 
-    //useremail
-    if (
-      typeof this.state.useremailVal === "undefined" ||
-      this.state.useremailVal
-    ) {
-      notValidClasses.useremailCls = "no-error col-md-10";
-    } else {
-      notValidClasses.useremailCls = "has-error col-md-10";
-      notValidClasses.useremailValGrpCls = "val-err-tooltip";
-    }
+    //email
+    // if (
+    //   typeof this.state.emailVal === "undefined" ||
+    //   this.state.emailVal
+    // ) {
+    //   notValidClasses.emailCls = "no-error col-md-10";
+    // } else {
+    //   notValidClasses.emailCls = "has-error col-md-10";
+    //   notValidClasses.emailValGrpCls = "val-err-tooltip";
+    // }
 
     const ditrict_list = districts;
 
@@ -399,23 +399,24 @@ export default class Step3 extends Component {
             <Row form>
               <Col md={6}>
                 <FormGroup>
-                  <label for="useremail">
-                    <span className="asterix_color">*</span>Email
+                  <label for="email">
+                    Email
                   </label>
                   <div
-                    className={notValidClasses.useremailCls}
+                    className={notValidClasses.emailCls}
                     className="error_color"
                   >
                     <input
-                      ref="useremail"
+                      ref="email"
                       autoComplete="off"
                       type="email"
                       className="form-control"
+                      readOnly
                       required
-                      defaultValue={this.state.useremail}
+                      defaultValue={this.state.email}
                     />
-                    <div className={notValidClasses.useremailValGrpCls}>
-                      {this.state.useremailValMsg}
+                    <div className={notValidClasses.emailValGrpCls}>
+                      {this.state.emailValMsg}
                     </div>
                   </div>
                 </FormGroup>

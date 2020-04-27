@@ -260,6 +260,8 @@ export default class Application extends Component {
     this.sampleStore.email = this.state.users.email;
     this.sampleStore.mobileno = this.state.users.phonenumber;
     this.sampleStore.tancentMarks = this.state.users.tancentmarks;
+    this.sampleStore.tancentMarks = this.state.users.tancentmarks;
+    
     return (
       <div className="example">
         <div className="step-progress">

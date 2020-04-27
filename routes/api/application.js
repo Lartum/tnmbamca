@@ -77,6 +77,7 @@ router.post('/', passport.authenticate('jwt',
         name: req.user.name,
         phonenumber: req.user.phonenumber,
         tancentMarks: req.user.tancentMarks,
+        
 
         nameOfParent: req.body.nameOfParent,
        
