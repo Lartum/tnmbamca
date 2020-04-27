@@ -17,7 +17,7 @@ export default class Step5 extends Component {
       ugDegree: this.refs.ugDegree,
       collegeName: this.refs.collegeName,
       collegeAddress: this.refs.collegeAddress,
-      nameOfUniversity: this.refs.nameOfUniversity,
+      universityName: this.refs.universityName,
       universityAddress: this.refs.universityAddress,
       IsemMonth: this.refs.IsemMonth,
       Isemyop: this.refs.Isemyop,
@@ -110,7 +110,7 @@ export default class Step5 extends Component {
         this.props.getStore().ugDegree !== userInput.ugDegree ||
         this.props.getStore().collegeName !== userInput.collegeName ||
         this.props.getStore().collegeAddress !== userInput.collegeAddress ||
-        this.props.getStore().nameOfUniversity !== userInput.nameOfUniversity ||
+        this.props.getStore().universityName !== userInput.universityName ||
         this.props.getStore().universityAddress !== userInput.universityAddress
       ) {
         this.props.updateStore({
@@ -153,7 +153,7 @@ export default class Step5 extends Component {
       ugDegreeVal: data.ugDegree != 0,
       collegeNameVal: data.collegeName != 0,
       collegeAddressVal: data.collegeAddress != 0,
-      nameOfUniversityVal: data.nameOfUniversity != 0,
+      universityNameVal: data.universityName != 0,
       universityAddressVal: data.universityAddress != 0
       // ugDegreeVal: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
       //   data.ugDegree
@@ -166,7 +166,7 @@ export default class Step5 extends Component {
       ugDegreeValMsg: val.ugDegreeVal ? "" : "* Field Required",
       collegeNameValMsg: val.collegeNameVal ? "" : "* Field Required",
       collegeAddressValMsg: val.collegeAddressVal ? "" : "* Field Required",
-      nameOfUniversityValMsg: val.nameOfUniversityVal ? "" : "* Field Required",
+      universityNameValMsg: val.universityNameVal ? "" : "* Field Required",
       universityAddressValMsg: val.universityAddressVal
         ? ""
         : "* Field Required"
@@ -180,7 +180,7 @@ export default class Step5 extends Component {
       ugDegree: this.refs.ugDegree.value,
       collegeName: this.refs.collegeName.value,
       collegeAddress: this.refs.collegeAddress.value,
-      nameOfUniversity: this.refs.nameOfUniversity.value,
+      universityName: this.refs.universityName.value,
       universityAddress: this.refs.universityAddress.value,
       IsemMonth: this.refs.IsemMonth.value,
       Isemyop: this.refs.Isemyop.value,
@@ -231,21 +231,21 @@ export default class Step5 extends Component {
 
   listen_to_max_marks_change = ({ event }) => {
     const total_Max_Marks =
-      parseInt(this.refs.Isemmaxmarks.value, 10) +
-      parseInt(this.refs.IIsemmaxmarks.value, 10) +
-      parseInt(this.refs.IIIsemmaxmarks.value, 10) +
-      parseInt(this.refs.IVsemmaxmarks.value, 10) +
-      parseInt(this.refs.Vsemmaxmarks.value, 10) +
-      parseInt(this.refs.VIsemmaxmarks.value, 10) +
-      parseInt(this.refs.VIIsemmaxmarks.value, 10) +
-      parseInt(this.refs.VIIIsemmaxmarks.value, 10) +
-      parseInt(this.refs.IXsemmaxmarks.value, 10) +
-      parseInt(this.refs.Xsemmaxmarks.value, 10);
+      parseFloat(this.refs.Isemmaxmarks.value, 10) +
+      parseFloat(this.refs.IIsemmaxmarks.value, 10) +
+      parseFloat(this.refs.IIIsemmaxmarks.value, 10) +
+      parseFloat(this.refs.IVsemmaxmarks.value, 10) +
+      parseFloat(this.refs.Vsemmaxmarks.value, 10) +
+      parseFloat(this.refs.VIsemmaxmarks.value, 10) +
+      parseFloat(this.refs.VIIsemmaxmarks.value, 10) +
+      parseFloat(this.refs.VIIIsemmaxmarks.value, 10) +
+      parseFloat(this.refs.IXsemmaxmarks.value, 10) +
+      parseFloat(this.refs.Xsemmaxmarks.value, 10);
     this.setState({ overalltot: total_Max_Marks });
     if (this.refs.overallmarks.value !== null) {
-      const percent_marks = parseInt(
-        (parseInt(this.refs.overallmarks.value, 10) * 100) /
-          parseInt(total_Max_Marks, 10),
+      const percent_marks = parseFloat(
+        (parseFloat(this.refs.overallmarks.value, 10) * 100) /
+          parseFloat(total_Max_Marks, 10),
         10
       );
       this.setState({ totalpermark: percent_marks });
@@ -253,25 +253,25 @@ export default class Step5 extends Component {
   };
 
   listen_to_marks_obtained_change = ({ event }) => {
-    console.log('Parsing Into int '+parseInt(this.refs.Isemmarks.value, 10))
+    console.log('Parsing Into int '+parseFloat(this.refs.Isemmarks.value, 10))
     const total_obtained_Marks =
-      parseInt(this.refs.Isemmarks.value, 10) +
-      parseInt(this.refs.IIsemmarks.value, 10) +
-      parseInt(this.refs.IIIsemmarks.value, 10) +
-      parseInt(this.refs.IVsemmarks.value, 10) +
-      parseInt(this.refs.Vsemmarks.value, 10) +
-      parseInt(this.refs.VIsemmarks.value, 10) +
-      parseInt(this.refs.VIIsemmarks.value, 10) +
-      parseInt(this.refs.VIIIsemmarks.value, 10) +
-      parseInt(this.refs.IXsemmarks.value, 10) +
-      parseInt(this.refs.Xsemmarks.value, 10);
+      parseFloat(this.refs.Isemmarks.value, 10) +
+      parseFloat(this.refs.IIsemmarks.value, 10) +
+      parseFloat(this.refs.IIIsemmarks.value, 10) +
+      parseFloat(this.refs.IVsemmarks.value, 10) +
+      parseFloat(this.refs.Vsemmarks.value, 10) +
+      parseFloat(this.refs.VIsemmarks.value, 10) +
+      parseFloat(this.refs.VIIsemmarks.value, 10) +
+      parseFloat(this.refs.VIIIsemmarks.value, 10) +
+      parseFloat(this.refs.IXsemmarks.value, 10) +
+      parseFloat(this.refs.Xsemmarks.value, 10);
     this.setState({ overallmarks: total_obtained_Marks });
 
     const percent_marks = parseFloat(
       (parseFloat(total_obtained_Marks, 10) * 100) /
         parseFloat(this.refs.overalltot.value, 10),
       10
-    );
+    ).toFixed(2);
     this.setState({ totalpermark: percent_marks });
   };
 
@@ -314,13 +314,13 @@ export default class Step5 extends Component {
 
     //Name of University
     if (
-      typeof this.state.nameOfUniversityVal === "undefined" ||
-      this.state.nameOfUniversityVal
+      typeof this.state.universityNameVal === "undefined" ||
+      this.state.universityNameVal
     ) {
-      notValidClasses.nameOfUniversityCls = "no-error col-md-10";
+      notValidClasses.universityNameCls = "no-error col-md-10";
     } else {
-      notValidClasses.nameOfUniversityCls = "has-error col-md-10";
-      notValidClasses.nameOfUniversityValGrpCls = "val-err-tooltip";
+      notValidClasses.universityNameCls = "has-error col-md-10";
+      notValidClasses.universityNameValGrpCls = "val-err-tooltip";
     }
 
     //Address of The University
@@ -437,24 +437,24 @@ export default class Step5 extends Component {
               </Col>
               <Col md={6}>
                 <FormGroup>
-                  <label for="nameOfUniversity">
+                  <label for="universityName">
                     <span className="asterix_color">*</span>Name Of The
                     University
                   </label>
                   <div
-                    className={notValidClasses.nameOfUniversityCls}
+                    className={notValidClasses.universityNameCls}
                     className="error_color"
                   >
                     <input
-                      ref="nameOfUniversity"
+                      ref="universityName"
                       autoComplete="off"
                       type="text"
                       className="form-control"
                       required
-                      defaultValue={this.state.nameOfUniversity}
+                      defaultValue={this.state.universityName}
                     />
-                    <div className={notValidClasses.nameOfUniversityValGrpCls}>
-                      {this.state.nameOfUniversityValMsg}
+                    <div className={notValidClasses.universityNameValGrpCls}>
+                      {this.state.universityNameValMsg}
                     </div>
                   </div>
                 </FormGroup>

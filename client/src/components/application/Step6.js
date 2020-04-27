@@ -363,8 +363,8 @@ export default class Step5 extends Component {
                 </tr>
                 <tr>
                   <th scope="row">Name Of The University:</th>
-                  <td name="nameOfUniversity">{`${
-                    this.props.getStore().nameOfUniversity
+                  <td name="universityName">{`${
+                    this.props.getStore().universityName
                   }`}</td>
                 </tr>
                 <tr>

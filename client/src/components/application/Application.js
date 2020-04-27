@@ -103,7 +103,7 @@ export default class Application extends Component {
       IXsemmaxmarks: 0,
       IXsemmarks: 0,
       XsemMonth: "",
-      XsemyopL: "",
+      Xsemyop: "",
       Xsemmaxmarks: 0,
       Xsemmarks: 0,
       overalltot: 0,
