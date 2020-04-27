@@ -50,7 +50,7 @@ export default class Viewapplication extends Component {
                     <td name="name">{this.state.users.name}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Name Of Parent:</th>
+                    <th scope="row">Name Of Parent/Guardian:</th>
                     <td name="nameOfParent">{
                       this.state.users.nameOfParent
                     }</td>
@@ -211,7 +211,7 @@ export default class Viewapplication extends Component {
                     <td name="Xdistrict">{this.state.users.Xdistrict}</td>
                   </tr>
                   <tr>
-                    <th scope="row">XII</th>
+                    <th scope="row">XII/Diploma</th>
                     <td name="XIIyearOfPassing">{this.state.users.XIIyearOfPassing}</td>
                     <td name="XIInameOfSchool">{this.state.users.XIInameOfSchool}</td>
                     <td name="XIIstate">{this.state.users.XIIstate}</td>
@@ -220,7 +220,7 @@ export default class Viewapplication extends Component {
                   <tr>
                     <th scope="row">Degree</th>
                     <td name="degreeYearOfPassing">{this.state.users.degreeYearOfPassing}</td>
-                    <td name="degreeNameOfSchool">{this.state.degreeNameOfSchool}</td>
+                    <td name="degreeNameOfSchool">{this.state.users.degreeNameOfSchool}</td>
                     <td name="degreeState">{this.state.users.degreeState}</td>
                     <td name="degreeDistrict">{this.state.users.degreeDistrict}</td>
                   </tr>

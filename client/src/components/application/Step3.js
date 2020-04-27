@@ -317,6 +317,9 @@ export default class Step3 extends Component {
     const maxyear_4 = maxyear - 4;
     const maxyear_5 = maxyear - 5;
     const maxyear_6 = maxyear - 6;
+    const maxyear_7 = maxyear - 7;
+    const maxyear_8 = maxyear - 8;
+    const maxyear_9 = maxyear - 9;
 
     //District List
     const ditrict_list = districts
@@ -563,8 +566,8 @@ export default class Step3 extends Component {
                       <option value="10 + 3 Years Diploma + 3 Years Degree">
                         10 + 3 Years Diploma + 3 Years Degree
                       </option>
-                      <option value="B.E / B.Tech / B.Pharm">
-                        B.E / B.Tech / B.Pharm
+                      <option value="10 + 2 + 4">
+                       10 + Plus Two + 4 Years Degree
                       </option>
                     </select>
                     <div className={notValidClasses.patternOfStudyValGrpCls}>
@@ -662,6 +665,9 @@ export default class Step3 extends Component {
                         <option value={maxyear_4}> {maxyear_4}</option>
                         <option value={maxyear_5}> {maxyear_5}</option>
                         <option value={maxyear_6}> {maxyear_6}</option>
+                        <option value={maxyear_7}> {maxyear_7}</option>
+                        <option value={maxyear_8}> {maxyear_8}</option>
+                        <option value={maxyear_9}> {maxyear_9}</option>
                       </select>
                     </td>
                     <td>
@@ -709,7 +715,7 @@ export default class Step3 extends Component {
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">XII</th>
+                    <th scope="row">XII/Diploma</th>
                     <td>
                       <select
                         ref="XIIyearOfPassing"
@@ -726,6 +732,9 @@ export default class Step3 extends Component {
                         <option value={maxyear_4}> {maxyear_4}</option>
                         <option value={maxyear_5}> {maxyear_5}</option>
                         <option value={maxyear_6}> {maxyear_6}</option>
+                        <option value={maxyear_7}> {maxyear_7}</option>
+                        <option value={maxyear_8}> {maxyear_8}</option>
+                        <option value={maxyear_9}> {maxyear_9}</option>
                       </select>
                     </td>
                     <td>
@@ -790,6 +799,9 @@ export default class Step3 extends Component {
                         <option value={maxyear_4}> {maxyear_4}</option>
                         <option value={maxyear_5}> {maxyear_5}</option>
                         <option value={maxyear_6}> {maxyear_6}</option>
+                        <option value={maxyear_7}> {maxyear_7}</option>
+                        <option value={maxyear_8}> {maxyear_8}</option>
+                        <option value={maxyear_9}> {maxyear_9}</option>
                       </select>
                     </td>
                     <td>

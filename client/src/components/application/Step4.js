@@ -373,14 +373,22 @@ export default class Step5 extends Component {
                     className={notValidClasses.ugDegreeCls}
                     className="error_color"
                   >
-                    <input
+                    <select
                       ref="ugDegree"
                       autoComplete="off"
                       type="text"
                       className="form-control"
                       required
                       defaultValue={this.state.ugDegree}
-                    />
+                    >
+                      <option value="">* Please select</option>
+                      <option value="Male">BA</option>
+                      <option value="Female">B.SC</option>
+                      <option value="Transgender">B.COM</option>
+                      <option value="Transgender">BBA</option>
+                      <option value="Transgender">B.E/B.TECH</option>
+                      
+                    </select>
                     <div className={notValidClasses.ugDegreeValGrpCls}>
                       {this.state.ugDegreeValMsg}
                     </div>

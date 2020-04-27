@@ -280,7 +280,7 @@ export default class Step1 extends Component {
               <Col md={6}>
                 <FormGroup>
                   <label for="nameOfParent">
-                    <span className="asterix_color">*</span>Name Of Guardian
+                    <span className="asterix_color">*</span>Name Of Parent/Guardian
                   </label>
                   <div
                     className={notValidClasses.nameOfParentCls}
@@ -319,7 +319,7 @@ export default class Step1 extends Component {
                       <option value="">Please select</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
-                      <option value="Other">Other</option>
+                      <option value="Transgender">Transgender</option>
                     </select>
                     <div className={notValidClasses.genderValGrpCls}>
                       {this.state.genderValMsg}
