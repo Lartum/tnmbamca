@@ -6,33 +6,11 @@ import { Link } from 'react-router-dom';
 export default class Successpayment extends Component {
     constructor(){
         super();
-        this.state={
-            order_detail : null
-        }
+        
     }
-//   componentDidMount(){
-//    const config = {
-//         headers: {
-//             'Content-Type':'application/json'
-//         }
-//     }
-//     try{
-//     Axios.post('/api/payment/payment-callback',this.state.order_detail, config);
-    
-//     }
-//     catch (err){
-//         console.log(err)
-//         }
-//     }
-    
+
     render() {
-        if(this.state.order_detail === null){
-            return(
-                <Loading />
-            )
-            
-        }
-        if(this.state.order_detail !== null){
+      
             return(
                 <div>
                 <Jumbotron>
@@ -48,4 +26,4 @@ export default class Successpayment extends Component {
             )
         }
     }
-}
+

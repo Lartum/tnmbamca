@@ -95,10 +95,10 @@ class App extends Component {
               <PrivateRoute exact path ='/payment' component={Payment}/>         
               </Switch>   
               <Switch>
-              <PrivateRoute exact path ='/payment-callback' component={Successpayment}/>         
+              <PrivateRoute exact path ='/paymentsuccess' component={Successpayment}/>         
               </Switch>
               <Switch>
-              <PrivateRoute exact path ='/payment-cancel' component={FailurePayment}/>         
+              <PrivateRoute exact path ='/paymentcancel' component={FailurePayment}/>         
               </Switch>  
             </div>
             <Footer />

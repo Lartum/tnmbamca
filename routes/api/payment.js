@@ -43,11 +43,9 @@ router.post('/', passport.authenticate('jwt',
   });
 })
 
-router.post('/payment-callback', passport.authenticate('jwt', 
-{ session: false }), async  (req,res) =>{
-  res.json({msg:'the route works'});
-  console.log('the route works')
+router.post('/payment-callback', async  (req,res) =>{
   try{ 
+
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature} = req.body;
   request(`https://${razor_key_id}:${razor_secret}@api.razorpay.com/v1/payments/${razorpay_payment_id}`, 
   (error, response, body) => {
@@ -72,7 +70,7 @@ router.post('/payment-callback', passport.authenticate('jwt',
         console.log(err);
       })
     });
-     res.json({msg:'Payment Successfull'});
+    return res.redirect('https://mbamcatn.herokuapp.com/paymentsuccess')
  
   }
   catch(err){
