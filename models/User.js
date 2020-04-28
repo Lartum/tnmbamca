@@ -47,7 +47,7 @@ const UserSchema = new Schema({
   },
   paid:{
     type:Boolean,
-    default:false
+    default:true
   },
   applicationcomplete:{
     type:Boolean,
