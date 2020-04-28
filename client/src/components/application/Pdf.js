@@ -13,10 +13,14 @@ import {
 import logo from "../../img/tnlogo.png";
 
 export default class Pdf extends React.Component {
-  state = {
-    users: null,
-    image: null
-  };
+  constructor(){
+    super()
+    this.state = {
+      users: null,
+      image: null
+    };
+  }
+  
   componentDidMount() {
     axios.get("/api/pdfgenerate")
       .then(res => {
@@ -219,7 +223,9 @@ export default class Pdf extends React.Component {
       }
     });
 
-   const MyDoc1 = () => ( 
+    
+
+   const MyDoc1 = (props) => ( 
       <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
@@ -233,7 +239,7 @@ export default class Pdf extends React.Component {
         <Image style={styles.logo} src={logo}></Image>
         <Image
           style={styles.photo}
-          src={imageURL}
+          src={props}
         />
         <View style={styles.left}>
           <Text style={styles.text}>
@@ -667,7 +673,7 @@ To be filled by the Applicant
 
    //2nd Document Choice
    
-   const MyDoc2 = () => ( 
+   const MyDoc2 = (props) => ( 
     <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
@@ -681,7 +687,7 @@ To be filled by the Applicant
       <Image style={styles.logo} src={logo}></Image>
       <Image
         style={styles.photo}
-        src={this.state.image.imageData.imageURL}
+        src={props}
       />
       <View style={styles.left}>
         <Text style={styles.text}>
@@ -1080,7 +1086,7 @@ To be filled by the Applicant
  )
 
 
- const MyDoc3 = () => (
+ const MyDoc3 = (props) => (
   <Document>
   <Page size="A4" style={styles.page}>
     <View style={styles.header}>
@@ -1094,7 +1100,8 @@ To be filled by the Applicant
     <Image style={styles.logo} src={logo}></Image>
     <Image
       style={styles.photo}
-      src={this.state.image.image.imageData}
+      src="https://uploadedfiles21.s3.ap-southeast-1.amazonaws.com/IMG-20190724-WA0008-1588100231138.jpg"
+      // {props}
     />
     <View style={styles.left}>
       <Text style={styles.text}>
@@ -1542,10 +1549,12 @@ To be filled by the Applicant
     if (this.state.users === null || this.state.image === null) {
       return <Loading />
     }
-    const imageURL = this.state.image.image.imageData;
+
 
     if (this.state.users !== null && this.state.image !== null) {
-     if(this.state.users.patternOfStudy === "10 + Plus Two + 3 Years Degree" ){
+      const imageURL = this.state.image.picture.imageData;
+      console.log(imageURL);
+      if(this.state.users.patternOfStudy === "10 + Plus Two + 3 Years Degree" ){
       return(
         <div>
         <h1> {this.state.users.choice} Application No: {this.state.users.applicationno}</h1>
@@ -1561,7 +1570,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc1 />} 
+           document={<MyDoc1 props={imageURL} />} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
@@ -1572,7 +1581,7 @@ To be filled by the Applicant
           height: "100rem"
         }}
         >
-           <MyDoc1 />
+           <MyDoc1 props={imageURL}/>
         </PDFViewer>
         </div>
       )
@@ -1594,7 +1603,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc2 />} 
+           document={<MyDoc2 props={imageURL}/>} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
@@ -1605,7 +1614,7 @@ To be filled by the Applicant
           height: "100rem"
         }}
         >
-           <MyDoc2 />
+           <MyDoc2 props={imageURL}/>
         </PDFViewer>
         </div>
       )
@@ -1628,7 +1637,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc3 />} 
+           document={<MyDoc3 props={imageURL}/>} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
@@ -1639,7 +1648,7 @@ To be filled by the Applicant
           height: "100rem"
         }}
         >
-           <MyDoc3 />
+           <MyDoc3 props={imageURL}/>
         </PDFViewer>
         </div>
       )

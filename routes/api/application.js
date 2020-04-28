@@ -56,9 +56,9 @@ router.get('/userimage',
  passport.authenticate('jwt', 
   { session: false }), async (req, res) => {
     Image.findOne({ userid: req.user._id})
-      .then(image=>{
-        console.log(image);
-        res.json({image});
+      .then(picture=>{
+
+        res.json({picture});
       })
 })
 
