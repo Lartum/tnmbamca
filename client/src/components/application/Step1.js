@@ -96,10 +96,6 @@ export default class Step1 extends Component {
       placeOfBirthVal: data.placeOfBirth != 0,
       religionVal: data.religion != 0,
       motherTongueVal: data.motherTongue != 0
-
-      // ugDegreeVal: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
-      //   data.ugDegree
-      // ) // required: regex w3c uses in html5
     };
   }
 

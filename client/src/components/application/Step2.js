@@ -177,39 +177,6 @@ export default class Step3 extends Component {
       notValidClasses.pincodeValGrpCls = "val-err-tooltip";
     }
 
-    //mobileno
-    // if (
-    //   typeof this.state.mobilenoVal === "undefined" ||
-    //   this.state.mobilenoVal
-    // ) {
-    //   notValidClasses.mobilenoCls = "no-error col-md-10";
-    // } else {
-    //   notValidClasses.mobilenoCls = "has-error col-md-10";
-    //   notValidClasses.mobilenoValGrpCls = "val-err-tooltip";
-    // }
-
-    // //telephoneno
-    // if (
-    //   typeof this.state.telephonenoVal === "undefined" ||
-    //   this.state.telephonenoVal
-    // ) {
-    //   notValidClasses.telephonenoCls = "no-error col-md-8";
-    // } else {
-    //   notValidClasses.telephonenoCls = "has-error col-md-8";
-    //   notValidClasses.telephonenoValGrpCls = "val-err-tooltip";
-    // }
-
-    //email
-    // if (
-    //   typeof this.state.emailVal === "undefined" ||
-    //   this.state.emailVal
-    // ) {
-    //   notValidClasses.emailCls = "no-error col-md-10";
-    // } else {
-    //   notValidClasses.emailCls = "has-error col-md-10";
-    //   notValidClasses.emailValGrpCls = "val-err-tooltip";
-    // }
-
     const ditrict_list = districts;
 
     //Get State Names

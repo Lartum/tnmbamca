@@ -81,6 +81,11 @@ const ApplicationSchema = mongoose.Schema({
     XIIstate: String,
     XIIdistrict: String,
 
+    diplomayearOfPassing: String,
+    diplomanameOfSchool: String,
+    diplomastate: String,
+    diplomadistrict: String,
+
     degreeYearOfPassing: String,
     degreeState: String,
     degreeDistrict: String,

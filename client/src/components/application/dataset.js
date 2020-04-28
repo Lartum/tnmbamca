@@ -91,10 +91,6 @@ export const districts =  {
   ]
 };
 
-
-
-
-
 export const communityNames = [
     { id: "", name: "Please Select" },
     { id: "OC", name: "OC" },

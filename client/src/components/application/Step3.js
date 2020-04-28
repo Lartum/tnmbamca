@@ -566,7 +566,7 @@ export default class Step3 extends Component {
                       <option value="10 + 3 Years Diploma + 3 Years Degree">
                         10 + 3 Years Diploma + 3 Years Degree
                       </option>
-                      <option value="10 + 2 + 4">
+                      <option value="10 + Plus Two + 4 Years Degree">
                        10 + Plus Two + 4 Years Degree
                       </option>
                     </select>
