@@ -225,7 +225,7 @@ export default class Pdf extends React.Component {
 
     
 
-   const MyDoc1 = () => ( 
+   const MyDoc1 = (imageURL) => ( 
       <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
@@ -239,7 +239,7 @@ export default class Pdf extends React.Component {
         <Image style={styles.logo} src={logo}></Image>
         <Image
           style={styles.photo}
-          src="https://media.gettyimages.com/photos/alphabet-g-picture-id155159126?s=612x612"
+          src="https://uploadedfiles21.s3.ap-southeast-1.amazonaws.com/IMG-20190724-WA0008-1588150854045V%EF%BF%BD%EF%BF%BD%EF%BF%BD%D1%AC%EF%BF%BDi%EF%BF%BDE%0DnJ%EF%BF%BD%7FP%EF%BF%BD%EA%9A%AC%EF%BF%BD%5C%15LS%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BDN%09%EF%BF%BD%EF%BF%BD%EF%BF%BDKr%EF%BF%BD%1B5%EF%BF%BD%EF%BF%BD%EF%BF%BD%7B%EF%BF%BD%EF%BF%BD%EF%BF%BDS%EF%BF%BD%D4%AC%EF%BF%BD%EF%BF%BDB%2C%EF%BF%BD%2C%EF%BF%BDx%EF%BF%BD%EF%BF%BD%22-j%1D"
         />
         <View style={styles.left}>
           <Text style={styles.text}>
@@ -1571,7 +1571,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc1 />} 
+           document={<MyDoc1 props={imageURL}/>} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
@@ -1582,7 +1582,7 @@ To be filled by the Applicant
           height: "100rem"
         }}
         >
-           <MyDoc1 />
+           <MyDoc1 props={imageURL}/>
         </PDFViewer>
         </div>
       )
