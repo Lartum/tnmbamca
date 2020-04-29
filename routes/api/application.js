@@ -1,7 +1,8 @@
 const express = require('express');
-const router = express.Router();
 const passport = require('passport');
+const request = require('request');
 
+const router = express.Router();
 
 // Load Validation
 const Application = require('../../models/Application');
@@ -55,9 +56,18 @@ router.post( '/imageupload', passport.authenticate('jwt',
 router.get('/userimage', 
  passport.authenticate('jwt', 
   { session: false }), async (req, res) => {
+    request(
+      {url: 'https://mbamcatn.herokuapp.com/api/application/userimage'},
+      (error, response, body) =>{
+        if (error || response.statusCode !== 200) {
+          return res.status(500).json({ type: 'error', message: err.message });
+        }
+  
+        res.json(JSON.parse(body));
+      }
+    )
     Image.findOne({ userid: req.user._id})
       .then(picture=>{
-
         res.json({picture});
       })
 })

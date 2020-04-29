@@ -83,7 +83,9 @@ export const districts =  {
     { id: "Tiruvarur", text: "Tiruvarur" },
     { id: "Vellore", text: "Vellore" },
     { id: "Viluppuram", text: "Viluppuram" },
-    { id: "Virudhunagar", text: "Virudhunagar" }
+    { id: "Virudhunagar", text: "Virudhunagar" },
+    { id: "Mayiladuthurai", text: "Mayiladuthurai" },
+
   ],
   Other: [
     { id: "", text: "Please Select" },

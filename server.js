@@ -16,10 +16,13 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//Public folder
-// app.use('/uploads', express.static('uploads'));
-// app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
+
+// CORS Permission
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 // DB Config
 const db = require('./config/keys').mongoURI;
