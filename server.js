@@ -5,6 +5,7 @@ const passport = require('passport');
 const path = require('path');
 const methodOverride = require('method-override');
 
+
 const users = require('./routes/api/users');
 const application = require('./routes/api/application')
 const pdfgenerate = require('./routes/api/pdfgenerate');
@@ -15,6 +16,7 @@ const app = express();
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 
 app.use(methodOverride('_method'));
 

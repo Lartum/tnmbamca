@@ -22,12 +22,12 @@ const profileImgUpload = multer({
 		s3: s3,
 		bucket: 'uploadedfiles21',
 		acl: 'public-read',
-		// key: function (req, file, cb) {
-		// 	cb(null, path.basename( file.originalname, path.extname( file.originalname ) ) + '-' + Date.now() + path.extname( file.originalname ) )
-		// }
 		key: function (req, file, cb) {
-			cb(null, path.basename( file.originalname, path.extname( file.originalname ) ) + '-' + Date.now() + crypto.randomBytes(64) )
+			cb(null, path.basename( file.originalname, path.extname( file.originalname ) ) + '-' + Date.now() + path.extname( file.originalname ) )
 		}
+		// key: function (req, file, cb) {
+		// 	cb(null, path.basename( file.originalname, path.extname( file.originalname ) ) + '-' + Date.now() + crypto.randomBytes(64) )
+		// }
 	}),
 	limits:{ fileSize: 2000000 }, // In bytes: 2000000 bytes = 2 MB
 	fileFilter: function( req, file, cb ){

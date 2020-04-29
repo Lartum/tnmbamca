@@ -528,14 +528,22 @@ export default class Step3 extends Component {
                     className={notValidClasses.qualifyingDegreeCls}
                     className="error_color"
                   >
-                    <input
+                    <select
                       ref="qualifyingDegree"
                       autoComplete="off"
                       type="text"
                       className="form-control"
                       required
                       defaultValue={this.state.qualifyingDegree}
-                    />
+                    >
+                      <option value="">* Please select</option>
+                      <option value="B.A">B.A</option>
+                      <option value="B.SC">B.SC</option>
+                      <option value="B.COM">B.COM</option>
+                      <option value="BBA">BBA</option>
+                      <option value="B.E/B.TECH">B.E/B.TECH</option>
+                      
+                    </select>
                     <div className={notValidClasses.qualifyingDegreeValGrpCls}>
                       {this.state.qualifyingDegreeValMsg}
                     </div>
