@@ -266,7 +266,7 @@ export default class Pdf extends React.Component {
           <Text>20.{"   "} Qualifying Degree  </Text>
           <Text>21.{"   "} Pattern of Study  </Text>
           <Text>22.{"   "} Appearance in the Final Year Exam  </Text>
-          <Text>23.{"   "} TANCENT Marks in {new Date().getFullYear()}  </Text>
+          <Text>23.{"   "} TANCET Marks in {new Date().getFullYear()}  </Text>
           <Text>24.{"   "} School/College Study information </Text>
           <View style={styles.table}>
             <View style={styles.tableRow}>
@@ -411,7 +411,7 @@ export default class Pdf extends React.Component {
 
           <Text style={styles.text_indent}>
             (c) Name of the University: {" "}
-            {this.state.users.universityAddress}
+            {this.state.users.universityName}
           </Text>
           <View style={styles.table}>
             <View style={styles.tableRow}>
@@ -619,10 +619,10 @@ export default class Pdf extends React.Component {
             </View>
             <View style={styles.tableRow}>
               <View style={styles.tableCol5}>
-                <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
+                <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
               </View>
               <View style={styles.tableCol5}>
-                <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
+                <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
               </View>
               <View style={styles.tableCol5}>
                 <Text style={styles.tableCell2}>{this.state.users.totalpermark}</Text>
@@ -691,7 +691,7 @@ To be filled by the Applicant
       />
       <View style={styles.left}>
         <Text style={styles.text}>
-          1.{"     "} TANCENT {new Date().getFullYear()} Registration Number
+          1.{"     "} TANCET {new Date().getFullYear()} Registration Number
         </Text>
         <Text>2.{"     "} Name</Text>
         <Text>3.{"     "} Name of Parent/Guardian </Text>
@@ -714,7 +714,7 @@ To be filled by the Applicant
         <Text>20.{"   "} Qualifying Degree : </Text>
         <Text>21.{"   "} Pattern of Studied : </Text>
         <Text>22.{"   "} Appearance in the Final Year Exam  </Text>
-        <Text>23.{"   "} TANCENT Marks in 2019 : </Text>
+        <Text>23.{"   "} TANCET Marks in {new Date().getFullYear()} : </Text>
         <Text>24.{"   "} School/College Study information </Text>
         <View style={styles.table}>
           <View style={styles.tableRow}>
@@ -859,7 +859,7 @@ To be filled by the Applicant
 
         <Text style={styles.text_indent}>
           (c) Name of the University: {" "}
-          {this.state.users.universityAddress}
+          {this.state.users.universityName}
         </Text>
         <View style={styles.table}>
           <View style={styles.tableRow}>
@@ -1044,22 +1044,54 @@ To be filled by the Applicant
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCol5}>
-              <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
+              <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
             </View>
             <View style={styles.tableCol5}>
-              <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
+              <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
             </View>
             <View style={styles.tableCol5}>
               <Text style={styles.tableCell2}>{this.state.users.totalpermark}</Text>
             </View>
           </View>
         </View>
+        <View style={styles.subheader}>
+            <Text>Declaration By The Applicant</Text>
+        </View>
+        <View style={styles.declarationPara}>
+            <Text>
+              All the information furnished prepage are true to the best of my knowledge. 
+              I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid
+              I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.
+              I have studied BAchelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.
+              I have not studied B.E / B.Tech Degree through distance / week end mode.
+              I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.
+              Place 
+              Date
+              Signature of the Applicant
+              </Text>
+        </View>
+
+        <View>
+          <Text>
+          CHECK LIST
+To be filled by the Applicant
+1. Self Attested Photograph affixing on the Application
+2. Self Attested Photograph of Plus Two Mark Sheet / Diploma Certificate
+3. Self Attested photocopy of All Semester Maarksheets(All Apperances) of qualifying Examination (Xeroxing both sides)
+4. Self Attested Photocopy of Degree or Provisional Cerificate
+5. Self Attested Photocopy of Transfer certificate.
+6. Self Attested Photocopy of permanent community card for SC,ST,SCA,MBC & DNC,BC,BCM.
+7. Self Attested Photocopy of TANCET 2020 Hall Ticket.
+8. Self Attested Photocopy of TANCET 2020 Mark Sheet.
+9. Self Attested Photocopy of TANCEt Nativity Certificate.
+10.District Medical Board Certificate (for differntly abled Persons Only).
+11.Sri Lankan Refugee Certificate - IF Applicable.
+          </Text>
+        </View>
       </View>
        
     </Page>
-    <Page>
-      
-    </Page>
+   
   </Document>
  )
 
@@ -1107,7 +1139,7 @@ To be filled by the Applicant
       <Text>20.{"   "} Qualifying Degree : </Text>
       <Text>21.{"   "} Pattern of Studied : </Text>
       <Text>22.{"   "} Appearance in the Final Year Exam  </Text>
-      <Text>23.{"   "} TANCENT Marks in 2019 : </Text>
+      <Text>23.{"   "} TANCENT Marks in {new Date().getFullYear()} : </Text>
       <Text>24.{"   "} School/College Study information </Text>
       <View style={styles.table}>
         <View style={styles.tableRow}>
@@ -1252,7 +1284,7 @@ To be filled by the Applicant
 
       <Text style={styles.text_indent}>
         (c) Name of the University: {" "}
-        {this.state.users.universityAddress}
+        {this.state.users.universityName}
       </Text>
       <View style={styles.table}>
         <View style={styles.tableRow}>
@@ -1493,12 +1525,41 @@ To be filled by the Applicant
           </View>
         </View>
       </View>
+      <View style={styles.subheader}>
+            <Text>Declaration By The Applicant</Text>
+        </View>
+        <View style={styles.declarationPara}>
+            <Text>
+              All the information furnished prepage are true to the best of my knowledge. 
+              I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid
+              I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.
+              I have studied BAchelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.
+              I have not studied B.E / B.Tech Degree through distance / week end mode.
+              I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.
+              Place 
+              Date
+              Signature of the Applicant
+              </Text>
+        </View>
+
+        <View>
+          <Text>
+          CHECK LIST
+To be filled by the Applicant
+1. Self Attested Photograph affixing on the Application
+2. Self Attested Photograph of Plus Two Mark Sheet / Diploma Certificate
+3. Self Attested photocopy of All Semester Maarksheets(All Apperances) of qualifying Examination (Xeroxing both sides)
+4. Self Attested Photocopy of Degree or Provisional Cerificate
+5. Self Attested Photocopy of Transfer certificate.
+6. Self Attested Photocopy of permanent community card for SC,ST,SCA,MBC & DNC,BC,BCM.
+7. Self Attested Photocopy of TANCET 2020 Hall Ticket.
+8. Self Attested Photocopy of TANCET 2020 Mark Sheet.
+9. Self Attested Photocopy of TANCEt Nativity Certificate.
+10.District Medical Board Certificate (for differntly abled Persons Only).
+11.Sri Lankan Refugee Certificate - IF Applicable.
+          </Text>
+        </View> 
     </View>
-  </Page>
-  <Page>
-      <View>
-          <Text>Declaration By The Applicant</Text>
-      </View>
   </Page>
 </Document>
 )
