@@ -13,6 +13,13 @@ const User = require('../../models/User');
 //Load Img Model
 const Image = require('../../models/Image');
 
+// CORS Permission
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+
 
 router.post( '/imageupload', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
@@ -53,12 +60,13 @@ router.post( '/imageupload', passport.authenticate('jwt',
 });
 
 
+
 router.get('/userimage', 
  passport.authenticate('jwt', 
   { session: false }), async (req, res) => {
     request(
-      {url: 'https://mbamcatn.herokuapp.com/api/application/userimage'},
-      (error, response, body) =>{
+      { url: 'https://mbamcatn.herokuapp.com/api/application/userimage' },
+      (error, response, body) => {
         if (error || response.statusCode !== 200) {
           return res.status(500).json({ type: 'error', message: err.message });
         }
