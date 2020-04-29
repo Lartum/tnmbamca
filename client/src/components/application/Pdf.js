@@ -225,7 +225,7 @@ export default class Pdf extends React.Component {
 
     
 
-   const MyDoc1 = (imageURL) => ( 
+   const MyDoc1 = () => ( 
       <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
@@ -580,7 +580,7 @@ export default class Pdf extends React.Component {
               </View>
               <View style={styles.tableCol2}>
                 <Text style={styles.tableCell2}>
-                  {this.state.users.overalltot}
+                  {this.state.users.overallmarks}
                 </Text>
               </View>
             </View>
@@ -619,10 +619,10 @@ export default class Pdf extends React.Component {
             </View>
             <View style={styles.tableRow}>
               <View style={styles.tableCol5}>
-                <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
+                <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
               </View>
               <View style={styles.tableCol5}>
-                <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
+                <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
               </View>
               <View style={styles.tableCol5}>
                 <Text style={styles.tableCell2}>{this.state.users.totalpermark}</Text>
@@ -993,29 +993,7 @@ To be filled by the Applicant
               </Text>
             </View>
           </View>
-          <View style={styles.tableRow}>
-            <View style={styles.tableCol2}>
-              <Text style={styles.tableCell2}>VIII</Text>
-            </View>
-            <View style={styles.tableCol2}>
-              <Text style={styles.tableCell2}>
-                {" "}
-                {this.state.users.VIIIsemMonth}
-                {"  "}
-                {this.state.users.VIIIsemyop}
-              </Text>
-            </View>
-            <View style={styles.tableCol2}>
-              <Text style={styles.tableCell2}>
-                {this.state.users.VIIIsemmaxmarks}
-              </Text>
-            </View>
-            <View style={styles.tableCol2}>
-              <Text style={styles.tableCell2}>
-                {this.state.users.VIIIsemmarks}
-              </Text>
-            </View>
-          </View>
+
           <View style={styles.tableRow}>
             <View style={styles.tableCol3}>
               <Text style={styles.tableCell2}>Overall Total</Text>
@@ -1027,7 +1005,7 @@ To be filled by the Applicant
             </View>
             <View style={styles.tableCol2}>
               <Text style={styles.tableCell2}>
-                {this.state.users.overalltot}
+                {this.state.users.overallmarks}
               </Text>
             </View>
           </View>
@@ -1066,10 +1044,10 @@ To be filled by the Applicant
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCol5}>
-              <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
+              <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
             </View>
             <View style={styles.tableCol5}>
-              <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
+              <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
             </View>
             <View style={styles.tableCol5}>
               <Text style={styles.tableCell2}>{this.state.users.totalpermark}</Text>
@@ -1454,29 +1432,7 @@ To be filled by the Applicant
             </Text>
           </View>
         </View>
-        <View style={styles.tableRow}>
-          <View style={styles.tableCol2}>
-            <Text style={styles.tableCell2}>VIII</Text>
-          </View>
-          <View style={styles.tableCol2}>
-            <Text style={styles.tableCell2}>
-              {" "}
-              {this.state.users.VIIIsemMonth}
-              {"  "}
-              {this.state.users.VIIIsemyop}
-            </Text>
-          </View>
-          <View style={styles.tableCol2}>
-            <Text style={styles.tableCell2}>
-              {this.state.users.VIIIsemmaxmarks}
-            </Text>
-          </View>
-          <View style={styles.tableCol2}>
-            <Text style={styles.tableCell2}>
-              {this.state.users.VIIIsemmarks}
-            </Text>
-          </View>
-        </View>
+        
         <View style={styles.tableRow}>
           <View style={styles.tableCol3}>
             <Text style={styles.tableCell2}>Overall Total</Text>
@@ -1488,7 +1444,7 @@ To be filled by the Applicant
           </View>
           <View style={styles.tableCol2}>
             <Text style={styles.tableCell2}>
-              {this.state.users.overalltot}
+              {this.state.users.overallmarks}
             </Text>
           </View>
         </View>
