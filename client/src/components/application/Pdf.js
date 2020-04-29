@@ -1592,7 +1592,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc1 ={imageURL}/>} 
+           document={<MyDoc1 />} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
@@ -1603,7 +1603,7 @@ To be filled by the Applicant
           height: "100rem"
         }}
         >
-           <MyDoc1 ={imageURL}/>
+           <MyDoc1 />
         </PDFViewer>
         </div>
       )
@@ -1626,7 +1626,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc2 ={imageURL}/>} 
+           document={<MyDoc2 />} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
@@ -1660,7 +1660,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc3 ={imageURL}/>} 
+           document={<MyDoc3 />} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
