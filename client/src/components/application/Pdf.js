@@ -31,9 +31,12 @@ export default class Pdf extends React.Component {
       .then(res => {
       const image = res.data;
       this.setState({ image });
+      
     });
   }
   render() {
+    
+    
     const styles = StyleSheet.create({
       page: { backgroundColor: "white" },
       header: { textAlign: "center", margin: 30 },
@@ -224,7 +227,8 @@ export default class Pdf extends React.Component {
     });
 
     
-
+  
+   
    const MyDoc1 = () => ( 
       <Document>
       <Page size="A4" style={styles.page}>
@@ -239,7 +243,7 @@ export default class Pdf extends React.Component {
         <Image style={styles.logo} src={logo}></Image>
         <Image
           style={styles.photo}
-          src="https://uploadedfiles21.s3.ap-southeast-1.amazonaws.com/IMG-20190724-WA0008-1588150854045V%EF%BF%BD%EF%BF%BD%EF%BF%BD%D1%AC%EF%BF%BDi%EF%BF%BDE%0DnJ%EF%BF%BD%7FP%EF%BF%BD%EA%9A%AC%EF%BF%BD%5C%15LS%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BDN%09%EF%BF%BD%EF%BF%BD%EF%BF%BDKr%EF%BF%BD%1B5%EF%BF%BD%EF%BF%BD%EF%BF%BD%7B%EF%BF%BD%EF%BF%BD%EF%BF%BDS%EF%BF%BD%D4%AC%EF%BF%BD%EF%BF%BDB%2C%EF%BF%BD%2C%EF%BF%BDx%EF%BF%BD%EF%BF%BD%22-j%1D"
+          src={this.state.image.picture.imageData}
         />
         <View style={styles.left}>
           <Text style={styles.text}>
@@ -673,7 +677,7 @@ To be filled by the Applicant
 
    //2nd Document Choice
    
-   const MyDoc2 = () => ( 
+   const MyDoc2 = (props) => ( 
     <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
@@ -687,7 +691,7 @@ To be filled by the Applicant
       <Image style={styles.logo} src={logo}></Image>
       <Image
         style={styles.photo}
-        src="https://uploadedfiles21.s3-ap-southeast-1.amazonaws.com/IMG-20190724-WA0008-1587844135455"
+        src={this.state.image.picture.imageData}
       />
       <View style={styles.left}>
         <Text style={styles.text}>
@@ -1096,7 +1100,7 @@ To be filled by the Applicant
  )
 
 
- const MyDoc3 = () => (
+ const MyDoc3 = (props) => (
   <Document>
   <Page size="A4" style={styles.page}>
     <View style={styles.header}>
@@ -1110,7 +1114,7 @@ To be filled by the Applicant
     <Image style={styles.logo} src={logo}></Image>
     <Image
       style={styles.photo}
-      src='https://media.gettyimages.com/photos/alphabet-g-picture-id155159126?s=612x612'
+      src={this.state.image.picture.imageData}
       // {props}
     >
       </Image>
@@ -1571,7 +1575,7 @@ To be filled by the Applicant
 
     if (this.state.users !== null && this.state.image !== null) {
       const imageURL = this.state.image.picture.imageData;
-      console.log(imageURL);
+
       if(this.state.users.patternOfStudy === "10 + Plus Two + 3 Years Degree" ){
       return(
         <div>
@@ -1606,6 +1610,7 @@ To be filled by the Applicant
      }
 
      if(this.state.users.patternOfStudy === "10 + 3 Years Diploma + 3 Years Degree" ){
+       
       return(
         <div>
         <h1> {this.state.users.choice} Application No: {this.state.users.applicationno}</h1>
@@ -1621,7 +1626,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc2 />} 
+           document={<MyDoc2 props={imageURL}/>} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
@@ -1655,7 +1660,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc3 />} 
+           document={<MyDoc3 props={imageURL}/>} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
