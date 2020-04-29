@@ -114,7 +114,7 @@ export default class Step3 extends Component {
     return {
       nameOfCommunityVal: data.nameOfCommunity != 0,
       nameOfCasteVal: data.nameOfCaste != 0,
-      casteCodeVal: data.casteCode != 0,
+      // casteCodeVal: data.casteCode != 0,
       sriLankanRefugeeVal: data.sriLankanRefugee != 0,
       differentlyAbledVal: data.differentlyAbled != 0,
       qualifyingDegreeVal: data.qualifyingDegree != 0,
@@ -128,7 +128,7 @@ export default class Step3 extends Component {
     const errMsgs = {
       nameOfCommunityValMsg: val.nameOfCommunityVal ? "" : "* Field Required",
       nameOfCasteValMsg: val.nameOfCasteVal ? "" : "* Field Required",
-      casteCodeValMsg: val.casteCodeVal ? "" : "* Field Required",
+      // casteCodeValMsg: val.casteCodeVal ? "" : "* Field Required",
       sriLankanRefugeeValMsg: val.sriLankanRefugeeVal ? "" : "* Field Required",
       differentlyAbledValMsg: val.differentlyAbledVal ? "" : "* Field Required",
       qualifyingDegreeValMsg: val.qualifyingDegreeVal ? "" : "* Field Required",
@@ -233,15 +233,15 @@ export default class Step3 extends Component {
     }
 
     //castecode
-    if (
-      typeof this.state.casteCodeVal === "undefined" ||
-      this.state.casteCodeVal
-    ) {
-      notValidClasses.casteCodeCls = "no-error col-md-10";
-    } else {
-      notValidClasses.casteCodeCls = "has-error col-md-10";
-      notValidClasses.casteCodeValGrpCls = "val-err-tooltip";
-    }
+    // if (
+    //   typeof this.state.casteCodeVal === "undefined" ||
+    //   this.state.casteCodeVal
+    // ) {
+    //   notValidClasses.casteCodeCls = "no-error col-md-10";
+    // } else {
+    //   notValidClasses.casteCodeCls = "has-error col-md-10";
+    //   notValidClasses.casteCodeValGrpCls = "val-err-tooltip";
+    // }
 
     //sriLankanRefugee
     if (
