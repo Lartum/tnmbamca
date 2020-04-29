@@ -27,7 +27,7 @@ export default class Pdf extends React.Component {
       const users = res.data;
       this.setState({ users });
     });
-    axios.get("/api/application/userimage")
+    axios.get("https://cors-anywhere.herokuapp.com/https://mbamcatn.herokuapp.com/api/application/userimage")
       .then(res => {
       const image = res.data;
       this.setState({ image });

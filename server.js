@@ -18,12 +18,6 @@ app.use(bodyParser.json());
 
 app.use(methodOverride('_method'));
 
-// CORS Permission
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
-
 // DB Config
 const db = require('./config/keys').mongoURI;
 
@@ -58,6 +52,15 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
+
+
+// cors_proxy.createServer({
+//     originWhitelist: [], // Allow all origins
+//     requireHeader: ['origin', 'x-requested-with'],
+//     removeHeaders: ['cookie', 'cookie2']
+// }).listen(port, host, function() {
+//     console.log('Running CORS Anywhere on ' + host + ':' + port);
+// });
 
 const port = process.env.PORT || 5000;
 
