@@ -225,7 +225,7 @@ export default class Pdf extends React.Component {
 
     
 
-   const MyDoc1 = (props) => ( 
+   const MyDoc1 = () => ( 
       <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
@@ -239,7 +239,7 @@ export default class Pdf extends React.Component {
         <Image style={styles.logo} src={logo}></Image>
         <Image
           style={styles.photo}
-          src={props}
+          src="https://media.gettyimages.com/photos/alphabet-g-picture-id155159126?s=612x612"
         />
         <View style={styles.left}>
           <Text style={styles.text}>
@@ -400,17 +400,17 @@ export default class Pdf extends React.Component {
             Examinations
           </Text>
           <Text style={styles.text_indent}>
-            (a) UG Degree  {this.state.users.ugDegree}
+            (a) UG Degree:  {this.state.users.ugDegree}
           </Text>
           <Text style={styles.text_indent}>
-            (b) Name of the College with Address {" "}
+            (b) Name of the College with Address: {" "}
             {this.state.users.collegeName}
             {"  "}
             {this.state.users.collegeAddress}
           </Text>
 
           <Text style={styles.text_indent}>
-            (c) Name of the University {" "}
+            (c) Name of the University: {" "}
             {this.state.users.universityAddress}
           </Text>
           <View style={styles.table}>
@@ -673,7 +673,7 @@ To be filled by the Applicant
 
    //2nd Document Choice
    
-   const MyDoc2 = (props) => ( 
+   const MyDoc2 = () => ( 
     <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
@@ -687,7 +687,7 @@ To be filled by the Applicant
       <Image style={styles.logo} src={logo}></Image>
       <Image
         style={styles.photo}
-        src={props}
+        src="https://uploadedfiles21.s3-ap-southeast-1.amazonaws.com/IMG-20190724-WA0008-1587844135455"
       />
       <View style={styles.left}>
         <Text style={styles.text}>
@@ -848,17 +848,17 @@ To be filled by the Applicant
           Examinations
         </Text>
         <Text style={styles.text_indent}>
-          (a) UG Degree  {this.state.users.ugDegree}
+          (a) UG Degree:  {this.state.users.ugDegree}
         </Text>
         <Text style={styles.text_indent}>
-          (b) Name of the College with Address {" "}
+          (b) Name of the College with Address: {" "}
           {this.state.users.collegeName}
           {"  "}
           {this.state.users.collegeAddress}
         </Text>
 
         <Text style={styles.text_indent}>
-          (c) Name of the University {" "}
+          (c) Name of the University: {" "}
           {this.state.users.universityAddress}
         </Text>
         <View style={styles.table}>
@@ -1086,7 +1086,7 @@ To be filled by the Applicant
  )
 
 
- const MyDoc3 = (props) => (
+ const MyDoc3 = () => (
   <Document>
   <Page size="A4" style={styles.page}>
     <View style={styles.header}>
@@ -1100,9 +1100,10 @@ To be filled by the Applicant
     <Image style={styles.logo} src={logo}></Image>
     <Image
       style={styles.photo}
-      src="https://uploadedfiles21.s3.ap-southeast-1.amazonaws.com/IMG-20190724-WA0008-1588100231138.jpg"
+      src='https://media.gettyimages.com/photos/alphabet-g-picture-id155159126?s=612x612'
       // {props}
-    />
+    >
+      </Image>
     <View style={styles.left}>
       <Text style={styles.text}>
         1.{"     "} TANCENT {new Date().getFullYear()} Registration Number
@@ -1262,17 +1263,17 @@ To be filled by the Applicant
         Examinations
       </Text>
       <Text style={styles.text_indent}>
-        (a) UG Degree  {this.state.users.ugDegree}
+        (a) UG Degree:  {this.state.users.ugDegree}
       </Text>
       <Text style={styles.text_indent}>
-        (b) Name of the College with Address {" "}
+        (b) Name of the College with Address: {" "}
         {this.state.users.collegeName}
         {"  "}
         {this.state.users.collegeAddress}
       </Text>
 
       <Text style={styles.text_indent}>
-        (c) Name of the University {" "}
+        (c) Name of the University: {" "}
         {this.state.users.universityAddress}
       </Text>
       <View style={styles.table}>
@@ -1570,7 +1571,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc1 props={imageURL} />} 
+           document={<MyDoc1 />} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
@@ -1581,7 +1582,7 @@ To be filled by the Applicant
           height: "100rem"
         }}
         >
-           <MyDoc1 props={imageURL}/>
+           <MyDoc1 />
         </PDFViewer>
         </div>
       )
@@ -1603,7 +1604,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc2 props={imageURL}/>} 
+           document={<MyDoc2 />} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
@@ -1614,7 +1615,7 @@ To be filled by the Applicant
           height: "100rem"
         }}
         >
-           <MyDoc2 props={imageURL}/>
+           <MyDoc2 />
         </PDFViewer>
         </div>
       )
@@ -1637,7 +1638,7 @@ To be filled by the Applicant
             fontSize: "20px",
             width: "100%"
            }}
-           document={<MyDoc3 props={imageURL}/>} 
+           document={<MyDoc3 />} 
            fileName="fee_acceptance.pdf">
            {({ blob, url, loading, error }) => 
           (loading ? 'Loading document...' : 'Download')}
@@ -1648,7 +1649,7 @@ To be filled by the Applicant
           height: "100rem"
         }}
         >
-           <MyDoc3 props={imageURL}/>
+           <MyDoc3/>
         </PDFViewer>
         </div>
       )
