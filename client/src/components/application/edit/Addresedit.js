@@ -146,10 +146,6 @@ export default class Addresedit extends Component {
                   <label for="telephoneno">
                     Telephone No
                   </label>
-                  <div
-                    className={notValidClasses.telephonenoCls}
-                    className="error_color"
-                  >
                     <input
                       name="telephoneno"
                       autoComplete="off"
@@ -157,10 +153,6 @@ export default class Addresedit extends Component {
                       className="form-control"
                       defaultValue={this.state.telephoneno}
                     />
-                    <div className={notValidClasses.telephonenoValGrpCls}>
-                      {this.state.telephonenoValMsg}
-                    </div>
-                  </div>
                 </FormGroup>
               </Col>
             </Row>
@@ -170,10 +162,6 @@ export default class Addresedit extends Component {
                   <label for="email">
                     Email
                   </label>
-                  <div
-                    className={notValidClasses.emailCls}
-                    className="error_color"
-                  >
                     <input
                       name="email"
                       autoComplete="off"
@@ -183,10 +171,6 @@ export default class Addresedit extends Component {
                       required
                       defaultValue={this.state.email}
                     />
-                    <div className={notValidClasses.emailValGrpCls}>
-                      {this.state.emailValMsg}
-                    </div>
-                  </div>
                 </FormGroup>
               </Col>
             </Row>
