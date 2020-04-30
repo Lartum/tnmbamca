@@ -346,8 +346,8 @@ export default class Step5 extends Component {
     return (
       <div className="step step5">
         <Card>
-          <CardHeader>
-            Details of Marks in UG Degree Qualifying Examinations
+          <CardHeader style={{textAlign:'center', color:'limegreen'}}>
+           <h3> Details of Marks in UG Degree Qualifying Examinations</h3>
           </CardHeader>
           <CardBody>
             <Row form>
@@ -479,8 +479,18 @@ export default class Step5 extends Component {
                 </FormGroup>
               </Col>
             </Row>
+            <Card>
+              <CardHeader>
+              <p style={{textAlign:"center",color:"red"}} className=""><span style={{color:'gold'}}>Attention </span>: Add 0 To The Marks Field If No Marks Available</p>
+              </CardHeader>
+            </Card>
+            
             <Table bordered>
+           
               <thead>
+                <tr>
+                  
+                </tr>
                 <tr>
                   <th>Semester/Year</th>
                   <th>Month</th>

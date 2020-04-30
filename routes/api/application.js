@@ -242,6 +242,7 @@ router.post('/basicedit', passport.authenticate('jwt',
 
       application.save();
 
+      return res.redirect("https://mbamcatn.herokuapp.com/viewapplication")
       const successredirect = {
         redirect: '/edit'
       }

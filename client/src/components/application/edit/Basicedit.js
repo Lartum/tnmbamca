@@ -12,18 +12,21 @@ import {
 import Axios from 'axios';
 
 export default class Basicedit extends Component {
+ constructor(){
+   super()
+   this.state = {
+    nameOfParent:'',
+    gender:'',
+    dateOfBirth:'',
+    citizenship:'',
+    nativity:'',
+    placeOfBirth:'',
+    religion:'',
+    motherTongue:'',
+  };
 
-    state = {
-        nameOfParent:'',
-        gender:'',
-        dateOfBirth:'',
-        citizenship:'',
-        nativity:'',
-        placeOfBirth:'',
-        religion:'',
-        motherTongue:'',
-    };
-
+ }
+   
 
     componentDidMount(){
       
@@ -63,7 +66,7 @@ export default class Basicedit extends Component {
         return (
         <form onSubmit={this.handleOnSubmit}>      
         <Card>
-          <CardHeader className="userdashboard">Basic Details</CardHeader>
+          <CardHeader><h3 style={{textAlign:"center",color:'red'}}>BASIC DETAILS</h3></CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>

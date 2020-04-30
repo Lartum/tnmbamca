@@ -84,9 +84,14 @@ export default class Viewapplication extends Component {
          )
        } 
        if(this.state.users !== null){
-        let table;
-       
-         table = <p>Helllo world</p>
+        let table = <p>Helllo world</p>
+         
+        if(this.state.users === "10 + Plus Two + 3 Years Degree"){
+          table= <p>Hello people</p>
+        }
+        else if(this.state.users === "10 + 3 Years Diploma + 3 Years Degree"){
+
+        }
         
 
         return (

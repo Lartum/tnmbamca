@@ -1595,8 +1595,6 @@ To be filled by the Applicant
 
 
     if (this.state.users !== null && this.state.image !== null) {
-      const imageURL = this.state.image.picture.imageData;
-
       if(this.state.users.patternOfStudy === "10 + Plus Two + 3 Years Degree" ){
       return(
         <div>
