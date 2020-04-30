@@ -434,7 +434,6 @@ export default class Pdf extends React.Component {
                 <Text style={styles.tableCellHeader}>Marks Obtained</Text>
               </View>
             </View>
-            {this.state.users === ""}
             <View style={styles.tableRow}>
               <View style={styles.tableCol2}>
                 <Text style={styles.tableCell2}>I</Text>
@@ -695,16 +694,16 @@ To be filled by the Applicant
       />
       <View style={styles.left}>
         <Text style={styles.text}>
-          1.{"     "} TANCET {new Date().getFullYear()} Registration Number
+        {""}1.{""} TANCET 2020 Registration Number
         </Text>
-        <Text>2.{"     "} Name</Text>
-        <Text>3.{"     "} Name of Parent/Guardian </Text>
-        <Text>4.{"     "} Address for Communication </Text>
-        <Text>5.{"     "} Email Id</Text>
-        <Text>6.{"     "} Contact Telephone No</Text>
-        <Text>7.{"     "} Mobile No</Text>
-        <Text>8.{"     "} Sex</Text>
-        <Text>9.{"     "} Citizenship</Text>
+        <Text>{""}2.{""}Name</Text>
+        <Text>3.{""} Name of Parent/Guardian </Text>
+        <Text>4.{""} Address for Communication </Text>
+        <Text>5.{""} Email Id</Text>
+        <Text>6.{""} Contact Telephone No</Text>
+        <Text>7.{""} Mobile No</Text>
+        <Text>8.{""} Sex</Text>
+        <Text>9.{""} Citizenship</Text>
         <Text>10.{"   "} Nativity</Text>
         <Text>11.{"   "} Srilankan Tamil Refugee</Text>
         <Text>12.{"   "} Place of Birth</Text>
@@ -715,10 +714,10 @@ To be filled by the Applicant
         <Text>17.{"   "} Religion</Text>
         <Text>18.{"   "} Name of the Caste</Text>
         <Text>19.{"   "} Differently abled Quota  </Text>
-        <Text>20.{"   "} Qualifying Degree : </Text>
-        <Text>21.{"   "} Pattern of Studied : </Text>
+        <Text>20.{"   "} Qualifying Degree  </Text>
+        <Text>21.{"   "} Pattern of Study  </Text>
         <Text>22.{"   "} Appearance in the Final Year Exam  </Text>
-        <Text>23.{"   "} TANCET Marks in {new Date().getFullYear()} : </Text>
+        <Text>23.{"   "} TANCET Marks in {new Date().getFullYear()}  </Text>
         <Text>24.{"   "} School/College Study information </Text>
         <View style={styles.table}>
           <View style={styles.tableRow}>
@@ -763,13 +762,13 @@ To be filled by the Applicant
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
-                {this.state.users.Xstate}
+              {this.state.users.Xstate}
               </Text>
             </View>
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCol}>
-              <Text style={styles.tableCell}>Diploma</Text>
+              <Text style={styles.tableCell}>XII/Diploma</Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
@@ -783,7 +782,7 @@ To be filled by the Applicant
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
-                 {this.state.users.XIIdistrict}
+              {this.state.users.XIIdistrict}
               </Text>
             </View>
             <View style={styles.tableCol}>
@@ -884,6 +883,52 @@ To be filled by the Applicant
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCol2}>
+              <Text style={styles.tableCell2}>I</Text>
+            </View>
+            <View style={styles.tableCol2}>
+              <Text style={styles.tableCell2}>
+                {" "}
+                {this.state.users.IsemMonth}
+                {"  "}
+                {this.state.users.Isemyop}
+              </Text>
+            </View>
+            <View style={styles.tableCol2}>
+              <Text style={styles.tableCell2}>
+                {this.state.users.Isemmaxmarks}
+              </Text>
+            </View>
+            <View style={styles.tableCol2}>
+              <Text style={styles.tableCell2}>
+                {this.state.users.Isemmarks}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={styles.tableCol2}>
+              <Text style={styles.tableCell2}>II</Text>
+            </View>
+            <View style={styles.tableCol2}>
+              <Text style={styles.tableCell2}>
+                {" "}
+                {this.state.users.IIsemMonth}
+                {"  "}
+                {this.state.users.IIsemyop}
+              </Text>
+            </View>
+            <View style={styles.tableCol2}>
+              <Text style={styles.tableCell2}>
+                {this.state.users.IIsemmaxmarks}
+              </Text>
+            </View>
+            <View style={styles.tableCol2}>
+              <Text style={styles.tableCell2}>
+                {this.state.users.IIsemmarks}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.tableRow}>
+            <View style={styles.tableCol2}>
               <Text style={styles.tableCell2}>III</Text>
             </View>
             <View style={styles.tableCol2}>
@@ -975,30 +1020,6 @@ To be filled by the Applicant
             </View>
           </View>
           <View style={styles.tableRow}>
-            <View style={styles.tableCol2}>
-              <Text style={styles.tableCell2}>VII</Text>
-            </View>
-            <View style={styles.tableCol2}>
-              <Text style={styles.tableCell2}>
-                {" "}
-                {this.state.users.VIIsemMonth}
-                {"  "}
-                {this.state.users.VIIsemyop}
-              </Text>
-            </View>
-            <View style={styles.tableCol2}>
-              <Text style={styles.tableCell2}>
-                {this.state.users.VIIsemmaxmarks}
-              </Text>
-            </View>
-            <View style={styles.tableCol2}>
-              <Text style={styles.tableCell2}>
-                {this.state.users.VIIsemmarks}
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.tableRow}>
             <View style={styles.tableCol3}>
               <Text style={styles.tableCell2}>Overall Total</Text>
             </View>
@@ -1057,27 +1078,28 @@ To be filled by the Applicant
               <Text style={styles.tableCell2}>{this.state.users.totalpermark}</Text>
             </View>
           </View>
+          
         </View>
         <View style={styles.subheader}>
-            <Text>Declaration By The Applicant</Text>
-        </View>
-        <View style={styles.declarationPara}>
-            <Text>
-              All the information furnished prepage are true to the best of my knowledge. 
-              I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid
-              I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.
-              I have studied BAchelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.
-              I have not studied B.E / B.Tech Degree through distance / week end mode.
-              I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.
-              Place 
-              Date
-              Signature of the Applicant
-              </Text>
-        </View>
-
-        <View>
+          <Text>Declaration By The Applicant</Text>
+      </View>
+      <View style={styles.declarationPara}>
           <Text>
-          CHECK LIST
+            All the information furnished prepage are true to the best of my knowledge. 
+            I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid
+            I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.
+            I have studied BAchelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.
+            I have not studied B.E / B.Tech Degree through distance / week end mode.
+            I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.
+            Place 
+            Date
+            Signature of the Applicant
+            </Text>
+      </View>
+
+      <View>
+        <Text>
+        CHECK LIST
 To be filled by the Applicant
 1. Self Attested Photograph affixing on the Application
 2. Self Attested Photograph of Plus Two Mark Sheet / Diploma Certificate
@@ -1090,12 +1112,12 @@ To be filled by the Applicant
 9. Self Attested Photocopy of TANCEt Nativity Certificate.
 10.District Medical Board Certificate (for differntly abled Persons Only).
 11.Sri Lankan Refugee Certificate - IF Applicable.
-          </Text>
-        </View>
+        </Text>
       </View>
-       
+      </View>
+     
     </Page>
-   
+    
   </Document>
  )
 
@@ -1115,7 +1137,6 @@ To be filled by the Applicant
     <Image
       style={styles.photo}
       src={this.state.image.picture.imageData}
-      // {}
     >
       </Image>
     <View style={styles.left}>
@@ -1288,7 +1309,7 @@ To be filled by the Applicant
 
       <Text style={styles.text_indent}>
         (c) Name of the University: {" "}
-        {this.state.users.universityName}{"     "}{this.state.users.universityAddress}
+        {this.state.users.universityName,this.state.users.universityAddress}{"     "}{}
       </Text>
       <View style={styles.table}>
         <View style={styles.tableRow}>
