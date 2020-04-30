@@ -247,7 +247,7 @@ export default class Pdf extends React.Component {
         />
         <View style={styles.left}>
           <Text style={styles.text}>
-          {""}1.{""} TANCENT 2020 Registration Number
+          {""}1.{""} TANCET 2020 Registration Number
           </Text>
           <Text>{""}2.{""}Name</Text>
           <Text>3.{""} Name of Parent/Guardian </Text>
@@ -310,12 +310,12 @@ export default class Pdf extends React.Component {
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>
-                  {this.state.users.Xstate}
+                {this.state.users.Xdistrict}
                 </Text>
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>
-                  {this.state.users.Xdistrict}
+                {this.state.users.Xstate}
                 </Text>
               </View>
             </View>
@@ -335,12 +335,12 @@ export default class Pdf extends React.Component {
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>
-                  {this.state.users.XIIstate}
+                {this.state.users.XIIdistrict}
                 </Text>
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>
-                  {this.state.users.XIIdistrict}
+                  {this.state.users.XIIstate}
                 </Text>
               </View>
             </View>
@@ -360,12 +360,12 @@ export default class Pdf extends React.Component {
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>
-                  {this.state.users.degreeState}
+                {this.state.users.degreeDistrict}
                 </Text>
               </View>
               <View style={styles.tableCol}>
                 <Text style={styles.tableCell}>
-                  {this.state.users.degreeDistrict}
+                  {this.state.users.degreeState}
                 </Text>
               </View>
             </View>
@@ -415,7 +415,7 @@ export default class Pdf extends React.Component {
 
           <Text style={styles.text_indent}>
             (c) Name of the University: {" "}
-            {this.state.users.universityName}
+            {this.state.users.universityName}{"     "}{this.state.users.universityAddress}
           </Text>
           <View style={styles.table}>
             <View style={styles.tableRow}>
@@ -623,10 +623,10 @@ export default class Pdf extends React.Component {
             </View>
             <View style={styles.tableRow}>
               <View style={styles.tableCol5}>
-                <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
+                <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
               </View>
               <View style={styles.tableCol5}>
-                <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
+                <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
               </View>
               <View style={styles.tableCol5}>
                 <Text style={styles.tableCell2}>{this.state.users.totalpermark}</Text>
@@ -758,12 +758,12 @@ To be filled by the Applicant
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
-                {this.state.users.Xstate}
+              {this.state.users.Xdistrict}
               </Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
-                {this.state.users.Xdistrict}
+                {this.state.users.Xstate}
               </Text>
             </View>
           </View>
@@ -783,12 +783,12 @@ To be filled by the Applicant
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
-                {this.state.users.XIIstate}
+                 {this.state.users.XIIdistrict}
               </Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
-                {this.state.users.XIIdistrict}
+                {this.state.users.XIIstate}
               </Text>
             </View>
           </View>
@@ -808,12 +808,12 @@ To be filled by the Applicant
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
-                {this.state.users.degreeState}
+              {this.state.users.degreeDistrict}
               </Text>
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableCell}>
-                {this.state.users.degreeDistrict}
+                {this.state.users.degreeState}
               </Text>
             </View>
           </View>
@@ -863,7 +863,7 @@ To be filled by the Applicant
 
         <Text style={styles.text_indent}>
           (c) Name of the University: {" "}
-          {this.state.users.universityName}
+          {this.state.users.universityName}{"     "}{this.state.users.universityAddress}
         </Text>
         <View style={styles.table}>
           <View style={styles.tableRow}>
@@ -1048,10 +1048,10 @@ To be filled by the Applicant
           </View>
           <View style={styles.tableRow}>
             <View style={styles.tableCol5}>
-              <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
+              <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
             </View>
             <View style={styles.tableCol5}>
-              <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
+              <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
             </View>
             <View style={styles.tableCol5}>
               <Text style={styles.tableCell2}>{this.state.users.totalpermark}</Text>
@@ -1120,7 +1120,7 @@ To be filled by the Applicant
       </Image>
     <View style={styles.left}>
       <Text style={styles.text}>
-        1.{"     "} TANCENT {new Date().getFullYear()} Registration Number
+        1.{"     "} TANCET {new Date().getFullYear()} Registration Number
       </Text>
       <Text>2.{"     "} Name</Text>
       <Text>3.{"     "} Name of Parent/Guardian </Text>
@@ -1143,7 +1143,7 @@ To be filled by the Applicant
       <Text>20.{"   "} Qualifying Degree : </Text>
       <Text>21.{"   "} Pattern of Studied : </Text>
       <Text>22.{"   "} Appearance in the Final Year Exam  </Text>
-      <Text>23.{"   "} TANCENT Marks in {new Date().getFullYear()} : </Text>
+      <Text>23.{"   "} TANCET Marks in {new Date().getFullYear()} : </Text>
       <Text>24.{"   "} School/College Study information </Text>
       <View style={styles.table}>
         <View style={styles.tableRow}>
@@ -1183,12 +1183,12 @@ To be filled by the Applicant
           </View>
           <View style={styles.tableCol}>
             <Text style={styles.tableCell}>
-              {this.state.users.Xstate}
+            {this.state.users.Xdistrict}
             </Text>
           </View>
           <View style={styles.tableCol}>
             <Text style={styles.tableCell}>
-              {this.state.users.Xdistrict}
+              {this.state.users.Xstate}
             </Text>
           </View>
         </View>
@@ -1208,12 +1208,12 @@ To be filled by the Applicant
           </View>
           <View style={styles.tableCol}>
             <Text style={styles.tableCell}>
-              {this.state.users.XIIstate}
+            {this.state.users.XIIdistrict}
             </Text>
           </View>
           <View style={styles.tableCol}>
             <Text style={styles.tableCell}>
-              {this.state.users.XIIdistrict}
+              {this.state.users.XIIstate}
             </Text>
           </View>
         </View>
@@ -1233,12 +1233,12 @@ To be filled by the Applicant
           </View>
           <View style={styles.tableCol}>
             <Text style={styles.tableCell}>
-              {this.state.users.degreeState}
+            {this.state.users.degreeDistrict}
             </Text>
           </View>
           <View style={styles.tableCol}>
-            <Text style={styles.tableCell}>
-              {this.state.users.degreeDistrict}
+            <Text style={styles.tableCell}>       
+              {this.state.users.degreeState}
             </Text>
           </View>
         </View>
@@ -1288,7 +1288,7 @@ To be filled by the Applicant
 
       <Text style={styles.text_indent}>
         (c) Name of the University: {" "}
-        {this.state.users.universityName}
+        {this.state.users.universityName}{"     "}{this.state.users.universityAddress}
       </Text>
       <View style={styles.table}>
         <View style={styles.tableRow}>
@@ -1519,10 +1519,10 @@ To be filled by the Applicant
         </View>
         <View style={styles.tableRow}>
           <View style={styles.tableCol5}>
-            <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
+            <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
           </View>
           <View style={styles.tableCol5}>
-            <Text style={styles.tableCell2}>{this.state.users.overallmarks}</Text>
+            <Text style={styles.tableCell2}>{this.state.users.overalltot}</Text>
           </View>
           <View style={styles.tableCol5}>
             <Text style={styles.tableCell2}>{this.state.users.totalpermark}</Text>
