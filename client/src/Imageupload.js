@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import $ from 'jquery';
+import $ from 'jquery'
 import Loading from './components/common/Loading';
 
 export default class Imageupload extends Component {

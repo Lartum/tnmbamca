@@ -6,7 +6,7 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
 import Step6 from "./Step6";
-import Loading from '../common/Loading';
+import Loading from "../common/Loading";
 import Axios from "axios";
 // import Step7 from "./Step7";
 // import Step8 from "./Step8";
@@ -14,26 +14,25 @@ import Axios from "axios";
 // import Step10 from "./Step10";
 import "./css/main.css";
 
-
 export default class Application extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users:null
+      users: null,
     };
 
     this.sampleStore = {
       email: "",
       gender: "",
-      regno: '',
+      regno: "",
       name: "",
       district: "",
       address: "",
-      State: "",  
-      pincode:'',
+      State: "",
+      pincode: "",
       nameOfParent: "",
       dateOfBirth: "",
-      nativity:'',
+      nativity: "",
       citizenship: "",
       placeOfBirth: "",
       religion: "",
@@ -110,19 +109,18 @@ export default class Application extends Component {
       overallmarks: 0,
       totalpermark: 0,
 
-      previewImage:'',
-      savedToCloud: false
+      previewImage: "",
+      savedToCloud: false,
     };
   }
 
   componentDidMount() {
-    Axios.get('/api/users/current')
-      .then(res =>{
-       const users = res.data;
-       this.setState({users});
-      })
+    Axios.get("/api/users/current").then((res) => {
+      const users = res.data;
+      this.setState({ users });
+    });
   }
-  
+
   componentWillUnmount() {}
 
   getStore() {
@@ -132,78 +130,78 @@ export default class Application extends Component {
   updateStore(update) {
     this.sampleStore = {
       ...this.sampleStore,
-      ...update
+      ...update,
     };
   }
 
   render() {
     const steps = [
-      {
-        name: "Step1",
-        component: (
-          <Step1
-            getStore={() => this.getStore()}
-            updateStore={u => {
-              this.updateStore(u);
-            }}
-          />
-        )
-      },
-      {
-        name: "Step2",
-        component: (
-          <Step2
-            getStore={() => this.getStore()}
-            updateStore={u => {
-              this.updateStore(u);
-            }}
-          />
-        )
-      },
+      // {
+      //   name: "Step1",
+      //   component: (
+      //     <Step1
+      //       getStore={() => this.getStore()}
+      //       updateStore={u => {
+      //         this.updateStore(u);
+      //       }}
+      //     />
+      //   )
+      // },
+      // {
+      //   name: "Step2",
+      //   component: (
+      //     <Step2
+      //       getStore={() => this.getStore()}
+      //       updateStore={u => {
+      //         this.updateStore(u);
+      //       }}
+      //     />
+      //   )
+      // },
       {
         name: "Step3",
         component: (
           <Step3
             getStore={() => this.getStore()}
-            updateStore={u => {
+            updateStore={(u) => {
               this.updateStore(u);
             }}
           />
-        )
+        ),
       },
       {
         name: "step4",
         component: (
           <Step4
             getStore={() => this.getStore()}
-            updateStore={u => {
+            updateStore={(u) => {
               this.updateStore(u);
             }}
           />
-        )
+        ),
       },
       {
         name: "Step5",
         component: (
           <Step5
             getStore={() => this.getStore()}
-            updateStore={u => {
+            updateStore={(u) => {
               this.updateStore(u);
             }}
           />
-        )
+        ),
       },
       {
         name: "Step6",
         component: (
           <Step6
             getStore={() => this.getStore()}
-            updateStore={u => {
+            updateStore={(u) => {
               this.updateStore(u);
             }}
           />
-        )
-      }
+        ),
+      },
       // {
       //   name: "Step7",
       //   component: (
@@ -249,38 +247,38 @@ export default class Application extends Component {
       //   )
       // }
     ];
-    if(this.state.users === null){
-      return(
-       <Loading />
-      )
+    if (this.state.users === null) {
+      return <Loading />;
     }
-    if(this.state.users !== null){
-    this.sampleStore.regno = this.state.users.regno;
-    this.sampleStore.name = this.state.users.name;
-    this.sampleStore.email = this.state.users.email;
-    this.sampleStore.mobileno = this.state.users.phonenumber;
-    this.sampleStore.tancentMarks = this.state.users.tancentmarks;
-    this.sampleStore.tancentMarks = this.state.users.tancentmarks;
-    
-    return (
-      <div className="example">
-        <div className="step-progress">
-          <StepZilla
-            className="multi-step"
-            steps={steps}
-            preventEnterSubmission={true}
-            nextTextOnFinalActionStep={"Review Details"}
-            hocValidationAppliedTo={[6]}
-            startAtStep={
-              window.sessionStorage.getItem("step")
-                ? parseFloat(window.sessionStorage.getItem("step"))
-                : 0
-            }
-            onStepChange={step => window.sessionStorage.setItem("step", step)}
-          />
+    if (this.state.users !== null) {
+      this.sampleStore.regno = this.state.users.regno;
+      this.sampleStore.name = this.state.users.name;
+      this.sampleStore.email = this.state.users.email;
+      this.sampleStore.mobileno = this.state.users.phonenumber;
+      this.sampleStore.tancentMarks = this.state.users.tancentmarks;
+      this.sampleStore.tancentMarks = this.state.users.tancentmarks;
+
+      return (
+        <div className="example">
+          <div className="step-progress">
+            <StepZilla
+              className="multi-step"
+              steps={steps}
+              preventEnterSubmission={true}
+              nextTextOnFinalActionStep={"Review Details"}
+              hocValidationAppliedTo={[6]}
+              startAtStep={
+                window.sessionStorage.getItem("step")
+                  ? parseFloat(window.sessionStorage.getItem("step"))
+                  : 0
+              }
+              onStepChange={(step) =>
+                window.sessionStorage.setItem("step", step)
+              }
+            />
+          </div>
         </div>
-      </div>
-    );
+      );
     }
   }
 }

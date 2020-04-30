@@ -1,14 +1,22 @@
 import React, { Component } from "react";
-import { Col, Row, FormGroup, Card, CardHeader, CardBody, Table } from "reactstrap";
+import {
+  Col,
+  Row,
+  FormGroup,
+  Card,
+  CardHeader,
+  CardBody,
+  Table,
+} from "reactstrap";
 
-const Choice1 = (props) =>{
-    <div className="step step4">
+const Choice1 = (props) => {
+  <div className="step step4">
     <Card>
       <CardHeader>
         Details of Marks in UG Degree Qualifying Examinations
       </CardHeader>
       <CardBody>
-        <Row form>  
+        <Row form>
           <Col md={6}>
             <FormGroup>
               <label for="ugDegree">
@@ -83,8 +91,7 @@ const Choice1 = (props) =>{
           <Col md={6}>
             <FormGroup>
               <label for="nameOfUniversity">
-                <span className="asterix_color">*</span>Name Of The
-                University
+                <span className="asterix_color">*</span>Name Of The University
               </label>
               <div
                 className={notValidClasses.nameOfUniversityCls}
@@ -749,7 +756,7 @@ const Choice1 = (props) =>{
         </Table>
       </CardBody>
     </Card>
-  </div>
-}
+  </div>;
+};
 
 export default Choice1;
