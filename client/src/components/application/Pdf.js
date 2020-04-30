@@ -691,7 +691,7 @@ export default class Pdf extends React.Component {
               APPLICATION FORM FOR ADMISSION TO {this.state.users.choice} COURSE
             </Text>
           </View>
-          {/* <Text> {this.GenerateCustomLayout()}</Text> */}
+          <Text> {this.GenerateCustomLayout()}</Text>
           <View style={styles.right}>
             <Text>Application Number : {this.state.users.applicationno} </Text>
           </View>

@@ -524,7 +524,7 @@ router.post('/register', (req, res) => {
 
 
             }
-            //If the user is not the first applicant
+            //If the user is not the first applicant for MCA
             else {
               var tancentmarks = tancent.mcamarks;
               tancentmarks = parseFloat(tancentmarks);

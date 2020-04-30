@@ -160,13 +160,13 @@ export default class Step5 extends Component {
                   <td name="address">{`${this.props.getStore().address}`}</td>
                 </tr>
                 <tr>
-                  <th scope="row">State:</th>
-                  <td name="State">{`${this.props.getStore().State}`}</td>
-                </tr>
-                <tr>
                   <th scope="row">District:</th>
                   <td name="district">{`${this.props.getStore().district}`}</td>
                 </tr>
+                <tr>
+                  <th scope="row">State:</th>
+                  <td name="State">{`${this.props.getStore().State}`}</td>
+                </tr>  
                 <tr>
                   <th scope="row">Pin Code:</th>
                   <td name="pincode">{`${this.props.getStore().pincode}`}</td>
@@ -286,24 +286,25 @@ export default class Step5 extends Component {
                   <th>Class/Degree</th>
                   <th>Year Of Passing</th>
                   <th>Name Of School/College</th>
-                  <th>State</th>
                   <th>District</th>
+                  <th>State</th>
                 </tr>
               </thead>
               <tbody>
                 {" "}
                 <tr>
                   <th scope="row">X</th>
-                  <td name="XIyearOfPassing">{`${
+                  <td name="XyearOfPassing">{`${
                     this.props.getStore().XyearOfPassing
                   }`}</td>
-                  <td name="XInameOfSchool">{`${
+                  <td name="XnameOfSchool">{`${
                     this.props.getStore().XnameOfSchool
                   }`}</td>
-                  <td name="XIstate">{`${this.props.getStore().Xstate}`}</td>
-                  <td name="XIdistrict">{`${
+                  <td name="Xdistrict">{`${
                     this.props.getStore().Xdistrict
                   }`}</td>
+                  <td name="Xstate">{`${this.props.getStore().Xstate}`}</td>
+                  
                 </tr>
                 <tr>
                   <th scope="row">XII</th>
@@ -313,10 +314,9 @@ export default class Step5 extends Component {
                   <td name="XIInameOfSchool">{`${
                     this.props.getStore().XIInameOfSchool
                   }`}</td>
+                  <td name="XIIdistrict">{`${this.props.getStore().XIIdistrict}`}</td>
                   <td name="XIIstate">{`${this.props.getStore().XIIstate}`}</td>
-                  <td name="XIIdistrict">{`${
-                    this.props.getStore().XIIdistrict
-                  }`}</td>
+                  
                 </tr>
                 <tr>
                   <th scope="row">Degree</th>
@@ -326,12 +326,13 @@ export default class Step5 extends Component {
                   <td name="degreeNameOfSchool">{`${
                     this.props.getStore().degreeNameOfSchool
                   }`}</td>
-                  <td name="degreeState">{`${
-                    this.props.getStore().degreeState
-                  }`}</td>
                   <td name="degreeDistrict">{`${
                     this.props.getStore().degreeDistrict
                   }`}</td>
+                  <td name="degreeState">{`${
+                    this.props.getStore().degreeState
+                  }`}</td>
+                  
                 </tr>
               </tbody>
             </Table>

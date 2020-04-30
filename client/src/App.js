@@ -68,8 +68,9 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path='/forgotpassword' component={Forgotpassword}/>
               <Route exact path="/newpassword" component={Newpassword} />
-              <Route exact path="/not-found" component={NotFound} />
-              <Route exact path ='/payment-callback' component={Successpayment}/>         
+              <Route exact path="/not-found" component={NotFound} />      
+              <Route exact path ='/paymentsuccess' component={Successpayment}/>         
+              <Route exact path ='/paymentcancel' component={FailurePayment}/>         
               <Switch>
                 <PrivateRoute exact path="/userdashboard" component={Userdashboard} />
               </Switch>
@@ -94,12 +95,6 @@ class App extends Component {
               <Switch>
               <PrivateRoute exact path ='/payment' component={Payment}/>         
               </Switch>   
-              <Switch>
-              <PrivateRoute exact path ='/paymentsuccess' component={Successpayment}/>         
-              </Switch>
-              <Switch>
-              <PrivateRoute exact path ='/paymentcancel' component={FailurePayment}/>         
-              </Switch>  
             </div>
             <Footer />
           </div>

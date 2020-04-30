@@ -5,6 +5,7 @@ const passport = require('passport');
 const path = require('path');
 const methodOverride = require('method-override');
 
+
 const users = require('./routes/api/users');
 const application = require('./routes/api/application')
 const pdfgenerate = require('./routes/api/pdfgenerate');
@@ -16,9 +17,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//Public folder
-// app.use('/uploads', express.static('uploads'));
-// app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(methodOverride('_method'));
 
 // DB Config
@@ -55,6 +54,15 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
+
+
+// cors_proxy.createServer({
+//     originWhitelist: [], // Allow all origins
+//     requireHeader: ['origin', 'x-requested-with'],
+//     removeHeaders: ['cookie', 'cookie2']
+// }).listen(port, host, function() {
+//     console.log('Running CORS Anywhere on ' + host + ':' + port);
+// });
 
 const port = process.env.PORT || 5000;
 

@@ -83,7 +83,9 @@ export const districts =  {
     { id: "Tiruvarur", text: "Tiruvarur" },
     { id: "Vellore", text: "Vellore" },
     { id: "Viluppuram", text: "Viluppuram" },
-    { id: "Virudhunagar", text: "Virudhunagar" }
+    { id: "Virudhunagar", text: "Virudhunagar" },
+    { id: "Mayiladuthurai", text: "Mayiladuthurai" },
+
   ],
   Other: [
     { id: "", text: "Please Select" },
@@ -101,6 +103,22 @@ export const communityNames = [
     { id: "SCA", name: "SCA" },
     { id: "ST", name: "ST" }
   ]
+
+export const monthNames = [
+  { id: "", name: "Please Select" },
+        { id: "January", name: "January" },
+        { id: "February", name: "February" },
+        { id: "March", name: "March" },
+        { id: "April", name: "April" },
+        { id: "May", name: "May" },
+        { id: "June", name: "June" },
+        { id: "July", name: "July" },
+        { id: "August", name: "August" },
+        { id: "September", name: "September" },
+        { id: "October", name: "October" },
+        { id: "November", name: "November" },
+        { id: "December", name: "December" }
+] 
 
 export const caste_all_list = [
         "Adiyan",

@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const cors = require('cors');
+ 
 
 
 // Load Validation
@@ -51,10 +53,9 @@ router.post( '/imageupload', passport.authenticate('jwt',
 	});
 });
 
-
-router.get('/userimage', 
- passport.authenticate('jwt', 
-  { session: false }), async (req, res) => {
+router.options('/userimage',passport.authenticate('jwt', { session: false }), cors())
+router.get('/userimage', passport.authenticate('jwt', { session: false }), cors(),
+  async (req, res) => {
     Image.findOne({ userid: req.user._id})
       .then(picture=>{
 
