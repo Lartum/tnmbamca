@@ -106,8 +106,8 @@ export default class Application extends Component {
       Xsemyop: "",
       Xsemmaxmarks: 0,
       Xsemmarks: 0,
-      overalltot: 0,
-      overallmarks: 0,
+      overalltotalmarks: 0,
+      overallmarksobtained: 0,
       totalpermark: 0,
 
       previewImage:'',

@@ -60,8 +60,8 @@ export default class Step5 extends Component {
       Xsemyop: this.refs.Xsemyop,
       Xsemmaxmarks: this.refs.Xsemmaxmarks,
       Xsemmarks: this.refs.Xsemmarks,
-      overalltot: this.refs.overalltot,
-      overallmarks: this.refs.overallmarks,
+      overallmaxmarks: this.refs.overallmaxmarks,
+      overallmarksobtained: this.refs.overallmarksobtained,
       totalpermark: this.refs.totalpermark,
 
       month_names: [],
@@ -210,53 +210,53 @@ export default class Step5 extends Component {
       Xsemmaxmarks: this.refs.Xsemmaxmarks.value,
       Xsemmarks: this.refs.Xsemmarks.value,
 
-      overalltot: this.refs.overalltot.value,
-      overallmarks: this.refs.overallmarks.value,
+      overallmaxmarks: this.refs.overallmaxmarks.value,
+      overallmarksobtained: this.refs.overallmarksobtained.value,
       totalpermark: this.refs.totalpermark.value
     };
   }
 
   listen_to_max_marks_change = ({ event }) => {
     const total_Max_Marks =
-      parseFloat(this.refs.Isemmaxmarks.value, 10) +
-      parseFloat(this.refs.IIsemmaxmarks.value, 10) +
-      parseFloat(this.refs.IIIsemmaxmarks.value, 10) +
-      parseFloat(this.refs.IVsemmaxmarks.value, 10) +
-      parseFloat(this.refs.Vsemmaxmarks.value, 10) +
-      parseFloat(this.refs.VIsemmaxmarks.value, 10) +
-      parseFloat(this.refs.VIIsemmaxmarks.value, 10) +
-      parseFloat(this.refs.VIIIsemmaxmarks.value, 10) +
-      parseFloat(this.refs.IXsemmaxmarks.value, 10) +
-      parseFloat(this.refs.Xsemmaxmarks.value, 10);
-    this.setState({ overalltot: total_Max_Marks });
-    if (this.refs.overallmarks.value !== null) {
-      const percent_marks = parseFloat(
-        (parseFloat(this.refs.overallmarks.value, 10) * 100) /
-          parseFloat(total_Max_Marks, 10),
-        10
-      );
-      this.setState({ totalpermark: percent_marks });
-    }
+      parseInt(this.refs.Isemmaxmarks.value, 10) +
+      parseInt(this.refs.IIsemmaxmarks.value, 10) +
+      parseInt(this.refs.IIIsemmaxmarks.value, 10) +
+      parseInt(this.refs.IVsemmaxmarks.value, 10) +
+      parseInt(this.refs.Vsemmaxmarks.value, 10) +
+      parseInt(this.refs.VIsemmaxmarks.value, 10) +
+      parseInt(this.refs.VIIsemmaxmarks.value, 10) +
+      parseInt(this.refs.VIIIsemmaxmarks.value, 10) +
+      parseInt(this.refs.IXsemmaxmarks.value, 10) +
+      parseInt(this.refs.Xsemmaxmarks.value, 10);
+    this.setState({ overallmaxmarks: total_Max_Marks });
+    // if (this.refs.overallmarksobtained.value !== null) {
+    //   const percent_marks = ParseFloat(
+    //     (parseInt(this.refs.overallmarksobtained.value, 10) * 100) /
+    //       parseInt(total_Max_Marks, 10),
+    //     10
+    //   );
+    //   this.setState({ totalpermark: percent_marks });
+    // }
   };
 
   listen_to_marks_obtained_change = ({ event }) => {
-    console.log('Parsing Into int '+parseFloat(this.refs.Isemmarks.value, 10))
+    console.log('Parsing Into int '+parseInt(this.refs.Isemmarks.value, 10))
     const total_obtained_Marks =
-      parseFloat(this.refs.Isemmarks.value, 10) +
-      parseFloat(this.refs.IIsemmarks.value, 10) +
-      parseFloat(this.refs.IIIsemmarks.value, 10) +
-      parseFloat(this.refs.IVsemmarks.value, 10) +
-      parseFloat(this.refs.Vsemmarks.value, 10) +
-      parseFloat(this.refs.VIsemmarks.value, 10) +
-      parseFloat(this.refs.VIIsemmarks.value, 10) +
-      parseFloat(this.refs.VIIIsemmarks.value, 10) +
-      parseFloat(this.refs.IXsemmarks.value, 10) +
-      parseFloat(this.refs.Xsemmarks.value, 10);
-    this.setState({ overallmarks: total_obtained_Marks });
+      parseInt(this.refs.Isemmarks.value, 10) +
+      parseInt(this.refs.IIsemmarks.value, 10) +
+      parseInt(this.refs.IIIsemmarks.value, 10) +
+      parseInt(this.refs.IVsemmarks.value, 10) +
+      parseInt(this.refs.Vsemmarks.value, 10) +
+      parseInt(this.refs.VIsemmarks.value, 10) +
+      parseInt(this.refs.VIIsemmarks.value, 10) +
+      parseInt(this.refs.VIIIsemmarks.value, 10) +
+      parseInt(this.refs.IXsemmarks.value, 10) +
+      parseInt(this.refs.Xsemmarks.value, 10);
+    this.setState({ overallmarksobtained: total_obtained_Marks });
 
     const percent_marks = parseFloat(
       (parseFloat(total_obtained_Marks, 10) * 100) /
-        parseFloat(this.refs.overalltot.value, 10),
+        parseFloat(this.refs.overallmaxmarks.value, 10),
       10
     ).toFixed(2);
     this.setState({ totalpermark: percent_marks });
@@ -1066,26 +1066,26 @@ export default class Step5 extends Component {
                   </th>
                   <td>
                     <input
-                      ref="overalltot"
+                      ref="overallmaxmarks"
                       autoComplete="off"
                       type="number"
                       readOnly
                       onChange={this.listen_to_total_marks_obtained_change}
                       className="form-control"
                       required
-                      defaultValue={this.state.overalltot}
+                      defaultValue={this.state.overallmaxmarks}
                     />
                   </td>
                   <td>
                     <input
-                      ref="overallmarks"
+                      ref="overallmarksobtained"
                       autoComplete="off"
                       type="number"
                       readOnly
                       onChange={this.listen_to_total_marks_obtained_change}
                       className="form-control"
                       required
-                      defaultValue={this.state.overallmarks}
+                      defaultValue={this.state.overallmarksobtained}
                     />
                   </td>
                 </tr>

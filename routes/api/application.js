@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const cors = require('cors');
- 
-
 
 // Load Validation
 const Application = require('../../models/Application');
@@ -66,7 +64,58 @@ router.get('/userimage', passport.authenticate('jwt', { session: false }), cors(
 router.post('/', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
     try {
+
+      
+
+       const calculatePreFinalTotal = (choice) =>{
+       
+        if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
+          return req.body.Isemmaxmarks + req.body.IIsemmaxmarks + req.body.IIIsemmaxmarks
+          +req.body.IVsemmaxmarks + req.body.Vsemmaxmarks;
+        }
+        else{
+          return req.body.Isemmaxmarks + req.body.IIsemmaxmarks + req.body.IIIsemmaxmarks
+          +req.body.IVsemmaxmarks + req.body.Vsemmaxmarks + req.body.VIsemmaxmarks + req.body.VIIsemmaxmarks;
+        }
+       
+      }
+
+      const calculatePreFinalObtained = (choice) => {
+        if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
+          return req.body.Isemmarks + req.body.IIsemmarks + req.body.IIIsemmarks
+          +req.body.IVsemmarks + req.body.Vsemmarks;
+        }
+        else {
+          return req.body.Isemmarks + req.body.IIsemmarks + req.body.IIIsemmarks
+          +req.body.IVsemmarks + req.body.Vsemmarks + req.body.VIsemmarks + req.body.VIIsemmarks;
+        }
+      }
+
+      const percent_marks = parseFloat(
+        (parseFloat(total_obtained_Marks, 10) * 100) /
+          parseFloat(this.refs.overallmaxmarks.value, 10),
+        10
+      ).toFixed(2);
+
+      const calculatePreFinalPer = (choice) => {
+        if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
+         return parseFloat(
+            ((req.body.Isemmarks + req.body.IIsemmarks + req.body.IIIsemmarks
+            +req.body.IVsemmarks + req.body.Vsemmarks) * 100)/
+            parseFloat(req.body.Isemmaxmarks + req.body.IIsemmaxmarks + req.body.IIIsemmaxmarks
+              +req.body.IVsemmaxmarks + req.body.Vsemmaxmarks)).toFixed(2);
+        }
+        else {
+          return parseFloat(
+            ((req.body.Isemmarks + req.body.IIsemmarks + req.body.IIIsemmarks
+            +req.body.IVsemmarks + req.body.Vsemmarks + req.body.VIsemmarks+ req.body.VIIsemmarks) * 100)/
+            parseFloat(req.body.Isemmaxmarks + req.body.IIsemmaxmarks + req.body.IIIsemmaxmarks
+              +req.body.IVsemmaxmarks + req.body.Vsemmaxmarks + req.body.VIsemmaxmarks+ req.body.VIIsemmarks)).toFixed(2);
+        }
+      }
     
+      console.log(calculatePreFinalObtained,calculatePreFinalTotal,calculatePreFinalPer);
+
       const newApplication = new Application({
        
         _userid: req.user._id,
@@ -144,17 +193,17 @@ router.post('/', passport.authenticate('jwt',
         
         IIIsemMonth: req.body.IIIsemMonth,
         IIIsemyop: req.body.IIIsemyop,
-        IIIsemmaxmarks: req.body.IIIsemmarks,
+        IIIsemmaxmarks: req.body.IIIsemmxmarks,
         IIIsemmarks: req.body.IIsemmarks,
         
         IVsemMonth: req.body.IVsemMonth,
         IVsemyop: req.body.IVsemyop,
-        IVsemmaxmarks: req.body.IVsemmarks,
+        IVsemmaxmarks: req.body.IVsemmaxmarks,
         IVsemmarks: req.body.IVsemmarks,
         
         VsemMonth: req.body.VsemMonth,
         Vsemyop: req.body.Vsemyop,
-        Vsemmaxmarks: req.body.Vsemmarks,
+        Vsemmaxmarks: req.body.Vsemmaxmarks,
         Vsemmarks: req.body.Vsemmarks,
         
         VIsemMonth: req.body.VIsemMonth,
@@ -177,14 +226,18 @@ router.post('/', passport.authenticate('jwt',
         IXsemmarks: req.body.IXsemmarks,
         IXsemmaxmarks: req.body.IXsemmaxmarks,
         
-        Xsemmarks: req.body.Xsemmarks,
         XsemMonth: req.body.XsemMonth,
         Xsemyop: req.body.Xsemyop,
+        Xsemmarks: req.body.Xsemmarks,
         Xsemmaxmarks: req.body.Xsemmarks,
                 
-        overalltot: req.body.overalltot,
-        overallmarks: req.body.overallmarks,
+        overalltotalmarks: req.body.overalltotalmarks,
+        overallmarksobtained: req.body.overallmarksobtained,
         totalpermark: req.body.totalpermark,
+        
+        prefinalsemoveralltotalmarks: calculatePreFinalTotal(req.body.patternOfStudy),
+        prefinalsemoverallmarksobtained: calculatePreFinalObtained(req.body.patternOfStudy),
+        prefinalsemtotalpermark: calculatePreFinalPer(req.body.patternOfStudy),
 
       });
 
