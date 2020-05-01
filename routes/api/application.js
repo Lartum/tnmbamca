@@ -211,8 +211,8 @@ router.post('/', passport.authenticate('jwt',
         
         IIIsemMonth: req.body.IIIsemMonth,
         IIIsemyop: req.body.IIIsemyop,
-        IIIsemmaxmarks: req.body.IIIsemmxmarks,
-        IIIsemmarks: req.body.IIsemmarks,
+        IIIsemmaxmarks: req.body.IIIsemmaxmarks,
+        IIIsemmarks: req.body.IIIsemmarks,
         
         IVsemMonth: req.body.IVsemMonth,
         IVsemyop: req.body.IVsemyop,
