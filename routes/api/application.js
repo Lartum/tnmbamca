@@ -91,12 +91,6 @@ router.post('/', passport.authenticate('jwt',
         }
       }
 
-      const percent_marks = parseFloat(
-        (parseFloat(total_obtained_Marks, 10) * 100) /
-          parseFloat(this.refs.overallmaxmarks.value, 10),
-        10
-      ).toFixed(2);
-
       const calculatePreFinalPer = (choice) => {
         if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
          return parseFloat(
