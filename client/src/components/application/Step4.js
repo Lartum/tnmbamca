@@ -60,7 +60,7 @@ export default class Step5 extends Component {
       Xsemyop: this.refs.Xsemyop,
       Xsemmaxmarks: this.refs.Xsemmaxmarks,
       Xsemmarks: this.refs.Xsemmarks,
-      overallmaxmarks: this.refs.overallmaxmarks,
+      overalltotalmarks: this.refs.overalltotalmarks,
       overallmarksobtained: this.refs.overallmarksobtained,
       totalpermark: this.refs.totalpermark,
 
@@ -210,7 +210,7 @@ export default class Step5 extends Component {
       Xsemmaxmarks: this.refs.Xsemmaxmarks.value,
       Xsemmarks: this.refs.Xsemmarks.value,
 
-      overallmaxmarks: this.refs.overallmaxmarks.value,
+      overalltotalmarks: this.refs.overalltotalmarks.value,
       overallmarksobtained: this.refs.overallmarksobtained.value,
       totalpermark: this.refs.totalpermark.value
     };
@@ -228,7 +228,7 @@ export default class Step5 extends Component {
       parseInt(this.refs.VIIIsemmaxmarks.value, 10) +
       parseInt(this.refs.IXsemmaxmarks.value, 10) +
       parseInt(this.refs.Xsemmaxmarks.value, 10);
-    this.setState({ overallmaxmarks: total_Max_Marks });
+    this.setState({ overalltotalmarks: total_Max_Marks });
     // if (this.refs.overallmarksobtained.value !== null) {
     //   const percent_marks = ParseFloat(
     //     (parseInt(this.refs.overallmarksobtained.value, 10) * 100) /
@@ -240,7 +240,6 @@ export default class Step5 extends Component {
   };
 
   listen_to_marks_obtained_change = ({ event }) => {
-    console.log('Parsing Into int '+parseInt(this.refs.Isemmarks.value, 10))
     const total_obtained_Marks =
       parseInt(this.refs.Isemmarks.value, 10) +
       parseInt(this.refs.IIsemmarks.value, 10) +
@@ -256,7 +255,7 @@ export default class Step5 extends Component {
 
     const percent_marks = parseFloat(
       (parseFloat(total_obtained_Marks, 10) * 100) /
-        parseFloat(this.refs.overallmaxmarks.value, 10),
+        parseFloat(this.refs.overalltotalmarks.value, 10),
       10
     ).toFixed(2);
     this.setState({ totalpermark: percent_marks });
@@ -344,7 +343,7 @@ export default class Step5 extends Component {
       }, this);
 
     return (
-      <div className="step step5">
+      <div className="step step4">
         <Card>
           <CardHeader style={{textAlign:'center', color:'limegreen'}}>
            <h3> Details of Marks in UG Degree Qualifying Examinations</h3>
@@ -1066,14 +1065,14 @@ export default class Step5 extends Component {
                   </th>
                   <td>
                     <input
-                      ref="overallmaxmarks"
+                      ref="overalltotalmarks"
                       autoComplete="off"
                       type="number"
                       readOnly
                       onChange={this.listen_to_total_marks_obtained_change}
                       className="form-control"
                       required
-                      defaultValue={this.state.overallmaxmarks}
+                      defaultValue={this.state.overalltotalmarks}
                     />
                   </td>
                   <td>

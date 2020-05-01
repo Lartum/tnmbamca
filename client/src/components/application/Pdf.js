@@ -590,12 +590,12 @@ export default class Pdf extends React.Component {
               </View>
               <View style={styles.tableCol2}>
                 <Text style={styles.tableCell2}>
-                  {this.state.users.overallmarks}
+                  {this.state.users.overalltotalmarks}
                 </Text>
               </View>
               <View style={styles.tableCol2}>
                 <Text style={styles.tableCell2}>
-                  {this.state.users.overallmarks}
+                  {this.state.users.overallmarksobtained}
                 </Text>
               </View>
             </View>
@@ -1037,12 +1037,12 @@ To be filled by the Applicant
             </View>
             <View style={styles.tableCol2}>
               <Text style={styles.tableCell2}>
-                {this.state.users.overallmarks}
+                {this.state.users.overalltotalmarks}
               </Text>
             </View>
             <View style={styles.tableCol2}>
               <Text style={styles.tableCell2}>
-                {this.state.users.overallmarks}
+                {this.state.users.overallmarksobtained}
               </Text>
             </View>
           </View>
@@ -1508,12 +1508,12 @@ To be filled by the Applicant
           </View>
           <View style={styles.tableCol2}>
             <Text style={styles.tableCell2}>
-              {this.state.users.overallmarks}
+              {this.state.users.overalltotalmarks}
             </Text>
           </View>
           <View style={styles.tableCol2}>
             <Text style={styles.tableCell2}>
-              {this.state.users.overallmarks}
+              {this.state.users.overallmarksobtained}
             </Text>
           </View>
         </View>
@@ -1607,7 +1607,7 @@ To be filled by the Applicant
 
 
     if (this.state.users !== null && this.state.image !== null) {
-      
+      console.log(this.state.users)
       if(this.state.users.patternOfStudy === "10 + Plus Two + 3 Years Degree" ){
       return(
         <div>

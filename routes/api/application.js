@@ -66,47 +66,71 @@ router.post('/', passport.authenticate('jwt',
     try {
 
       
+       let  calculatePreFinalTotal, calculatePreFinalObtained, calculatePreFinalPer;
 
-       const calculatePreFinalTotal = (choice) =>{
+       switch(req.body.patternOfStudy){
+         
+        case "10 + Plus Two + 3 Years Degree":
+             calculatePreFinalTotal = req.body.overalltotalmarks - req.body.VIsemmaxmarks;
+             calculatePreFinalObtained = req.body.overallmarksobtained - req.body.VIsemmarks;
+             calculatePreFinalPer = parseFloat(((req.body.overallmarksobtained - req.body.VIsemmarks) * 100)/
+             parseFloat(req.body.overalltotalmarks - req.body.VIsemmaxmarks)).toFixed(2); 
+             break;
+
+        case "10 + 3 Years Diploma + 3 Years Degree":
+          calculatePreFinalTotal = req.body.overalltotalmarks - req.body.VIsemmaxmarks;
+          calculatePreFinalObtained = req.body.overallmarksobtained - req.body.VIsemmarks;
+          calculatePreFinalPer = parseFloat(((req.body.overallmarksobtained - req.body.VIsemmarks) * 100)/
+          parseFloat(re.body.overalltotalmarks - req.body.VIsemmaxmarks)).toFixed(2); 
+          break;
+
+       case "10 + Plus Two + 4 Years Degree":
+        calculatePreFinalTotal = req.body.overalltotalmarks - req.body.VIIIsemmaxmarks;
+        calculatePreFinalObtained = req.body.overallmarksobtained - req.body.VIIIsemmarks;
+        calculatePreFinalPer = parseFloat(((req.body.overallmarksobtained - req.body.VIIIsemmarks) * 100)/
+        (req.body.overalltotalmarks - req.body.VIIIsemmaxmarks)).toFixed(2); 
+        break;
+
+       }
+
+       console.log("the calculated totals are :"+calculatePreFinalTotal, calculatePreFinalObtained, calculatePreFinalPer);
+      //  if(req.body.patternOfStudy === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
+      //    calculatePreFinalTotal = req.body.overalltotalmarks - req.body.VIsemmaxmarks;
+      //  }
+      //  else if()
+
+      //  const calculatePreFinalTotal = (choice) =>{
        
-        if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
-          return req.body.Isemmaxmarks + req.body.IIsemmaxmarks + req.body.IIIsemmaxmarks
-          +req.body.IVsemmaxmarks + req.body.Vsemmaxmarks;
-        }
-        else{
-          return req.body.Isemmaxmarks + req.body.IIsemmaxmarks + req.body.IIIsemmaxmarks
-          +req.body.IVsemmaxmarks + req.body.Vsemmaxmarks + req.body.VIsemmaxmarks + req.body.VIIsemmaxmarks;
-        }
+      //   if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
+      //     return req.body.overalltotalmarks - req.body.VIsemmaxmarks
+      //   }
+      //   else{
+      //     return req.body.overalltotalmarks - req.body.VIII;
+      //   }
        
-      }
+      // }
 
-      const calculatePreFinalObtained = (choice) => {
-        if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
-          return req.body.Isemmarks + req.body.IIsemmarks + req.body.IIIsemmarks
-          +req.body.IVsemmarks + req.body.Vsemmarks;
-        }
-        else {
-          return req.body.Isemmarks + req.body.IIsemmarks + req.body.IIIsemmarks
-          +req.body.IVsemmarks + req.body.Vsemmarks + req.body.VIsemmarks + req.body.VIIsemmarks;
-        }
-      }
+      // const calculatePreFinalObtained = (choice) => {
+      //   if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
+      //     return req.body.overallmarksobtained - req.body.VIsemmarks
+      //   }
+      //   else {
+      //     return req.body.overallmarksobtained - req.body.VIIIsemmarks;
+      //   }
+      // }
 
-      const calculatePreFinalPer = (choice) => {
-        if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
-         return parseFloat(
-            ((req.body.Isemmarks + req.body.IIsemmarks + req.body.IIIsemmarks
-            +req.body.IVsemmarks + req.body.Vsemmarks) * 100)/
-            parseFloat(req.body.Isemmaxmarks + req.body.IIsemmaxmarks + req.body.IIIsemmaxmarks
-              +req.body.IVsemmaxmarks + req.body.Vsemmaxmarks)).toFixed(2);
-        }
-        else {
-          return parseFloat(
-            ((req.body.Isemmarks + req.body.IIsemmarks + req.body.IIIsemmarks
-            +req.body.IVsemmarks + req.body.Vsemmarks + req.body.VIsemmarks+ req.body.VIIsemmarks) * 100)/
-            parseFloat(req.body.Isemmaxmarks + req.body.IIsemmaxmarks + req.body.IIIsemmaxmarks
-              +req.body.IVsemmaxmarks + req.body.Vsemmaxmarks + req.body.VIsemmaxmarks+ req.body.VIIsemmarks)).toFixed(2);
-        }
-      }
+      // const calculatePreFinalPer = (choice) => {
+      //   if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
+      //    return parseFloat(
+      //       ((req.body.overallmarksobtained - req.body.VIsemmarks) * 100)/
+      //       parseFloat(re.body.overalltotalmarks - req.body.VIsemmaxmarks)).toFixed(2);
+      //   }
+      //   else {
+      //     return parseFloat(
+      //       ((req.body.overallmarksobtained - req.body.VIIsemmarks) * 100)/
+      //       (req.body.overalltotalmarks - req.body.VIIsemmaxmarks)).toFixed(2);
+      //   }
+      // }
     
       console.log(calculatePreFinalObtained,calculatePreFinalTotal,calculatePreFinalPer);
 
@@ -229,9 +253,9 @@ router.post('/', passport.authenticate('jwt',
         overallmarksobtained: req.body.overallmarksobtained,
         totalpermark: req.body.totalpermark,
         
-        prefinalsemoveralltotalmarks: calculatePreFinalTotal(req.body.patternOfStudy),
-        prefinalsemoverallmarksobtained: calculatePreFinalObtained(req.body.patternOfStudy),
-        prefinalsemtotalpermark: calculatePreFinalPer(req.body.patternOfStudy),
+        prefinalsemoveralltotalmarks: calculatePreFinalTotal,
+        prefinalsemoverallmarksobtained: calculatePreFinalObtained,
+        prefinalsemtotalpermark: calculatePreFinalPer,
 
       });
 

@@ -524,11 +524,11 @@ export default class Step5 extends Component {
                   <th scope="row" colSpan="3">
                     Overall Total
                   </th>
-                  <td name="overalltot">
-                    {`${this.props.getStore().overallmarks}`}
+                  <td name="overalltotalmarks">
+                    {`${this.props.getStore().overalltotalmarks}`}
                   </td>
-                  <td name="overallmarks">
-                    {`${this.props.getStore().overallmarks}`}
+                  <td name="overallmarksobtained">
+                    {`${this.props.getStore().overallmarksobtained}`}
                   </td>
                 </tr>
                 <tr>

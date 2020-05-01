@@ -601,11 +601,11 @@ export default class Viewapplication extends Component {
                     <th scope="row" colSpan="3">
                       Overall Total
                     </th>
-                    <td name="overalltot">
-                      {this.state.users.overalltot}
+                    <td name="overalltotalmarks">
+                      {this.state.users.overalltotalmarks}
                     </td>
-                    <td name="overallmarks">
-                      {this.state.users.overallmarks}
+                    <td name="overallmarksobtained">
+                      {this.state.users.overallmarksobtained}
                     </td>
                   </tr>
                   <tr>
