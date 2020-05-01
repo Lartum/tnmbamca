@@ -1321,7 +1321,7 @@ To be filled by the Applicant
 
       <Text style={styles.text_indent}>
         (c) Name of the University: {" "}
-        {this.state.users.universityName,this.state.users.universityAddress}{"     "}{}
+        {this.state.users.universityName}{"     "}{this.state.users.universityAddress}
       </Text>
       <View style={styles.table}>
         <View style={styles.tableRow}>
