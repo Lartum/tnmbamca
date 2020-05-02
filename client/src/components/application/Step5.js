@@ -181,7 +181,7 @@ export default class Step5 extends Component {
 
 
       return(
-        <div>
+      <div className="step step5">
       <div className="container">
 				
 				<div className="card border-light mb-3 mt-5" style={{ boxShadow: '0 5px 10px 2px rgba(195,192,192,.5)' }}>

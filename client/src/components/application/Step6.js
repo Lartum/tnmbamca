@@ -145,7 +145,7 @@ export default class Step5 extends Component {
                 <tr></tr>
               </tbody>
             </Table>
-            <Button
+            <Button className='btn btn-block'
               onClick={() => {
                 this.props.jumpToStep(0);
               }}
@@ -198,7 +198,7 @@ export default class Step5 extends Component {
                 <tr></tr>
               </tbody>
             </Table>
-            <Button
+            <Button className='btn btn-block'
               onClick={() => {
                 this.props.jumpToStep(1);
               }}
@@ -242,13 +242,7 @@ export default class Step5 extends Component {
                 <tr></tr>
               </tbody>
             </Table>
-            <Button
-              onClick={() => {
-                this.props.jumpToStep(2);
-              }}
-            >
-              Edit
-            </Button>
+            
             <h4 className="finalReviewHeader">EDUCATIONAL DETAILS</h4>
             <Table bordered>
               <tbody>
@@ -336,9 +330,9 @@ export default class Step5 extends Component {
                 </tr>
               </tbody>
             </Table>
-            <Button
+            <Button className='btn btn-block'
               onClick={() => {
-                this.props.jumpToStep(3);
+                this.props.jumpToStep(2);
               }}
             >
               Edit
@@ -530,11 +524,11 @@ export default class Step5 extends Component {
                   <th scope="row" colSpan="3">
                     Overall Total
                   </th>
-                  <td name="overalltot">
-                    {`${this.props.getStore().overallmarks}`}
+                  <td name="overalltotalmarks">
+                    {`${this.props.getStore().overalltotalmarks}`}
                   </td>
-                  <td name="overallmarks">
-                    {`${this.props.getStore().overallmarks}`}
+                  <td name="overallmarksobtained">
+                    {`${this.props.getStore().overallmarksobtained}`}
                   </td>
                 </tr>
                 <tr>
@@ -547,9 +541,9 @@ export default class Step5 extends Component {
                 </tr>
               </tbody>
             </Table>
-            <Button
+            <Button className='btn btn-block'
               onClick={() => {
-                this.props.jumpToStep(4);
+                this.props.jumpToStep(3);
               }}
             >
               Edit

@@ -422,8 +422,17 @@ router.post('/register', (req, res) => {
             count = count + defaultapplicationno;
             var applicationnum = ["3", currentYear, count]
             applicationno = applicationnum.join('');
-            var tancentmarks = tancent.mcamarks;
-            tancentmarks = parseFloat(tancentmarks);
+            if(tancentmarks === 'ABS')  {
+              errors.regno = "The provided TANCENT register number was marked as absent";
+              return res.status(400).json(errors);
+            }
+            else if(tancentmarks = ''){
+              errors.regno = 'You havent appeared for MBA exam';
+              return res.status(400).json(errors);
+            }
+            
+            else{
+              var tancentmarks = parseFloat(tancent.mcamarks);
             //If the user is the first applicant
             if (count = defaultapplicationno) {
 
@@ -526,8 +535,7 @@ router.post('/register', (req, res) => {
             }
             //If the user is not the first applicant for MCA
             else {
-              var tancentmarks = tancent.mcamarks;
-              tancentmarks = parseFloat(tancentmarks);
+              var tancentmarks = parseFloat(tancent.mcamarks);
               const newUser = new User({
                 name,
                 email,
@@ -622,6 +630,7 @@ router.post('/register', (req, res) => {
                 });
               });
             }
+          } 
           })
         }
             }

@@ -61,6 +61,7 @@ export const districts =  {
     { id: "Karur", text: "Karur" },
     { id: "Krishnagiri", text: "Krishnagiri" },
     { id: "Madurai", text: "Madurai" },
+    { id: "Mayiladuthurai", text: "Mayiladuthurai" },
     { id: "Nagapattinam", text: "Nagapattinam" },
     { id: "Namakkal", text: "Namakkal" },
     { id: "Perambalur", text: "Perambalur" },
@@ -84,7 +85,7 @@ export const districts =  {
     { id: "Vellore", text: "Vellore" },
     { id: "Viluppuram", text: "Viluppuram" },
     { id: "Virudhunagar", text: "Virudhunagar" },
-    { id: "Mayiladuthurai", text: "Mayiladuthurai" },
+    
 
   ],
   Other: [

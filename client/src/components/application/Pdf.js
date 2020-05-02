@@ -31,11 +31,6 @@ export default class Pdf extends React.Component {
       this.setState({ image });
     });
   }
-
-  GenerateCustomLayout() {
-    return <Text>Dynamic REg NO : {this.state.users.applicationno}</Text>;
-  }
-
   render() {
     const styles = StyleSheet.create({
       page: { backgroundColor: "white" },
@@ -224,12 +219,20 @@ export default class Pdf extends React.Component {
       declarationPara: {
         textAlign: "center",
       },
-      casteAlign: {
-        marginTop: "40px",
-      },
+      alignContents: {},
     });
 
-    const MyDoc1 = (props) => (
+    let newLine;
+    if (this.state.users === null) {
+      return <Loading />;
+    } else if (this.state.users !== null) {
+      const castename = this.state.users.nameOfCaste;
+      if (castename.length > 78) {
+        newLine = "\n\n";
+      }
+    }
+
+    const MyDoc1 = () => (
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.header}>
@@ -241,10 +244,13 @@ export default class Pdf extends React.Component {
             <Text>Application Number : {this.state.users.applicationno} </Text>
           </View>
           <Image style={styles.logo} src={logo}></Image>
-          <Image style={styles.photo} src={logo}></Image>
+          <Image
+            style={styles.photo}
+            src={this.state.image.picture.imageData}
+          />
           <View style={styles.left}>
             <Text style={styles.text}>
-              {""}1.{""} TANCENT 2020 Registration Number
+              {""}1.{""} TANCET 2020 Registration Number
             </Text>
             <Text>
               {""}2.{""}Name
@@ -264,13 +270,15 @@ export default class Pdf extends React.Component {
             <Text>15.{"   "} Name of the Community</Text>
             <Text>16.{"   "} Caste Code</Text>
             <Text>17.{"   "} Religion</Text>
-            <Text>18.{"   "} Name of the Caste</Text>
+            <Text>
+              18.{"   "} Name of the Caste{newLine}
+            </Text>
             <Text>19.{"   "} Differently abled Quota </Text>
             <Text>20.{"   "} Qualifying Degree </Text>
             <Text>21.{"   "} Pattern of Study </Text>
             <Text>22.{"   "} Appearance in the Final Year Exam </Text>
             <Text>
-              23.{"   "} TANCENT Marks in {new Date().getFullYear()}{" "}
+              23.{"   "} TANCET Marks in {new Date().getFullYear()}{" "}
             </Text>
             <Text>24.{"   "} School/College Study information </Text>
             <View style={styles.table}>
@@ -309,12 +317,12 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.Xstate}
+                    {this.state.users.Xdistrict}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.Xdistrict}
+                    {this.state.users.Xstate}
                   </Text>
                 </View>
               </View>
@@ -334,12 +342,12 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.XIIstate}
+                    {this.state.users.XIIdistrict}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.XIIdistrict}
+                    {this.state.users.XIIstate}
                   </Text>
                 </View>
               </View>
@@ -359,12 +367,12 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.degreeState}
+                    {this.state.users.degreeDistrict}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.degreeDistrict}
+                    {this.state.users.degreeState}
                   </Text>
                 </View>
               </View>
@@ -385,7 +393,10 @@ export default class Pdf extends React.Component {
             <Text>: {this.state.users.placeOfBirth}</Text>
             <Text>: {this.state.users.motherTongue}</Text>
             <Text>: {this.state.users.dateOfBirth}</Text>
-            <Text>: {this.state.users.nameOfCommunity}</Text>
+            <Text>
+              : {this.state.users.nameOfCommunity}
+              {}
+            </Text>
             <Text>: {this.state.users.casteCode}</Text>
             <Text>: {this.state.users.religion}</Text>
             <Text>: {this.state.users.nameOfCaste}</Text>
@@ -402,17 +413,19 @@ export default class Pdf extends React.Component {
               25.{"   "} Details of Marks in UG Degree Qualifying Examinations
             </Text>
             <Text style={styles.text_indent}>
-              (a) UG Degree {this.state.users.ugDegree}
+              (a) UG Degree: {this.state.users.ugDegree}
             </Text>
             <Text style={styles.text_indent}>
-              (b) Name of the College with Address{" "}
+              (b) Name of the College with Address:{" "}
               {this.state.users.collegeName}
               {"  "}
               {this.state.users.collegeAddress}
             </Text>
 
             <Text style={styles.text_indent}>
-              (c) Name of the University {this.state.users.universityAddress}
+              (c) Name of the University: {this.state.users.universityName}
+              {"     "}
+              {this.state.users.universityAddress}
             </Text>
             <View style={styles.table}>
               <View style={styles.tableRow}>
@@ -431,7 +444,6 @@ export default class Pdf extends React.Component {
                   <Text style={styles.tableCellHeader}>Marks Obtained</Text>
                 </View>
               </View>
-              {this.state.users === ""}
               <View style={styles.tableRow}>
                 <View style={styles.tableCol2}>
                   <Text style={styles.tableCell2}>I</Text>
@@ -576,12 +588,12 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol2}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overallmarks}
+                    {this.state.users.overalltotalmarks}
                   </Text>
                 </View>
                 <View style={styles.tableCol2}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overalltot}
+                    {this.state.users.overallmarksobtained}
                   </Text>
                 </View>
               </View>
@@ -621,17 +633,17 @@ export default class Pdf extends React.Component {
               <View style={styles.tableRow}>
                 <View style={styles.tableCol5}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overalltot}
+                    {this.state.users.prefinalsemoverallmarksobtained}
                   </Text>
                 </View>
                 <View style={styles.tableCol5}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overallmarks}
+                    {this.state.users.prefinalsemoveralltotalmarks}
                   </Text>
                 </View>
                 <View style={styles.tableCol5}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.totalpermark}
+                    {this.state.users.prefinalsemtotalpermark}
                   </Text>
                 </View>
               </View>
@@ -683,7 +695,7 @@ export default class Pdf extends React.Component {
 
     //2nd Document Choice
 
-    const MyDoc2 = (props) => (
+    const MyDoc2 = () => (
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.header}>
@@ -691,7 +703,6 @@ export default class Pdf extends React.Component {
               APPLICATION FORM FOR ADMISSION TO {this.state.users.choice} COURSE
             </Text>
           </View>
-          {/* <Text> {this.GenerateCustomLayout()}</Text> */}
           <View style={styles.right}>
             <Text>Application Number : {this.state.users.applicationno} </Text>
           </View>
@@ -702,16 +713,18 @@ export default class Pdf extends React.Component {
           />
           <View style={styles.left}>
             <Text style={styles.text}>
-              1.{"     "} TANCENT {new Date().getFullYear()} Registration Number
+              {""}1.{""} TANCET 2020 Registration Number
             </Text>
-            <Text>2.{"     "} Name</Text>
-            <Text>3.{"     "} Name of Parent/Guardian </Text>
-            <Text>4.{"     "} Address for Communication </Text>
-            <Text>5.{"     "} Email Id</Text>
-            <Text>6.{"     "} Contact Telephone No</Text>
-            <Text>7.{"     "} Mobile No</Text>
-            <Text>8.{"     "} Sex</Text>
-            <Text>9.{"     "} Citizenship</Text>
+            <Text>
+              {""}2.{""}Name
+            </Text>
+            <Text>3.{""} Name of Parent/Guardian </Text>
+            <Text>4.{""} Address for Communication </Text>
+            <Text>5.{""} Email Id</Text>
+            <Text>6.{""} Contact Telephone No</Text>
+            <Text>7.{""} Mobile No</Text>
+            <Text>8.{""} Sex</Text>
+            <Text>9.{""} Citizenship</Text>
             <Text>10.{"   "} Nativity</Text>
             <Text>11.{"   "} Srilankan Tamil Refugee</Text>
             <Text>12.{"   "} Place of Birth</Text>
@@ -721,33 +734,14 @@ export default class Pdf extends React.Component {
             <Text>16.{"   "} Caste Code</Text>
             <Text>17.{"   "} Religion</Text>
             <Text>18.{"   "} Name of the Caste</Text>
-            <Text style={styles.casteAlign}>
-              19.{"   "} Differently abled Quota
-              {"                                              "}:{" "}
-              {this.state.users.differentlyAbled}
-            </Text>
+            <Text>19.{"   "} Differently abled Quota </Text>
+            <Text>20.{"   "} Qualifying Degree </Text>
+            <Text>21.{"   "} Pattern of Study </Text>
+            <Text>22.{"   "} Appearance in the Final Year Exam </Text>
             <Text>
-              20.{"   "} Qualifying Degree
-              {"                                                      "}:{" "}
-              {this.state.users.qualifyingDegree}
-            </Text>
-            <Text>
-              21.{"   "} Pattern of Studied
-              {"                                                      "}:{" "}
-              {this.state.users.patternOfStudy}
-            </Text>
-            <Text>
-              22.{"   "} Appearance in the Final Year Exam
-              {"                           "}:{" "}
-              {this.state.users.appearanceInTheFinal}
-            </Text>
-            <Text>
-              23.{"   "} TANCENT Marks in 2019
-              {"                                           "}:{" "}
-              {this.state.users.tancentMarks}
+              23.{"   "} TANCET Marks in {new Date().getFullYear()}{" "}
             </Text>
             <Text>24.{"   "} School/College Study information </Text>
-
             <View style={styles.table}>
               <View style={styles.tableRow}>
                 <View style={styles.tableColHeader}>
@@ -784,18 +778,18 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.Xstate}
+                    {this.state.users.Xdistrict}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.Xdistrict}
+                    {this.state.users.Xstate}
                   </Text>
                 </View>
               </View>
               <View style={styles.tableRow}>
                 <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>Diploma</Text>
+                  <Text style={styles.tableCell}>XII/Diploma</Text>
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
@@ -809,12 +803,12 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.XIIstate}
+                    {this.state.users.XIIdistrict}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.XIIdistrict}
+                    {this.state.users.XIIstate}
                   </Text>
                 </View>
               </View>
@@ -834,12 +828,12 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.degreeState}
+                    {this.state.users.degreeDistrict}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.degreeDistrict}
+                    {this.state.users.degreeState}
                   </Text>
                 </View>
               </View>
@@ -863,14 +857,12 @@ export default class Pdf extends React.Component {
             <Text>: {this.state.users.nameOfCommunity}</Text>
             <Text>: {this.state.users.casteCode}</Text>
             <Text>: {this.state.users.religion}</Text>
-            <Text style={styles.text}>: {this.state.users.nameOfCaste}</Text>
-            {/* <Text style={styles.casteAlign}>
-              : {this.state.users.differentlyAbled}
-            </Text> */}
-            {/* <Text>: {this.state.users.qualifyingDegree}</Text>
+            <Text>: {this.state.users.nameOfCaste}</Text>
+            <Text>: {this.state.users.differentlyAbled}</Text>
+            <Text>: {this.state.users.qualifyingDegree}</Text>
             <Text>: {this.state.users.patternOfStudy}</Text>
             <Text>: {this.state.users.appearanceInTheFinal}</Text>
-            <Text>: {this.state.users.tancentMarks}</Text> */}
+            <Text>: {this.state.users.tancentMarks}</Text>
           </View>
         </Page>
         <Page size="A4" style={styles.page}>
@@ -879,17 +871,19 @@ export default class Pdf extends React.Component {
               25.{"   "} Details of Marks in UG Degree Qualifying Examinations
             </Text>
             <Text style={styles.text_indent}>
-              (a) UG Degree {this.state.users.ugDegree}
+              (a) UG Degree: {this.state.users.ugDegree}
             </Text>
             <Text style={styles.text_indent}>
-              (b) Name of the College with Address{" "}
+              (b) Name of the College with Address:{" "}
               {this.state.users.collegeName}
               {"  "}
               {this.state.users.collegeAddress}
             </Text>
 
             <Text style={styles.text_indent}>
-              (c) Name of the University {this.state.users.universityAddress}
+              (c) Name of the University: {this.state.users.universityName}
+              {"     "}
+              {this.state.users.universityAddress}
             </Text>
             <View style={styles.table}>
               <View style={styles.tableRow}>
@@ -1052,12 +1046,12 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol2}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overallmarks}
+                    {this.state.users.overalltotalmarks}
                   </Text>
                 </View>
                 <View style={styles.tableCol2}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overalltot}
+                    {this.state.users.overallmarksobtained}
                   </Text>
                 </View>
               </View>
@@ -1097,28 +1091,67 @@ export default class Pdf extends React.Component {
               <View style={styles.tableRow}>
                 <View style={styles.tableCol5}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overalltot}
+                    {this.state.users.prefinalsemoveralltotalmarks}
                   </Text>
                 </View>
                 <View style={styles.tableCol5}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overallmarks}
+                    {this.state.users.prefinalsemoverallmarksobtained}
                   </Text>
                 </View>
                 <View style={styles.tableCol5}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.totalpermark}
+                    {this.state.users.prefinalsemtotalpermark}
                   </Text>
                 </View>
               </View>
             </View>
+            <View style={styles.subheader}>
+              <Text>Declaration By The Applicant</Text>
+            </View>
+            <View style={styles.declarationPara}>
+              <Text>
+                All the information furnished prepage are true to the best of my
+                knowledge. I am aware that any wrong information or suppression
+                of information may result in punitive action in addition to
+                summary cancellation of my candidature for admission and
+                forfeiture of the fee paid I have the required qulification for
+                admission to MBA/MCA Degree Programme as prescribed. I have
+                studied BAchelors Degree course in 10+2+3/4/5 years pattern (or)
+                10 + 3 years Diploma + 3 years pattern. I have not studied B.E /
+                B.Tech Degree through distance / week end mode. I am also aware
+                that a pass in recognized bachelor's degree of minimum 3 years
+                duration in 10+2+3/4/5 years pattern and obtained at least 50%
+                (45% in case of candidates belonging to reserved category) at
+                the qualifying examination is the minimum eligibility required
+                for admission to PG course as per AICTE norms. Place Date
+                Signature of the Applicant
+              </Text>
+            </View>
+
+            <View>
+              <Text>
+                CHECK LIST To be filled by the Applicant 1. Self Attested
+                Photograph affixing on the Application 2. Self Attested
+                Photograph of Plus Two Mark Sheet / Diploma Certificate 3. Self
+                Attested photocopy of All Semester Maarksheets(All Apperances)
+                of qualifying Examination (Xeroxing both sides) 4. Self Attested
+                Photocopy of Degree or Provisional Cerificate 5. Self Attested
+                Photocopy of Transfer certificate. 6. Self Attested Photocopy of
+                permanent community card for SC,ST,SCA,MBC & DNC,BC,BCM. 7. Self
+                Attested Photocopy of TANCET 2020 Hall Ticket. 8. Self Attested
+                Photocopy of TANCET 2020 Mark Sheet. 9. Self Attested Photocopy
+                of TANCEt Nativity Certificate. 10.District Medical Board
+                Certificate (for differntly abled Persons Only). 11.Sri Lankan
+                Refugee Certificate - IF Applicable.
+              </Text>
+            </View>
           </View>
         </Page>
-        <Page></Page>
       </Document>
     );
 
-    const MyDoc3 = (props) => (
+    const MyDoc3 = () => (
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.header}>
@@ -1130,10 +1163,13 @@ export default class Pdf extends React.Component {
             <Text>Application Number : {this.state.users.applicationno} </Text>
           </View>
           <Image style={styles.logo} src={logo}></Image>
-          <Image style={styles.photo} src={logo} />
+          <Image
+            style={styles.photo}
+            src={this.state.image.picture.imageData}
+          ></Image>
           <View style={styles.left}>
             <Text style={styles.text}>
-              1.{"     "} TANCENT {new Date().getFullYear()} Registration Number
+              1.{"     "} TANCET {new Date().getFullYear()} Registration Number
             </Text>
             <Text>2.{"     "} Name</Text>
             <Text>3.{"     "} Name of Parent/Guardian </Text>
@@ -1156,7 +1192,9 @@ export default class Pdf extends React.Component {
             <Text>20.{"   "} Qualifying Degree : </Text>
             <Text>21.{"   "} Pattern of Studied : </Text>
             <Text>22.{"   "} Appearance in the Final Year Exam </Text>
-            <Text>23.{"   "} TANCENT Marks in 2019 : </Text>
+            <Text>
+              23.{"   "} TANCET Marks in {new Date().getFullYear()} :{" "}
+            </Text>
             <Text>24.{"   "} School/College Study information </Text>
             <View style={styles.table}>
               <View style={styles.tableRow}>
@@ -1194,12 +1232,12 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.Xstate}
+                    {this.state.users.Xdistrict}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.Xdistrict}
+                    {this.state.users.Xstate}
                   </Text>
                 </View>
               </View>
@@ -1219,12 +1257,12 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.XIIstate}
+                    {this.state.users.XIIdistrict}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.XIIdistrict}
+                    {this.state.users.XIIstate}
                   </Text>
                 </View>
               </View>
@@ -1244,12 +1282,12 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.degreeState}
+                    {this.state.users.degreeDistrict}
                   </Text>
                 </View>
                 <View style={styles.tableCol}>
                   <Text style={styles.tableCell}>
-                    {this.state.users.degreeDistrict}
+                    {this.state.users.degreeState}
                   </Text>
                 </View>
               </View>
@@ -1287,17 +1325,19 @@ export default class Pdf extends React.Component {
               25.{"   "} Details of Marks in UG Degree Qualifying Examinations
             </Text>
             <Text style={styles.text_indent}>
-              (a) UG Degree {this.state.users.ugDegree}
+              (a) UG Degree: {this.state.users.ugDegree}
             </Text>
             <Text style={styles.text_indent}>
-              (b) Name of the College with Address{" "}
+              (b) Name of the College with Address:{" "}
               {this.state.users.collegeName}
               {"  "}
               {this.state.users.collegeAddress}
             </Text>
 
             <Text style={styles.text_indent}>
-              (c) Name of the University {this.state.users.universityAddress}
+              (c) Name of the University: {this.state.users.universityName}
+              {"     "}
+              {this.state.users.universityAddress}
             </Text>
             <View style={styles.table}>
               <View style={styles.tableRow}>
@@ -1477,41 +1517,19 @@ export default class Pdf extends React.Component {
                   </Text>
                 </View>
               </View>
-              <View style={styles.tableRow}>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>VIII</Text>
-                </View>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>
-                    {" "}
-                    {this.state.users.VIIIsemMonth}
-                    {"  "}
-                    {this.state.users.VIIIsemyop}
-                  </Text>
-                </View>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>
-                    {this.state.users.VIIIsemmaxmarks}
-                  </Text>
-                </View>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>
-                    {this.state.users.VIIIsemmarks}
-                  </Text>
-                </View>
-              </View>
+
               <View style={styles.tableRow}>
                 <View style={styles.tableCol3}>
                   <Text style={styles.tableCell2}>Overall Total</Text>
                 </View>
                 <View style={styles.tableCol2}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overallmarks}
+                    {this.state.users.overalltotalmarks}
                   </Text>
                 </View>
                 <View style={styles.tableCol2}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overalltot}
+                    {this.state.users.overallmarksobtained}
                   </Text>
                 </View>
               </View>
@@ -1551,26 +1569,61 @@ export default class Pdf extends React.Component {
               <View style={styles.tableRow}>
                 <View style={styles.tableCol5}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overalltot}
+                    {this.state.users.prefinalsemoverallmarksobtained}
                   </Text>
                 </View>
                 <View style={styles.tableCol5}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.overallmarks}
+                    {this.state.users.prefinalsemoveralltotalmarks}
                   </Text>
                 </View>
                 <View style={styles.tableCol5}>
                   <Text style={styles.tableCell2}>
-                    {this.state.users.totalpermark}
+                    {this.state.users.prefinalsemtotalpermark}
                   </Text>
                 </View>
               </View>
             </View>
-          </View>
-        </Page>
-        <Page>
-          <View>
-            <Text>Declaration By The Applicant</Text>
+            <View style={styles.subheader}>
+              <Text>Declaration By The Applicant</Text>
+            </View>
+            <View style={styles.declarationPara}>
+              <Text>
+                All the information furnished prepage are true to the best of my
+                knowledge. I am aware that any wrong information or suppression
+                of information may result in punitive action in addition to
+                summary cancellation of my candidature for admission and
+                forfeiture of the fee paid I have the required qulification for
+                admission to MBA/MCA Degree Programme as prescribed. I have
+                studied BAchelors Degree course in 10+2+3/4/5 years pattern (or)
+                10 + 3 years Diploma + 3 years pattern. I have not studied B.E /
+                B.Tech Degree through distance / week end mode. I am also aware
+                that a pass in recognized bachelor's degree of minimum 3 years
+                duration in 10+2+3/4/5 years pattern and obtained at least 50%
+                (45% in case of candidates belonging to reserved category) at
+                the qualifying examination is the minimum eligibility required
+                for admission to PG course as per AICTE norms. Place Date
+                Signature of the Applicant
+              </Text>
+            </View>
+
+            <View>
+              <Text>
+                CHECK LIST To be filled by the Applicant 1. Self Attested
+                Photograph affixing on the Application 2. Self Attested
+                Photograph of Plus Two Mark Sheet / Diploma Certificate 3. Self
+                Attested photocopy of All Semester Maarksheets(All Apperances)
+                of qualifying Examination (Xeroxing both sides) 4. Self Attested
+                Photocopy of Degree or Provisional Cerificate 5. Self Attested
+                Photocopy of Transfer certificate. 6. Self Attested Photocopy of
+                permanent community card for SC,ST,SCA,MBC & DNC,BC,BCM. 7. Self
+                Attested Photocopy of TANCET 2020 Hall Ticket. 8. Self Attested
+                Photocopy of TANCET 2020 Mark Sheet. 9. Self Attested Photocopy
+                of TANCEt Nativity Certificate. 10.District Medical Board
+                Certificate (for differntly abled Persons Only). 11.Sri Lankan
+                Refugee Certificate - IF Applicable.
+              </Text>
+            </View>
           </View>
         </Page>
       </Document>
@@ -1581,8 +1634,7 @@ export default class Pdf extends React.Component {
     }
 
     if (this.state.users !== null && this.state.image !== null) {
-      const imageURL = this.state.image.picture.imageData;
-      console.log(imageURL);
+      console.log(this.state.users);
       if (
         this.state.users.patternOfStudy === "10 + Plus Two + 3 Years Degree"
       ) {
@@ -1605,7 +1657,7 @@ export default class Pdf extends React.Component {
                 fontSize: "20px",
                 width: "100%",
               }}
-              document={<MyDoc1 props={imageURL} />}
+              document={<MyDoc1 />}
               fileName="fee_acceptance.pdf"
             >
               {({ blob, url, loading, error }) =>
@@ -1618,7 +1670,7 @@ export default class Pdf extends React.Component {
                 height: "100rem",
               }}
             >
-              <MyDoc1 props={imageURL} />
+              <MyDoc1 />
             </PDFViewer>
           </div>
         );
@@ -1647,7 +1699,7 @@ export default class Pdf extends React.Component {
                 fontSize: "20px",
                 width: "100%",
               }}
-              document={<MyDoc2 imageURL={imageURL} />}
+              document={<MyDoc2 />}
               fileName="fee_acceptance.pdf"
             >
               {({ blob, url, loading, error }) =>
@@ -1660,7 +1712,7 @@ export default class Pdf extends React.Component {
                 height: "100rem",
               }}
             >
-              <MyDoc2 imageURL={imageURL} />
+              <MyDoc2 />
             </PDFViewer>
           </div>
         );
@@ -1688,7 +1740,7 @@ export default class Pdf extends React.Component {
                 fontSize: "20px",
                 width: "100%",
               }}
-              document={<MyDoc3 props={imageURL} />}
+              document={<MyDoc3 />}
               fileName="fee_acceptance.pdf"
             >
               {({ blob, url, loading, error }) =>
@@ -1701,7 +1753,7 @@ export default class Pdf extends React.Component {
                 height: "100rem",
               }}
             >
-              <MyDoc3 props={imageURL} />
+              <MyDoc3 />
             </PDFViewer>
           </div>
         );

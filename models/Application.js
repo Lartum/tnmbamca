@@ -155,9 +155,13 @@ const ApplicationSchema = mongoose.Schema({
     Xsemmaxmarks: Number,
 
 
-    overalltot: Number,
-    overallmarks: Number,
+    overalltotalmarks: Number,
+    overallmarksobtained: Number,
     totalpermark: Number,
+
+    prefinalsemoveralltotalmarks: Number,
+    prefinalsemoverallmarksobtained: Number,
+    prefinalsemtotalpermark: Number,
 
     date: {
         type: Date,
