@@ -236,11 +236,30 @@ export default class Pdf extends React.Component {
   }
   else if(this.state.users !== null){
     const castename = this.state.users.nameOfCaste;
-    if(castename.length > 78){
+    if(castename.length > 391){
+      newLine = "\n\n\n\n\n\n\n"
+    }
+    else if(castename.length > 135){
+      newLine = "\n\n\n\n"
+    }
+    else if(castename.length > 78){
       newLine = "\n\n"
-    }    
+    }
+    else{
+      console.log('else condition running');
+    }       
+
+  //   switch(castename){
+  //   case castename.length>78:
+  //         newLine = "\n\n"
+  //         break;
+  //    case castename.length>135:
+  //       newLine = "\n\n\n\n"
+  //       break
+  //    case castename.length> 300:
+  //       newLine = "\n\n\n\n\n"       
+  //   }
   }
-  
    const MyDoc1 = () => ( 
       <Document>
       <Page size="A4" style={styles.page}>
@@ -401,7 +420,7 @@ export default class Pdf extends React.Component {
           <Text>: {this.state.users.nameOfCommunity}{}</Text>
           <Text>: {this.state.users.casteCode}</Text>
           <Text>: {this.state.users.religion}</Text>
-          <Text>: {this.state.users.nameOfCaste}</Text>
+   <Text>:{this.state.users.nameOfCaste}{"\n\n\n\n\n"}</Text>
           <Text>: {this.state.users.differentlyAbled}</Text>
           <Text>: {this.state.users.qualifyingDegree}</Text>
           <Text>: {this.state.users.patternOfStudy}</Text>
@@ -724,7 +743,7 @@ To be filled by the Applicant
         <Text>15.{"   "} Name of the Community</Text>
         <Text>16.{"   "} Caste Code</Text>
         <Text>17.{"   "} Religion</Text>
-        <Text>18.{"   "} Name of the Caste</Text>
+        <Text>18.{"   "} Name of the Caste{newLine}</Text>
         <Text>19.{"   "} Differently abled Quota  </Text>
         <Text>20.{"   "} Qualifying Degree  </Text>
         <Text>21.{"   "} Pattern of Study  </Text>
@@ -1171,7 +1190,7 @@ To be filled by the Applicant
       <Text>15.{"   "} Name of the Community</Text>
       <Text>16.{"   "} Caste Code</Text>
       <Text>17.{"   "} Religion</Text>
-      <Text>18.{"   "} Name of the Caste</Text>
+      <Text>18.{"   "} Name of the Caste{newLine}</Text>
       <Text>19.{"   "} Differently abled Quota  </Text>
       <Text>20.{"   "} Qualifying Degree : </Text>
       <Text>21.{"   "} Pattern of Studied : </Text>

@@ -340,7 +340,7 @@ export const caste_all_list = [
         "Sembanad Maravars (Sivaganga, Virudhunagar and Ramanathapuram Districts)",
         "Thalli Koravars (Salem and Namakkal Districts)",
         "Telungapatti Chettis (Tiruchirapalli, Karur, Perambalur and Pudukkottai Districts)",
-        "Thottia Naickers (Sivaganga, Virudhunagar, Ramanathapuram, Kancheepuram, Tiruvallur, Thanjavur, Nagapattinam, Thiruvarur, Tiruchirapalli, Karur, Perambalur. Pudukkottai, Tirunelveli, Thoothukudi, Salem, Namakkal, Vellore,    Thiruvannamalai, Coimbatore & Erode Districts)",
+        "Thottia Naickers (Sivaganga, Virudhunagar, Ramanathapuram, Kancheepuram, Tiruvallur, Thanjavur, Nagapattinam, Thiruvarur, Tiruchirapalli, Karur, Perambalur. Pudukkottai, Tirunelveli, Thoothukudi, Salem, Namakkal, Vellore, Thiruvannamalai, Coimbatore & Erode Districts)",
         "Thogamalai Koravars or Kepmaris (Tiruchirapalli, Karur, Perambalur and Pudukkottai Districts)",
         "Uppukoravars or Settipalli Koravars (Thanjavur, Nagapattinam, Thiruvarur, Pudukkottai, Madurai, Theni, Dindigul, Vellore and Thiruvannamalai Dist.)",
         "Urali Gounders (Tiruchirapalli, Karur, Perambalur and Pudukkottai Districts)",
