@@ -733,7 +733,9 @@ export default class Pdf extends React.Component {
             <Text>15.{"   "} Name of the Community</Text>
             <Text>16.{"   "} Caste Code</Text>
             <Text>17.{"   "} Religion</Text>
-            <Text>18.{"   "} Name of the Caste</Text>
+            <Text>
+              18.{"   "} Name of the Caste{newLine}
+            </Text>
             <Text>19.{"   "} Differently abled Quota </Text>
             <Text>20.{"   "} Qualifying Degree </Text>
             <Text>21.{"   "} Pattern of Study </Text>
@@ -1187,7 +1189,9 @@ export default class Pdf extends React.Component {
             <Text>15.{"   "} Name of the Community</Text>
             <Text>16.{"   "} Caste Code</Text>
             <Text>17.{"   "} Religion</Text>
-            <Text>18.{"   "} Name of the Caste</Text>
+            <Text>
+              18.{"   "} Name of the Caste{newLine}
+            </Text>
             <Text>19.{"   "} Differently abled Quota </Text>
             <Text>20.{"   "} Qualifying Degree : </Text>
             <Text>21.{"   "} Pattern of Studied : </Text>
@@ -1311,7 +1315,12 @@ export default class Pdf extends React.Component {
             <Text>: {this.state.users.nameOfCommunity}</Text>
             <Text>: {this.state.users.casteCode}</Text>
             <Text>: {this.state.users.religion}</Text>
-            <Text>: {this.state.users.nameOfCaste}</Text>
+            <Text>
+              : sjdfjkhsdjkf sdkfh dskjskj fkdsfh dskfhlkds hflkdshlfk hsdlk f
+              sdglfkhdslfhldskf sdfhlds hfldsjflkjdslkfjsdjf
+              dsfhlsdhflhdslkfjpsdjflksdhlkfjds fdldshfl hsdlfhlsdhflhsdlkfjlds
+              sd fhlsdlhflsdhflhdsf
+            </Text>
             <Text>: {this.state.users.differentlyAbled}</Text>
             <Text>: {this.state.users.qualifyingDegree}</Text>
             <Text>: {this.state.users.patternOfStudy}</Text>

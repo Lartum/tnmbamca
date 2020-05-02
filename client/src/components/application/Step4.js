@@ -60,6 +60,7 @@ export default class Step5 extends Component {
       Xsemyop: this.refs.Xsemyop,
       Xsemmaxmarks: this.refs.Xsemmaxmarks,
       Xsemmarks: this.refs.Xsemmarks,
+
       overalltotalmarks: this.refs.overalltotalmarks,
       overallmarksobtained: this.refs.overallmarksobtained,
       totalpermark: this.refs.totalpermark,
@@ -214,8 +215,8 @@ export default class Step5 extends Component {
         Xsemmaxmarks: this.refs.Xsemmaxmarks.value,
         Xsemmarks: this.refs.Xsemmarks.value,
 
-        overalltot: this.refs.overalltot.value,
-        overallmarks: this.refs.overallmarks.value,
+        overalltotalmarks: this.refs.overalltotalmarks.value,
+        overallmarksobtained: this.refs.overallmarksobtained.value,
         totalpermark: this.refs.totalpermark.value,
       };
     } else if (
@@ -252,8 +253,8 @@ export default class Step5 extends Component {
         VIsemmaxmarks: this.refs.VIsemmaxmarks.value,
         VIsemmarks: this.refs.VIsemmarks.value,
 
-        overalltot: this.refs.overalltot.value,
-        overallmarks: this.refs.overallmarks.value,
+        overalltotalmarks: this.refs.overalltotalmarks.value,
+        overallmarksobtained: this.refs.overallmarksobtained.value,
         totalpermark: this.refs.totalpermark.value,
       };
     } else if (
@@ -298,8 +299,8 @@ export default class Step5 extends Component {
         VIIIsemmaxmarks: this.refs.VIIIsemmaxmarks.value,
         VIIIsemmarks: this.refs.VIIIsemmarks.value,
 
-        overalltot: this.refs.overalltot.value,
-        overallmarks: this.refs.overallmarks.value,
+        overalltotalmarks: this.refs.overalltotalmarks.value,
+        overallmarksobtained: this.refs.overallmarksobtained.value,
         totalpermark: this.refs.totalpermark.value,
       };
     }
@@ -317,11 +318,11 @@ export default class Step5 extends Component {
         parseFloat(this.refs.Vsemmaxmarks.value, 10) +
         parseFloat(this.refs.VIsemmaxmarks.value, 10);
 
-      this.setState({ overalltot: total_Max_Marks });
-      if (this.refs.overallmarks.value !== null) {
-        const percent_marks = parseFloat(
-          (parseFloat(this.refs.overallmarks.value, 10) * 100) /
-            parseFloat(total_Max_Marks, 10),
+      this.setState({ overalltotalmarks: total_Max_Marks });
+      if (this.refs.overallmarksobtained.value !== null) {
+        const percent_marks = parseInt(
+          (parseInt(this.refs.overallmarksobtained.value, 10) * 100) /
+            parseInt(total_Max_Marks, 10),
           10
         );
         this.setState({ totalpermark: percent_marks });
@@ -341,11 +342,11 @@ export default class Step5 extends Component {
         parseFloat(this.refs.VIIIsemmaxmarks.value, 10) +
         parseFloat(this.refs.IXsemmaxmarks.value, 10) +
         parseFloat(this.refs.Xsemmaxmarks.value, 10);
-      this.setState({ overalltot: total_Max_Marks });
-      if (this.refs.overallmarks.value !== null) {
-        const percent_marks = parseFloat(
-          (parseFloat(this.refs.overallmarks.value, 10) * 100) /
-            parseFloat(total_Max_Marks, 10),
+      this.setState({ overalltotalmarks: total_Max_Marks });
+      if (this.refs.overallmarksobtained.value !== null) {
+        const percent_marks = parseInt(
+          (parseInt(this.refs.overallmarksobtained.value, 10) * 100) /
+            parseInt(total_Max_Marks, 10),
           10
         );
         this.setState({ totalpermark: percent_marks });
@@ -362,12 +363,11 @@ export default class Step5 extends Component {
         parseFloat(this.refs.VIsemmaxmarks.value, 10) +
         parseFloat(this.refs.VIIsemmaxmarks.value, 10) +
         parseFloat(this.refs.VIIIsemmaxmarks.value, 10);
-
-      this.setState({ overalltot: total_Max_Marks });
-      if (this.refs.overallmarks.value !== null) {
-        const percent_marks = parseFloat(
-          (parseFloat(this.refs.overallmarks.value, 10) * 100) /
-            parseFloat(total_Max_Marks, 10),
+      this.setState({ overalltotalmarks: total_Max_Marks });
+      if (this.refs.overallmarksobtained.value !== null) {
+        const percent_marks = parseInt(
+          (parseInt(this.refs.overallmarksobtained.value, 10) * 100) /
+            parseInt(total_Max_Marks, 10),
           10
         );
         this.setState({ totalpermark: percent_marks });
@@ -389,13 +389,13 @@ export default class Step5 extends Component {
         parseFloat(this.refs.IVsemmarks.value, 10) +
         parseFloat(this.refs.Vsemmarks.value, 10) +
         parseFloat(this.refs.VIsemmarks.value, 10);
-      this.setState({ overallmarks: total_obtained_Marks });
+      this.setState({ overallmarksobtained: total_obtained_Marks });
 
-      const percent_marks = parseFloat(
-        (parseFloat(total_obtained_Marks, 10) * 100) /
-          parseFloat(this.refs.overalltot.value, 10),
+      const percent_marks = parseInt(
+        (parseInt(total_obtained_Marks, 10) * 100) /
+          parseInt(this.refs.overalltotalmarks.value, 10),
         10
-      ).toFixed(2);
+      );
       this.setState({ totalpermark: percent_marks });
     } else if (
       this.props.getStore().patternOfStudy ===
@@ -412,13 +412,13 @@ export default class Step5 extends Component {
         parseFloat(this.refs.VIIIsemmarks.value, 10) +
         parseFloat(this.refs.IXsemmarks.value, 10) +
         parseFloat(this.refs.Xsemmarks.value, 10);
-      this.setState({ overallmarks: total_obtained_Marks });
+      this.setState({ overallmarksobtained: total_obtained_Marks });
 
-      const percent_marks = parseFloat(
-        (parseFloat(total_obtained_Marks, 10) * 100) /
-          parseFloat(this.refs.overalltot.value, 10),
+      const percent_marks = parseInt(
+        (parseInt(total_obtained_Marks, 10) * 100) /
+          parseInt(this.refs.overalltotalmarks.value, 10),
         10
-      ).toFixed(2);
+      );
       this.setState({ totalpermark: percent_marks });
     } else if (
       this.props.getStore().patternOfStudy === "10 + Plus Two + 4 Years Degree"
@@ -432,16 +432,1410 @@ export default class Step5 extends Component {
         parseFloat(this.refs.VIsemmarks.value, 10) +
         parseFloat(this.refs.VIIsemmarks.value, 10) +
         parseFloat(this.refs.VIIIsemmarks.value, 10);
-      this.setState({ overallmarks: total_obtained_Marks });
+      this.setState({ overallmarksobtained: total_obtained_Marks });
 
-      const percent_marks = parseFloat(
-        (parseFloat(total_obtained_Marks, 10) * 100) /
-          parseFloat(this.refs.overalltot.value, 10),
+      const percent_marks = parseInt(
+        (parseInt(total_obtained_Marks, 10) * 100) /
+          parseInt(this.refs.overalltotalmarks.value, 10),
         10
-      ).toFixed(2);
+      );
       this.setState({ totalpermark: percent_marks });
     }
   };
+
+  generateTableBasedOnPatternOfStudy() {
+    //Get Year
+    const maxyear = new Date().getFullYear();
+    const maxyear_1 = maxyear - 1;
+    const maxyear_2 = maxyear - 2;
+    const maxyear_3 = maxyear - 3;
+    const maxyear_4 = maxyear - 4;
+    const maxyear_5 = maxyear - 5;
+    const maxyear_6 = maxyear - 6;
+
+    //Get Month Names
+    const { month_names } = this.state;
+
+    let month_names_List =
+      month_names.length > 0 &&
+      month_names.map((month, month_index) => {
+        return (
+          <option key={month_index} value={month.id}>
+            {month.name}
+          </option>
+        );
+      }, this);
+
+    console.log("Pattern :" + this.props.getStore().patternOfStudy);
+
+    if (
+      this.props.getStore().patternOfStudy === "10 + Plus Two + 3 Years Degree"
+    ) {
+      return (
+        <tbody>
+          <tr>
+            <th scope="row">I</th>
+            <td>
+              <select
+                ref="IsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="Isemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.Isemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="Isemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Isemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="Isemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Isemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">II</th>
+            <td>
+              <select
+                ref="IIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="IIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="IIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="IIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">III</th>
+            <td>
+              <select
+                ref="IIIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="IIIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="IIIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="IIIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">IV</th>
+            <td>
+              <select
+                ref="IVsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="IVsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="IVsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="IVsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">V</th>
+            <td>
+              <select
+                ref="VsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.VsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="Vsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.Vsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="Vsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Vsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="Vsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Vsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">VI</th>
+            <td>
+              <select
+                ref="VIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="VIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="VIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="VIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemmarks}
+              />
+            </td>
+          </tr>
+        </tbody>
+      );
+    } else if (
+      this.props.getStore().patternOfStudy ===
+      "10 + 3 Years Diploma + 3 Years Degree"
+    ) {
+      return (
+        <tbody>
+          <tr>
+            <th scope="row">I</th>
+            <td>
+              <select
+                ref="IsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="Isemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.Isemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="Isemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Isemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="Isemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Isemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">II</th>
+            <td>
+              <select
+                ref="IIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="IIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="IIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="IIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">III</th>
+            <td>
+              <select
+                ref="IIIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="IIIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="IIIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="IIIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">IV</th>
+            <td>
+              <select
+                ref="IVsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="IVsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="IVsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="IVsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">V</th>
+            <td>
+              <select
+                ref="VsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.VsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="Vsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.Vsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="Vsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Vsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="Vsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Vsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">VI</th>
+            <td>
+              <select
+                ref="VIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="VIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="VIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="VIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">VII</th>
+            <td>
+              <select
+                ref="VIIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.VIIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="VIIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.VIIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="VIIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="VIIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">VIII</th>
+            <td>
+              <select
+                ref="VIIIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.VIIIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="VIIIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.VIIIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="VIIIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIIIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="VIIIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIIIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">IX</th>
+            <td>
+              <select
+                ref="IXsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IXsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="IXsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.IXsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="IXsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IXsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="IXsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IXsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">X</th>
+            <td>
+              <select
+                ref="XsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.XsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="Xsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.Xsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="Xsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Xsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="Xsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Xsemmarks}
+              />
+            </td>
+          </tr>
+        </tbody>
+      );
+    } else if (
+      this.props.getStore().patternOfStudy === "10 + Plus Two + 4 Years Degree"
+    ) {
+      return (
+        <tbody>
+          <tr>
+            <th scope="row">I</th>
+            <td>
+              <select
+                ref="IsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="Isemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.Isemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="Isemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Isemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="Isemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Isemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">II</th>
+            <td>
+              <select
+                ref="IIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="IIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="IIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="IIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">III</th>
+            <td>
+              <select
+                ref="IIIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="IIIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="IIIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="IIIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IIIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">IV</th>
+            <td>
+              <select
+                ref="IVsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="IVsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="IVsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="IVsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.IVsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">V</th>
+            <td>
+              <select
+                ref="VsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.VsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="Vsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.Vsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="Vsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Vsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="Vsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.Vsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">VI</th>
+            <td>
+              <select
+                ref="VIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="VIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="VIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="VIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">VII</th>
+            <td>
+              <select
+                ref="VIIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.VIIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="VIIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.VIIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="VIIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="VIIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIIsemmarks}
+              />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">VIII</th>
+            <td>
+              <select
+                ref="VIIIsemMonth"
+                autoComplete="off"
+                type="text"
+                className="form-control"
+                required
+                defaultValue={this.state.VIIIsemMonth}
+              >
+                {month_names_List}
+              </select>
+            </td>
+            <td>
+              <select
+                ref="VIIIsemyop"
+                autoComplete="off"
+                type="select"
+                className="form-control"
+                required
+                defaultValue={this.state.VIIIsemyop}
+              >
+                <option value="">Please Select</option>
+                <option value={maxyear}> {maxyear}</option>
+                <option value={maxyear_1}> {maxyear_1}</option>
+                <option value={maxyear_2}> {maxyear_2}</option>
+                <option value={maxyear_3}> {maxyear_3}</option>
+                <option value={maxyear_4}> {maxyear_4}</option>
+                <option value={maxyear_5}> {maxyear_5}</option>
+                <option value={maxyear_6}> {maxyear_6}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                ref="VIIIsemmaxmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_max_marks_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIIIsemmaxmarks}
+              />
+            </td>
+            <td>
+              <input
+                ref="VIIIsemmarks"
+                autoComplete="off"
+                type="number"
+                onChange={this.listen_to_marks_obtained_change}
+                className="form-control"
+                required
+                defaultValue={this.state.VIIIsemmarks}
+              />
+            </td>
+          </tr>
+        </tbody>
+      );
+    }
+  }
 
   render() {
     // explicit class assigning based on validation
@@ -501,28 +1895,6 @@ export default class Step5 extends Component {
       notValidClasses.universityAddressCls = "has-error col-md-10";
       notValidClasses.universityAddressValGrpCls = "val-err-tooltip";
     }
-
-    //Get Year
-    const maxyear = new Date().getFullYear();
-    const maxyear_1 = maxyear - 1;
-    const maxyear_2 = maxyear - 2;
-    const maxyear_3 = maxyear - 3;
-    const maxyear_4 = maxyear - 4;
-    const maxyear_5 = maxyear - 5;
-    const maxyear_6 = maxyear - 6;
-
-    //Get Month Names
-    const { month_names } = this.state;
-
-    let month_names_List =
-      month_names.length > 0 &&
-      month_names.map((month, month_index) => {
-        return (
-          <option key={month_index} value={month.id}>
-            {month.name}
-          </option>
-        );
-      }, this);
 
     return (
       <div className="step step4">
@@ -679,567 +2051,9 @@ export default class Step5 extends Component {
                   <th>Marks Obtained</th>
                 </tr>
               </thead>
+
+              {this.generateTableBasedOnPatternOfStudy()}
               <tbody>
-                <tr>
-                  <th scope="row">I</th>
-                  <td>
-                    <select
-                      ref="IsemMonth"
-                      autoComplete="off"
-                      type="text"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IsemMonth}
-                    >
-                      {month_names_List}
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      ref="Isemyop"
-                      autoComplete="off"
-                      type="select"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.Isemyop}
-                    >
-                      <option value="">Please Select</option>
-                      <option value={maxyear}> {maxyear}</option>
-                      <option value={maxyear_1}> {maxyear_1}</option>
-                      <option value={maxyear_2}> {maxyear_2}</option>
-                      <option value={maxyear_3}> {maxyear_3}</option>
-                      <option value={maxyear_4}> {maxyear_4}</option>
-                      <option value={maxyear_5}> {maxyear_5}</option>
-                      <option value={maxyear_6}> {maxyear_6}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      ref="Isemmaxmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_max_marks_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.Isemmaxmarks}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      ref="Isemmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_marks_obtained_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.Isemmarks}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">II</th>
-                  <td>
-                    <select
-                      ref="IIsemMonth"
-                      autoComplete="off"
-                      type="text"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IIsemMonth}
-                    >
-                      {month_names_List}
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      ref="IIsemyop"
-                      autoComplete="off"
-                      type="select"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IIsemyop}
-                    >
-                      <option value="">Please Select</option>
-                      <option value={maxyear}> {maxyear}</option>
-                      <option value={maxyear_1}> {maxyear_1}</option>
-                      <option value={maxyear_2}> {maxyear_2}</option>
-                      <option value={maxyear_3}> {maxyear_3}</option>
-                      <option value={maxyear_4}> {maxyear_4}</option>
-                      <option value={maxyear_5}> {maxyear_5}</option>
-                      <option value={maxyear_6}> {maxyear_6}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      ref="IIsemmaxmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_max_marks_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IIsemmaxmarks}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      ref="IIsemmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_marks_obtained_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IIsemmarks}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">III</th>
-                  <td>
-                    <select
-                      ref="IIIsemMonth"
-                      autoComplete="off"
-                      type="text"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IIIsemMonth}
-                    >
-                      {month_names_List}
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      ref="IIIsemyop"
-                      autoComplete="off"
-                      type="select"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IIIsemyop}
-                    >
-                      <option value="">Please Select</option>
-                      <option value={maxyear}> {maxyear}</option>
-                      <option value={maxyear_1}> {maxyear_1}</option>
-                      <option value={maxyear_2}> {maxyear_2}</option>
-                      <option value={maxyear_3}> {maxyear_3}</option>
-                      <option value={maxyear_4}> {maxyear_4}</option>
-                      <option value={maxyear_5}> {maxyear_5}</option>
-                      <option value={maxyear_6}> {maxyear_6}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      ref="IIIsemmaxmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_max_marks_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IIIsemmaxmarks}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      ref="IIIsemmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_marks_obtained_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IIIsemmarks}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">IV</th>
-                  <td>
-                    <select
-                      ref="IVsemMonth"
-                      autoComplete="off"
-                      type="text"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IVsemMonth}
-                    >
-                      {month_names_List}
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      ref="IVsemyop"
-                      autoComplete="off"
-                      type="select"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IVsemyop}
-                    >
-                      <option value="">Please Select</option>
-                      <option value={maxyear}> {maxyear}</option>
-                      <option value={maxyear_1}> {maxyear_1}</option>
-                      <option value={maxyear_2}> {maxyear_2}</option>
-                      <option value={maxyear_3}> {maxyear_3}</option>
-                      <option value={maxyear_4}> {maxyear_4}</option>
-                      <option value={maxyear_5}> {maxyear_5}</option>
-                      <option value={maxyear_6}> {maxyear_6}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      ref="IVsemmaxmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_max_marks_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IVsemmaxmarks}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      ref="IVsemmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_marks_obtained_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IVsemmarks}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">V</th>
-                  <td>
-                    <select
-                      ref="VsemMonth"
-                      autoComplete="off"
-                      type="text"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VsemMonth}
-                    >
-                      {month_names_List}
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      ref="Vsemyop"
-                      autoComplete="off"
-                      type="select"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.Vsemyop}
-                    >
-                      <option value="">Please Select</option>
-                      <option value={maxyear}> {maxyear}</option>
-                      <option value={maxyear_1}> {maxyear_1}</option>
-                      <option value={maxyear_2}> {maxyear_2}</option>
-                      <option value={maxyear_3}> {maxyear_3}</option>
-                      <option value={maxyear_4}> {maxyear_4}</option>
-                      <option value={maxyear_5}> {maxyear_5}</option>
-                      <option value={maxyear_6}> {maxyear_6}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      ref="Vsemmaxmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_max_marks_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.Vsemmaxmarks}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      ref="Vsemmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_marks_obtained_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.Vsemmarks}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">VI</th>
-                  <td>
-                    <select
-                      ref="VIsemMonth"
-                      autoComplete="off"
-                      type="text"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIsemMonth}
-                    >
-                      {month_names_List}
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      ref="VIsemyop"
-                      autoComplete="off"
-                      type="select"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIsemyop}
-                    >
-                      <option value="">Please Select</option>
-                      <option value={maxyear}> {maxyear}</option>
-                      <option value={maxyear_1}> {maxyear_1}</option>
-                      <option value={maxyear_2}> {maxyear_2}</option>
-                      <option value={maxyear_3}> {maxyear_3}</option>
-                      <option value={maxyear_4}> {maxyear_4}</option>
-                      <option value={maxyear_5}> {maxyear_5}</option>
-                      <option value={maxyear_6}> {maxyear_6}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      ref="VIsemmaxmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_max_marks_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIsemmaxmarks}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      ref="VIsemmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_marks_obtained_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIsemmarks}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">VII</th>
-                  <td>
-                    <select
-                      ref="VIIsemMonth"
-                      autoComplete="off"
-                      type="text"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIIsemMonth}
-                    >
-                      {month_names_List}
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      ref="VIIsemyop"
-                      autoComplete="off"
-                      type="select"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIIsemyop}
-                    >
-                      <option value="">Please Select</option>
-                      <option value={maxyear}> {maxyear}</option>
-                      <option value={maxyear_1}> {maxyear_1}</option>
-                      <option value={maxyear_2}> {maxyear_2}</option>
-                      <option value={maxyear_3}> {maxyear_3}</option>
-                      <option value={maxyear_4}> {maxyear_4}</option>
-                      <option value={maxyear_5}> {maxyear_5}</option>
-                      <option value={maxyear_6}> {maxyear_6}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      ref="VIIsemmaxmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_max_marks_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIIsemmaxmarks}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      ref="VIIsemmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_marks_obtained_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIIsemmarks}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">VIII</th>
-                  <td>
-                    <select
-                      ref="VIIIsemMonth"
-                      autoComplete="off"
-                      type="text"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIIIsemMonth}
-                    >
-                      {month_names_List}
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      ref="VIIIsemyop"
-                      autoComplete="off"
-                      type="select"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIIIsemyop}
-                    >
-                      <option value="">Please Select</option>
-                      <option value={maxyear}> {maxyear}</option>
-                      <option value={maxyear_1}> {maxyear_1}</option>
-                      <option value={maxyear_2}> {maxyear_2}</option>
-                      <option value={maxyear_3}> {maxyear_3}</option>
-                      <option value={maxyear_4}> {maxyear_4}</option>
-                      <option value={maxyear_5}> {maxyear_5}</option>
-                      <option value={maxyear_6}> {maxyear_6}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      ref="VIIIsemmaxmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_max_marks_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIIIsemmaxmarks}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      ref="VIIIsemmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_marks_obtained_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.VIIIsemmarks}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">IX</th>
-                  <td>
-                    <select
-                      ref="IXsemMonth"
-                      autoComplete="off"
-                      type="text"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IXsemMonth}
-                    >
-                      {month_names_List}
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      ref="IXsemyop"
-                      autoComplete="off"
-                      type="select"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IXsemyop}
-                    >
-                      <option value="">Please Select</option>
-                      <option value={maxyear}> {maxyear}</option>
-                      <option value={maxyear_1}> {maxyear_1}</option>
-                      <option value={maxyear_2}> {maxyear_2}</option>
-                      <option value={maxyear_3}> {maxyear_3}</option>
-                      <option value={maxyear_4}> {maxyear_4}</option>
-                      <option value={maxyear_5}> {maxyear_5}</option>
-                      <option value={maxyear_6}> {maxyear_6}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      ref="IXsemmaxmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_max_marks_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IXsemmaxmarks}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      ref="IXsemmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_marks_obtained_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.IXsemmarks}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">X</th>
-                  <td>
-                    <select
-                      ref="XsemMonth"
-                      autoComplete="off"
-                      type="text"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.XsemMonth}
-                    >
-                      {month_names_List}
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      ref="Xsemyop"
-                      autoComplete="off"
-                      type="select"
-                      className="form-control"
-                      required
-                      defaultValue={this.state.Xsemyop}
-                    >
-                      <option value="">Please Select</option>
-                      <option value={maxyear}> {maxyear}</option>
-                      <option value={maxyear_1}> {maxyear_1}</option>
-                      <option value={maxyear_2}> {maxyear_2}</option>
-                      <option value={maxyear_3}> {maxyear_3}</option>
-                      <option value={maxyear_4}> {maxyear_4}</option>
-                      <option value={maxyear_5}> {maxyear_5}</option>
-                      <option value={maxyear_6}> {maxyear_6}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      ref="Xsemmaxmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_max_marks_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.Xsemmaxmarks}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      ref="Xsemmarks"
-                      autoComplete="off"
-                      type="number"
-                      onChange={this.listen_to_marks_obtained_change}
-                      className="form-control"
-                      required
-                      defaultValue={this.state.Xsemmarks}
-                    />
-                  </td>
-                </tr>
                 <tr>
                   <th scope="row" colSpan="3">
                     Overall Total
