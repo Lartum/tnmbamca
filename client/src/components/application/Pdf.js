@@ -240,7 +240,7 @@ export default class Pdf extends React.Component {
       newLine = "\n\n\n\n\n\n\n"
     }
     else if(castename.length > 135){
-      newLine = "\n\n\n\n"
+      newLine = "\n\n\n\n\n"
     }
     else if(castename.length > 78){
       newLine = "\n\n"
@@ -420,7 +420,7 @@ export default class Pdf extends React.Component {
           <Text>: {this.state.users.nameOfCommunity}{}</Text>
           <Text>: {this.state.users.casteCode}</Text>
           <Text>: {this.state.users.religion}</Text>
-   <Text>:{this.state.users.nameOfCaste}{"\n\n\n\n\n"}</Text>
+          <Text>:{this.state.users.nameOfCaste}{newLine}</Text>
           <Text>: {this.state.users.differentlyAbled}</Text>
           <Text>: {this.state.users.qualifyingDegree}</Text>
           <Text>: {this.state.users.patternOfStudy}</Text>
@@ -867,7 +867,7 @@ To be filled by the Applicant
         <Text>: {this.state.users.nameOfCommunity}</Text>
         <Text>: {this.state.users.casteCode}</Text>
         <Text>: {this.state.users.religion}</Text>
-        <Text>: {this.state.users.nameOfCaste}</Text>
+        <Text>: {this.state.users.nameOfCaste}{newLine}</Text>
         <Text>: {this.state.users.differentlyAbled}</Text>
         <Text>: {this.state.users.qualifyingDegree}</Text>
         <Text>: {this.state.users.patternOfStudy}</Text>
@@ -1314,7 +1314,7 @@ To be filled by the Applicant
       <Text>: {this.state.users.nameOfCommunity}</Text>
       <Text>: {this.state.users.casteCode}</Text>
       <Text>: {this.state.users.religion}</Text>
-      <Text>: {this.state.users.nameOfCaste}</Text>
+      <Text>: {this.state.users.nameOfCaste}{newLine}</Text>
       <Text>: {this.state.users.differentlyAbled}</Text>
       <Text>: {this.state.users.qualifyingDegree}</Text>
       <Text>: {this.state.users.patternOfStudy}</Text>
