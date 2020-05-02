@@ -22,85 +22,19 @@ export default class Viewapplication extends Component {
          })
     }
 
-    Table1(){
-      console.log('table1 method called')
-      return (
-        <div>
-                <tr>
-             <th scope="row">III</th>
-             <td name="IIIsemMonth">{this.state.users.IIIsemMonth}</td>
-             <td name="IIIsemyop">{this.state.users.IIIsemyop}</td>
-             <td name="IIIsemmaxmarks">{this.state.users.IIIsemmaxmarks}</td>
-             <td name="IIIsemmarks">{this.state.users.IIIsemmarks}</td>
-            </tr>
-             <tr>
-             <th scope="row">IV</th>
-             <td name="IVsemMonth">{this.state.users.IVsemMonth}</td>
-             <td name="IVsemyop">{this.state.users.IVsemyop}</td>
-             <td name="IVsemmaxmarks">{this.state.users.IVsemmaxmarks}</td>
-             <td name="IVsemmarks">{this.state.users.IVsemmarks}</td>
-           </tr>
-           <tr>
-             <th scope="row">V</th>
-             <td name="VsemMonth">{this.state.users.VsemMonth}</td>
-           <td name="Vsemyop">{this.state.users.Vsemyop}</td>
-             <td name="Vsemmaxmarks">{this.state.users.Vsemmaxmarks}</td>
-             <td name="Vsemmarks">{this.state.users.Vsemmarks}</td>
-           </tr>
-           <tr></tr>
-           <tr>
-             <th scope="row">VI</th>
-             <td name="VIsemMonth">{this.state.users.VIsemMonth}</td>
-             <td name="VIsemyop">{this.state.users.VIsemyop}</td>
-             <td name="VIsemmaxmarks">{this.state.users.VIsemmaxmarks}</td>
-            <td name="VIsemmarks">{`${
-             this.state.users.VIsemmarks
-            }`}</td>
-          </tr>
-          <tr>
-            <th scope="row">VII</th>
-            <td name="VIIsemMonth">{`${
-              this.state.users.VIIsemMonth
-            }`}</td>
-            <td name="VIIsemyop">{`${
-              this.state.users.VIIsemyop
-            }`}</td>
-            <td name="VIIsemmaxmarks">{`${
-             this.state.users.VIIsemmaxmarks
-            }`}</td>
-            <td name="VIIsemmarks">{
-              this.state.users.VIIsemmarks
-            }</td>
-          </tr>
-            </div>  
-      )
-    }
-
-
     render() {
-       if(this.state.users === null){
-         return(
-           <Loading />
-         )
-       } 
-       if(this.state.users !== null){
-        let table = <p>Helllo world</p>
-         
-        if(this.state.users === "10 + Plus Two + 3 Years Degree"){
-          table= <p>Hello people</p>
-        }
-        else if(this.state.users === "10 + 3 Years Diploma + 3 Years Degree"){
 
-        }
-        
-
+      if(this.state.users === null){
+        return <Loading />
+      }
+      else if(this.state.users !== null){
         return (
           
           <div className='userdashboard'>
           <div >
             <div className="reviewHeaders">
                   Application Details
-                  {table}
+                  
             </div>
             <div className='shadow-lg p-3 mb-5 bg-white rounded'>
               <h4 className="finalReviewHeader">BASIC DETAILS</h4>
@@ -336,11 +270,9 @@ export default class Viewapplication extends Component {
                 </thead>
                 <tbody>
                   {" "}
-                  {table}
-                  
                   {this.state.users.patternOfStudy === "10 + Plus Two + 3 Years Degree"&&
-                    <div>
-                       <tr>
+                 <React.Fragment>
+                 <tr>
                     <th scope="row">I</th>
                     <td name="IsemMonth">{this.state.users.IsemMonth}</td>
                     <td name="Isemyop">{this.state.users.Isemyop}</td>
@@ -376,63 +308,63 @@ export default class Viewapplication extends Component {
                     <td name="Vsemmarks">{this.state.users.Vsemmarks}</td>
                   </tr>
                   <tr></tr> 
-                    </div>       
+                  </React.Fragment>
+                           
                   }
           
                   {this.state.patternOfStudy === "10 + 3 Years Diploma + 3 Years Degree" &&
-                      this.Table1()
-                  
-                  //   <div>
-                  //      <tr>
-                  //   <th scope="row">III</th>
-                  //   <td name="IIIsemMonth">{this.state.users.IIIsemMonth}</td>
-                  //   <td name="IIIsemyop">{this.state.users.IIIsemyop}</td>
-                  //   <td name="IIIsemmaxmarks">{this.state.users.IIIsemmaxmarks}</td>
-                  //   <td name="IIIsemmarks">{this.state.users.IIIsemmarks}</td>
-                  // </tr>
-                  // <tr>
-                  //   <th scope="row">IV</th>
-                  //   <td name="IVsemMonth">{this.state.users.IVsemMonth}</td>
-                  //   <td name="IVsemyop">{this.state.users.IVsemyop}</td>
-                  //   <td name="IVsemmaxmarks">{this.state.users.IVsemmaxmarks}</td>
-                  //   <td name="IVsemmarks">{this.state.users.IVsemmarks}</td>
-                  // </tr>
-                  // <tr>
-                  //   <th scope="row">V</th>
-                  //   <td name="VsemMonth">{this.state.users.VsemMonth}</td>
-                  //   <td name="Vsemyop">{this.state.users.Vsemyop}</td>
-                  //   <td name="Vsemmaxmarks">{this.state.users.Vsemmaxmarks}</td>
-                  //   <td name="Vsemmarks">{this.state.users.Vsemmarks}</td>
-                  // </tr>
-                  // <tr></tr>
-                  // <tr>
-                  //   <th scope="row">VI</th>
-                  //   <td name="VIsemMonth">{this.state.users.VIsemMonth}</td>
-                  //   <td name="VIsemyop">{this.state.users.VIsemyop}</td>
-                  //   <td name="VIsemmaxmarks">{this.state.users.VIsemmaxmarks}</td>
-                  //   <td name="VIsemmarks">{`${
-                  //    this.state.users.VIsemmarks
-                  //   }`}</td>
-                  // </tr>
-                  // <tr>
-                  //   <th scope="row">VII</th>
-                  //   <td name="VIIsemMonth">{`${
-                  //     this.state.users.VIIsemMonth
-                  //   }`}</td>
-                  //   <td name="VIIsemyop">{`${
-                  //     this.state.users.VIIsemyop
-                  //   }`}</td>
-                  //   <td name="VIIsemmaxmarks">{`${
-                  //    this.state.users.VIIsemmaxmarks
-                  //   }`}</td>
-                  //   <td name="VIIsemmarks">{
-                  //     this.state.users.VIIsemmarks
-                  //   }</td>
-                  // </tr>
-                  //   </div>
+                  <React.Fragment>
+                  <tr>
+                    <th scope="row">III</th>
+                    <td name="IIIsemMonth">{this.state.users.IIIsemMonth}</td>
+                    <td name="IIIsemyop">{this.state.users.IIIsemyop}</td>
+                    <td name="IIIsemmaxmarks">{this.state.users.IIIsemmaxmarks}</td>
+                    <td name="IIIsemmarks">{this.state.users.IIIsemmarks}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">IV</th>
+                    <td name="IVsemMonth">{this.state.users.IVsemMonth}</td>
+                    <td name="IVsemyop">{this.state.users.IVsemyop}</td>
+                    <td name="IVsemmaxmarks">{this.state.users.IVsemmaxmarks}</td>
+                    <td name="IVsemmarks">{this.state.users.IVsemmarks}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">V</th>
+                    <td name="VsemMonth">{this.state.users.VsemMonth}</td>
+                    <td name="Vsemyop">{this.state.users.Vsemyop}</td>
+                    <td name="Vsemmaxmarks">{this.state.users.Vsemmaxmarks}</td>
+                    <td name="Vsemmarks">{this.state.users.Vsemmarks}</td>
+                  </tr>
+                  <tr></tr>
+                  <tr>
+                    <th scope="row">VI</th>
+                    <td name="VIsemMonth">{this.state.users.VIsemMonth}</td>
+                    <td name="VIsemyop">{this.state.users.VIsemyop}</td>
+                    <td name="VIsemmaxmarks">{this.state.users.VIsemmaxmarks}</td>
+                    <td name="VIsemmarks">{`${
+                     this.state.users.VIsemmarks
+                    }`}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">VII</th>
+                    <td name="VIIsemMonth">{`${
+                      this.state.users.VIIsemMonth
+                    }`}</td>
+                    <td name="VIIsemyop">{`${
+                      this.state.users.VIIsemyop
+                    }`}</td>
+                    <td name="VIIsemmaxmarks">{`${
+                     this.state.users.VIIsemmaxmarks
+                    }`}</td>
+                    <td name="VIIsemmarks">{
+                      this.state.users.VIIsemmarks
+                    }</td>
+                  </tr>
+                  </React.Fragment>  
                   }
                   {this.state.users.patternOfStudy === "10 + Plus Two + 4 Years Degree" &&
-                    <div> 
+                    
+                    <React.Fragment> 
                       <tr>
                     <th scope="row">I</th>
                     <td name="IsemMonth">{this.state.users.IsemMonth}</td>
@@ -493,110 +425,8 @@ export default class Viewapplication extends Component {
                     }</td>
                   </tr>
                   <tr></tr>
-                    </div>
-                  
+                  </React.Fragment>
                   }
-
-                  {/* <tr>
-                    <th scope="row">I</th>
-                    <td name="IsemMonth">{this.state.users.IsemMonth}</td>
-                    <td name="Isemyop">{this.state.users.Isemyop}</td>
-                    <td name="Isemmaxmarks">{this.state.users.Isemmaxmarks}</td>
-                    <td name="Isemmarks">{this.state.users.Isemmarks}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">II</th>
-                    <td name="IIsemMonth">{this.state.users.IIsemMonth}</td>
-                    <td name="IIsemyop">{this.state.users.IIsemyop}</td>
-                    <td name="IIsemmaxmarks">{this.state.users.IIsemmaxmarks}</td>
-                    <td name="IIsemmarks">{this.state.users.IIsemmarks}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">III</th>
-                    <td name="IIIsemMonth">{this.state.users.IIIsemMonth}</td>
-                    <td name="IIIsemyop">{this.state.users.IIIsemyop}</td>
-                    <td name="IIIsemmaxmarks">{this.state.users.IIIsemmaxmarks}</td>
-                    <td name="IIIsemmarks">{this.state.users.IIIsemmarks}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">IV</th>
-                    <td name="IVsemMonth">{this.state.users.IVsemMonth}</td>
-                    <td name="IVsemyop">{this.state.users.IVsemyop}</td>
-                    <td name="IVsemmaxmarks">{this.state.users.IVsemmaxmarks}</td>
-                    <td name="IVsemmarks">{this.state.users.IVsemmarks}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">V</th>
-                    <td name="VsemMonth">{this.state.users.VsemMonth}</td>
-                    <td name="Vsemyop">{this.state.users.Vsemyop}</td>
-                    <td name="Vsemmaxmarks">{this.state.users.Vsemmaxmarks}</td>
-                    <td name="Vsemmarks">{this.state.users.Vsemmarks}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">VI</th>
-                    <td name="VIsemMonth">{this.state.users.VIsemMonth}</td>
-                    <td name="VIsemyop">{this.state.users.VIsemyop}</td>
-                    <td name="VIsemmaxmarks">{this.state.users.VIsemmaxmarks}</td>
-                    <td name="VIsemmarks">{`${
-                     this.state.users.VIsemmarks
-                    }`}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">VII</th>
-                    <td name="VIIsemMonth">{`${
-                      this.state.users.VIIsemMonth
-                    }`}</td>
-                    <td name="VIIsemyop">{`${
-                      this.state.users.VIIsemyop
-                    }`}</td>
-                    <td name="VIIsemmaxmarks">{`${
-                     this.state.users.VIIsemmaxmarks
-                    }`}</td>
-                    <td name="VIIsemmarks">{
-                      this.state.users.VIIsemmarks
-                    }</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">VIII</th>
-                    <td name="VIIIsemMonth">{`${
-                      this.state.users.VIIIsemMonth
-                    }`}</td>
-                    <td name="VIIIsemyop">{`${
-                      this.state.users.VIIIsemyop
-                    }`}</td>
-                    <td name="VIIIsemmaxmarks">{`${
-                      this.state.users.VIIIsemmaxmarks
-                    }`}</td>
-                    <td name="VIIIsemmarks">{`${
-                      this.state.users.VIIIsemmarks
-                    }`}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">IX</th>
-                    <td name="IXsemMonth">{`${
-                      this.state.users.IXsemMonth
-                    }`}</td>
-                    <td name="IXsemyop">{this.state.users.IXsemyop}</td>
-                    <td name="IXsemmaxmarks">{
-                      this.state.users.IXsemmaxmarks
-                    }</td>
-                    <td name="IXsemmarks">{
-                      this.state.users.IXsemmarks
-                    }</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">X</th>
-                    <td name="XsemMonth">{`${
-                      this.state.users.XsemMonth
-                    }`}</td>
-                    <td name="Xsemyop">{this.state.users.Xsemyop}</td>
-                    <td name="Xsemmaxmarks">{`${
-                      this.state.users.Xsemmaxmarks
-                    }`}</td>
-                    <td name="Xsemmarks">{`${
-                      this.state.users.Xsemmarks
-                    }`}</td>
-                  </tr> */}
                   <tr>
                     <th scope="row" colSpan="3">
                       Overall Total
@@ -623,5 +453,5 @@ export default class Viewapplication extends Component {
         </div>
       )
        }
+      }
     }
-}
