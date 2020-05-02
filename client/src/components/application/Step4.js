@@ -176,79 +176,224 @@ export default class Step5 extends Component {
   }
 
   _grabUserinput() {
-    return {
-      ugDegree: this.refs.ugDegree.value,
-      collegeName: this.refs.collegeName.value,
-      collegeAddress: this.refs.collegeAddress.value,
-      universityName: this.refs.universityName.value,
-      universityAddress: this.refs.universityAddress.value,
-      IsemMonth: this.refs.IsemMonth.value,
-      Isemyop: this.refs.Isemyop.value,
-      Isemmaxmarks: this.refs.Isemmaxmarks.value,
-      Isemmarks: this.refs.Isemmarks.value,
-      IIsemMonth: this.refs.IIsemMonth.value,
-      IIsemyop: this.refs.IIsemyop.value,
-      IIsemmaxmarks: this.refs.IIsemmaxmarks.value,
-      IIsemmarks: this.refs.IIsemmarks.value,
-      IIIsemMonth: this.refs.IIIsemMonth.value,
-      IIIsemyop: this.refs.IIIsemyop.value,
-      IIIsemmaxmarks: this.refs.IIIsemmaxmarks.value,
-      IIIsemmarks: this.refs.IIIsemmarks.value,
-      IVsemMonth: this.refs.IVsemMonth.value,
-      IVsemyop: this.refs.IVsemyop.value,
-      IVsemmaxmarks: this.refs.IVsemmaxmarks.value,
-      IVsemmarks: this.refs.IVsemmarks.value,
-      VsemMonth: this.refs.VsemMonth.value,
-      Vsemyop: this.refs.Vsemyop.value,
-      Vsemmaxmarks: this.refs.Vsemmaxmarks.value,
-      Vsemmarks: this.refs.Vsemmarks.value,
-      VIsemMonth: this.refs.VIsemMonth.value,
-      VIsemyop: this.refs.VIsemyop.value,
-      VIsemmaxmarks: this.refs.VIsemmaxmarks.value,
-      VIsemmarks: this.refs.VIsemmarks.value,
-      VIIsemMonth: this.refs.VIIsemMonth.value,
-      VIIsemyop: this.refs.VIIsemyop.value,
-      VIIsemmaxmarks: this.refs.VIIsemmaxmarks.value,
-      VIIsemmarks: this.refs.VIIsemmarks.value,
-      VIIIsemMonth: this.refs.VIIIsemMonth.value,
-      VIIIsemyop: this.refs.VIIIsemyop.value,
-      VIIIsemmaxmarks: this.refs.VIIIsemmaxmarks.value,
-      VIIIsemmarks: this.refs.VIIIsemmarks.value,
-      IXsemMonth: this.refs.IXsemMonth.value,
-      IXsemyop: this.refs.IXsemyop.value,
-      IXsemmaxmarks: this.refs.IXsemmaxmarks.value,
-      IXsemmarks: this.refs.IXsemmarks.value,
-      XsemMonth: this.refs.XsemMonth.value,
-      Xsemyop: this.refs.Xsemyop.value,
-      Xsemmaxmarks: this.refs.Xsemmaxmarks.value,
-      Xsemmarks: this.refs.Xsemmarks.value,
+    if (
+      this.props.getStore().patternOfStudy ===
+      "10 + 3 Years Diploma + 3 Years Degree"
+    ) {
+      return {
+        ugDegree: this.refs.ugDegree.value,
+        collegeName: this.refs.collegeName.value,
+        collegeAddress: this.refs.collegeAddress.value,
+        universityName: this.refs.universityName.value,
+        universityAddress: this.refs.universityAddress.value,
+        IsemMonth: this.refs.IsemMonth.value,
+        Isemyop: this.refs.Isemyop.value,
+        Isemmaxmarks: this.refs.Isemmaxmarks.value,
+        Isemmarks: this.refs.Isemmarks.value,
+        IIsemMonth: this.refs.IIsemMonth.value,
+        IIsemyop: this.refs.IIsemyop.value,
+        IIsemmaxmarks: this.refs.IIsemmaxmarks.value,
+        IIsemmarks: this.refs.IIsemmarks.value,
+        IIIsemMonth: this.refs.IIIsemMonth.value,
+        IIIsemyop: this.refs.IIIsemyop.value,
+        IIIsemmaxmarks: this.refs.IIIsemmaxmarks.value,
+        IIIsemmarks: this.refs.IIIsemmarks.value,
+        IVsemMonth: this.refs.IVsemMonth.value,
+        IVsemyop: this.refs.IVsemyop.value,
+        IVsemmaxmarks: this.refs.IVsemmaxmarks.value,
+        IVsemmarks: this.refs.IVsemmarks.value,
+        VsemMonth: this.refs.VsemMonth.value,
+        Vsemyop: this.refs.Vsemyop.value,
+        Vsemmaxmarks: this.refs.Vsemmaxmarks.value,
+        Vsemmarks: this.refs.Vsemmarks.value,
+        VIsemMonth: this.refs.VIsemMonth.value,
+        VIsemyop: this.refs.VIsemyop.value,
+        VIsemmaxmarks: this.refs.VIsemmaxmarks.value,
+        VIsemmarks: this.refs.VIsemmarks.value,
+        VIIsemMonth: this.refs.VIIsemMonth.value,
+        VIIsemyop: this.refs.VIIsemyop.value,
+        VIIsemmaxmarks: this.refs.VIIsemmaxmarks.value,
+        VIIsemmarks: this.refs.VIIsemmarks.value,
+        VIIIsemMonth: this.refs.VIIIsemMonth.value,
+        VIIIsemyop: this.refs.VIIIsemyop.value,
+        VIIIsemmaxmarks: this.refs.VIIIsemmaxmarks.value,
+        VIIIsemmarks: this.refs.VIIIsemmarks.value,
+        IXsemMonth: this.refs.IXsemMonth.value,
+        IXsemyop: this.refs.IXsemyop.value,
+        IXsemmaxmarks: this.refs.IXsemmaxmarks.value,
+        IXsemmarks: this.refs.IXsemmarks.value,
+        XsemMonth: this.refs.XsemMonth.value,
+        Xsemyop: this.refs.Xsemyop.value,
+        Xsemmaxmarks: this.refs.Xsemmaxmarks.value,
+        Xsemmarks: this.refs.Xsemmarks.value,
 
-      overalltot: this.refs.overalltot.value,
-      overallmarks: this.refs.overallmarks.value,
-      totalpermark: this.refs.totalpermark.value,
-    };
+        overalltot: this.refs.overalltot.value,
+        overallmarks: this.refs.overallmarks.value,
+        totalpermark: this.refs.totalpermark.value,
+      };
+    } else if (
+      this.props.getStore().patternOfStudy === "10 + Plus Two + 3 Years Degree"
+    ) {
+      return {
+        ugDegree: this.refs.ugDegree.value,
+        collegeName: this.refs.collegeName.value,
+        collegeAddress: this.refs.collegeAddress.value,
+        universityName: this.refs.universityName.value,
+        universityAddress: this.refs.universityAddress.value,
+        IsemMonth: this.refs.IsemMonth.value,
+        Isemyop: this.refs.Isemyop.value,
+        Isemmaxmarks: this.refs.Isemmaxmarks.value,
+        Isemmarks: this.refs.Isemmarks.value,
+        IIsemMonth: this.refs.IIsemMonth.value,
+        IIsemyop: this.refs.IIsemyop.value,
+        IIsemmaxmarks: this.refs.IIsemmaxmarks.value,
+        IIsemmarks: this.refs.IIsemmarks.value,
+        IIIsemMonth: this.refs.IIIsemMonth.value,
+        IIIsemyop: this.refs.IIIsemyop.value,
+        IIIsemmaxmarks: this.refs.IIIsemmaxmarks.value,
+        IIIsemmarks: this.refs.IIIsemmarks.value,
+        IVsemMonth: this.refs.IVsemMonth.value,
+        IVsemyop: this.refs.IVsemyop.value,
+        IVsemmaxmarks: this.refs.IVsemmaxmarks.value,
+        IVsemmarks: this.refs.IVsemmarks.value,
+        VsemMonth: this.refs.VsemMonth.value,
+        Vsemyop: this.refs.Vsemyop.value,
+        Vsemmaxmarks: this.refs.Vsemmaxmarks.value,
+        Vsemmarks: this.refs.Vsemmarks.value,
+        VIsemMonth: this.refs.VIsemMonth.value,
+        VIsemyop: this.refs.VIsemyop.value,
+        VIsemmaxmarks: this.refs.VIsemmaxmarks.value,
+        VIsemmarks: this.refs.VIsemmarks.value,
+
+        overalltot: this.refs.overalltot.value,
+        overallmarks: this.refs.overallmarks.value,
+        totalpermark: this.refs.totalpermark.value,
+      };
+    } else if (
+      this.props.getStore().patternOfStudy === "10 + Plus Two + 4 Years Degree"
+    ) {
+      return {
+        ugDegree: this.refs.ugDegree.value,
+        collegeName: this.refs.collegeName.value,
+        collegeAddress: this.refs.collegeAddress.value,
+        universityName: this.refs.universityName.value,
+        universityAddress: this.refs.universityAddress.value,
+        IsemMonth: this.refs.IsemMonth.value,
+        Isemyop: this.refs.Isemyop.value,
+        Isemmaxmarks: this.refs.Isemmaxmarks.value,
+        Isemmarks: this.refs.Isemmarks.value,
+        IIsemMonth: this.refs.IIsemMonth.value,
+        IIsemyop: this.refs.IIsemyop.value,
+        IIsemmaxmarks: this.refs.IIsemmaxmarks.value,
+        IIsemmarks: this.refs.IIsemmarks.value,
+        IIIsemMonth: this.refs.IIIsemMonth.value,
+        IIIsemyop: this.refs.IIIsemyop.value,
+        IIIsemmaxmarks: this.refs.IIIsemmaxmarks.value,
+        IIIsemmarks: this.refs.IIIsemmarks.value,
+        IVsemMonth: this.refs.IVsemMonth.value,
+        IVsemyop: this.refs.IVsemyop.value,
+        IVsemmaxmarks: this.refs.IVsemmaxmarks.value,
+        IVsemmarks: this.refs.IVsemmarks.value,
+        VsemMonth: this.refs.VsemMonth.value,
+        Vsemyop: this.refs.Vsemyop.value,
+        Vsemmaxmarks: this.refs.Vsemmaxmarks.value,
+        Vsemmarks: this.refs.Vsemmarks.value,
+        VIsemMonth: this.refs.VIsemMonth.value,
+        VIsemyop: this.refs.VIsemyop.value,
+        VIsemmaxmarks: this.refs.VIsemmaxmarks.value,
+        VIsemmarks: this.refs.VIsemmarks.value,
+        VIIsemMonth: this.refs.VIIsemMonth.value,
+        VIIsemyop: this.refs.VIIsemyop.value,
+        VIIsemmaxmarks: this.refs.VIIsemmaxmarks.value,
+        VIIsemmarks: this.refs.VIIsemmarks.value,
+        VIIIsemMonth: this.refs.VIIIsemMonth.value,
+        VIIIsemyop: this.refs.VIIIsemyop.value,
+        VIIIsemmaxmarks: this.refs.VIIIsemmaxmarks.value,
+        VIIIsemmarks: this.refs.VIIIsemmarks.value,
+
+        overalltot: this.refs.overalltot.value,
+        overallmarks: this.refs.overallmarks.value,
+        totalpermark: this.refs.totalpermark.value,
+      };
+    }
   }
 
   listen_to_max_marks_change = ({ event }) => {
-    const total_Max_Marks =
-      parseFloat(this.refs.Isemmaxmarks.value, 10) +
-      parseFloat(this.refs.IIsemmaxmarks.value, 10) +
-      parseFloat(this.refs.IIIsemmaxmarks.value, 10) +
-      parseFloat(this.refs.IVsemmaxmarks.value, 10) +
-      parseFloat(this.refs.Vsemmaxmarks.value, 10) +
-      parseFloat(this.refs.VIsemmaxmarks.value, 10) +
-      parseFloat(this.refs.VIIsemmaxmarks.value, 10) +
-      parseFloat(this.refs.VIIIsemmaxmarks.value, 10) +
-      parseFloat(this.refs.IXsemmaxmarks.value, 10) +
-      parseFloat(this.refs.Xsemmaxmarks.value, 10);
-    this.setState({ overalltot: total_Max_Marks });
-    if (this.refs.overallmarks.value !== null) {
-      const percent_marks = parseFloat(
-        (parseFloat(this.refs.overallmarks.value, 10) * 100) /
-          parseFloat(total_Max_Marks, 10),
-        10
-      );
-      this.setState({ totalpermark: percent_marks });
+    if (
+      this.props.getStore().patternOfStudy === "10 + Plus Two + 3 Years Degree"
+    ) {
+      const total_Max_Marks =
+        parseFloat(this.refs.Isemmaxmarks.value, 10) +
+        parseFloat(this.refs.IIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.IIIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.IVsemmaxmarks.value, 10) +
+        parseFloat(this.refs.Vsemmaxmarks.value, 10) +
+        parseFloat(this.refs.VIsemmaxmarks.value, 10);
+
+      this.setState({ VIIsemMonth: null });
+      this.setState({ VIIIsemMonth: null });
+      this.setState({ IXsemMonth: null });
+      this.setState({ XsemMonth: null });
+      this.setState({ VIIsemmaxmarks: 0 });
+      this.setState({ VIIIsemmaxmarks: 0 });
+      this.setState({ IXsemmaxmarks: 0 });
+      this.setState({ Xsemmaxmarks: 0 });
+      this.setState({ overalltot: total_Max_Marks });
+      if (this.refs.overallmarks.value !== null) {
+        const percent_marks = parseFloat(
+          (parseFloat(this.refs.overallmarks.value, 10) * 100) /
+            parseFloat(total_Max_Marks, 10),
+          10
+        );
+        this.setState({ totalpermark: percent_marks });
+      }
+    } else if (
+      this.props.getStore().patternOfStudy ===
+      "10 + 3 Years Diploma + 3 Years Degree"
+    ) {
+      const total_Max_Marks =
+        parseFloat(this.refs.Isemmaxmarks.value, 10) +
+        parseFloat(this.refs.IIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.IIIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.IVsemmaxmarks.value, 10) +
+        parseFloat(this.refs.Vsemmaxmarks.value, 10) +
+        parseFloat(this.refs.VIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.VIIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.VIIIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.IXsemmaxmarks.value, 10) +
+        parseFloat(this.refs.Xsemmaxmarks.value, 10);
+      this.setState({ overalltot: total_Max_Marks });
+      if (this.refs.overallmarks.value !== null) {
+        const percent_marks = parseFloat(
+          (parseFloat(this.refs.overallmarks.value, 10) * 100) /
+            parseFloat(total_Max_Marks, 10),
+          10
+        );
+        this.setState({ totalpermark: percent_marks });
+      }
+    } else if (
+      this.props.getStore().patternOfStudy === "10 + Plus Two + 4 Years Degree"
+    ) {
+      const total_Max_Marks =
+        parseFloat(this.refs.Isemmaxmarks.value, 10) +
+        parseFloat(this.refs.IIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.IIIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.IVsemmaxmarks.value, 10) +
+        parseFloat(this.refs.Vsemmaxmarks.value, 10) +
+        parseFloat(this.refs.VIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.VIIsemmaxmarks.value, 10) +
+        parseFloat(this.refs.VIIIsemmaxmarks.value, 10);
+      this.setState({ IXsemmaxmarks: 0 });
+      this.setState({ Xsemmaxmarks: 0 });
+      this.setState({ overalltot: total_Max_Marks });
+      if (this.refs.overallmarks.value !== null) {
+        const percent_marks = parseFloat(
+          (parseFloat(this.refs.overallmarks.value, 10) * 100) /
+            parseFloat(total_Max_Marks, 10),
+          10
+        );
+        this.setState({ totalpermark: percent_marks });
+      }
     }
   };
 
@@ -256,25 +401,74 @@ export default class Step5 extends Component {
     console.log(
       "Parsing Into int " + parseFloat(this.refs.Isemmarks.value, 10)
     );
-    const total_obtained_Marks =
-      parseFloat(this.refs.Isemmarks.value, 10) +
-      parseFloat(this.refs.IIsemmarks.value, 10) +
-      parseFloat(this.refs.IIIsemmarks.value, 10) +
-      parseFloat(this.refs.IVsemmarks.value, 10) +
-      parseFloat(this.refs.Vsemmarks.value, 10) +
-      parseFloat(this.refs.VIsemmarks.value, 10) +
-      parseFloat(this.refs.VIIsemmarks.value, 10) +
-      parseFloat(this.refs.VIIIsemmarks.value, 10) +
-      parseFloat(this.refs.IXsemmarks.value, 10) +
-      parseFloat(this.refs.Xsemmarks.value, 10);
-    this.setState({ overallmarks: total_obtained_Marks });
+    if (
+      this.props.getStore().patternOfStudy === "10 + Plus Two + 3 Years Degree"
+    ) {
+      const total_obtained_Marks =
+        parseFloat(this.refs.Isemmarks.value, 10) +
+        parseFloat(this.refs.IIsemmarks.value, 10) +
+        parseFloat(this.refs.IIIsemmarks.value, 10) +
+        parseFloat(this.refs.IVsemmarks.value, 10) +
+        parseFloat(this.refs.Vsemmarks.value, 10) +
+        parseFloat(this.refs.VIsemmarks.value, 10);
+      this.setState({ VIIsemmarks: 0 });
+      this.setState({ VIIIsemmarks: 0 });
+      this.setState({ IXsemmarks: 0 });
+      this.setState({ Xsemmarks: 0 });
+      this.setState({ overallmarks: total_obtained_Marks });
 
-    const percent_marks = parseFloat(
-      (parseFloat(total_obtained_Marks, 10) * 100) /
-        parseFloat(this.refs.overalltot.value, 10),
-      10
-    ).toFixed(2);
-    this.setState({ totalpermark: percent_marks });
+      const percent_marks = parseFloat(
+        (parseFloat(total_obtained_Marks, 10) * 100) /
+          parseFloat(this.refs.overalltot.value, 10),
+        10
+      ).toFixed(2);
+      this.setState({ totalpermark: percent_marks });
+    } else if (
+      this.props.getStore().patternOfStudy ===
+      "10 + 3 Years Diploma + 3 Years Degree"
+    ) {
+      const total_obtained_Marks =
+        parseFloat(this.refs.Isemmarks.value, 10) +
+        parseFloat(this.refs.IIsemmarks.value, 10) +
+        parseFloat(this.refs.IIIsemmarks.value, 10) +
+        parseFloat(this.refs.IVsemmarks.value, 10) +
+        parseFloat(this.refs.Vsemmarks.value, 10) +
+        parseFloat(this.refs.VIsemmarks.value, 10) +
+        parseFloat(this.refs.VIIsemmarks.value, 10) +
+        parseFloat(this.refs.VIIIsemmarks.value, 10) +
+        parseFloat(this.refs.IXsemmarks.value, 10) +
+        parseFloat(this.refs.Xsemmarks.value, 10);
+      this.setState({ overallmarks: total_obtained_Marks });
+
+      const percent_marks = parseFloat(
+        (parseFloat(total_obtained_Marks, 10) * 100) /
+          parseFloat(this.refs.overalltot.value, 10),
+        10
+      ).toFixed(2);
+      this.setState({ totalpermark: percent_marks });
+    } else if (
+      this.props.getStore().patternOfStudy === "10 + Plus Two + 4 Years Degree"
+    ) {
+      const total_obtained_Marks =
+        parseFloat(this.refs.Isemmarks.value, 10) +
+        parseFloat(this.refs.IIsemmarks.value, 10) +
+        parseFloat(this.refs.IIIsemmarks.value, 10) +
+        parseFloat(this.refs.IVsemmarks.value, 10) +
+        parseFloat(this.refs.Vsemmarks.value, 10) +
+        parseFloat(this.refs.VIsemmarks.value, 10) +
+        parseFloat(this.refs.VIIsemmarks.value, 10) +
+        parseFloat(this.refs.VIIIsemmarks.value, 10);
+      this.setState({ IXsemmarks: 0 });
+      this.setState({ Xsemmarks: 0 });
+      this.setState({ overallmarks: total_obtained_Marks });
+
+      const percent_marks = parseFloat(
+        (parseFloat(total_obtained_Marks, 10) * 100) /
+          parseFloat(this.refs.overalltot.value, 10),
+        10
+      ).toFixed(2);
+      this.setState({ totalpermark: percent_marks });
+    }
   };
 
   generateTableBasedOnPatternOfStudy() {

@@ -691,7 +691,7 @@ export default class Pdf extends React.Component {
               APPLICATION FORM FOR ADMISSION TO {this.state.users.choice} COURSE
             </Text>
           </View>
-          <Text> {this.GenerateCustomLayout()}</Text>
+          {/* <Text> {this.GenerateCustomLayout()}</Text> */}
           <View style={styles.right}>
             <Text>Application Number : {this.state.users.applicationno} </Text>
           </View>
@@ -863,11 +863,7 @@ export default class Pdf extends React.Component {
             <Text>: {this.state.users.nameOfCommunity}</Text>
             <Text>: {this.state.users.casteCode}</Text>
             <Text>: {this.state.users.religion}</Text>
-            <Text style={styles.text}>
-              : {this.state.users.nameOfCaste} bsjdghsgdas
-              asgdgsakjdhkjashdkjhaskjdhkjashkdjhas asdkkaskjdhkjashdkjhaskjd
-              saldkhaskldjlkasjdlkjas
-            </Text>
+            <Text style={styles.text}>: {this.state.users.nameOfCaste}</Text>
             {/* <Text style={styles.casteAlign}>
               : {this.state.users.differentlyAbled}
             </Text> */}
@@ -910,6 +906,52 @@ export default class Pdf extends React.Component {
                 </View>
                 <View style={styles.tableColHeader2}>
                   <Text style={styles.tableCellHeader}>Marks Obtained</Text>
+                </View>
+              </View>
+              <View style={styles.tableRow}>
+                <View style={styles.tableCol2}>
+                  <Text style={styles.tableCell2}>I</Text>
+                </View>
+                <View style={styles.tableCol2}>
+                  <Text style={styles.tableCell2}>
+                    {" "}
+                    {this.state.users.IsemMonth}
+                    {"  "}
+                    {this.state.users.Isemyop}
+                  </Text>
+                </View>
+                <View style={styles.tableCol2}>
+                  <Text style={styles.tableCell2}>
+                    {this.state.users.Isemmaxmarks}
+                  </Text>
+                </View>
+                <View style={styles.tableCol2}>
+                  <Text style={styles.tableCell2}>
+                    {this.state.users.Isemmarks}
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.tableRow}>
+                <View style={styles.tableCol2}>
+                  <Text style={styles.tableCell2}>II</Text>
+                </View>
+                <View style={styles.tableCol2}>
+                  <Text style={styles.tableCell2}>
+                    {" "}
+                    {this.state.users.IIsemMonth}
+                    {"  "}
+                    {this.state.users.IIsemyop}
+                  </Text>
+                </View>
+                <View style={styles.tableCol2}>
+                  <Text style={styles.tableCell2}>
+                    {this.state.users.IIsemmaxmarks}
+                  </Text>
+                </View>
+                <View style={styles.tableCol2}>
+                  <Text style={styles.tableCell2}>
+                    {this.state.users.IIsemmarks}
+                  </Text>
                 </View>
               </View>
               <View style={styles.tableRow}>
@@ -1001,52 +1043,6 @@ export default class Pdf extends React.Component {
                 <View style={styles.tableCol2}>
                   <Text style={styles.tableCell2}>
                     {this.state.users.VIsemmarks}
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.tableRow}>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>VII</Text>
-                </View>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>
-                    {" "}
-                    {this.state.users.VIIsemMonth}
-                    {"  "}
-                    {this.state.users.VIIsemyop}
-                  </Text>
-                </View>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>
-                    {this.state.users.VIIsemmaxmarks}
-                  </Text>
-                </View>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>
-                    {this.state.users.VIIsemmarks}
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.tableRow}>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>VIII</Text>
-                </View>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>
-                    {" "}
-                    {this.state.users.VIIIsemMonth}
-                    {"  "}
-                    {this.state.users.VIIIsemyop}
-                  </Text>
-                </View>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>
-                    {this.state.users.VIIIsemmaxmarks}
-                  </Text>
-                </View>
-                <View style={styles.tableCol2}>
-                  <Text style={styles.tableCell2}>
-                    {this.state.users.VIIIsemmarks}
                   </Text>
                 </View>
               </View>
