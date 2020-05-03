@@ -225,8 +225,9 @@ export default class Pdf extends React.Component {
       declarationPara:{
         textAlign:"center"
       },
-      alignContents:{
-
+      page3Content:{
+        fontSize: "9pt",
+        alignContent: "center"
       }
     });
   
@@ -420,7 +421,7 @@ export default class Pdf extends React.Component {
           <Text>: {this.state.users.nameOfCommunity}{}</Text>
           <Text>: {this.state.users.casteCode}</Text>
           <Text>: {this.state.users.religion}</Text>
-          <Text>:{this.state.users.nameOfCaste}{newLine}</Text>
+          <Text>:{this.state.users.nameOfCaste}</Text>
           <Text>: {this.state.users.differentlyAbled}</Text>
           <Text>: {this.state.users.qualifyingDegree}</Text>
           <Text>: {this.state.users.patternOfStudy}</Text>
@@ -662,31 +663,40 @@ export default class Pdf extends React.Component {
                 <Text style={styles.tableCell2}>{this.state.users.prefinalsemtotalpermark}</Text>
               </View>
             </View>
-            
           </View>
-          <View style={styles.subheader}>
+        </View>
+      </Page>
+      
+      <Page style={styles.page3Content}>
+      <View >
+      <View style={styles.subheader}>
             <Text>Declaration By The Applicant</Text>
         </View>
-        <View style={styles.declarationPara}>
-            <Text>
+           <View style={styles.declarationPara}>
+            <Text>{"\n"}
               All the information furnished prepage are true to the best of my knowledge. 
-              I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid
-              I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.
-              I have studied BAchelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.
-              I have not studied B.E / B.Tech Degree through distance / week end mode.
-              I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.
-              Place 
-              Date
-              Signature of the Applicant
-              </Text>
+              I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid.
+              {"\n"}
+              <Text>I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.</Text>
+              {"\n"}
+              <Text>I have studied Bachelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.</Text>
+              {"\n"}
+              <Text>I have not studied B.E / B.Tech Degree through distance / week end mode.</Text>
+              {"\n"}
+              <Text>I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.</Text>
+              {"\n"}
+              <Text style={{left:"150pt"}}>Place:</Text><Text style={{right:"150pt"}}>Signature of the Applicant</Text>
+              {"\n"}
+              <Text style={{left:"150pt"}}>Date:</Text> 
+            </Text>
         </View>
-
+        
         <View>
-          <Text>
-          CHECK LIST
-To be filled by the Applicant
-1. Self Attested Photograph affixing on the Application
-2. Self Attested Photograph of Plus Two Mark Sheet / Diploma Certificate
+          <Text>{"\n"}
+          <Text style={styles.subheader}>CHECK LIST</Text>
+          To be filled by the Applicant
+          1. Self Attested Photograph affixing on the Application
+          2. Self Attested Photograph of Plus Two Mark Sheet / Diploma Certificate
 3. Self Attested photocopy of All Semester Maarksheets(All Apperances) of qualifying Examination (Xeroxing both sides)
 4. Self Attested Photocopy of Degree or Provisional Cerificate
 5. Self Attested Photocopy of Transfer certificate.
@@ -698,8 +708,7 @@ To be filled by the Applicant
 11.Sri Lankan Refugee Certificate - IF Applicable.
           </Text>
         </View>
-        </View>
-       
+        </View>  
       </Page>
       
     </Document>
@@ -867,7 +876,7 @@ To be filled by the Applicant
         <Text>: {this.state.users.nameOfCommunity}</Text>
         <Text>: {this.state.users.casteCode}</Text>
         <Text>: {this.state.users.religion}</Text>
-        <Text>: {this.state.users.nameOfCaste}{newLine}</Text>
+        <Text>: {this.state.users.nameOfCaste}</Text>
         <Text>: {this.state.users.differentlyAbled}</Text>
         <Text>: {this.state.users.qualifyingDegree}</Text>
         <Text>: {this.state.users.patternOfStudy}</Text>
@@ -1314,7 +1323,7 @@ To be filled by the Applicant
       <Text>: {this.state.users.nameOfCommunity}</Text>
       <Text>: {this.state.users.casteCode}</Text>
       <Text>: {this.state.users.religion}</Text>
-      <Text>: {this.state.users.nameOfCaste}{newLine}</Text>
+      <Text>: {this.state.users.nameOfCaste}</Text>
       <Text>: {this.state.users.differentlyAbled}</Text>
       <Text>: {this.state.users.qualifyingDegree}</Text>
       <Text>: {this.state.users.patternOfStudy}</Text>
