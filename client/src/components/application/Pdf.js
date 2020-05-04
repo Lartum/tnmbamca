@@ -54,6 +54,15 @@ export default class Pdf extends React.Component {
         marginTop: "70px",
         marginLeft: "10px"
       },
+      leftPara: {
+        textAlign: "left",
+        fontSize: "9pt",
+        position: "absolute",
+        lineHeight: "2.5pt",
+        marginTop: "70px",
+        marginLeft: "30px",
+        marginRight: "30px"
+      },
       leftpage2: {
         textAlign: "left",
         fontSize: "9pt",
@@ -222,13 +231,17 @@ export default class Pdf extends React.Component {
         fontSize: "11pt",
         fontWeight:'bold'
       },
-      declarationPara:{
-        textAlign:"center"
-      },
+      
       page3Content:{
         fontSize: "9pt",
         alignContent: "center"
-      }
+      },
+      checkBox: {
+        alignSelf: "flex-end",
+        width: "0.5cm",
+        height: "0.5cm",
+      },
+    
     });
   
   let newLine;
@@ -670,32 +683,34 @@ export default class Pdf extends React.Component {
       <Page style={styles.page3Content}>
       <View >
       <View style={styles.subheader}>
-            <Text>Declaration By The Applicant</Text>
+            <Text>{"\n\n\n"}Declaration By The Applicant</Text>
         </View>
-           <View style={styles.declarationPara}>
-            <Text>{"\n"}
+        <View style={styles.leftPara}>
+           <View >
+            <Text>
               All the information furnished prepage are true to the best of my knowledge. 
               I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid.
               {"\n"}
-              <Text>I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.</Text>
+   <Text style={{marginLeft:'30px'}}><Text>•{" "}</Text> I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.</Text>
               {"\n"}
-              <Text>I have studied Bachelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.</Text>
+              <Text><Text>•{" "}</Text> I have studied Bachelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.</Text>
               {"\n"}
-              <Text>I have not studied B.E / B.Tech Degree through distance / week end mode.</Text>
+              <Text><Text>•{" "}</Text> I have not studied B.E / B.Tech Degree through distance / week end mode.</Text>
               {"\n"}
               <Text>I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.</Text>
               {"\n"}
-              <Text style={{left:"150pt"}}>Place:</Text><Text style={{right:"150pt"}}>Signature of the Applicant</Text>
+              <Text style={{left:"150pt"}}>Place:</Text>
               {"\n"}
-              <Text style={{left:"150pt"}}>Date:</Text> 
+              <Text style={{left:"150pt"}}>Date:</Text>
             </Text>
         </View>
+        <Text style={{textAlign:'right'}}>Signature of the Applicant</Text>
         
         <View>
           <Text>{"\n"}
           <Text style={styles.subheader}>CHECK LIST</Text>
-          To be filled by the Applicant
-          1. Self Attested Photograph affixing on the Application
+   <Text style={{textAlign:"center"}}>{"\n"}(To be filled by the Applicant)</Text>
+         {"\n"} 1. Self Attested Photograph affixing on the Application
           2. Self Attested Photograph of Plus Two Mark Sheet / Diploma Certificate
 3. Self Attested photocopy of All Semester Maarksheets(All Apperances) of qualifying Examination (Xeroxing both sides)
 4. Self Attested Photocopy of Degree or Provisional Cerificate
@@ -707,6 +722,7 @@ export default class Pdf extends React.Component {
 10.District Medical Board Certificate (for differntly abled Persons Only).
 11.Sri Lankan Refugee Certificate - IF Applicable.
           </Text>
+        </View>
         </View>
         </View>  
       </Page>
@@ -1120,29 +1136,42 @@ export default class Pdf extends React.Component {
           </View>
           
         </View>
-        <View style={styles.subheader}>
-          <Text>Declaration By The Applicant</Text>
       </View>
-      <View style={styles.declarationPara}>
-          <Text>
-            All the information furnished prepage are true to the best of my knowledge. 
-            I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid
-            I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.
-            I have studied BAchelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.
-            I have not studied B.E / B.Tech Degree through distance / week end mode.
-            I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.
-            Place 
-            Date
-            Signature of the Applicant
-            </Text>
-      </View>
+     
+    </Page>
 
-      <View>
-        <Text>
-        CHECK LIST
-To be filled by the Applicant
-1. Self Attested Photograph affixing on the Application
-2. Self Attested Photograph of Plus Two Mark Sheet / Diploma Certificate
+    <Page style={styles.page3Content}>
+      <View >
+      <View style={styles.subheader}>
+            <Text>{"\n\n\n"}Declaration By The Applicant</Text>
+        </View>
+        <View style={styles.leftPara}>
+           <View >
+            <Text>
+              All the information furnished prepage are true to the best of my knowledge. 
+              I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid.
+              {"\n"}
+   <Text style={{marginLeft:'30px'}}><Text>•{" "}</Text> I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.</Text>
+              {"\n"}
+              <Text><Text>•{" "}</Text> I have studied Bachelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.</Text>
+              {"\n"}
+              <Text><Text>•{" "}</Text> I have not studied B.E / B.Tech Degree through distance / week end mode.</Text>
+              {"\n"}
+              <Text>I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.</Text>
+              {"\n"}
+              <Text style={{left:"150pt"}}>Place:</Text>
+              {"\n"}
+              <Text style={{left:"150pt"}}>Date:</Text>
+            </Text>
+        </View>
+        <Text style={{textAlign:'right'}}>Signature of the Applicant</Text>
+        
+        <View>
+          <Text>{"\n"}
+          <Text style={styles.subheader}>CHECK LIST</Text>
+   <Text style={{textAlign:"center"}}>{"\n"}(To be filled by the Applicant)</Text>
+         {"\n"} 1. Self Attested Photograph affixing on the Application
+          2. Self Attested Photograph of Plus Two Mark Sheet / Diploma Certificate
 3. Self Attested photocopy of All Semester Maarksheets(All Apperances) of qualifying Examination (Xeroxing both sides)
 4. Self Attested Photocopy of Degree or Provisional Cerificate
 5. Self Attested Photocopy of Transfer certificate.
@@ -1152,11 +1181,11 @@ To be filled by the Applicant
 9. Self Attested Photocopy of TANCEt Nativity Certificate.
 10.District Medical Board Certificate (for differntly abled Persons Only).
 11.Sri Lankan Refugee Certificate - IF Applicable.
-        </Text>
-      </View>
-      </View>
-     
-    </Page>
+          </Text>
+        </View>
+        </View>
+        </View>  
+      </Page>
     
   </Document>
  )
@@ -1590,29 +1619,40 @@ To be filled by the Applicant
           </View>
         </View>
       </View>
+    </View>
+  </Page>
+  <Page style={styles.page3Content}>
+      <View >
       <View style={styles.subheader}>
-            <Text>Declaration By The Applicant</Text>
+            <Text>{"\n\n\n"}Declaration By The Applicant</Text>
         </View>
-        <View style={styles.declarationPara}>
+        <View style={styles.leftPara}>
+           <View >
             <Text>
               All the information furnished prepage are true to the best of my knowledge. 
-              I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid
-              I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.
-              I have studied BAchelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.
-              I have not studied B.E / B.Tech Degree through distance / week end mode.
-              I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.
-              Place 
-              Date
-              Signature of the Applicant
-              </Text>
+              I am aware that any wrong information or suppression of information may result in punitive action in addition to summary cancellation of my candidature for admission and forfeiture of the fee paid.
+              {"\n"}
+   <Text style={{marginLeft:'30px'}}><Text>•{" "}</Text> I have the required qulification for admission to MBA/MCA Degree Programme as prescribed.</Text>
+              {"\n"}
+              <Text><Text>•{" "}</Text> I have studied Bachelors Degree course in 10+2+3/4/5 years pattern (or) 10 + 3 years Diploma + 3 years pattern.</Text>
+              {"\n"}
+              <Text><Text>•{" "}</Text> I have not studied B.E / B.Tech Degree through distance / week end mode.</Text>
+              {"\n"}
+              <Text>I am also aware that a pass in recognized bachelor's degree of minimum 3 years duration in 10+2+3/4/5 years pattern and obtained at least 50% (45% in case of candidates belonging to reserved category) at the qualifying examination is the minimum eligibility required for admission to PG course as per AICTE norms.</Text>
+              {"\n"}
+              <Text style={{left:"150pt"}}>Place:</Text>
+              {"\n"}
+              <Text style={{left:"150pt"}}>Date:</Text>
+            </Text>
         </View>
-
+        <Text style={{textAlign:'right'}}>Signature of the Applicant</Text>
+        
         <View>
-          <Text>
-          CHECK LIST
-To be filled by the Applicant
-1. Self Attested Photograph affixing on the Application
-2. Self Attested Photograph of Plus Two Mark Sheet / Diploma Certificate
+          <Text>{"\n"}
+          <Text style={styles.subheader}>CHECK LIST</Text>
+   <Text style={{textAlign:"center"}}>{"\n"}(To be filled by the Applicant)</Text>
+         {"\n"} 1. Self Attested Photograph affixing on the Application
+          2. Self Attested Photograph of Plus Two Mark Sheet / Diploma Certificate
 3. Self Attested photocopy of All Semester Maarksheets(All Apperances) of qualifying Examination (Xeroxing both sides)
 4. Self Attested Photocopy of Degree or Provisional Cerificate
 5. Self Attested Photocopy of Transfer certificate.
@@ -1623,9 +1663,10 @@ To be filled by the Applicant
 10.District Medical Board Certificate (for differntly abled Persons Only).
 11.Sri Lankan Refugee Certificate - IF Applicable.
           </Text>
-        </View> 
-    </View>
-  </Page>
+        </View>
+        </View>
+        </View>  
+      </Page>
 </Document>
 )
 
@@ -1705,7 +1746,7 @@ To be filled by the Applicant
      
 
      if(this.state.users.patternOfStudy === "10 + Plus Two + 4 Years Degree" ){
-      return(
+      return( 
         <div>
         <h1> {this.state.users.choice} Application No: {this.state.users.applicationno}</h1>
         <PDFDownloadLink 
