@@ -323,7 +323,7 @@ export default class Step5 extends Component {
       <div className="step step6 review">
         <Card>
           <CardHeader className="reviewHeaders">
-            Review Entered Details
+            Preview Entered Details
           </CardHeader>
           <CardBody>
             <h3 className="finalReviewHeader">BASIC DETAILS</h3>

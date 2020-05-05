@@ -230,7 +230,7 @@ export default class Step1 extends Component {
     return (
       <div className="step step1">
         <Card>
-          <CardHeader><h3 style={{textAlign:"center",color:'red'}}>BASIC DETAILS</h3></CardHeader>
+          <CardHeader><h3 style={{textAlign:"center",color:'limegreen'}}>BASIC DETAILS</h3></CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>

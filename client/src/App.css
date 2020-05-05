@@ -105,3 +105,10 @@ footer {
   color: blue;
   text-decoration: none;
 }
+#prev-button{
+  margin-right: 83%;
+}
+/* #next-button{
+  margin-top: 0;
+  margin-left: 93%;
+} */

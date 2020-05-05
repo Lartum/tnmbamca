@@ -199,7 +199,7 @@ export default class Step3 extends Component {
     return (
       <div className="step step2">
         <Card>
-          <CardHeader>Address Details</CardHeader>
+          <CardHeader><h3 style={{textAlign:"center",color:'limegreen'}}>ADDRESS DETAILS</h3></CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>
@@ -313,7 +313,7 @@ export default class Step3 extends Component {
           </CardBody>
         </Card>
         <Card>
-          <CardHeader>Contact Details</CardHeader>
+        <CardHeader><h3 style={{textAlign:"center",color:'limegreen'}}>CONTACT DETAILS</h3></CardHeader>
           <CardBody>
             <Row form>
               <Col md={6}>

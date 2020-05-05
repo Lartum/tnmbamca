@@ -52,7 +52,8 @@ const UserSchema = new Schema({
   applicationcomplete:{
     type:Boolean,
     default:false
-  }
+  },
+  versionKey: false
   
 });
 

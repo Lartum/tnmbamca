@@ -32,7 +32,8 @@ const paymentSchema = new mongoose.Schema({
        type:String,
        unique:true,
        required:true
-   }
+   },
+   versionKey: false
    
 });
 

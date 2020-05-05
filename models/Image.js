@@ -16,7 +16,8 @@ var ImageSchema = new Schema({
     },
     imageData: {
         type: String, 
-    }
+    },
+    versionKey: false
 });
 
 var Image = mongoose.model('Image', ImageSchema);

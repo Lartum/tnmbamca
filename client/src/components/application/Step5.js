@@ -189,7 +189,7 @@ export default class Step5 extends Component {
             {/* For Alert box*/}
 		        <div id="oc-alert-container"></div>
 				    {/* Single File Upload*/}
-						<h3 style={{ color: '#555', marginLeft: '12px' }}>Single Image Upload</h3>
+						<h3 style={{ color: '#555', marginLeft: '12px' }}>Image Upload</h3>
 						<p className="text-muted" style={{ marginLeft: '12px' }}>Upload Size: 250px x 250px ( Max 2MB )</p>
 					</div>
 					<div className="card-body">

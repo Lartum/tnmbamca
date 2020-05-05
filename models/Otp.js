@@ -20,7 +20,8 @@ const otpSchema = new mongoose.Schema({
         required: true, 
         default: Date.now, 
         expires: 600000  
-     }
+     },
+     versionKey: false
 });
 
 const Otp = mongoose.model('Otp', otpSchema)

@@ -167,7 +167,7 @@ const ApplicationSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-
+    versionKey: false
 });
 
 module.exports = post = mongoose.model('applications', ApplicationSchema);

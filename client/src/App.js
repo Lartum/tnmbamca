@@ -28,7 +28,8 @@ import FailurePayment from './components/payment/Failurepayment';
 import Edit from './components/application/edit/Edit';
 import Basicedit from './components/application/edit/Basicedit';
 import Viewapplication from './components/application/Viewapplication';
-import Imageupload from '../src/Imageupload';
+import FileUpload from './FileUpload';
+
 import './App.css';
 
 
@@ -70,12 +71,10 @@ class App extends Component {
               <Route exact path="/newpassword" component={Newpassword} />
               <Route exact path="/not-found" component={NotFound} />      
               <Route exact path ='/paymentsuccess' component={Successpayment}/>         
-              <Route exact path ='/paymentcancel' component={FailurePayment}/>         
+              <Route exact path ='/paymentcancel' component={FailurePayment}/> 
+              <Route exact path ='/fileupload' component={FileUpload}/>         
               <Switch>
                 <PrivateRoute exact path="/userdashboard" component={Userdashboard} />
-              </Switch>
-              <Switch>
-                <PrivateRoute exact path="/imageupload" component={Imageupload} />
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/application" component={Application} />

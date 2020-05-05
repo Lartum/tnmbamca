@@ -137,7 +137,7 @@ export default class Application extends Component {
   render() {
     const steps = [
       {
-        name: "Step1",
+        name: "Basic Details",
         component: (
           <Step1
             getStore={() => this.getStore()}
@@ -148,7 +148,7 @@ export default class Application extends Component {
         ),
       },
       {
-        name: "Step2",
+        name: "Address Details",
         component: (
           <Step2
             getStore={() => this.getStore()}
@@ -159,7 +159,7 @@ export default class Application extends Component {
         ),
       },
       {
-        name: "Step3",
+        name: "Coomunity Details",
         component: (
           <Step3
             getStore={() => this.getStore()}
@@ -170,7 +170,7 @@ export default class Application extends Component {
         ),
       },
       {
-        name: "step4",
+        name: "U.G Details",
         component: (
           <Step4
             getStore={() => this.getStore()}
@@ -181,7 +181,7 @@ export default class Application extends Component {
         ),
       },
       {
-        name: "Step5",
+        name: "Photo Upload",
         component: (
           <Step5
             getStore={() => this.getStore()}
@@ -192,7 +192,7 @@ export default class Application extends Component {
         ),
       },
       {
-        name: "Step6",
+        name: "Preview Details",
         component: (
           <Step6
             getStore={() => this.getStore()}

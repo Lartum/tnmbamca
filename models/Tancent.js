@@ -13,7 +13,8 @@ const tancentSchema = new Schema({
    },
    mcamarks:{
     type:String
-   }   
+   },
+   versionKey: false   
 });
 
 const Tancent = mongoose.model('Tancent', tancentSchema)
