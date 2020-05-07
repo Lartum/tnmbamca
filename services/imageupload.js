@@ -2,7 +2,6 @@ const aws = require( 'aws-sdk' );
 const multerS3 = require( 'multer-s3' );
 const multer = require('multer');
 const path = require( 'path' );
-const crypto = require('crypto')
 
 const AWS_KEY = require('../config/keys')
 /**

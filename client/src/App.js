@@ -71,8 +71,7 @@ class App extends Component {
               <Route exact path="/newpassword" component={Newpassword} />
               <Route exact path="/not-found" component={NotFound} />      
               <Route exact path ='/paymentsuccess' component={Successpayment}/>         
-              <Route exact path ='/paymentcancel' component={FailurePayment}/> 
-              <Route exact path ='/fileupload' component={FileUpload}/>         
+              <Route exact path ='/paymentcancel' component={FailurePayment}/>         
               <Switch>
                 <PrivateRoute exact path="/userdashboard" component={Userdashboard} />
               </Switch>
@@ -84,6 +83,9 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/viewapplication" component={Viewapplication} />
+              </Switch>
+              <Switch>
+              <PrivateRoute exact path ='/uploadfile' component={FileUpload}/> 
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/edit" component={Edit} />

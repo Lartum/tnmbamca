@@ -13,6 +13,17 @@ const User = require('../../models/User');
 const Image = require('../../models/Image');
 
 
+
+router.options('/userimage',passport.authenticate('jwt', { session: false }), cors())
+router.get('/userimage', passport.authenticate('jwt', { session: false }), cors(),
+  async (req, res) => {
+    Image.findOne({ userid: req.user._id})
+      .then(picture=>{
+        res.json({picture});
+      })
+})
+
+
 router.post( '/imageupload', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
 	profileImgUpload( req, res, ( error ) => {
@@ -51,15 +62,8 @@ router.post( '/imageupload', passport.authenticate('jwt',
 	});
 });
 
-router.options('/userimage',passport.authenticate('jwt', { session: false }), cors())
-router.get('/userimage', passport.authenticate('jwt', { session: false }), cors(),
-  async (req, res) => {
-    Image.findOne({ userid: req.user._id})
-      .then(picture=>{
 
-        res.json({picture});
-      })
-})
+
 
 router.post('/', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
@@ -92,47 +96,6 @@ router.post('/', passport.authenticate('jwt',
         break;
 
        }
-
-       console.log("the calculated totals are :"+calculatePreFinalTotal, calculatePreFinalObtained, calculatePreFinalPer);
-      //  if(req.body.patternOfStudy === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
-      //    calculatePreFinalTotal = req.body.overalltotalmarks - req.body.VIsemmaxmarks;
-      //  }
-      //  else if()
-
-      //  const calculatePreFinalTotal = (choice) =>{
-       
-      //   if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
-      //     return req.body.overalltotalmarks - req.body.VIsemmaxmarks
-      //   }
-      //   else{
-      //     return req.body.overalltotalmarks - req.body.VIII;
-      //   }
-       
-      // }
-
-      // const calculatePreFinalObtained = (choice) => {
-      //   if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
-      //     return req.body.overallmarksobtained - req.body.VIsemmarks
-      //   }
-      //   else {
-      //     return req.body.overallmarksobtained - req.body.VIIIsemmarks;
-      //   }
-      // }
-
-      // const calculatePreFinalPer = (choice) => {
-      //   if(choice === "10 + Plus Two + 3 Years Degree" || "10 + 3 Years Diploma + 3 Years Degree"){
-      //    return parseFloat(
-      //       ((req.body.overallmarksobtained - req.body.VIsemmarks) * 100)/
-      //       parseFloat(re.body.overalltotalmarks - req.body.VIsemmaxmarks)).toFixed(2);
-      //   }
-      //   else {
-      //     return parseFloat(
-      //       ((req.body.overallmarksobtained - req.body.VIIsemmarks) * 100)/
-      //       (req.body.overalltotalmarks - req.body.VIIsemmaxmarks)).toFixed(2);
-      //   }
-      // }
-    
-      console.log(calculatePreFinalObtained,calculatePreFinalTotal,calculatePreFinalPer);
 
       const newApplication = new Application({
        
@@ -314,10 +277,6 @@ router.post('/basicedit', passport.authenticate('jwt',
       application.save();
 
       return res.redirect("https://mbamcatn.herokuapp.com/viewapplication")
-      const successredirect = {
-        redirect: '/edit'
-      }
-      res.json(successredirect);
      })
     }
   catch (err){
@@ -325,21 +284,5 @@ router.post('/basicedit', passport.authenticate('jwt',
   }  
 });
 
-
-
-// @route   DELETE api/profile
-// @desc    Delete user and profile
-// @access  Private
-// router.delete(
-//   '/',
-//   passport.authenticate('jwt', { session: false }),
-//   (req, res) => {
-//     Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-//       User.findOneAndRemove({ _id: req.user.id }).then(() =>
-//         res.json({ success: true })
-//       );
-//     });
-//   }
-// );
 
 module.exports = router;

@@ -210,6 +210,7 @@ export default class Step5 extends Component {
               <input 
                 ref='selectedFile'
                 type="file"
+                accept="image/png, image/jpeg, image/jpg"
                 onChange={this.singleFileChangedHandler}
              />
             <div 
