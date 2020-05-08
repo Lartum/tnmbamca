@@ -126,7 +126,7 @@ class FileUpload extends Component {
 		const data = new FormData();
     	// If file selected
 		if ( this.state[route] ) {
-			data.append( 'fileUploads', this.state.selectedFile, this.state.selectedFile.name );
+			data.append( 'fileUploads', this.state[route], this.state.selectedFile.name );
 			axios.post( `/api/fileupload/${route}`, data, {
 				headers: {
 					'accept': 'application/json',

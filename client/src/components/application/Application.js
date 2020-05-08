@@ -159,7 +159,7 @@ export default class Application extends Component {
         ),
       },
       {
-        name: "Coomunity Details",
+        name: "Community Details",
         component: (
           <Step3
             getStore={() => this.getStore()}
