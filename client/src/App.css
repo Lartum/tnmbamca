@@ -13,6 +13,13 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.nav-link{
+  color: white;  
+}
+.navbar-brand{
+  color: white;
+}
+
 .landing {
   position: relative;
   background: url("./img/back.png") no-repeat;
@@ -25,11 +32,6 @@ input[type=number] {
 .landing-inner {
   padding-top: 80px;
 }
-
-a{
-  text-decoration: none;
-  color: white;
-} 
 
 .sweet-loading{
   text-align: center;
@@ -108,7 +110,3 @@ footer {
 #prev-button{
   margin-right: 83%;
 }
-/* #next-button{
-  margin-top: 0;
-  margin-left: 93%;
-} */

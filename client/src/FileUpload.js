@@ -1,26 +1,131 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
-import { PDFViewer } from '@react-pdf/renderer';
-
+import { Document } from 'react-pdf';
 class FileUpload extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			selectedFile: null,
+	  
+	  plustwomarksheet:null,
+	  previewplustwomarksheet:null,
+	  allsemmarksheet:null,
+	  preivewallsemmarksheet:null,
+	  degreecertificate:null,
+	  preivewdegreecertificate:null,
+	  transfercertificate:null,
+	  preivewtransfercertificate:null,
+	  permanentcommunitycard:null,
+	  preivewpermanentcommunitycard:null,
+	  tancethallticket:null,
+	  preivewtancethallticket:null,
+	  tancetmarksheet:null,
+	  preivewtancetmarksheet:null,
+	  nativitycertificate:null,
+	  preivewnativitycertificate:null,
+	  districtmedicalboard:null,
+	  preivewdistrictmedicalboard:null,
+	  srilankantamilrefugee:null,
+	  preivewsrilankantamilrefugee:null,
+	  demanddraft:null,
+	  preivewdemanddraft:null,
+
 		}
 	}
 
 	singleFileChangedHandler = ( event, choice ) => {
-		this.setState({
-			selectedFile: event.target.files[0]
-		});
+		switch(choice){
+			
+			case "plustwomarksheet": 
+			this.setState({
+				plustwomarksheet: event.target.files[0],
+				previewplustwomarksheet: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "allsemmarksheet": 
+			this.setState({
+				allsemmarksheet: event.target.files[0],
+				preivewallsemmarksheet: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "degreecertificate": 
+			this.setState({
+				degreecertificate: event.target.files[0],
+				previewdegreecertificate: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "transfercertificate": 
+			this.setState({
+				transfercertificate: event.target.files[0],
+				previewtransfercertificate: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "plustwomarksheet": 
+			this.setState({
+				plustwomarksheet: event.target.files[0],
+				previewplustwomarksheet: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "permanentcommunitycard": 
+			this.setState({
+				permanentcommunitycard: event.target.files[0],
+				previewpermanentcommunitycard: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "tancethallticket": 
+			this.setState({
+				tancethallticket: event.target.files[0],
+				preivewtancethallticket: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "tancetmarksheet": 
+			this.setState({
+				tancetmarksheet: event.target.files[0],
+				preivewtancetmarksheet: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "nativitycertificate": 
+			this.setState({
+				nativitycertificate: event.target.files[0],
+				preivewnativitycertificate: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+
+			case "districtmedicalboard": 
+			this.setState({
+				districtmedicalboard: event.target.files[0],
+				previewdistrictmedicalboard: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+
+			case "srilankantamilrefugee": 
+			this.setState({
+				srilankantamilrefugee: event.target.files[0],
+				previewsrilankantamilrefugee: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+
+			case "demanddraft": 
+			this.setState({
+				demanddraft: event.target.files[0],
+				previewdemanddraft: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+		}
 	};
 
 	singleFileUploadHandler = ( event, route ) => {
 		const data = new FormData();
-    // If file selected
-		if ( this.state.selectedFile ) {
+    	// If file selected
+		if ( this.state[route] ) {
 			data.append( 'fileUploads', this.state.selectedFile, this.state.selectedFile.name );
 			axios.post( `/api/fileupload/${route}`, data, {
 				headers: {
@@ -84,91 +189,101 @@ class FileUpload extends Component {
 						<p className="text-muted" style={{ marginLeft: '12px' }}>Upload Size: 250px x 250px ( Max 2MB )</p>
 					</div>
 					
-          <div className="card-body">
+         			<div className="card-body">
 						<p className="card-text">Please upload your Plus Two Marksheet</p>
-						<input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'plustwomarksheet')}/>
+						<a href={this.state.previewplustwomarksheet} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf"  onChange={(event) => this.singleFileChangedHandler(event, 'plustwomarksheet')}/>
 						<div className="mt-5">
-           
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'plustwomarksheet')}>Upload!</button>
 						</div>
 					</div>
 
-          <div className="card-body">
+         			 <div className="card-body">
 						<p className="card-text">Please upload your All Semester Marksheet</p>
-            <input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'allsemmarksheet')}/>
+						<a href={this.state.previewdegreecertificate} target='_blank' className="mr-4">View PDF</a>
+           				<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'allsemmarksheet')}/>
 						<div className="mt-5">
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'allsemmarksheet')}>Upload!</button>
 						</div>
 					</div>
           
-          <div className="card-body">
+          			<div className="card-body">
 						<p className="card-text">Please upload your Degree Certificate</p>
-						<input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'degreecertificate')}/>
+						<a href={this.state.previewdegreecertificate} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'degreecertificate')}/>
 						<div className="mt-5">
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'degreecertificate')}>Upload!</button>
 						</div>
 					</div>
 
-          <div className="card-body">
+          		<div className="card-body">
 						<p className="card-text">Please upload your Transfer Certificate</p>
-						<input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'transfercertificate')}/>
+						<a href={this.state.previewtransfercertificate} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'transfercertificate')}/>
 						<div className="mt-5">
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'transfercertificate')}>Upload!</button>
 						</div>
 					</div>
 
-          <div className="card-body">
+          		<div className="card-body">
 						<p className="card-text">Please upload your Permanent Community Card</p>
-						<input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'permanentcommunitycard')}/>
+						<a href={this.state.previewpermanentcommunitycard} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'permanentcommunitycard')}/>
 						<div className="mt-5">
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'permanentcommunitycard')}>Upload!</button>
 						</div>
 					</div>
           
-          <div className="card-body">
+          		<div className="card-body">
 						<p className="card-text">Please upload your TANCET Hall Ticket</p>
-						<input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'tancethallticket')}/>
+						<a href={this.state.preivewtancethallticket} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'tancethallticket')}/>
 						<div className="mt-5">
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'tancethallticket')}>Upload!</button>
 						</div>
 					</div>
 
-          <div className="card-body">
+         		<div className="card-body">
 						<p className="card-text">Please upload your TANCET Mark Sheet</p>
-						<input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'tancetmarksheet')}/>
+						<a href={this.state.preivewtancetmarksheet} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'tancetmarksheet')}/>
 						<div className="mt-5">
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'tancetmarksheet')}>Upload!</button>
 						</div>
 					</div>
 
 
-          <div className="card-body">
+          		<div className="card-body">
 						<p className="card-text">Please upload your Nativity Certificate</p>
-            <input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'nativitycertificate')}/>
+						<a href={this.state.preivewnativitycertificate} target='_blank' className="mr-4">View PDF</a>
+            			<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'nativitycertificate')}/>
 						<div className="mt-5">
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'nativitycertificate')}>Upload!</button>
 						</div>
 					</div>
 
-          <div className="card-body">
+          		<div className="card-body">
 						<p className="card-text">Please upload your Distric Medical Board</p>
-						<input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'districtmedicalboard')}/>
+						<a href={this.state.previewdistrictmedicalboard} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'districtmedicalboard')}/>
 						<div className="mt-5">
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'districtmedicalboard')}>Upload!</button>
 						</div>
 					</div>
 
-          <div className="card-body">
+          		<div className="card-body">
 						<p className="card-text">Please upload Your Sri Lankan Tamil Refugee Proof</p>
-						<input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'srilankantamilrefugee')}/>
+						<a href={this.state.previewsrilankantamilrefugee} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'srilankantamilrefugee')}/>
 						<div className="mt-5">
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'srilankantamilrefugee')}>Upload!</button>
 						</div>
 					</div>
 
-          <div className="card-body">
+          		<div className="card-body">
 						<p className="card-text">Please upload your Demand Draft</p>
-						<input type="file" onChange={(event) => this.singleFileChangedHandler(event, 'demanddraft')}/>
+						<a href={this.state.previewdemanddraft} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'demanddraft')}/>
 						<div className="mt-5">
 							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'demanddraft')}>Upload!</button>
 						</div>

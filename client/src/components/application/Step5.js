@@ -9,9 +9,31 @@ export default class Step5 extends Component {
 
     this.state = {
       previewImage: props.getStore().previewImage,
-      selectedFile: null,
+      selectedImage: null,
       loaded:0,
-      uploadResponse:''
+      uploadResponse:'',
+      plustwomarksheet:null,
+	    previewplustwomarksheet:null,
+	    allsemmarksheet:null,
+	    preivewallsemmarksheet:null,
+	    degreecertificate:null,
+	    preivewdegreecertificate:null,
+	    transfercertificate:null,
+	    preivewtransfercertificate:null,
+	    permanentcommunitycard:null,
+	    preivewpermanentcommunitycard:null,
+	    tancethallticket:null,
+	    preivewtancethallticket:null,
+	    tancetmarksheet:null,
+	    preivewtancetmarksheet:null,
+	    nativitycertificate:null,
+	    preivewnativitycertificate:null,
+	    districtmedicalboard:null,
+	    preivewdistrictmedicalboard:null,
+	    srilankantamilrefugee:null,
+	    preivewsrilankantamilrefugee:null,
+	    demanddraft:null,
+	    preivewdemanddraft:null,
     };
 
     this._validateOnDemand = true; // this flag enables onBlur validation as user fills forms
@@ -37,7 +59,7 @@ export default class Step5 extends Component {
       })
     ) {
       if (
-        this.props.getStore().selectedFile !== userinput.selectedFile
+        this.props.getStore().selectedImage !== userinput.selectedImage
       ) {
         // only update store of something changed
         this.props.updateStore({
@@ -78,39 +100,126 @@ export default class Step5 extends Component {
 
   _validateData(data) {
     return {
-      selectedFileVal: data.selectedFile !== "",
-      uploadResponse: data.selectedFile !== "",
+      selectedImageVal: data.selectedImage !== "",
+      uploadResponse: data.selectedImage !== "",
     };
   }
 
   _validationErrors(val) {
     const errMsgs = {
-      selectedFileValMsg: val.selectedFileVal ? "" : "* Please Upload An Image",
-      uploadResponse: val.selectedFile ? "" : "* Please Upload An Image",
+      selectedImageValMsg: val.selectedImageVal ? "" : "* Please Upload An Image",
+      uploadResponse: val.selectedImage ? "" : "* Please Upload An Image",
     };
     return errMsgs;
   }
 
   _grabUserinput() {
     return {
-      selectedFile: this.refs.selectedFile.value,
+      selectedImage: this.refs.selectedImage.value,
      
     };
   }
 
-	singleFileChangedHandler = ( event ) => {
+	singleFileChangedHandler = ( event, choice ) => {
 		this.setState({
-      selectedFile: event.target.files[0],
+      selectedImage: event.target.files[0],
 			previewImage: URL.createObjectURL(event.target.files[0])
-		});
+    });
+    
+    switch(choice){
+			
+			case "plustwomarksheet": 
+			this.setState({
+				plustwomarksheet: event.target.files[0],
+				previewplustwomarksheet: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "allsemmarksheet": 
+			this.setState({
+				allsemmarksheet: event.target.files[0],
+				preivewallsemmarksheet: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "degreecertificate": 
+			this.setState({
+				degreecertificate: event.target.files[0],
+				previewdegreecertificate: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "transfercertificate": 
+			this.setState({
+				transfercertificate: event.target.files[0],
+				previewtransfercertificate: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "plustwomarksheet": 
+			this.setState({
+				plustwomarksheet: event.target.files[0],
+				previewplustwomarksheet: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "permanentcommunitycard": 
+			this.setState({
+				permanentcommunitycard: event.target.files[0],
+				previewpermanentcommunitycard: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "tancethallticket": 
+			this.setState({
+				tancethallticket: event.target.files[0],
+				preivewtancethallticket: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "tancetmarksheet": 
+			this.setState({
+				tancetmarksheet: event.target.files[0],
+				preivewtancetmarksheet: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+			
+			case "nativitycertificate": 
+			this.setState({
+				nativitycertificate: event.target.files[0],
+				preivewnativitycertificate: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+
+			case "districtmedicalboard": 
+			this.setState({
+				districtmedicalboard: event.target.files[0],
+				previewdistrictmedicalboard: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+
+			case "srilankantamilrefugee": 
+			this.setState({
+				srilankantamilrefugee: event.target.files[0],
+				previewsrilankantamilrefugee: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+
+			case "demanddraft": 
+			this.setState({
+				demanddraft: event.target.files[0],
+				previewdemanddraft: URL.createObjectURL(event.target.files[0])
+			});
+			break;
+		}
 	};
    
-  singleFileUploadHandler = ( event ) => {
+  singleFileUploadHandler = ( event,route ) => {
 		const data = new FormData();
 // If file selected
-		if ( this.state.selectedFile ) {
-			data.append( 'profileImage', this.state.selectedFile, this.state.selectedFile.name );
-			axios.post( '/api/application/imageupload', data, {
+		if ( this.state[route] ) {
+			data.append( 'fileuploads', this.state[route], this.state.selectedImage.name );
+			axios.post( `/api/application/${route}`, data, {
         headers: {
 					'accept': 'application/json',
 					'Accept-Language': 'en-US,en;q=0.8',
@@ -172,11 +281,11 @@ export default class Step5 extends Component {
       let notValidClasses = {};
 
   
-       if (typeof this.state.selectedFileVal === "undefined" || this.state.selectedFileVal) {
-        notValidClasses.selectedFileCls = "no-error col-md-10";
+       if (typeof this.state.selectedImageVal === "undefined" || this.state.selectedImageVal) {
+        notValidClasses.selectedImageCls = "no-error col-md-10";
       } else {
-        notValidClasses.selectedFileCls = "has-error col-md-10";
-        notValidClasses.selectedFileValGrpCls = "val-err-tooltip";
+        notValidClasses.selectedImageCls = "has-error col-md-10";
+        notValidClasses.selectedImageValGrpCls = "val-err-tooltip";
       }
 
 
@@ -204,18 +313,18 @@ export default class Step5 extends Component {
                 />
               </div>
               <div
-                className={notValidClasses.selectedFileCls}
+                className={notValidClasses.selectedImageCls}
                 className="error_color"
               >
               <input 
-                ref='selectedFile'
+                ref='selectedImage'
                 type="file"
                 accept="image/png, image/jpeg, image/jpg"
-                onChange={this.singleFileChangedHandler}
+                onChange={(event) =>this.singleFileChangedHandler('imageupload')}
              />
             <div 
-            className={notValidClasses.selectedFileValGrpCls}>
-                      {this.state.selectedFileValMsg}
+            className={notValidClasses.selectedImageValGrpCls}>
+                      {this.state.selectedImageValMsg}
                     </div>
                     </div>
 						  <div className="mt-5">
@@ -227,9 +336,114 @@ export default class Step5 extends Component {
                       {Math.round(this.state.loaded,2) }%
                   </Progress>
               </div>
-							<button className="btn btn-info" onClick={this.singleFileUploadHandler}>Upload!</button>
+							<button className="btn btn-info" onClick={(event) =>this.singleFileUploadHandler('imageupload')}>Upload!</button>
 						</div>
 					</div>
+          <div className="card-header">
+						<h3 style={{ color: '#555', marginLeft: '12px' }}>Single File Upload</h3>
+						<p className="text-muted" style={{ marginLeft: '12px' }}>Upload Size: 250px x 250px ( Max 2MB )</p>
+					</div>
+					
+         			<div className="card-body">
+						<p className="card-text">Please upload your Plus Two Marksheet</p>
+						<a href={this.state.previewplustwomarksheet} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf"  onChange={(event) => this.singleFileChangedHandler(event, 'plustwomarksheet')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'plustwomarksheet')}>Upload!</button>
+						</div>
+					</div>
+
+         			 <div className="card-body">
+						<p className="card-text">Please upload your All Semester Marksheet</p>
+						<a href={this.state.previewdegreecertificate} target='_blank' className="mr-4">View PDF</a>
+           				<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'allsemmarksheet')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'allsemmarksheet')}>Upload!</button>
+						</div>
+					</div>
+          
+          			<div className="card-body">
+						<p className="card-text">Please upload your Degree Certificate</p>
+						<a href={this.state.previewdegreecertificate} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'degreecertificate')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'degreecertificate')}>Upload!</button>
+						</div>
+					</div>
+
+          		<div className="card-body">
+						<p className="card-text">Please upload your Transfer Certificate</p>
+						<a href={this.state.previewtransfercertificate} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'transfercertificate')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'transfercertificate')}>Upload!</button>
+						</div>
+					</div>
+
+          		<div className="card-body">
+						<p className="card-text">Please upload your Permanent Community Card</p>
+						<a href={this.state.previewpermanentcommunitycard} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'permanentcommunitycard')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'permanentcommunitycard')}>Upload!</button>
+						</div>
+					</div>
+          
+          		<div className="card-body">
+						<p className="card-text">Please upload your TANCET Hall Ticket</p>
+						<a href={this.state.preivewtancethallticket} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'tancethallticket')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'tancethallticket')}>Upload!</button>
+						</div>
+					</div>
+
+         		<div className="card-body">
+						<p className="card-text">Please upload your TANCET Mark Sheet</p>
+						<a href={this.state.preivewtancetmarksheet} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'tancetmarksheet')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'tancetmarksheet')}>Upload!</button>
+						</div>
+					</div>
+
+
+          		<div className="card-body">
+						<p className="card-text">Please upload your Nativity Certificate</p>
+						<a href={this.state.preivewnativitycertificate} target='_blank' className="mr-4">View PDF</a>
+            			<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'nativitycertificate')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'nativitycertificate')}>Upload!</button>
+						</div>
+					</div>
+
+          		<div className="card-body">
+						<p className="card-text">Please upload your Distric Medical Board</p>
+						<a href={this.state.previewdistrictmedicalboard} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'districtmedicalboard')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'districtmedicalboard')}>Upload!</button>
+						</div>
+					</div>
+
+          		<div className="card-body">
+						<p className="card-text">Please upload Your Sri Lankan Tamil Refugee Proof</p>
+						<a href={this.state.previewsrilankantamilrefugee} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'srilankantamilrefugee')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'srilankantamilrefugee')}>Upload!</button>
+						</div>
+					</div>
+
+          		<div className="card-body">
+						<p className="card-text">Please upload your Demand Draft</p>
+						<a href={this.state.previewdemanddraft} target='_blank' className="mr-4">View PDF</a>
+						<input type="file" accept="application/pdf" onChange={(event) => this.singleFileChangedHandler(event, 'demanddraft')}/>
+						<div className="mt-5">
+							<button className="btn btn-info" onClick={(event) => this.singleFileUploadHandler(event, 'demanddraft')}>Upload!</button>
+						</div>
+					</div>
+
 				</div>
         </div>
         </div>
