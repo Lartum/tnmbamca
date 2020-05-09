@@ -5,70 +5,13 @@ const cors = require('cors');
 
 // Load Validation
 const Application = require('../../models/Application');
-const profileImgUpload = require('../../services/imageupload');
+
 // Load User Model
 const User = require('../../models/User');
-
-//Load Img Model
-const Image = require('../../models/Image');
-
-
-
-router.options('/userimage',passport.authenticate('jwt', { session: false }), cors())
-router.get('/userimage', passport.authenticate('jwt', { session: false }), cors(),
-  async (req, res) => {
-    Image.findOne({ userid: req.user._id})
-      .then(picture=>{
-        res.json({picture});
-      })
-})
-
-
-router.post( '/imageupload', passport.authenticate('jwt', 
-{ session: false }), async (req, res) => {
-	profileImgUpload( req, res, ( error ) => {
-		console.log( 'requestOkokok', req.file );
-		console.log( 'error', error );
-		if( error ){
-			console.log( 'errors', error );
-			res.json( { error: error } );
-		} else {
-			// If File not found
-			if( req.file === undefined ){
-				console.log( 'Error: No File Selected!' );
-				res.json( 'Error: No File Selected' );
-			} else {
-        
-        // If Success
-				const imageName = req.file.key;
-				const imageLocation = req.file.location;
-        
-        // Save the file name into database into profile model
-        const image = new Image({
-          userid: req.user._id,
-          applicationno: req.user.applicationno,
-          imageName: imageName,
-          imageData: imageLocation
-        })
-
-        image.save();
-        
-				res.json( {
-					image: imageName,
-					location: imageLocation
-				} );
-			}
-		}
-	});
-});
-
-
-
 
 router.post('/', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
     try {
-
       
        let  calculatePreFinalTotal, calculatePreFinalObtained, calculatePreFinalPer;
 

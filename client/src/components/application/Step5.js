@@ -8,11 +8,11 @@ export default class Step5 extends Component {
     super(props);
 
     this.state = {
-      previewImage: props.getStore().previewImage,
-      selectedImage: null,
-      loaded:0,
-      uploadResponse:'',
-      plustwomarksheet:null,
+        previewImage: null,
+        selectedImage: null,
+        loaded:0,
+        uploadResponse:'',
+        plustwomarksheet:null,
 	    previewplustwomarksheet:null,
 	    allsemmarksheet:null,
 	    preivewallsemmarksheet:null,
@@ -121,14 +121,17 @@ export default class Step5 extends Component {
   }
 
 	singleFileChangedHandler = ( event, choice ) => {
-		this.setState({
-      selectedImage: event.target.files[0],
-			previewImage: URL.createObjectURL(event.target.files[0])
-    });
-    
-    switch(choice){
+	
+		switch(choice){
 			
-			case "plustwomarksheet": 
+			case "imageupload":
+			this.setState({
+				selectedImage: event.target.files[0],
+		    	previewImage: URL.createObjectURL(event.target.files[0])
+		  	});
+		  	break;
+			
+			  case "plustwomarksheet": 
 			this.setState({
 				plustwomarksheet: event.target.files[0],
 				previewplustwomarksheet: URL.createObjectURL(event.target.files[0])
@@ -214,13 +217,13 @@ export default class Step5 extends Component {
 		}
 	};
    
-  singleFileUploadHandler = ( event,route ) => {
+  singleFileUploadHandler = ( event, route ) => {
 		const data = new FormData();
 // If file selected
 		if ( this.state[route] ) {
 			data.append( 'fileuploads', this.state[route], this.state.selectedImage.name );
-			axios.post( `/api/application/${route}`, data, {
-        headers: {
+			axios.post( `/api/fileupload/${route}`, data, {
+        	headers: {
 					'accept': 'application/json',
 					'Accept-Language': 'en-US,en;q=0.8',
 					'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
@@ -277,7 +280,9 @@ export default class Step5 extends Component {
   };
 
     render(){
-  
+
+
+		console.log(this.state.previewImage);
       let notValidClasses = {};
 
   
