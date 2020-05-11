@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
 import { Button, Jumbotron } from 'reactstrap'
-import Loading from '../common/Loading'
 import { Link } from 'react-router-dom';
 export default class Successpayment extends Component {
     constructor(){

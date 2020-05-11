@@ -68,11 +68,6 @@ router.post( '/imageupload', passport.authenticate('jwt',
 
 
 
-
-
-
-
-
 router.post( '/plustwomarksheet', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
 	fileUpload( req, res, ( error ) => {
@@ -90,7 +85,7 @@ router.post( '/plustwomarksheet', passport.authenticate('jwt',
         
         File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
-				console.log(file);	
+				console.log(files);	
               if(files){
                   files.plustwoMarksheet = req.file.location,
                   files.plustwoMarksheet.uploaded = true
