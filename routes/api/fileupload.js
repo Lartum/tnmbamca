@@ -20,9 +20,9 @@ const Image = require('../../models/Image');
 router.options('/userimage',passport.authenticate('jwt', { session: false }), cors())
 router.get('/userimage', passport.authenticate('jwt', { session: false }), cors(),
   async (req, res) => {
-    Image.findOne({ userid: req.user._id})
-      .then(picture=>{
-        res.json({picture});
+    File.findOne({ applicationno: req.user.applicationno})
+      .then(files=>{
+        res.json({files});
       })
 })
 
@@ -130,7 +130,7 @@ router.post( '/allsemmarksheet', passport.authenticate('jwt',
 				res.json( 'Error: No File Selected' );
 			} else {
         
-        File.findOne({application:req.user.applicationno})
+        File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
 
               if(files){
@@ -178,7 +178,7 @@ router.post( '/degreecertificate', passport.authenticate('jwt',
 				res.json( 'Error: No File Selected' );
 			} else {
         
-        File.findOne({application:req.user.applicationno})
+        File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
 
               if(files){
@@ -226,7 +226,7 @@ router.post( '/transfercertificate', passport.authenticate('jwt',
 				res.json( 'Error: No File Selected' );
 			} else {
         
-        File.findOne({application:req.user.applicationno})
+        File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
 
               if(files){
@@ -274,7 +274,7 @@ router.post( '/permanentcommunitycard', passport.authenticate('jwt',
 				res.json( 'Error: No File Selected' );
 			} else {
         
-        File.findOne({application:req.user.applicationno})
+        File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
 
               if(files){
@@ -321,7 +321,7 @@ router.post( '/tancethallticket', passport.authenticate('jwt',
 				res.json( 'Error: No File Selected' );
 			} else {
         
-        File.findOne({application:req.user.applicationno})
+        File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
 
               if(files){
@@ -368,7 +368,7 @@ router.post( '/tancetmarksheet', passport.authenticate('jwt',
 				res.json( 'Error: No File Selected' );
 			} else {
         
-        File.findOne({application:req.user.applicationno})
+        File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
 
               if(files){
@@ -415,7 +415,7 @@ router.post( '/nativitycertificate', passport.authenticate('jwt',
 				res.json( 'Error: No File Selected' );
 			} else {
         
-        File.findOne({application:req.user.applicationno})
+        File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
 
               if(files){
@@ -462,7 +462,7 @@ router.post( '/districtmedicalboard', passport.authenticate('jwt',
 				res.json( 'Error: No File Selected' );
 			} else {
         
-        File.findOne({application:req.user.applicationno})
+        File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
 
               if(files){
@@ -509,7 +509,7 @@ router.post( '/srilankantamilrefugee', passport.authenticate('jwt',
 				res.json( 'Error: No File Selected' );
 			} else {
         
-        File.findOne({application:req.user.applicationno})
+        File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
 
               if(files){
@@ -556,7 +556,7 @@ router.post( '/demanddraft', passport.authenticate('jwt',
 				res.json( 'Error: No File Selected' );
 			} else {
         
-        File.findOne({application:req.user.applicationno})
+        File.findOne({applicationno:req.user.applicationno})
             .then(files =>{
 
               if(files){

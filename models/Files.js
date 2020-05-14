@@ -10,6 +10,9 @@ var FileSchema = new Schema({
         type:Number,
         ref:'user'
     },    
+    Image:{
+       type:String 
+    },
     plustwoMarksheet: {
         type: String, 
         uploaded: false
