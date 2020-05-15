@@ -12,17 +12,16 @@ const User = require('../../models/User');
 
 const File = require('../../models/Files');
 
-
-
 //Load Img Model
 const Image = require('../../models/Image');
 
 router.options('/userimage',passport.authenticate('jwt', { session: false }), cors())
 router.get('/userimage', passport.authenticate('jwt', { session: false }), cors(),
   async (req, res) => {
-    File.findOne({ applicationno: req.user.applicationno})
-      .then(files=>{
-        res.json({files});
+    Image.findOne({ applicationno: req.user.applicationno})
+      .then(image=>{
+		console.log(image);  
+        res.json(image);
       })
 })
 

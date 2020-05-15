@@ -27,7 +27,7 @@ export default class Pdf extends React.Component {
       const users = res.data;
       this.setState({ users });
     });
-    axios.get("/api/application/userimage").then((res) => {
+    axios.get("/api/fileupload/userimage").then((res) => {
       const image = res.data;
       this.setState({ image });
     });
@@ -287,7 +287,7 @@ export default class Pdf extends React.Component {
           <Image style={styles.logo} src={logo}></Image>
           <Image
             style={styles.photo}
-            src={this.state.image.picture.imageData}
+            src={this.state.image.imageData}
           />
           <View style={styles.left}>
             <Text style={styles.text}>
@@ -850,7 +850,7 @@ export default class Pdf extends React.Component {
           <Image style={styles.logo} src={logo}></Image>
           <Image
             style={styles.photo}
-            src={this.state.image.picture.imageData}
+            src={this.state.image.imageData}
           />
           <View style={styles.left}>
             <Text style={styles.text}>
@@ -1408,7 +1408,7 @@ export default class Pdf extends React.Component {
           <Image style={styles.logo} src={logo}></Image>
           <Image
             style={styles.photo}
-            src={this.state.image.picture.imageData}
+            src={this.state.image.imageData}
           ></Image>
           <View style={styles.left}>
             <Text style={styles.text}>
