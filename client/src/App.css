@@ -8,15 +8,14 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.nav-link{
-  color: white;  
+.nav-link {
+  color: white;
 }
-.navbar-brand{
+.navbar-brand {
   color: white;
 }
 
@@ -33,13 +32,12 @@ input[type=number] {
   padding-top: 80px;
 }
 
-.sweet-loading{
+.sweet-loading {
   text-align: center;
 }
 
 .frost-theme {
-  background-image: linear-gradient(to right, #56ab2f, #a8e063
-  );
+  background-image: linear-gradient(to right, #56ab2f, #a8e063);
   text-decoration: none;
 }
 
@@ -100,13 +98,20 @@ footer {
   text-align: center;
 }
 
-.userdashboard{
+.userdashboard {
   text-align: center;
 }
-.links{
+
+.links {
   color: blue;
   text-decoration: none;
 }
-#prev-button{
+
+#prev-button {
   margin-right: 83%;
+}
+
+.highLightText {
+  color: red;
+  text-decoration: none;
 }
