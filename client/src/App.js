@@ -28,7 +28,6 @@ import FailurePayment from './components/payment/Failurepayment';
 import Edit from './components/application/edit/Edit';
 import Basicedit from './components/application/edit/Basicedit';
 import Viewapplication from './components/application/Viewapplication';
-import FileUpload from './FileUpload';
 
 import './App.css';
 
@@ -83,9 +82,6 @@ class App extends Component {
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/viewapplication" component={Viewapplication} />
-              </Switch>
-              <Switch>
-              <PrivateRoute exact path ='/uploadfile' component={FileUpload}/> 
               </Switch>
               <Switch>
                 <PrivateRoute exact path="/edit" component={Edit} />
