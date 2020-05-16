@@ -60,6 +60,12 @@ class Step5 extends Component {
 			previewplustwomarksheet: URL.createObjectURL(event.target.files[0])
 		});
 	 }
+	 else if(choice === 'degreecertificate'){
+		this.setState({
+			degreecertificate: event.target.files[0],
+			previewdegreecertificate: URL.createObjectURL(event.target.files[0])
+		});
+	 }
 	 else if(choice === 'allsemmarksheet'){
 		this.setState({
 			allsemmarksheet: event.target.files[0],

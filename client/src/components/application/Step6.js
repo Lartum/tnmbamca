@@ -19,7 +19,7 @@ export default class Step5 extends Component {
 
   componentWillUnmount() {}
 
-  handClick = (e) => {
+  handleClick = (e) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -661,10 +661,10 @@ export default class Step5 extends Component {
           </CardBody>
         </Card>
         <Link to="/payment">
-          <Button onClick={this.handClick}>Go To Payment</Button>
+          <Button onClick={this.handleClick}>Go To Payment</Button>
         </Link>
         <Link to="/userdashboard">
-          <Button onClick={this.handClick}>Save And Pay Later</Button>
+          <Button onClick={this.handleClick}>Save And Pay Later</Button>
         </Link>
       </div>
     );
