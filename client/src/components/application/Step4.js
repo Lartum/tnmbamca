@@ -391,7 +391,7 @@ export default class Step5 extends Component {
         parseFloat(this.refs.VIsemmarks.value, 10);
       this.setState({ overallmarksobtained: total_obtained_Marks });
 
-      const percent_marks = parseInt(
+      const percent_marks = parseFloat(
         (parseInt(total_obtained_Marks, 10) * 100) /
           parseInt(this.refs.overalltotalmarks.value, 10),
         10
@@ -414,7 +414,7 @@ export default class Step5 extends Component {
         parseFloat(this.refs.Xsemmarks.value, 10);
       this.setState({ overallmarksobtained: total_obtained_Marks });
 
-      const percent_marks = parseInt(
+      const percent_marks = parseFloat(
         (parseInt(total_obtained_Marks, 10) * 100) /
           parseInt(this.refs.overalltotalmarks.value, 10),
         10
@@ -434,7 +434,7 @@ export default class Step5 extends Component {
         parseFloat(this.refs.VIIIsemmarks.value, 10);
       this.setState({ overallmarksobtained: total_obtained_Marks });
 
-      const percent_marks = parseInt(
+      const percent_marks = parseFloat(
         (parseInt(total_obtained_Marks, 10) * 100) /
           parseInt(this.refs.overalltotalmarks.value, 10),
         10

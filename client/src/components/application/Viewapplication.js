@@ -30,10 +30,10 @@ export default class Viewapplication extends Component {
 
     render() {
 
-      if(this.state.users === null){
+      if(this.state.users === null || this.state.files === null){
         return <Loading />
       }
-      else if(this.state.users !== null){
+      else if(this.state.users !== null && this.state.files !== null){
         console.log(this.state.files)
         return (
           
@@ -457,6 +457,7 @@ export default class Viewapplication extends Component {
               </Table>
 
               <h4 className="finalReviewHeader">UPLOADED FILES</h4>
+              
               <Table>
                 <tbody>
                   <tr>
