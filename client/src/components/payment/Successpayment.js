@@ -14,7 +14,7 @@ export default class Successpayment extends Component {
                 <Jumbotron>
                    <h1 className="display-3">Payment Successfull</h1>
                    <p className="lead">Your Payment Of Rs. 300 Was Successfully Paid</p>
-                   <hr className="my-2" />
+                   <hr className="mt-2" />
                    <p>Please Continue to the dashboard</p>
                    <p className="lead">
                  <Link to='/userdashboard' color='success'><Button color="success">Continue</Button></Link>  

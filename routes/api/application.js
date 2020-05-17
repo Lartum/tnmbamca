@@ -1,13 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const cors = require('cors');
 
 // Load Validation
 const Application = require('../../models/Application');
 
 // Load User Model
 const User = require('../../models/User');
+
+
+// Load User Model
+const File = require('../../models/Files');
+
 
 router.post('/', passport.authenticate('jwt', 
 { session: false }), async (req, res) => {
@@ -32,10 +36,10 @@ router.post('/', passport.authenticate('jwt',
           break;
 
        case "10 + Plus Two + 4 Years Degree":
-        calculatePreFinalTotal = req.body.overalltotalmarks - req.body.VIIIsemmaxmarks;
-        calculatePreFinalObtained = req.body.overallmarksobtained - req.body.VIIIsemmarks;
-        calculatePreFinalPer = parseFloat(((req.body.overallmarksobtained - req.body.VIIIsemmarks) * 100)/
-        (req.body.overalltotalmarks - req.body.VIIIsemmaxmarks)).toFixed(2); 
+          calculatePreFinalTotal = req.body.overalltotalmarks - req.body.VIIIsemmaxmarks;
+          calculatePreFinalObtained = req.body.overallmarksobtained - req.body.VIIIsemmarks;
+          calculatePreFinalPer = parseFloat(((req.body.overallmarksobtained - req.body.VIIIsemmarks) * 100)/
+          (req.body.overalltotalmarks - req.body.VIIIsemmaxmarks)).toFixed(2); 
         break;
 
        }
@@ -173,6 +177,21 @@ router.post('/', passport.authenticate('jwt',
                      user.applicationcomplete = true;
                      user.save();
                  })   
+               File.findOne({userid: application._userid})  
+                  .then(file=>{
+                    application.image = req.file.image,
+                    application.plustwoMarksheet = req.file.plustwoMarksheet,
+                    application.allsemMarksheet = req.file.allsemMarksheet,
+                    application.degreeCertificate = req.file.degreeCertificate,
+                    application.transferCertificate = req.file.permamentcommunitycard,
+                    application.tancethallticket = req.file.tancethallticket,
+                    application.tancetmarksheet = req.file.tancetmarksheet,
+                    application.nativitycertificate = req.file.nativitycertificate,
+                    application.districtmedicalboard = req.file.districtmedicalboard,
+                    application.srilankantamilrefugee = req.file.srilankantamilrefugee,
+                    application.demanddraft = req.file.demanddraft
+                  })
+               application.save();   
               res.json(application)
               }
              )

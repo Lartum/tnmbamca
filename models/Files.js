@@ -60,6 +60,6 @@ var FileSchema = new Schema({
     versionKey: false
 });
 
-var File = mongoose.model('File', FileSchema);
+var File = mongoose.model('file', FileSchema);
 
 module.exports = File;

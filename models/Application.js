@@ -19,10 +19,6 @@ const ApplicationSchema = mongoose.Schema({
         type: String,
         ref: 'user',
     },
-    image: {
-        data: Buffer,
-        contentType: String
-    },
     regno:{
         type:Number,
         ref:'user'
@@ -43,7 +39,54 @@ const ApplicationSchema = mongoose.Schema({
         type: Number,
         ref: 'user'
     },
-    
+    image:{
+        type:String, 
+        ref:'file'
+     },
+     plustwoMarksheet: {
+         type: String, 
+         ref:'file'
+     },
+     allsemMarksheet:{
+         type: String, 
+         ref:'file'
+     },
+     degreeCertificate:{
+         type: String,
+         ref:'file'
+     },
+     transferCertificate:{
+         type: String, 
+         ref:'file'
+     },
+     permamentcommunitycard:{
+         type: String,
+         ref:'file' 
+     },
+     tancethallticket:{
+         type: String, 
+         ref:'file'
+     },
+     tancetmarksheet:{
+         type: String, 
+         ref:'file'
+     },
+     nativitycertificate:{
+         type: String, 
+         ref:'file'
+     },
+     districtmedicalboard:{
+         type: String,
+         ref:'file' 
+     },
+     srilankantamilrefugee:{
+         type: String, 
+         ref:'file'
+     },
+     demanddraft:{
+         type: String, 
+         ref:'file'
+     },
     nameOfParent: String,
     gender: String,
     dateOfBirth: String,

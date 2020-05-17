@@ -10,7 +10,8 @@ export default class Viewapplication extends Component {
     constructor(){
         super();
         this.state ={
-            users:null
+            users:null,
+            files:null
         }
     }
 
@@ -20,6 +21,11 @@ export default class Viewapplication extends Component {
              const users = res.data;
              this.setState({ users });
          })
+         Axios.get('/api/fileupload/files')
+         .then(res =>{
+             const files = res.data;
+             this.setState({ files });
+         })
     }
 
     render() {
@@ -28,6 +34,7 @@ export default class Viewapplication extends Component {
         return <Loading />
       }
       else if(this.state.users !== null){
+        console.log(this.state.files)
         return (
           
           <div className='userdashboard'>
@@ -448,7 +455,124 @@ export default class Viewapplication extends Component {
                   </tr>
                 </tbody>
               </Table>
+
+              <h4 className="finalReviewHeader">UPLOADED FILES</h4>
+              <Table>
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.plustwoMarksheet} 
+                    target='_blank' 
+                    className="mr-4"
+                    >PlusTwo Marksheet
+                    </a>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.allsemMarksheet} 
+                    target='_blank' 
+                    className="mr-4"
+                    >All Sem Marksheet
+                    </a>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.degreeCertificate} 
+                    target='_blank' 
+                    className="mr-4"
+                    >Degree Certificate
+                    </a>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.transferCertificate} 
+                    target='_blank' 
+                    className="mr-4"
+                    >Transfer Certificate
+                    </a>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.permamentcommunitycard} 
+                    target='_blank' 
+                    className="mr-4"
+                    >Permanent Community Card
+                    </a>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.tancethallticket} 
+                    target='_blank' 
+                    className="mr-4"
+                    >TANCET Hall Ticket
+                    </a>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.tancetmarksheet} 
+                    target='_blank' 
+                    className="mr-4"
+                    >TANCET Mark Sheet
+                    </a>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.nativitycertificate} 
+                    target='_blank' 
+                    className="mr-4"
+                    >Nativity Certificate
+                    </a>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.districtmedicalboard} 
+                    target='_blank' 
+                    className="mr-4"
+                    >District Medical Board
+                    </a>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.srilankantamilrefugee} 
+                    target='_blank' 
+                    className="mr-4"
+                    >Sri Lankan tamil Refugee
+                    </a>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                    <a 
+                    href={this.state.files.demanddraft} 
+                    target='_blank' 
+                    className="mr-4"
+                    >Demand Draft
+                    </a>
+                    </th>
+                  </tr>
+                </tbody>
+              </Table>
             </div> 
+           
          </div>
         </div>
       )

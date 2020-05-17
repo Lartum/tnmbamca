@@ -587,4 +587,18 @@ router.post( '/demanddraft', passport.authenticate('jwt',
 	});
 });
 
+router.get( '/files', passport.authenticate('jwt', 
+{ session: false }), async (req, res) => {
+	try{
+	   File.findOne({applicationno: req.user.applicationno })
+	     .then(files =>{
+			console.log(files)
+			res.json(files);
+		 })
+	}	
+	catch(error){
+		console.log(error)
+	}
+});
+
 module.exports = router
