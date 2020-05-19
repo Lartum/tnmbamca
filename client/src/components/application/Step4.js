@@ -320,11 +320,10 @@ export default class Step5 extends Component {
 
       this.setState({ overalltotalmarks: total_Max_Marks });
       if (this.refs.overallmarksobtained.value !== null) {
-        const percent_marks = parseInt(
-          (parseInt(this.refs.overallmarksobtained.value, 10) * 100) /
-            parseInt(total_Max_Marks, 10),
-          10
-        );
+        const percent_marks = parseFloat(
+          (parseFloat(this.refs.overallmarksobtained.value, 10) * 100) /
+            parseFloat(total_Max_Marks, 10)        
+        ).toFixed(2);
         this.setState({ totalpermark: percent_marks });
       }
     } else if (
@@ -344,11 +343,10 @@ export default class Step5 extends Component {
         parseFloat(this.refs.Xsemmaxmarks.value, 10);
       this.setState({ overalltotalmarks: total_Max_Marks });
       if (this.refs.overallmarksobtained.value !== null) {
-        const percent_marks = parseInt(
-          (parseInt(this.refs.overallmarksobtained.value, 10) * 100) /
-            parseInt(total_Max_Marks, 10),
-          10
-        );
+        const percent_marks = parseFloat(
+          (parseFloat(this.refs.overallmarksobtained.value, 2) * 100) /
+            parseFloat(total_Max_Marks, 2)
+        ).toFixed(2);
         this.setState({ totalpermark: percent_marks });
       }
     } else if (
@@ -365,11 +363,10 @@ export default class Step5 extends Component {
         parseFloat(this.refs.VIIIsemmaxmarks.value, 10);
       this.setState({ overalltotalmarks: total_Max_Marks });
       if (this.refs.overallmarksobtained.value !== null) {
-        const percent_marks = parseInt(
-          (parseInt(this.refs.overallmarksobtained.value, 10) * 100) /
-            parseInt(total_Max_Marks, 10),
-          10
-        );
+        const percent_marks = parseFloat(
+          (parseFloat(this.refs.overallmarksobtained.value, 2) * 100) /
+            parseFloat(total_Max_Marks, 2)
+        ).toFixed(2);
         this.setState({ totalpermark: percent_marks });
       }
     }
@@ -392,10 +389,9 @@ export default class Step5 extends Component {
       this.setState({ overallmarksobtained: total_obtained_Marks });
 
       const percent_marks = parseFloat(
-        (parseInt(total_obtained_Marks, 10) * 100) /
-          parseInt(this.refs.overalltotalmarks.value, 10),
-        10
-      );
+        (parseFloat(total_obtained_Marks, 2) * 100) /
+          parseFloat(this.refs.overalltotalmarks.value, 2)
+      ).toFixed(2);
       this.setState({ totalpermark: percent_marks });
     } else if (
       this.props.getStore().patternOfStudy ===
@@ -415,10 +411,9 @@ export default class Step5 extends Component {
       this.setState({ overallmarksobtained: total_obtained_Marks });
 
       const percent_marks = parseFloat(
-        (parseInt(total_obtained_Marks, 10) * 100) /
-          parseInt(this.refs.overalltotalmarks.value, 10),
-        10
-      );
+        (parseFloat(total_obtained_Marks, 2) * 100) /
+          parseFloat(this.refs.overalltotalmarks.value, 2)
+      ).toFixed(2);
       this.setState({ totalpermark: percent_marks });
     } else if (
       this.props.getStore().patternOfStudy === "10 + Plus Two + 4 Years Degree"
@@ -435,10 +430,9 @@ export default class Step5 extends Component {
       this.setState({ overallmarksobtained: total_obtained_Marks });
 
       const percent_marks = parseFloat(
-        (parseInt(total_obtained_Marks, 10) * 100) /
-          parseInt(this.refs.overalltotalmarks.value, 10),
-        10
-      );
+        (parseFloat(total_obtained_Marks, 2) * 100) /
+          parseFloat(this.refs.overalltotalmarks.value, 2)
+      ).toFixed(2);
       this.setState({ totalpermark: percent_marks });
     }
   };

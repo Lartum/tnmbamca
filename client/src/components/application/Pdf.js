@@ -254,24 +254,17 @@ export default class Pdf extends React.Component {
       const castename = this.state.users.nameOfCaste;
       if (castename.length > 391) {
         newLine = "\n\n\n\n\n\n\n";
-      } else if (castename.length > 135) {
-        newLine = "\n\n\n\n\n";
+      } 
+      else if (castename.length > 235) {
+        newLine = "\n\n\n\n";
+      }
+      else if (castename.length > 135) {
+        newLine = "\n\n\n";
       } else if (castename.length > 84) {
         newLine = "\n\n";
       } else {
         console.log("else condition running");
       }
-
-      //   switch(castename){
-      //   case castename.length>78:
-      //         newLine = "\n\n"
-      //         break;
-      //    case castename.length>135:
-      //       newLine = "\n\n\n\n"
-      //       break
-      //    case castename.length> 300:
-      //       newLine = "\n\n\n\n\n"
-      //   }
     }
     const MyDoc1 = () => (
       <Document>
@@ -440,7 +433,7 @@ export default class Pdf extends React.Component {
             </Text>
             <Text>: {this.state.users.casteCode}</Text>
             <Text>: {this.state.users.religion}</Text>
-            <Text>:{this.state.users.nameOfCaste}{newLine}</Text>
+            <Text>: {this.state.users.nameOfCaste}</Text>
             <Text>: {this.state.users.differentlyAbled}</Text>
             <Text>: {this.state.users.qualifyingDegree}</Text>
             <Text>: {this.state.users.patternOfStudy}</Text>
@@ -1000,7 +993,7 @@ export default class Pdf extends React.Component {
             <Text>: {this.state.users.nameOfCommunity}</Text>
             <Text>: {this.state.users.casteCode}</Text>
             <Text>: {this.state.users.religion}</Text>
-    <Text>: {this.state.users.nameOfCaste}{newLine}</Text>
+    <Text>: {this.state.users.nameOfCaste}</Text>
             <Text>: {this.state.users.differentlyAbled}</Text>
             <Text>: {this.state.users.qualifyingDegree}</Text>
             <Text>: {this.state.users.patternOfStudy}</Text>
@@ -1556,7 +1549,7 @@ export default class Pdf extends React.Component {
             <Text>: {this.state.users.nameOfCommunity}</Text>
             <Text>: {this.state.users.casteCode}</Text>
             <Text>: {this.state.users.religion}</Text>
-    <Text>: {this.state.users.nameOfCaste}{newLine}</Text>
+    <Text>: {this.state.users.nameOfCaste}</Text>
             <Text>: {this.state.users.differentlyAbled}</Text>
             <Text>: {this.state.users.qualifyingDegree}</Text>
             <Text>: {this.state.users.patternOfStudy}</Text>
