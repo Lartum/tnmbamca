@@ -58,7 +58,6 @@ const min = 10000;
 sns.setSMSAttributes({
     attributes: {
       DefaultSMSType: 'Transactional'
-
     }
   },
   function (error) {
@@ -343,8 +342,14 @@ router.post('/register', (req, res) => {
 
                       //Publish the SNS Message
                       sns.publish(params, (err, data) => {
-                        if (err) console.log(err, err.stack);
-                        else console.log(data);
+                        if (err){
+                          console.log(err, err.stack);
+                          res.json(err)
+                        }
+                        else {
+                          console.log(data);
+                          res.json(data);
+                        };
                       })
                       //Creating a New Otp in the otp schema with 
                       access_otp = new Otp({
