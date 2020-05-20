@@ -1,3 +1,3 @@
 module.exports = {
-sendgridkey : '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'
+sendgridkey : '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'
 }
