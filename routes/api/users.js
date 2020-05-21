@@ -118,7 +118,7 @@ router.post('/register', (req, res) => {
               errors.regno = "The provided TANCENT register number was marked as absent";
               return res.status(400).json(errors);
             }
-            else if(tancent.mbamarks = ''){
+            else if(tancent.mbamarks === ''){
               errors.regno = 'You havent appeared for MBA exam';
               return res.status(400).json(errors);
             }
@@ -155,7 +155,7 @@ router.post('/register', (req, res) => {
                       var params = {
                         Message: `The OTP For TN MBA MCA Admission is ${otp}`,
                         MessageStructure: 'String',
-                        PhoneNumber: phonenumber
+                        PhoneNumber: String(user.phonenumber)
                       };
                       //Publish the SNS Message
                       sns.publish(params, (err, data) => {
@@ -249,14 +249,14 @@ router.post('/register', (req, res) => {
                   newUser
                     .save()
                     .then(user => {
-                      res.json(user)
+          
                       //Generate the Otp For the Given Phone Number
                       const otp = Math.floor(Math.random() * (max - min) + min);
-                
+                      console.log(user.phonenumber);
                       var params = {
                         Message: `The OTP For TN MBA MCA Admission is ${otp}`,
                         MessageStructure: 'String',
-                        PhoneNumber: user.phonenumber
+                        PhoneNumber: String(user.phonenumber) 
                       };
 
                       //Publish the SNS Message
@@ -350,7 +350,7 @@ router.post('/register', (req, res) => {
               errors.regno = "The provided TANCENT register number was marked as absent";
               return res.status(400).json(errors);
             }
-            else if(tancent.mcamarks = ''){
+            else if(tancent.mcamarks === ''){
               errors.regno = 'You havent appeared for MBA exam';
               return res.status(400).json(errors);
             }
@@ -386,7 +386,7 @@ router.post('/register', (req, res) => {
                       var params = {
                         Message: `The OTP For TN MBA MCA Admission is ${otp}`,
                         MessageStructure: 'String',
-                        PhoneNumber: phonenumber
+                        PhoneNumber: String(user.phonenumber)
                       };
                       //Publish the SNS Message
                       sns.publish(params, (err, data) => {
@@ -483,7 +483,7 @@ router.post('/register', (req, res) => {
                       var params = {
                         Message: `The OTP For TN MBA MCA Admission is ${otp}`,
                         MessageStructure: 'String',
-                        PhoneNumber: user.phonenumber
+                        PhoneNumber: String(user.phonenumber)
                       };
                       //Publish the SNS Message
                       sns.publish(params, (err, data) => {
