@@ -65,89 +65,7 @@ sns.setSMSAttributes({
       console.log(error);
     }
   });
-// @route   GET api /users/verifyphone
-// @desc    Verify Email
-// @access  Public
 
-// Email verifymail route, use get  to directly verify with the generated link
-router.post('/verifymail', (req,res) => {
-  
-    //Extract the token from the url with the query keyword
-    Token.findOne({token : req.body.token },(err, token) => {
-      if (!token) return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
-      
-      // If we found a token, find a matching user
-      User.findOne({ 
-        _id: token._userId})
-          .then(user => {
-              if(!user) return res.status(400).send({msg: 'we were unable to find a user for this token.'});
-              if(user.emailverified) return res.status(400).send({type : 'already-verified', msg:'This user has already been verified'});
-  
-              //verify and save the user method
-               user.emailverified = true;
-  
-              //Delete the token once the user is verified 
-               Token.findOneAndDelete({token : token._userId})
-  
-               //save the user in the database
-               user.save( (err) => {
-                  if(err) {return res.status(500).send({msg: err.message}); }
-                  res.status(200)
-               })
-            
-        })
-          });
-      });
-  
-
-// @route   POST api /users/verifyphone
-// @desc    Veryify User Phonenumber
-// @access  Public
-
-router.post('/verifyphone', (req, res) => {
-  const {
-    errors,
-    isValid
-  } = validateOtpInput(req.body);
-  var {
-    otp
-  } = req.body;
-
-  // if (!isValid) {
-  //   return res.status(400).json(errors);
-  // }
-  Otp.findOne({
-      otp
-    })
-    .then(otp => {
-      if (!otp) {
-        errors.otp = 'Please Enter An OTP'
-        return res.status(400).json(errors);
-      } else {
-        User.findOne({
-            _id: otp._userId
-          })
-          .then(user => {
-            if (!user.phonenumber) {
-              errors.otp = "Phone Number Does Not Exist"
-              return res.status(400).json(errors);
-            }
-            if (user.phoneverified === true) {
-              errors.otp = "Phone Number Already Verified "
-              return res.status(400).json(errors);
-            }
-            //Set the User phone verifed to true and save the updated database
-            user.phoneverified = true;
-            user
-              .save()
-              .then(user => res.json(user))
-              .catch(err => console.log(err))
-          })
-      }
-    })
-  // .then(Otp.deleteOne({otp}))
-
-})
 
 // @route   POST api /users/register
 // @desc    Register user
@@ -196,17 +114,18 @@ router.post('/register', (req, res) => {
             count = count + defaultapplicationno;
             var applicationnum = ["1", currentYear, count]
             applicationno = applicationnum.join('');
-            if(tancentmarks === 'ABS')  {
+            if(tancent.mbamarks === 'ABS') {
               errors.regno = "The provided TANCENT register number was marked as absent";
               return res.status(400).json(errors);
             }
-            else if(tancentmarks = ''){
+            else if(tancent.mbamarks = ''){
               errors.regno = 'You havent appeared for MBA exam';
               return res.status(400).json(errors);
             }
             else {
-               //if the user is the first applicant
-            if (count = defaultapplicationno) {
+            
+            //if the user is the first applicant
+            if (count === defaultapplicationno) {
               var tancentmarks = parseFloat(tancent.mbamarks);
               console.log(`initial tancent marks: ${tancentmarks}`)
               console.log(`typeof tancentmarks is: ${typeof tancentmarks}`)
@@ -275,7 +194,7 @@ router.post('/register', (req, res) => {
 
                       //local variables host and link
                       host = req.headers.host
-                      link = "http://" + host + "/verifymail?token=" + access_token.token;
+                      link = "https://" + host + "/verifymail?token=" + access_token.token;
 
                       // Send the email
                       var transporter = nodemailer.createTransport({
@@ -427,11 +346,11 @@ router.post('/register', (req, res) => {
             count = count + defaultapplicationno;
             var applicationnum = ["3", currentYear, count]
             applicationno = applicationnum.join('');
-            if(tancentmarks === 'ABS')  {
+            if(tancent.mcamarks === 'ABS')  {
               errors.regno = "The provided TANCENT register number was marked as absent";
               return res.status(400).json(errors);
             }
-            else if(tancentmarks = ''){
+            else if(tancent.mcamarks = ''){
               errors.regno = 'You havent appeared for MBA exam';
               return res.status(400).json(errors);
             }
@@ -644,6 +563,91 @@ router.post('/register', (req, res) => {
       }
     });
 });
+
+
+// @route   GET api /users/verifyphone
+// @desc    Verify Email
+// @access  Public
+
+// Email verifymail route, use get  to directly verify with the generated link
+router.post('/verifymail', (req,res) => {
+  
+  //Extract the token from the url with the query keyword
+  Token.findOne({token : req.body.token },(err, token) => {
+    if (!token) return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
+    
+    // If we found a token, find a matching user
+    User.findOne({ 
+      _id: token._userId})
+        .then(user => {
+            if(!user) return res.status(400).send({msg: 'we were unable to find a user for this token.'});
+            if(user.emailverified) return res.status(400).send({type : 'already-verified', msg:'This user has already been verified'});
+
+            //verify and save the user method
+             user.emailverified = true;
+
+            //Delete the token once the user is verified 
+             Token.findOneAndDelete({token : token._userId})
+
+             //save the user in the database
+             user.save( (err) => {
+                if(err) {return res.status(500).send({msg: err.message}); }
+                res.status(200)
+             })
+          
+      })
+        });
+    });
+
+
+// @route   POST api /users/verifyphone
+// @desc    Veryify User Phonenumber
+// @access  Public
+
+router.post('/verifyphone', (req, res) => {
+const {
+  errors,
+  isValid
+} = validateOtpInput(req.body);
+var {
+  otp
+} = req.body;
+
+// if (!isValid) {
+//   return res.status(400).json(errors);
+// }
+Otp.findOne({
+    otp
+  })
+  .then(otp => {
+    if (!otp) {
+      errors.otp = 'Please Enter An OTP'
+      return res.status(400).json(errors);
+    } else {
+      User.findOne({
+          _id: otp._userId
+        })
+        .then(user => {
+          if (!user.phonenumber) {
+            errors.otp = "Phone Number Does Not Exist"
+            return res.status(400).json(errors);
+          }
+          if (user.phoneverified === true) {
+            errors.otp = "Phone Number Already Verified "
+            return res.status(400).json(errors);
+          }
+          //Set the User phone verifed to true and save the updated database
+          user.phoneverified = true;
+          user
+            .save()
+            .then(user => res.json(user))
+            .catch(err => console.log(err))
+        })
+    }
+  })
+// .then(Otp.deleteOne({otp}))
+
+})
 
 // @route   POST api /users/resetpassword
 // @desc    Send Email link for Password Reset
