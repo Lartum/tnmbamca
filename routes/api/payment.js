@@ -43,8 +43,7 @@ router.post('/', passport.authenticate('jwt',
   });
 })
 
-router.post('/payment-callback', async  (req,res) =>{
-  try{ 
+router.post('/payment-callback', (req,res) =>{
 
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature} = req.body;
   request(`https://${razor_key_id}:${razor_secret}@api.razorpay.com/v1/payments/${razorpay_payment_id}`, 
@@ -53,30 +52,28 @@ router.post('/payment-callback', async  (req,res) =>{
    const email = data.email
    User.findOne({email})
       .then(user =>{
-        user.paid = true;
-        user.save()
-        const paymentDetails = new Payment({
-              _userid: user._id,
-              applicationno : user.applicationno,
-              name: user.name,
-              email: user.email,
-              razorpay_order_id,
-              razorpay_payment_id,
-              razorpay_signature,
-              })
-      console.log(paymentDetails);
-      paymentDetails.save();    
-      }).catch(err =>{
-        console.log(err);
-      })
-    });
-    return res.redirect('https://mbamcatn.herokuapp.com/paymentsuccess')
- 
-  }
-  catch(err){
-    console.log(err);
-  }
+        if(user.paid === true){
+          return res.redirect('/already-paid');
+        }
+        else{  
+          user.paid = true;
+          user.save()
+          const paymentDetails = new Payment({
+                _userid: user._id,
+                applicationno : user.applicationno,
+                name: user.name,
+                email: user.email,
+                razorpay_order_id,
+                razorpay_payment_id,
+                razorpay_signature,
+                })
+        console.log(paymentDetails);
+        paymentDetails.save();    
+        console.log('payment callback url invoked');
+        return res.redirect('www.google.com')}
+          
+    })
+  })
 })
-
 
 module.exports = router;
