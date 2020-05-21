@@ -70,7 +70,7 @@ router.post('/payment-callback', (req,res) =>{
         console.log(paymentDetails);
         paymentDetails.save();    
         console.log('payment callback url invoked');
-        return res.redirect('www.google.com')}
+        return res.redirect('/paymentsuccess')}
           
     })
   })
